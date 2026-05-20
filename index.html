@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>日本語 — Flash Cards</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f5f3;
+      --bg-tertiary: #eeede9;
+      --text-primary: #1a1a18;
+      --text-secondary: #6b6b66;
+      --text-tertiary: #9e9e99;
+      --border-light: rgba(0,0,0,0.1);
+      --border-medium: rgba(0,0,0,0.18);
+      --border-strong: rgba(0,0,0,0.28);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --correct-color: #1D9E75;
+      --correct-bg: #E1F5EE;
+      --wrong-color: #D85A30;
+      --wrong-bg: #FAECE7;
+      --accent: #378ADD;
+      --accent-bg: #E6F1FB;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #1e1e1c;
+        --bg-secondary: #2a2a28;
+        --bg-tertiary: #242422;
+        --text-primary: #f0efeb;
+        --text-secondary: #a0a09a;
+        --text-tertiary: #6b6b66;
+        --border-light: rgba(255,255,255,0.08);
+        --border-medium: rgba(255,255,255,0.14);
+        --border-strong: rgba(255,255,255,0.22);
+        --correct-bg: #0a2a1f;
+        --wrong-bg: #2a1208;
+        --accent-bg: #0c2a42;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-tertiary);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .app { width: 100%; max-width: 580px; }
+
+    /* ── Header ── */
+    .header { text-align: center; margin-bottom: 1.5rem; }
+    .header h1 { font-size: 26px; font-weight: 500; color: var(--text-primary); letter-spacing: -0.4px; }
+    .header p { font-size: 14px; color: var(--text-secondary); margin-top: 6px; }
+
+    /* ── Category bar ── */
+    .category-bar { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem; }
+    .cat-btn {
+      padding: 7px 16px; border-radius: 20px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 13px; cursor: pointer;
+      background: var(--bg-primary); color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .cat-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .cat-btn.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
+    /* ── Options panel ── */
+    .options-panel {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .options-label {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-tertiary);
+      margin-right: 4px;
+      flex-shrink: 0;
+    }
+    .options-divider {
+      width: 0.5px;
+      height: 20px;
+      background: var(--border-medium);
+      margin: 0 6px;
+      flex-shrink: 0;
+    }
+    .toggle-group { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    /* Toggle pill */
+    .toggle-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 13px;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      transition: all 0.18s;
+      user-select: none;
+    }
+    .toggle-pill:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .toggle-pill.on {
+      background: var(--accent-bg);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .toggle-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.7;
+      transition: opacity 0.18s;
+    }
+    .toggle-pill.on .dot { opacity: 1; }
+
+    /* Side indicator (front/back) */
+    .side-tabs {
+      display: flex;
+      gap: 6px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .side-tab {
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 12px;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .side-tab.on { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
+    /* ── Progress ── */
+    .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+    .progress-bar-wrap { flex: 1; height: 4px; background: var(--bg-secondary); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 2px; background: var(--text-primary); transition: width 0.4s ease; }
+    .progress-label { font-size: 13px; color: var(--text-secondary); white-space: nowrap; min-width: 48px; text-align: right; }
+
+    /* ── Card ── */
+    .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; }
+    .card-inner {
+      width: 100%;
+      display: grid;                /* les deux faces partagent la même cellule       */
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+      transform-style: preserve-3d;
+    }
+    .card-inner.flipped { transform: rotateY(180deg); }
+    .card-face {
+      grid-area: 1 / 1;             /* superpose recto et verso dans la même cellule  */
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      min-height: 220px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      user-select: none;
+    }
+    .card-back { transform: rotateY(180deg); } /* plus d'absolute : la grille gère l'empilement */
+    .card-tag { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 1rem; }
+
+    /* Front fields */
+    .field-kanji  { font-size: 68px; line-height: 1; color: var(--text-primary); margin-bottom: 6px; }
+    .field-kana   { font-size: 26px; color: var(--text-secondary); margin-bottom: 4px; }
+    .field-romaji { font-size: 16px; color: var(--text-tertiary); font-style: italic; }
+
+    /* Back fields */
+    .back-kana   { font-size: 22px; color: var(--text-secondary); margin-bottom: 4px; }
+    .back-romaji { font-size: 16px; color: var(--text-tertiary); font-style: italic; margin-bottom: 10px; }
+    .back-meaning { font-size: 30px; font-weight: 500; color: var(--text-primary); margin-bottom: 12px; }
+    .back-example { font-size: 13px; color: var(--text-secondary); line-height: 1.7; white-space: pre-line; }
+
+    /* hidden fields */
+    .hidden { display: none !important; }
+    /* placeholder when all front fields hidden */
+    .card-placeholder { font-size: 36px; color: var(--text-tertiary); }
+
+    /* ── Buttons ── */
+    .flip-hint { text-align: center; font-size: 13px; color: var(--text-tertiary); margin-bottom: 1rem; transition: opacity 0.2s; }
+    .action-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 1.5rem; }
+    .action-btn {
+      flex: 1; max-width: 180px; padding: 11px 0;
+      border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-medium);
+      font-size: 14px; cursor: pointer;
+      background: var(--bg-primary); color: var(--text-primary);
+      transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .action-btn:hover { background: var(--bg-secondary); }
+    .action-btn:active { transform: scale(0.98); }
+    .btn-correct { border-color: var(--correct-color); color: var(--correct-color); }
+    .btn-correct:hover { background: var(--correct-bg); }
+    .btn-wrong { border-color: var(--wrong-color); color: var(--wrong-color); }
+    .btn-wrong:hover { background: var(--wrong-bg); }
+    .btn-skip { color: var(--text-secondary); }
+
+    /* ── Stats ── */
+    .stats-row { display: flex; gap: 10px; justify-content: center; }
+    .stat-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.75rem 1.5rem; text-align: center; min-width: 90px; }
+    .stat-num { font-size: 22px; font-weight: 500; color: var(--text-primary); }
+    .stat-lbl { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+    /* ── Language bar ── */
+    .lang-bar { display: flex; gap: 6px; justify-content: center; margin-bottom: 0.75rem; }
+    .lang-btn {
+      padding: 4px 13px; border-radius: 20px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 12px; cursor: pointer;
+      background: var(--bg-primary); color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .lang-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .lang-btn.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
+    /* ── Boutons du header ── */
+    .header { position: relative; }
+    .header-actions { position: absolute; top: 0; right: 0; display: flex; gap: 2px; }
+    .hdr-btn {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 0.5px solid transparent; background: transparent;
+      color: var(--text-tertiary); cursor: pointer; font-size: 19px;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .hdr-btn:hover { color: var(--text-primary); background: var(--bg-secondary); border-color: var(--border-light); }
+
+    /* ── Barre de révision ── */
+    .review-bar { display: flex; justify-content: center; margin-bottom: 0.75rem; }
+    .review-btn {
+      padding: 7px 16px; border-radius: 20px;
+      border: 0.5px solid var(--wrong-color);
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      background: var(--wrong-bg); color: var(--wrong-color);
+      display: flex; align-items: center; gap: 8px;
+      transition: all 0.15s;
+    }
+    .review-btn:hover { background: var(--wrong-color); color: #fff; }
+    .review-count {
+      background: var(--wrong-color); color: #fff;
+      border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 600;
+    }
+    .review-btn:hover .review-count { background: rgba(255,255,255,0.25); color: #fff; }
+
+    /* ── Tableau des statistiques ── */
+    .modal-wide { max-width: 540px !important; }
+    .stats-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .stats-table th {
+      padding: 8px 12px 10px; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.6px;
+      color: var(--text-tertiary); text-align: left;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .stats-table th:not(:first-child) { text-align: center; }
+    .stats-table td { padding: 10px 12px; border-bottom: 0.5px solid var(--border-light); }
+    .stats-table tbody tr:last-child td { border-bottom: none; }
+    .stats-cat  { color: var(--text-primary); font-weight: 500; }
+    .stats-num  { text-align: center; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+    .s-known    { color: var(--correct-color) !important; }
+    .s-review   { color: var(--wrong-color)   !important; }
+    .s-unseen   { color: var(--text-tertiary) !important; }
+    .stats-foot td { background: var(--bg-secondary); font-weight: 600; }
+
+    /* ── Bannière de consentement ── */
+    .consent-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      background: var(--bg-primary); border-top: 0.5px solid var(--border-light);
+      padding: 0.9rem 1.5rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.09);
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      transform: translateY(100%); transition: transform 0.3s ease;
+    }
+    .consent-banner.show { transform: translateY(0); }
+    .consent-text { font-size: 13px; color: var(--text-secondary); }
+    .consent-actions { display: flex; gap: 8px; }
+    .consent-btn {
+      padding: 6px 14px; border-radius: var(--radius-md); font-size: 13px;
+      cursor: pointer; border: 0.5px solid var(--border-medium);
+      background: var(--bg-secondary); color: var(--text-secondary);
+      transition: opacity 0.15s;
+    }
+    .consent-btn.primary { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+    .consent-btn:hover { opacity: 0.8; }
+
+    /* ── Modale mentions légales ── */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.42);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem; z-index: 200;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .modal-backdrop.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      width: 100%; max-width: 430px;
+      max-height: 82vh; overflow-y: auto;
+      transform: translateY(12px);
+      transition: transform 0.22s;
+    }
+    .modal-backdrop.open .modal-box { transform: translateY(0); }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.25rem 0.9rem;
+      border-bottom: 0.5px solid var(--border-light);
+      position: sticky; top: 0;
+      background: var(--bg-primary);
+    }
+    .modal-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .modal-close {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: none; background: var(--bg-secondary);
+      color: var(--text-secondary); cursor: pointer; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .modal-close:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+    .modal-body { padding: 1.25rem; }
+    .modal-app-name { font-size: 22px; font-weight: 500; color: var(--text-primary); text-align: center; margin-bottom: 4px; }
+    .modal-app-sub  { font-size: 13px; color: var(--text-tertiary); text-align: center; margin-bottom: 1.4rem; }
+    .modal-section  { margin-bottom: 1.1rem; }
+    .modal-section:last-child { margin-bottom: 0; }
+    .modal-section h3 {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.8px; color: var(--text-tertiary); margin-bottom: 5px;
+    }
+    .modal-section p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+    .modal-section a { color: var(--accent); text-decoration: none; }
+    .modal-section a:hover { text-decoration: underline; }
+    .modal-section code { font-size: 12px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px; }
+
+    /* ── Direction bar ── */
+    .dir-bar { display: flex; gap: 6px; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .dir-btn {
+      padding: 5px 14px; border-radius: 20px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 12px; cursor: pointer;
+      background: var(--bg-primary); color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .dir-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .dir-btn.active { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); font-weight: 500; }
+
+    /* ── Mode panels (transparent wrappers inside card faces) ── */
+    #jpModeFront, #langModeFront, #jpModeBack, #langModeBack { display: contents; }
+    #jpModeFront.hidden, #langModeFront.hidden,
+    #jpModeBack.hidden,  #langModeBack.hidden  { display: none !important; }
+
+    /* ── Lang-mode recto content ── */
+    .lang-meaning { font-size: 30px; font-weight: 500; color: var(--text-primary); margin-bottom: 12px; }
+
+    /* ── Done screen ── */
+    .done-screen { text-align: center; padding: 3.5rem 1rem; display: none; }
+    .done-emoji { font-size: 52px; margin-bottom: 1rem; }
+    .done-title { font-size: 24px; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .done-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 1.75rem; }
+    .restart-btn {
+      padding: 11px 32px; border-radius: var(--radius-md); border: none;
+      font-size: 14px; cursor: pointer;
+      background: var(--text-primary); color: var(--bg-primary);
+      transition: opacity 0.15s;
+    }
+    .restart-btn:hover { opacity: 0.82; }
+
+    .app-screens.finished .main-content { display: none; }
+    .app-screens.finished .done-screen { display: block; }
+    .app-screens:not(.finished) .done-screen { display: none; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <div class="header">
+    <h1>日本語 — Flash Cards</h1>
+    <p id="headerSub">Cliquez sur la carte pour révéler la réponse</p>
+    <div class="header-actions">
+      <button class="hdr-btn" id="statsBtn" onclick="openStats()" title="Statistiques">
+        <i class="ti ti-chart-bar"></i>
+      </button>
+      <button class="hdr-btn" id="infoBtn" onclick="openLegal()" title="Mentions légales">
+        <i class="ti ti-info-circle"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="lang-bar" id="langBar"></div>
+  <div class="dir-bar"    id="dirBar"></div>
+  <div class="review-bar" id="reviewBar" style="display:none"></div>
+  <div class="category-bar" id="catBar"></div>
+
+  <!-- ── Options panel ── -->
+  <div class="options-panel">
+    <span class="options-label" id="rectoLabel">Recto</span>
+    <div class="toggle-group" id="frontToggles">
+      <div class="toggle-pill on" data-side="front" data-field="kanji"  onclick="toggleField(this)"><span class="dot"></span>Kanji</div>
+      <div class="toggle-pill on" data-side="front" data-field="kana"   onclick="toggleField(this)"><span class="dot"></span>Kana</div>
+      <div class="toggle-pill"   data-side="front" data-field="romaji" onclick="toggleField(this)"><span class="dot"></span>Romaji</div>
+    </div>
+    <div class="options-divider" id="versoDivider"></div>
+    <span class="options-label" id="versoLabel">Verso</span>
+    <div class="toggle-group" id="backToggles">
+      <div class="toggle-pill on" data-side="back" data-field="kana"   onclick="toggleField(this)"><span class="dot"></span>Kana</div>
+      <div class="toggle-pill on" data-side="back" data-field="romaji" onclick="toggleField(this)"><span class="dot"></span>Romaji</div>
+    </div>
+  </div>
+
+  <div class="app-screens" id="screens">
+    <div class="main-content">
+
+      <div class="progress-row">
+        <div class="progress-bar-wrap"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <span class="progress-label" id="progressLabel">0 / 0</span>
+      </div>
+
+      <div class="card-area" id="cardArea" onclick="flipCard()">
+        <div class="card-inner" id="cardInner">
+
+          <!-- Front -->
+          <div class="card-face card-front">
+            <div class="card-tag" id="frontTag">vocabulaire</div>
+            <!-- Mode JP → Langue : japonais sur recto -->
+            <div id="jpModeFront">
+              <div class="card-placeholder hidden" id="frontPlaceholder">？</div>
+              <div class="field-kanji"  id="frontKanji"></div>
+              <div class="field-kana"   id="frontKana"></div>
+              <div class="field-romaji" id="frontRomaji"></div>
+            </div>
+            <!-- Mode Langue → JP : traduction sur recto -->
+            <div id="langModeFront" class="hidden">
+              <div class="lang-meaning" id="frontMeaning"></div>
+              <div class="back-example" id="frontExampleLang"></div>
+            </div>
+          </div>
+
+          <!-- Back -->
+          <div class="card-face card-back">
+            <div class="card-tag" id="backTag">réponse</div>
+            <!-- Mode JP → Langue : réponse en langue étrangère -->
+            <div id="jpModeBack">
+              <div class="back-kana"    id="backKana"></div>
+              <div class="back-romaji"  id="backRomaji"></div>
+              <div class="back-meaning" id="backMeaning"></div>
+              <div class="back-example" id="backExample"></div>
+            </div>
+            <!-- Mode Langue → JP : réponse en japonais -->
+            <div id="langModeBack" class="hidden">
+              <div class="field-kanji"  id="backKanjiJP"></div>
+              <div class="field-kana"   id="backKanaJP"></div>
+              <div class="field-romaji" id="backRomajiJP"></div>
+              <div class="back-example" id="backExampleJP"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="flip-hint" id="flipHint">Cliquez sur la carte pour retourner</div>
+
+      <div class="action-row" id="actionRow" style="display:none">
+        <button id="btnWrong"   class="action-btn btn-wrong"   onclick="answer(false)"><i class="ti ti-x"></i> À revoir</button>
+        <button id="btnSkip"    class="action-btn btn-skip"    onclick="nextCard()"><i class="ti ti-arrow-right"></i> Passer</button>
+        <button id="btnCorrect" class="action-btn btn-correct" onclick="answer(true)"><i class="ti ti-check"></i> Correct</button>
+      </div>
+      <div class="action-row" id="flipRow">
+        <button id="btnFlip" class="action-btn" onclick="flipCard()"><i class="ti ti-rotate"></i> Retourner la carte</button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-num" id="statCorrect">0</div><div class="stat-lbl" id="lblCorrect">Corrects</div></div>
+        <div class="stat-card"><div class="stat-num" id="statWrong">0</div><div class="stat-lbl"  id="lblWrong">À revoir</div></div>
+        <div class="stat-card"><div class="stat-num" id="statRemain">0</div><div class="stat-lbl" id="lblRemain">Restants</div></div>
+      </div>
+    </div>
+
+    <div class="done-screen" id="doneScreen">
+      <div class="done-emoji">🎉</div>
+      <div class="done-title" id="doneTitle">Session terminée !</div>
+      <div class="done-sub" id="doneSub"></div>
+      <button id="btnRestart" class="restart-btn" onclick="restart()">Recommencer</button>
+    </div>
+  </div>
+
+  <!-- ── Modale statistiques ── -->
+  <div class="modal-backdrop" id="statsModal" onclick="closeStatsBackdrop(event)">
+    <div class="modal-box modal-wide">
+      <div class="modal-header">
+        <span class="modal-title" id="statsTitle">Statistiques</span>
+        <button class="modal-close" onclick="closeStats()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body" id="statsBody"></div>
+    </div>
+  </div>
+
+  <!-- ── Modale mentions légales ── -->
+  <div class="modal-backdrop" id="legalModal" onclick="closeLegalBackdrop(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-title" id="legalTitle">Mentions légales</span>
+        <button class="modal-close" onclick="closeLegal()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-app-name">日本語 Flash Cards</p>
+        <p class="modal-app-sub">Application de mémorisation de vocabulaire japonais</p>
+
+        <div class="modal-section">
+          <h3>Contact</h3>
+          <p><a href="mailto:marco.taberu@gmail.com">marco.taberu@gmail.com</a></p>
+        </div>
+
+        <div class="modal-section">
+          <h3>Données personnelles</h3>
+          <p>Cette application ne collecte aucune donnée personnelle. Aucun cookie n'est utilisé et aucune information n'est transmise à des tiers.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3>Hébergeur du site</h3>
+          <p>
+            Cloudflare, Inc.<br>
+            Attn: Legal Department, 101 Townsend St,<br>
+            San Francisco, CA 94107, États-Unis<br>
+            Tél. : +1 (650) 319-8930<br>
+            <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">www.cloudflare.com</a>
+          </p>
+        </div>
+
+        <div class="modal-section">
+          <h3>Propriété intellectuelle</h3>
+          <p>© 2025 — <a href="mailto:marco.taberu@gmail.com">marco.taberu@gmail.com</a>. Tous droits réservés.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- ── Bannière de consentement (position:fixed, hors .app) ── -->
+<div class="consent-banner" id="consentBanner">
+  <span class="consent-text" id="consentMsg">💾 Sauvegarder vos progrès entre les sessions ?</span>
+  <div class="consent-actions">
+    <button class="consent-btn"         id="consentReject" onclick="rejectConsent()">Non merci</button>
+    <button class="consent-btn primary" id="consentAccept" onclick="acceptConsent()">Oui, sauvegarder</button>
+  </div>
+</div>
+
+<script>
+// ── Globals ───────────────────────────────────────────────────────────────────
+let VOCAB = {};
+let CATEGORIES = {};
+let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0;
+let currentCat  = '';
+let currentLang = 'fr';
+let currentDir  = 'jp'; // 'jp' = japonais sur recto | 'lang' = langue sur recto
+
+// ── Progression ───────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'nihon_progress';
+const CONSENT_KEY = 'nihon_consent';
+let progress    = {}; // { wordId: 'known' | 'review' }
+let saveEnabled = false;
+
+// ── Traductions ───────────────────────────────────────────────────────────────
+const LANGS = [
+  { code: 'fr', label: 'FR', name: 'Français'  },
+  { code: 'en', label: 'EN', name: 'English'   },
+  { code: 'de', label: 'DE', name: 'Deutsch'   },
+  { code: 'pt', label: 'PT', name: 'Português' },
+];
+
+const UI = {
+  fr: {
+    subtitle:       'Cliquez sur la carte pour révéler la réponse',
+    flipHint:       'Cliquez sur la carte pour retourner',
+    flipBtn:        'Retourner la carte',
+    btnWrong:       'À revoir',    btnSkip:        'Passer',
+    btnCorrect:     'Correct',
+    lblCorrect:     'Corrects',
+    lblWrong:       'À revoir',
+    lblRemain:      'Restants',
+    btnRestart:     'Recommencer',
+    optRecto:       'Recto',
+    optVerso:       'Verso',
+    optVersoJP:     'Verso JP',
+    backTag:        'réponse',
+    legalTitle:     'Mentions légales',
+    statsTitle:     'Statistiques',
+    statsCat:       'Catégorie',
+    statsKnown:     '✓ Connus',
+    statsReview:    '↺ À revoir',
+    statsUnseen:    '○ Non vus',
+    statsTotal:     'Total',
+    reviewBtnLabel: 'Réviser',
+    noProgress:     'Commencez à réviser pour voir vos statistiques.',
+    consentMsg:     '💾 Sauvegarder vos progrès entre les sessions ?',
+    consentAccept:  'Oui, sauvegarder',
+    consentReject:  'Non merci',
+    doneTitles:     ['Excellent travail ! 🌸', 'Bon effort ! 頑張って', 'Continuez à pratiquer !'],
+    doneSub:        (c, t, p) => `${c} correct${c > 1 ? 's' : ''} sur ${t} cartes (${p}%)`,
+  },
+  en: {
+    subtitle:       'Click the card to reveal the answer',
+    flipHint:       'Click the card to flip',
+    flipBtn:        'Flip card',
+    btnWrong:       'Review',
+    btnSkip:        'Skip',
+    btnCorrect:     'Correct',
+    lblCorrect:     'Correct',
+    lblWrong:       'Review',
+    lblRemain:      'Left',
+    btnRestart:     'Restart',
+    optRecto:       'Front',
+    optVerso:       'Back',
+    optVersoJP:     'Back JP',
+    backTag:        'answer',
+    legalTitle:     'Legal notice',
+    statsTitle:     'Statistics',
+    statsCat:       'Category',
+    statsKnown:     '✓ Known',
+    statsReview:    '↺ Review',
+    statsUnseen:    '○ Unseen',
+    statsTotal:     'Total',
+    reviewBtnLabel: 'Review',
+    noProgress:     'Start studying to see your statistics.',
+    consentMsg:     '💾 Save your progress between sessions?',
+    consentAccept:  'Yes, save',
+    consentReject:  'No thanks',
+    doneTitles:     ['Excellent work! 🌸', 'Good effort! 頑張って', 'Keep practicing!'],
+    doneSub:        (c, t, p) => `${c} correct out of ${t} cards (${p}%)`,
+  },
+  de: {
+    subtitle:       'Klicke auf die Karte, um die Antwort zu sehen',
+    flipHint:       'Klicke auf die Karte zum Umdrehen',
+    flipBtn:        'Karte umdrehen',
+    btnWrong:       'Wiederholen',
+    btnSkip:        'Überspringen',
+    btnCorrect:     'Richtig',
+    lblCorrect:     'Richtig',
+    lblWrong:       'Wiederholen',
+    lblRemain:      'Verbleibend',
+    btnRestart:     'Neu starten',
+    optRecto:       'Vorderseite',
+    optVerso:       'Rückseite',
+    optVersoJP:     'Rückseite JP',
+    backTag:        'Antwort',
+    legalTitle:     'Impressum',
+    statsTitle:     'Statistiken',
+    statsCat:       'Kategorie',
+    statsKnown:     '✓ Bekannt',
+    statsReview:    '↺ Wiederholen',
+    statsUnseen:    '○ Ungesehen',
+    statsTotal:     'Gesamt',
+    reviewBtnLabel: 'Wiederholen',
+    noProgress:     'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
+    consentMsg:     '💾 Fortschritt zwischen Sitzungen speichern?',
+    consentAccept:  'Ja, speichern',
+    consentReject:  'Nein danke',
+    doneTitles:     ['Ausgezeichnet! 🌸', 'Gute Leistung! 頑張って', 'Weiter üben!'],
+    doneSub:        (c, t, p) => `${c} richtig von ${t} Karten (${p}%)`,
+  },
+  pt: {
+    subtitle:       'Clique no cartão para revelar a resposta',
+    flipHint:       'Clique no cartão para virar',
+    flipBtn:        'Virar o cartão',
+    btnWrong:       'Rever',
+    btnSkip:        'Pular',
+    btnCorrect:     'Correto',
+    lblCorrect:     'Corretos',
+    lblWrong:       'Rever',
+    lblRemain:      'Restantes',
+    btnRestart:     'Recomeçar',
+    optRecto:       'Frente',
+    optVerso:       'Verso',
+    optVersoJP:     'Verso JP',
+    backTag:        'resposta',
+    legalTitle:     'Aviso legal',
+    statsTitle:     'Estatísticas',
+    statsCat:       'Categoria',
+    statsKnown:     '✓ Aprendidos',
+    statsReview:    '↺ Rever',
+    statsUnseen:    '○ Não vistos',
+    statsTotal:     'Total',
+    reviewBtnLabel: 'Rever',
+    noProgress:     'Comece a estudar para ver suas estatísticas.',
+    consentMsg:     '💾 Salvar seu progresso entre as sessões?',
+    consentAccept:  'Sim, salvar',
+    consentReject:  'Não, obrigado',
+    doneTitles:     ['Excelente trabalho! 🌸', 'Bom esforço! 頑張って', 'Continue praticando!'],
+    doneSub:        (c, t, p) => `${c} correto${c > 1 ? 's' : ''} de ${t} cartões (${p}%)`,
+  },
+  ja: {
+    subtitle:       'カードをクリックして答えを確認しよう',
+    flipHint:       'カードをクリックして裏返す',
+    flipBtn:        'カードを裏返す',
+    btnWrong:       'もう一度',
+    btnSkip:        'スキップ',
+    btnCorrect:     '正解',
+    lblCorrect:     '正解数',
+    lblWrong:       '復習',
+    lblRemain:      '残り',
+    btnRestart:     'もう一度やる',
+    optRecto:       '表面',
+    optVerso:       '裏面',
+    optVersoJP:     '日本語',
+    backTag:        '答え',
+    legalTitle:     '法的情報',
+    statsTitle:     '統計',
+    statsCat:       'カテゴリ',
+    statsKnown:     '✓ 覚えた',
+    statsReview:    '↺ 復習',
+    statsUnseen:    '○ 未習',
+    statsTotal:     '合計',
+    reviewBtnLabel: '復習する',
+    noProgress:     '学習を始めると統計が表示されます。',
+    consentMsg:     '💾 学習記録を保存しますか？',
+    consentAccept:  '保存する',
+    consentReject:  'いいえ',
+    doneTitles:     ['素晴らしい！🌸', 'よく頑張りました！頑張って', '練習を続けよう！'],
+    doneSub:        (c, t, p) => `${t}問中${c}問正解（${p}%）`,
+  },
+};
+
+// Retourne 'ja' en mode Langue→JP, sinon la langue étrangère choisie.
+function uiLang() { return currentDir === 'lang' ? 'ja' : currentLang; }
+
+// Visibilité des champs JP
+const show = {
+  front: { kanji: true, kana: true, romaji: false },
+  back:  { kana: true, romaji: true },
+};
+
+// ── Chargement du vocabulaire ─────────────────────────────────────────────────
+async function loadVocabulary() {
+  const resp = await fetch('vocabulary.xml');
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  const xml = new DOMParser().parseFromString(await resp.text(), 'application/xml');
+  VOCAB = {}; CATEGORIES = {};
+  xml.querySelectorAll('category').forEach(cat => {
+    const id = cat.getAttribute('id');
+    CATEGORIES[id] = {};
+    cat.querySelectorAll('label').forEach(lbl => {
+      CATEGORIES[id][lbl.getAttribute('lang')] = lbl.textContent;
+    });
+    VOCAB[id] = [];
+  });
+  xml.querySelectorAll('word').forEach(word => {
+    const catId = word.getAttribute('category');
+    if (!VOCAB[catId]) VOCAB[catId] = [];
+    const get = tag => word.querySelector(tag)?.textContent?.trim() || '';
+    VOCAB[catId].push({
+      id:       word.getAttribute('id'),   // identifiant unique pour la progression
+      kanji:    get('kanji'),
+      kana:     get('kana'),
+      romaji:   get('romaji'),
+      meanings: { fr: get('fr'), en: get('en'), de: get('de'), pt: get('pt') },
+      examples: { jp: get('example_jp'), fr: get('example_fr'), en: get('example_en'), de: get('example_de'), pt: get('example_pt') },
+    });
+  });
+}
+
+// ── Progression & localStorage ────────────────────────────────────────────────
+function loadProgress() {
+  const consent = localStorage.getItem(CONSENT_KEY);
+  if (consent === 'true') {
+    saveEnabled = true;
+    try { progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { progress = {}; }
+  }
+}
+
+function saveProgress() {
+  if (saveEnabled) localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+}
+
+function acceptConsent() {
+  localStorage.setItem(CONSENT_KEY, 'true');
+  saveEnabled = true;
+  saveProgress(); // persiste la progression en mémoire de cette session
+  hideConsent();
+}
+
+function rejectConsent() {
+  localStorage.setItem(CONSENT_KEY, 'false');
+  saveEnabled = false;
+  hideConsent();
+}
+
+function showConsentIfNeeded() {
+  if (!localStorage.getItem(CONSENT_KEY)) {
+    setTimeout(() => document.getElementById('consentBanner').classList.add('show'), 900);
+  }
+}
+
+function hideConsent() { document.getElementById('consentBanner').classList.remove('show'); }
+
+// ── Mise à jour de l'interface ────────────────────────────────────────────────
+function updateUI() {
+  const t = UI[uiLang()];
+  document.getElementById('headerSub').textContent    = t.subtitle;
+  document.getElementById('flipHint').textContent     = t.flipHint;
+  document.getElementById('btnFlip').innerHTML        = `<i class="ti ti-rotate"></i> ${t.flipBtn}`;
+  document.getElementById('btnWrong').innerHTML       = `<i class="ti ti-x"></i> ${t.btnWrong}`;
+  document.getElementById('btnSkip').innerHTML        = `<i class="ti ti-arrow-right"></i> ${t.btnSkip}`;
+  document.getElementById('btnCorrect').innerHTML     = `<i class="ti ti-check"></i> ${t.btnCorrect}`;
+  document.getElementById('lblCorrect').textContent   = t.lblCorrect;
+  document.getElementById('lblWrong').textContent     = t.lblWrong;
+  document.getElementById('lblRemain').textContent    = t.lblRemain;
+  document.getElementById('btnRestart').textContent   = t.btnRestart;
+  document.getElementById('legalTitle').textContent   = t.legalTitle;
+  document.getElementById('statsTitle').textContent   = t.statsTitle;
+  document.getElementById('infoBtn').title            = t.legalTitle;
+  document.getElementById('statsBtn').title           = t.statsTitle;
+  document.getElementById('consentMsg').textContent   = t.consentMsg;
+  document.getElementById('consentAccept').textContent = t.consentAccept;
+  document.getElementById('consentReject').textContent = t.consentReject;
+  updateOptionsPanel();
+  updateReviewBar();
+}
+
+// ── Panneau d'options ─────────────────────────────────────────────────────────
+function toggleField(pill) {
+  const side = pill.dataset.side, field = pill.dataset.field;
+  show[side][field] = !show[side][field];
+  pill.classList.toggle('on', show[side][field]);
+  applyVisibility();
+}
+
+function updateOptionsPanel() {
+  const t = UI[uiLang()];
+  const rectoLabel   = document.getElementById('rectoLabel');
+  const versoDivider = document.getElementById('versoDivider');
+  const versoLabel   = document.getElementById('versoLabel');
+  const backToggles  = document.getElementById('backToggles');
+  if (currentDir === 'lang') {
+    rectoLabel.textContent     = t.optVersoJP;
+    versoDivider.style.display = 'none';
+    versoLabel.style.display   = 'none';
+    backToggles.style.display  = 'none';
+  } else {
+    rectoLabel.textContent     = t.optRecto;
+    versoLabel.textContent     = t.optVerso;
+    versoDivider.style.display = '';
+    versoLabel.style.display   = '';
+    backToggles.style.display  = '';
+  }
+}
+
+function applyVisibility() {
+  if (currentDir === 'jp') {
+    document.getElementById('jpModeFront').classList.remove('hidden');
+    document.getElementById('langModeFront').classList.add('hidden');
+    setVis('frontKanji',       show.front.kanji);
+    setVis('frontKana',        show.front.kana);
+    setVis('frontRomaji',      show.front.romaji);
+    setVis('frontPlaceholder', !show.front.kanji && !show.front.kana && !show.front.romaji);
+    document.getElementById('jpModeBack').classList.remove('hidden');
+    document.getElementById('langModeBack').classList.add('hidden');
+    setVis('backKana',   show.back.kana);
+    setVis('backRomaji', show.back.romaji);
+  } else {
+    document.getElementById('jpModeFront').classList.add('hidden');
+    document.getElementById('langModeFront').classList.remove('hidden');
+    document.getElementById('jpModeBack').classList.add('hidden');
+    document.getElementById('langModeBack').classList.remove('hidden');
+    setVis('backKanjiJP',  show.front.kanji);
+    setVis('backKanaJP',   show.front.kana);
+    setVis('backRomajiJP', show.front.romaji);
+  }
+}
+
+function setVis(id, visible) {
+  document.getElementById(id).classList.toggle('hidden', !visible);
+}
+
+// ── Deck & logique des cartes ─────────────────────────────────────────────────
+function buildDeck(cat) {
+  deck = [...VOCAB[cat]].sort(() => Math.random() - 0.5);
+  idx = 0; correct = 0; wrong = 0; flipped = false;
+}
+
+function showCard() {
+  if (idx >= deck.length) { showDone(); return; }
+  const c = deck[idx];
+
+  const cardInner = document.getElementById('cardInner');
+  cardInner.style.transition = 'none';
+  cardInner.classList.remove('flipped');
+  cardInner.offsetHeight;
+  cardInner.style.transition = '';
+
+  // En mode révision, le tag affiche la catégorie du mot en cours
+  const catLabel = currentCat === '__review__'
+    ? (CATEGORIES[c._catId]?.[currentLang] || c._catId)
+    : (CATEGORIES[currentCat]?.[currentLang] || currentCat);
+
+  if (currentDir === 'jp') {
+    document.getElementById('frontTag').textContent    = catLabel;
+    document.getElementById('frontKanji').textContent  = c.kanji;
+    document.getElementById('frontKana').textContent   = c.kana;
+    document.getElementById('frontRomaji').textContent = c.romaji;
+    document.getElementById('backTag').textContent     = UI[currentLang].backTag;
+    document.getElementById('backKana').textContent    = c.kana;
+    document.getElementById('backRomaji').textContent  = c.romaji;
+    document.getElementById('backMeaning').textContent = c.meanings[currentLang];
+    document.getElementById('backExample').textContent = c.examples.jp + '\n' + c.examples[currentLang];
+  } else {
+    const lang = LANGS.find(l => l.code === currentLang);
+    document.getElementById('frontTag').textContent         = lang?.name || currentLang;
+    document.getElementById('frontMeaning').textContent     = c.meanings[currentLang];
+    document.getElementById('frontExampleLang').textContent = c.examples[currentLang];
+    document.getElementById('backTag').textContent          = '日本語';
+    document.getElementById('backKanjiJP').textContent      = c.kanji;
+    document.getElementById('backKanaJP').textContent       = c.kana;
+    document.getElementById('backRomajiJP').textContent     = c.romaji;
+    document.getElementById('backExampleJP').textContent    = c.examples.jp + '\n' + c.examples[currentLang];
+  }
+
+  document.getElementById('actionRow').style.display = 'none';
+  document.getElementById('flipRow').style.display   = 'flex';
+  document.getElementById('flipHint').style.opacity  = '1';
+  flipped = false;
+  applyVisibility();
+  updateProgressBar();
+}
+
+function flipCard() {
+  if (!flipped) {
+    document.getElementById('cardInner').classList.add('flipped');
+    document.getElementById('actionRow').style.display = 'flex';
+    document.getElementById('flipRow').style.display   = 'none';
+    document.getElementById('flipHint').style.opacity  = '0';
+    flipped = true;
+  }
+}
+
+function answer(ok) {
+  const word = deck[idx];
+  if (word?.id) {
+    progress[word.id] = ok ? 'known' : 'review';
+    saveProgress();
+    updateReviewBar();
+  }
+  if (ok) correct++; else wrong++;
+  nextCard();
+}
+
+function nextCard() {
+  idx++;
+  if (idx >= deck.length) { showDone(); return; }
+  showCard();
+}
+
+function updateProgressBar() {
+  const total = deck.length;
+  const pct   = total ? Math.round((idx / total) * 100) : 0;
+  document.getElementById('progressFill').style.width  = pct + '%';
+  document.getElementById('progressLabel').textContent = idx + ' / ' + total;
+  document.getElementById('statCorrect').textContent   = correct;
+  document.getElementById('statWrong').textContent     = wrong;
+  document.getElementById('statRemain').textContent    = total - idx;
+}
+
+function showDone() {
+  document.getElementById('screens').classList.add('finished');
+  const t   = UI[uiLang()];
+  const pct = deck.length ? Math.round((correct / deck.length) * 100) : 0;
+  document.getElementById('doneTitle').textContent =
+    pct >= 80 ? t.doneTitles[0] : pct >= 50 ? t.doneTitles[1] : t.doneTitles[2];
+  document.getElementById('doneSub').textContent = t.doneSub(correct, deck.length, pct);
+}
+
+function restart() {
+  document.getElementById('screens').classList.remove('finished');
+  if (currentCat === '__review__') { startReview(); }
+  else { buildDeck(currentCat); showCard(); }
+}
+
+// ── Mode révision ─────────────────────────────────────────────────────────────
+function startReview() {
+  const reviewWords = [];
+  Object.keys(VOCAB).forEach(catId => {
+    (VOCAB[catId] || []).forEach(w => {
+      if (progress[w.id] === 'review') reviewWords.push({ ...w, _catId: catId });
+    });
+  });
+  if (!reviewWords.length) return;
+
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  currentCat = '__review__';
+  deck       = reviewWords.sort(() => Math.random() - 0.5);
+  idx = 0; correct = 0; wrong = 0; flipped = false;
+  document.getElementById('screens').classList.remove('finished');
+  showCard();
+}
+
+function updateReviewBar() {
+  const count = Object.values(VOCAB).flat().filter(w => progress[w.id] === 'review').length;
+  const bar   = document.getElementById('reviewBar');
+  if (count > 0) {
+    const t = UI[uiLang()];
+    bar.innerHTML = `<button class="review-btn" onclick="startReview()">
+      <i class="ti ti-refresh"></i> ${t.reviewBtnLabel}
+      <span class="review-count">${count}</span>
+    </button>`;
+    bar.style.display = 'flex';
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+// ── Statistiques ──────────────────────────────────────────────────────────────
+function openStats()  { renderStats(); document.getElementById('statsModal').classList.add('open'); }
+function closeStats() { document.getElementById('statsModal').classList.remove('open'); }
+function closeStatsBackdrop(e) { if (e.target === document.getElementById('statsModal')) closeStats(); }
+
+function renderStats() {
+  const t      = UI[uiLang()];
+  const hasAny = Object.values(progress).length > 0;
+
+  if (!hasAny) {
+    document.getElementById('statsBody').innerHTML =
+      `<p style="text-align:center;padding:1.5rem 0;color:var(--text-tertiary);font-size:13px">${t.noProgress}</p>`;
+    return;
+  }
+
+  let tK = 0, tR = 0, tU = 0, tT = 0, rows = '';
+  Object.keys(CATEGORIES).forEach(catId => {
+    const words = VOCAB[catId] || [];
+    let k = 0, r = 0;
+    words.forEach(w => { if (progress[w.id] === 'known') k++; else if (progress[w.id] === 'review') r++; });
+    const u = words.length - k - r;
+    tK += k; tR += r; tU += u; tT += words.length;
+    rows += `<tr>
+      <td class="stats-cat">${CATEGORIES[catId][currentLang] || catId}</td>
+      <td class="stats-num s-known" >${k || '—'}</td>
+      <td class="stats-num s-review">${r || '—'}</td>
+      <td class="stats-num s-unseen">${u}</td>
+      <td class="stats-num">${words.length}</td>
+    </tr>`;
+  });
+
+  document.getElementById('statsBody').innerHTML = `
+    <table class="stats-table">
+      <thead><tr>
+        <th>${t.statsCat}</th><th>${t.statsKnown}</th>
+        <th>${t.statsReview}</th><th>${t.statsUnseen}</th><th>${t.statsTotal}</th>
+      </tr></thead>
+      <tbody>
+        ${rows}
+        <tr class="stats-foot">
+          <td>${t.statsTotal}</td>
+          <td class="stats-num s-known" ><strong>${tK || '—'}</strong></td>
+          <td class="stats-num s-review"><strong>${tR || '—'}</strong></td>
+          <td class="stats-num s-unseen"><strong>${tU}</strong></td>
+          <td class="stats-num"><strong>${tT}</strong></td>
+        </tr>
+      </tbody>
+    </table>`;
+}
+
+// ── Mentions légales ──────────────────────────────────────────────────────────
+function openLegal()  { document.getElementById('legalModal').classList.add('open'); }
+function closeLegal() { document.getElementById('legalModal').classList.remove('open'); }
+function closeLegalBackdrop(e) { if (e.target === document.getElementById('legalModal')) closeLegal(); }
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLegal(); closeStats(); } });
+
+// ── Barre de langues ──────────────────────────────────────────────────────────
+function buildLangBar() {
+  const bar = document.getElementById('langBar');
+  bar.innerHTML = '';
+  LANGS.forEach(lang => {
+    const btn = document.createElement('button');
+    btn.className = 'lang-btn' + (lang.code === currentLang ? ' active' : '');
+    btn.textContent = lang.label;
+    btn.onclick = () => {
+      currentLang = lang.code;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateUI(); buildDirBar(); buildCatBar();
+      if (deck.length) showCard();
+    };
+    bar.appendChild(btn);
+  });
+}
+
+// ── Barre de direction ────────────────────────────────────────────────────────
+function buildDirBar() {
+  const bar = document.getElementById('dirBar');
+  bar.innerHTML = '';
+  const lbl = LANGS.find(l => l.code === currentLang)?.label || currentLang.toUpperCase();
+  [{ dir:'jp', text:`🇯🇵 → ${lbl}` }, { dir:'lang', text:`${lbl} → 🇯🇵` }].forEach(({ dir, text }) => {
+    const btn = document.createElement('button');
+    btn.className = 'dir-btn' + (dir === currentDir ? ' active' : '');
+    btn.textContent = text;
+    btn.onclick = () => {
+      currentDir = dir;
+      document.querySelectorAll('.dir-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateUI();
+      if (deck.length) showCard();
+    };
+    bar.appendChild(btn);
+  });
+  updateOptionsPanel();
+}
+
+// ── Barre de catégories ───────────────────────────────────────────────────────
+function buildCatBar() {
+  const bar = document.getElementById('catBar');
+  bar.innerHTML = '';
+  Object.keys(CATEGORIES).forEach(catId => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn' + (catId === currentCat ? ' active' : '');
+    btn.textContent = CATEGORIES[catId][currentLang] || catId;
+    btn.onclick = () => {
+      currentCat = catId;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      buildDeck(catId);
+      document.getElementById('screens').classList.remove('finished');
+      showCard();
+    };
+    bar.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+(async () => {
+  try {
+    await loadVocabulary();
+    loadProgress();
+    currentCat = Object.keys(VOCAB)[0];
+    buildLangBar(); buildDirBar(); updateUI(); buildCatBar();
+    buildDeck(currentCat); showCard();
+    showConsentIfNeeded();
+  } catch (e) {
+    document.querySelector('.app').innerHTML = `
+      <div style="text-align:center;padding:3rem 1rem;color:var(--text-secondary)">
+        <div style="font-size:2.5rem;margin-bottom:1rem">⚠️</div>
+        <p style="font-size:15px;color:var(--text-primary);margin-bottom:0.5rem">Impossible de charger <code>vocabulary.xml</code></p>
+        <p style="font-size:13px;line-height:1.7">Ouvrez ce fichier via un serveur local&nbsp;:<br>
+        <code>npx serve .</code> &nbsp;ou l'extension <em>Live Server</em> dans VS Code</p>
+      </div>`;
+  }
+})();
+</script>
+</body>
+</html>
