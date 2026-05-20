@@ -8,41 +8,79 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Thème clair (défaut) ── */
     :root {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f5f5f3;
-      --bg-tertiary: #eeede9;
-      --text-primary: #1a1a18;
-      --text-secondary: #6b6b66;
+      --bg-primary:    #ffffff;
+      --bg-secondary:  #f5f5f3;
+      --bg-tertiary:   #eeede9;
+      --text-primary:  #1a1a18;
+      --text-secondary:#6b6b66;
       --text-tertiary: #9e9e99;
-      --border-light: rgba(0,0,0,0.1);
-      --border-medium: rgba(0,0,0,0.18);
-      --border-strong: rgba(0,0,0,0.28);
+      --border-light:  rgba(0,0,0,0.09);
+      --border-medium: rgba(0,0,0,0.16);
+      --border-strong: rgba(0,0,0,0.26);
       --radius-md: 8px;
       --radius-lg: 12px;
       --correct-color: #1D9E75;
-      --correct-bg: #E1F5EE;
-      --wrong-color: #D85A30;
-      --wrong-bg: #FAECE7;
-      --accent: #378ADD;
-      --accent-bg: #E6F1FB;
+      --correct-bg:    #E1F5EE;
+      --wrong-color:   #D85A30;
+      --wrong-bg:      #FAECE7;
+      --accent:        #378ADD;
+      --accent-bg:     #E6F1FB;
+      --shadow-card:   0 1px 4px rgba(0,0,0,0.06);
     }
 
+    /* ── Thème sombre via préférence système (sans override manuel) ── */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-primary: #1e1e1c;
-        --bg-secondary: #2a2a28;
-        --bg-tertiary: #242422;
-        --text-primary: #f0efeb;
-        --text-secondary: #a0a09a;
+      :root:not([data-theme="light"]) {
+        --bg-primary:    #1e1e1c;
+        --bg-secondary:  #2a2a28;
+        --bg-tertiary:   #161614;
+        --text-primary:  #f0efeb;
+        --text-secondary:#a0a09a;
         --text-tertiary: #6b6b66;
-        --border-light: rgba(255,255,255,0.08);
-        --border-medium: rgba(255,255,255,0.14);
+        --border-light:  rgba(255,255,255,0.07);
+        --border-medium: rgba(255,255,255,0.13);
         --border-strong: rgba(255,255,255,0.22);
-        --correct-bg: #0a2a1f;
-        --wrong-bg: #2a1208;
-        --accent-bg: #0c2a42;
+        --correct-bg:    #0a2a1f;
+        --wrong-bg:      #2a1208;
+        --accent-bg:     #0c2340;
+        --shadow-card:   0 2px 8px rgba(0,0,0,0.4);
       }
+    }
+
+    /* ── Thème sombre via toggle manuel ── */
+    :root[data-theme="dark"] {
+      --bg-primary:    #1e1e1c;
+      --bg-secondary:  #2a2a28;
+      --bg-tertiary:   #161614;
+      --text-primary:  #f0efeb;
+      --text-secondary:#a0a09a;
+      --text-tertiary: #6b6b66;
+      --border-light:  rgba(255,255,255,0.07);
+      --border-medium: rgba(255,255,255,0.13);
+      --border-strong: rgba(255,255,255,0.22);
+      --correct-bg:    #0a2a1f;
+      --wrong-bg:      #2a1208;
+      --accent-bg:     #0c2340;
+      --shadow-card:   0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* ── Thème clair forcé ── */
+    :root[data-theme="light"] {
+      --bg-primary:    #ffffff;
+      --bg-secondary:  #f5f5f3;
+      --bg-tertiary:   #eeede9;
+      --text-primary:  #1a1a18;
+      --text-secondary:#6b6b66;
+      --text-tertiary: #9e9e99;
+      --border-light:  rgba(0,0,0,0.09);
+      --border-medium: rgba(0,0,0,0.16);
+      --border-strong: rgba(0,0,0,0.26);
+      --correct-bg:    #E1F5EE;
+      --wrong-bg:      #FAECE7;
+      --accent-bg:     #E6F1FB;
+      --shadow-card:   0 1px 4px rgba(0,0,0,0.06);
     }
 
     body {
@@ -53,195 +91,17 @@
       align-items: flex-start;
       justify-content: center;
       padding: 2rem 1rem 3rem;
+      transition: background 0.25s;
     }
 
     .app { width: 100%; max-width: 580px; }
 
     /* ── Header ── */
-    .header { text-align: center; margin-bottom: 1.5rem; }
+    .header { position: relative; text-align: center; margin-bottom: 1.5rem; }
     .header h1 { font-size: 26px; font-weight: 500; color: var(--text-primary); letter-spacing: -0.4px; }
-    .header p { font-size: 14px; color: var(--text-secondary); margin-top: 6px; }
+    .header p  { font-size: 14px; color: var(--text-secondary); margin-top: 6px; }
 
-    /* ── Category bar ── */
-    .category-bar { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem; }
-    .cat-btn {
-      padding: 7px 16px; border-radius: 20px;
-      border: 0.5px solid var(--border-medium);
-      font-size: 13px; cursor: pointer;
-      background: var(--bg-primary); color: var(--text-secondary);
-      transition: all 0.15s;
-    }
-    .cat-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
-    .cat-btn.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
-
-    /* ── Options panel ── */
-    .options-panel {
-      background: var(--bg-primary);
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 14px 18px;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .options-label {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--text-tertiary);
-      margin-right: 4px;
-      flex-shrink: 0;
-    }
-    .options-divider {
-      width: 0.5px;
-      height: 20px;
-      background: var(--border-medium);
-      margin: 0 6px;
-      flex-shrink: 0;
-    }
-    .toggle-group { display: flex; gap: 6px; flex-wrap: wrap; }
-
-    /* Toggle pill */
-    .toggle-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 20px;
-      border: 0.5px solid var(--border-medium);
-      font-size: 13px;
-      cursor: pointer;
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
-      transition: all 0.18s;
-      user-select: none;
-    }
-    .toggle-pill:hover { border-color: var(--border-strong); color: var(--text-primary); }
-    .toggle-pill.on {
-      background: var(--accent-bg);
-      border-color: var(--accent);
-      color: var(--accent);
-      font-weight: 500;
-    }
-    .toggle-pill .dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-      opacity: 0.7;
-      transition: opacity 0.18s;
-    }
-    .toggle-pill.on .dot { opacity: 1; }
-
-    /* Side indicator (front/back) */
-    .side-tabs {
-      display: flex;
-      gap: 6px;
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-    .side-tab {
-      padding: 4px 10px;
-      border-radius: 20px;
-      border: 0.5px solid var(--border-medium);
-      font-size: 12px;
-      cursor: pointer;
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
-      transition: all 0.15s;
-    }
-    .side-tab.on { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
-
-    /* ── Progress ── */
-    .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
-    .progress-bar-wrap { flex: 1; height: 4px; background: var(--bg-secondary); border-radius: 2px; overflow: hidden; }
-    .progress-fill { height: 100%; border-radius: 2px; background: var(--text-primary); transition: width 0.4s ease; }
-    .progress-label { font-size: 13px; color: var(--text-secondary); white-space: nowrap; min-width: 48px; text-align: right; }
-
-    /* ── Card ── */
-    .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; }
-    .card-inner {
-      width: 100%;
-      display: grid;                /* les deux faces partagent la même cellule       */
-      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
-      transform-style: preserve-3d;
-    }
-    .card-inner.flipped { transform: rotateY(180deg); }
-    .card-face {
-      grid-area: 1 / 1;             /* superpose recto et verso dans la même cellule  */
-      background: var(--bg-primary);
-      border: 0.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem 2rem;
-      min-height: 220px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      user-select: none;
-    }
-    .card-back { transform: rotateY(180deg); } /* plus d'absolute : la grille gère l'empilement */
-    .card-tag { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 1rem; }
-
-    /* Front fields */
-    .field-kanji  { font-size: 68px; line-height: 1; color: var(--text-primary); margin-bottom: 6px; }
-    .field-kana   { font-size: 26px; color: var(--text-secondary); margin-bottom: 4px; }
-    .field-romaji { font-size: 16px; color: var(--text-tertiary); font-style: italic; }
-
-    /* Back fields */
-    .back-kana   { font-size: 22px; color: var(--text-secondary); margin-bottom: 4px; }
-    .back-romaji { font-size: 16px; color: var(--text-tertiary); font-style: italic; margin-bottom: 10px; }
-    .back-meaning { font-size: 30px; font-weight: 500; color: var(--text-primary); margin-bottom: 12px; }
-    .back-example { font-size: 13px; color: var(--text-secondary); line-height: 1.7; white-space: pre-line; }
-
-    /* hidden fields */
-    .hidden { display: none !important; }
-    /* placeholder when all front fields hidden */
-    .card-placeholder { font-size: 36px; color: var(--text-tertiary); }
-
-    /* ── Buttons ── */
-    .flip-hint { text-align: center; font-size: 13px; color: var(--text-tertiary); margin-bottom: 1rem; transition: opacity 0.2s; }
-    .action-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 1.5rem; }
-    .action-btn {
-      flex: 1; max-width: 180px; padding: 11px 0;
-      border-radius: var(--radius-md);
-      border: 0.5px solid var(--border-medium);
-      font-size: 14px; cursor: pointer;
-      background: var(--bg-primary); color: var(--text-primary);
-      transition: all 0.15s;
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-    }
-    .action-btn:hover { background: var(--bg-secondary); }
-    .action-btn:active { transform: scale(0.98); }
-    .btn-correct { border-color: var(--correct-color); color: var(--correct-color); }
-    .btn-correct:hover { background: var(--correct-bg); }
-    .btn-wrong { border-color: var(--wrong-color); color: var(--wrong-color); }
-    .btn-wrong:hover { background: var(--wrong-bg); }
-    .btn-skip { color: var(--text-secondary); }
-
-    /* ── Stats ── */
-    .stats-row { display: flex; gap: 10px; justify-content: center; }
-    .stat-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.75rem 1.5rem; text-align: center; min-width: 90px; }
-    .stat-num { font-size: 22px; font-weight: 500; color: var(--text-primary); }
-    .stat-lbl { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
-
-    /* ── Language bar ── */
-    .lang-bar { display: flex; gap: 6px; justify-content: center; margin-bottom: 0.75rem; }
-    .lang-btn {
-      padding: 4px 13px; border-radius: 20px;
-      border: 0.5px solid var(--border-medium);
-      font-size: 12px; cursor: pointer;
-      background: var(--bg-primary); color: var(--text-secondary);
-      transition: all 0.15s;
-    }
-    .lang-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
-    .lang-btn.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
-
-    /* ── Boutons du header ── */
-    .header { position: relative; }
+    /* ── Boutons icônes du header ── */
     .header-actions { position: absolute; top: 0; right: 0; display: flex; gap: 2px; }
     .hdr-btn {
       width: 34px; height: 34px; border-radius: 50%;
@@ -251,6 +111,50 @@
       transition: color 0.15s, background 0.15s, border-color 0.15s;
     }
     .hdr-btn:hover { color: var(--text-primary); background: var(--bg-secondary); border-color: var(--border-light); }
+    .hdr-btn.active { color: var(--accent); background: var(--accent-bg); border-color: var(--accent); }
+
+    /* ── Barre de contrôle unifiée (langue + direction) ── */
+    .control-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      row-gap: 6px;
+    }
+    .ctrl-group {
+      display: flex;
+      align-items: center;
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border-light);
+      border-radius: 22px;
+      padding: 3px;
+      gap: 1px;
+    }
+    .ctrl-btn {
+      padding: 5px 12px;
+      border-radius: 18px;
+      border: none;
+      font-size: 12px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .ctrl-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+    .ctrl-btn.lang-active {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .ctrl-btn.dir-active {
+      background: var(--accent-bg);
+      color: var(--accent);
+      font-weight: 500;
+    }
 
     /* ── Barre de révision ── */
     .review-bar { display: flex; justify-content: center; margin-bottom: 0.75rem; }
@@ -267,51 +171,179 @@
       background: var(--wrong-color); color: #fff;
       border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 600;
     }
-    .review-btn:hover .review-count { background: rgba(255,255,255,0.25); color: #fff; }
+    .review-btn:hover .review-count { background: rgba(255,255,255,0.25); }
 
-    /* ── Tableau des statistiques ── */
-    .modal-wide { max-width: 540px !important; }
-    .stats-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .stats-table th {
-      padding: 8px 12px 10px; font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      color: var(--text-tertiary); text-align: left;
-      border-bottom: 0.5px solid var(--border-light);
+    /* ── Barre de catégories (défilement horizontal) ── */
+    .cat-bar-wrap {
+      overflow-x: auto;
+      margin-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-medium) transparent;
     }
-    .stats-table th:not(:first-child) { text-align: center; }
-    .stats-table td { padding: 10px 12px; border-bottom: 0.5px solid var(--border-light); }
-    .stats-table tbody tr:last-child td { border-bottom: none; }
-    .stats-cat  { color: var(--text-primary); font-weight: 500; }
-    .stats-num  { text-align: center; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
-    .s-known    { color: var(--correct-color) !important; }
-    .s-review   { color: var(--wrong-color)   !important; }
-    .s-unseen   { color: var(--text-tertiary) !important; }
-    .stats-foot td { background: var(--bg-secondary); font-weight: 600; }
+    .cat-bar-wrap::-webkit-scrollbar { height: 3px; }
+    .cat-bar-wrap::-webkit-scrollbar-track { background: transparent; }
+    .cat-bar-wrap::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 2px; }
+    .category-bar {
+      display: flex;
+      gap: 8px;
+      width: max-content;
+      margin: 0 auto;
+      padding-bottom: 2px;
+    }
+    .cat-btn {
+      padding: 7px 16px; border-radius: 20px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 13px; cursor: pointer;
+      background: var(--bg-primary); color: var(--text-secondary);
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .cat-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .cat-btn.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
 
-    /* ── Bannière de consentement ── */
-    .consent-banner {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
-      background: var(--bg-primary); border-top: 0.5px solid var(--border-light);
-      padding: 0.9rem 1.5rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.09);
-      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;
-      transform: translateY(100%); transition: transform 0.3s ease;
+    /* ── Options panel (collapsible via ⚙️) ── */
+    .options-panel {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      overflow: hidden;
+      max-height: 0;
+      margin-bottom: 0;
+      opacity: 0;
+      transition: max-height 0.28s ease, margin-bottom 0.28s ease,
+                  padding 0.28s ease, opacity 0.2s ease;
     }
-    .consent-banner.show { transform: translateY(0); }
-    .consent-text { font-size: 13px; color: var(--text-secondary); }
-    .consent-actions { display: flex; gap: 8px; }
-    .consent-btn {
-      padding: 6px 14px; border-radius: var(--radius-md); font-size: 13px;
-      cursor: pointer; border: 0.5px solid var(--border-medium);
+    .options-panel.open {
+      max-height: 100px;
+      margin-bottom: 1.25rem;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      opacity: 1;
+    }
+    .options-label {
+      font-size: 12px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--text-tertiary); margin-right: 4px; flex-shrink: 0;
+    }
+    .options-divider { width: 0.5px; height: 20px; background: var(--border-medium); margin: 0 6px; flex-shrink: 0; }
+    .toggle-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .toggle-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 20px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 13px; cursor: pointer;
       background: var(--bg-secondary); color: var(--text-secondary);
+      transition: all 0.18s; user-select: none;
+    }
+    .toggle-pill:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .toggle-pill.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); font-weight: 500; }
+    .toggle-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.7; }
+    .toggle-pill.on .dot { opacity: 1; }
+
+    /* ── Barre de progression ── */
+    .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+    .progress-bar-wrap { flex: 1; height: 4px; background: var(--bg-secondary); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 2px; background: var(--text-primary); transition: width 0.4s ease; }
+    .progress-label { font-size: 13px; color: var(--text-secondary); white-space: nowrap; min-width: 48px; text-align: right; }
+
+    /* ── Carte ── */
+    .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; }
+    .card-inner {
+      width: 100%;
+      display: grid;
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+      transform-style: preserve-3d;
+    }
+    .card-inner.flipped { transform: rotateY(180deg); }
+    .card-face {
+      grid-area: 1 / 1;
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 2.5rem 2rem;
+      min-height: 220px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      user-select: none;
+    }
+    .card-back { transform: rotateY(180deg); }
+    .card-tag { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 1rem; }
+
+    /* Champs recto */
+    .field-kanji  { font-size: 68px; line-height: 1; color: var(--text-primary); margin-bottom: 6px; }
+    .field-kana   { font-size: 26px; color: var(--text-secondary); margin-bottom: 4px; }
+    .field-romaji { font-size: 16px; color: var(--text-tertiary); font-style: italic; }
+
+    /* Champs verso */
+    .back-kana    { font-size: 22px; color: var(--text-secondary); margin-bottom: 4px; }
+    .back-romaji  { font-size: 16px; color: var(--text-tertiary); font-style: italic; margin-bottom: 10px; }
+    .back-meaning { font-size: 30px; font-weight: 500; color: var(--text-primary); margin-bottom: 12px; }
+    .back-example { font-size: 13px; color: var(--text-secondary); line-height: 1.7; white-space: pre-line; }
+
+    /* Mode wrappers (transparents au layout) */
+    #jpModeFront, #langModeFront, #jpModeBack, #langModeBack { display: contents; }
+    #jpModeFront.hidden, #langModeFront.hidden,
+    #jpModeBack.hidden,  #langModeBack.hidden  { display: none !important; }
+
+    .lang-meaning { font-size: 30px; font-weight: 500; color: var(--text-primary); margin-bottom: 12px; }
+    .hidden { display: none !important; }
+    .card-placeholder { font-size: 36px; color: var(--text-tertiary); }
+
+    /* ── Boutons d'action ── */
+    .flip-hint { text-align: center; font-size: 13px; color: var(--text-tertiary); margin-bottom: 1rem; transition: opacity 0.2s; }
+    .action-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 1.5rem; }
+    .action-btn {
+      flex: 1; max-width: 180px; padding: 11px 0;
+      border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-medium);
+      font-size: 14px; cursor: pointer;
+      background: var(--bg-primary); color: var(--text-primary);
+      transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .action-btn:hover  { background: var(--bg-secondary); }
+    .action-btn:active { transform: scale(0.98); }
+    .btn-correct { border-color: var(--correct-color); color: var(--correct-color); }
+    .btn-correct:hover { background: var(--correct-bg); }
+    .btn-wrong   { border-color: var(--wrong-color);   color: var(--wrong-color); }
+    .btn-wrong:hover   { background: var(--wrong-bg); }
+    .btn-skip    { color: var(--text-secondary); }
+
+    /* ── Stats de session ── */
+    .stats-row { display: flex; gap: 10px; justify-content: center; }
+    .stat-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.75rem 1.5rem; text-align: center; min-width: 90px; }
+    .stat-num  { font-size: 22px; font-weight: 500; color: var(--text-primary); }
+    .stat-lbl  { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+    /* ── Écran "terminé" ── */
+    .done-screen { text-align: center; padding: 3.5rem 1rem; display: none; }
+    .done-emoji  { font-size: 52px; margin-bottom: 1rem; }
+    .done-title  { font-size: 24px; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .done-sub    { font-size: 15px; color: var(--text-secondary); margin-bottom: 1.75rem; }
+    .restart-btn {
+      padding: 11px 32px; border-radius: var(--radius-md); border: none;
+      font-size: 14px; cursor: pointer;
+      background: var(--text-primary); color: var(--bg-primary);
       transition: opacity 0.15s;
     }
-    .consent-btn.primary { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
-    .consent-btn:hover { opacity: 0.8; }
+    .restart-btn:hover { opacity: 0.82; }
 
-    /* ── Modale mentions légales ── */
+    .app-screens.finished .main-content { display: none; }
+    .app-screens.finished .done-screen  { display: block; }
+    .app-screens:not(.finished) .done-screen { display: none; }
+
+    /* ── Modales ── */
     .modal-backdrop {
       position: fixed; inset: 0;
-      background: rgba(0,0,0,0.42);
+      background: rgba(0,0,0,0.45);
       display: flex; align-items: center; justify-content: center;
       padding: 1rem; z-index: 200;
       opacity: 0; pointer-events: none;
@@ -332,8 +364,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem 1.25rem 0.9rem;
       border-bottom: 0.5px solid var(--border-light);
-      position: sticky; top: 0;
-      background: var(--bg-primary);
+      position: sticky; top: 0; background: var(--bg-primary);
     }
     .modal-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
     .modal-close {
@@ -349,76 +380,91 @@
     .modal-app-sub  { font-size: 13px; color: var(--text-tertiary); text-align: center; margin-bottom: 1.4rem; }
     .modal-section  { margin-bottom: 1.1rem; }
     .modal-section:last-child { margin-bottom: 0; }
-    .modal-section h3 {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.8px; color: var(--text-tertiary); margin-bottom: 5px;
-    }
-    .modal-section p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
-    .modal-section a { color: var(--accent); text-decoration: none; }
+    .modal-section h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-tertiary); margin-bottom: 5px; }
+    .modal-section p  { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+    .modal-section a  { color: var(--accent); text-decoration: none; }
     .modal-section a:hover { text-decoration: underline; }
     .modal-section code { font-size: 12px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px; }
 
-    /* ── Direction bar ── */
-    .dir-bar { display: flex; gap: 6px; justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
-    .dir-btn {
-      padding: 5px 14px; border-radius: 20px;
-      border: 0.5px solid var(--border-medium);
-      font-size: 12px; cursor: pointer;
-      background: var(--bg-primary); color: var(--text-secondary);
-      transition: all 0.15s;
+    /* Tableau stats */
+    .modal-wide  { max-width: 540px !important; }
+    .stats-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .stats-table th {
+      padding: 8px 12px 10px; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.6px;
+      color: var(--text-tertiary); text-align: left;
+      border-bottom: 0.5px solid var(--border-light);
     }
-    .dir-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
-    .dir-btn.active { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); font-weight: 500; }
+    .stats-table th:not(:first-child) { text-align: center; }
+    .stats-table td   { padding: 10px 12px; border-bottom: 0.5px solid var(--border-light); }
+    .stats-table tbody tr:last-child td { border-bottom: none; }
+    .stats-cat  { color: var(--text-primary); font-weight: 500; }
+    .stats-num  { text-align: center; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+    .s-known    { color: var(--correct-color) !important; }
+    .s-review   { color: var(--wrong-color)   !important; }
+    .s-unseen   { color: var(--text-tertiary) !important; }
+    .stats-foot td { background: var(--bg-secondary); font-weight: 600; }
 
-    /* ── Mode panels (transparent wrappers inside card faces) ── */
-    #jpModeFront, #langModeFront, #jpModeBack, #langModeBack { display: contents; }
-    #jpModeFront.hidden, #langModeFront.hidden,
-    #jpModeBack.hidden,  #langModeBack.hidden  { display: none !important; }
-
-    /* ── Lang-mode recto content ── */
-    .lang-meaning { font-size: 30px; font-weight: 500; color: var(--text-primary); margin-bottom: 12px; }
-
-    /* ── Done screen ── */
-    .done-screen { text-align: center; padding: 3.5rem 1rem; display: none; }
-    .done-emoji { font-size: 52px; margin-bottom: 1rem; }
-    .done-title { font-size: 24px; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary); }
-    .done-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 1.75rem; }
-    .restart-btn {
-      padding: 11px 32px; border-radius: var(--radius-md); border: none;
-      font-size: 14px; cursor: pointer;
-      background: var(--text-primary); color: var(--bg-primary);
+    /* ── Bannière de consentement ── */
+    .consent-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      background: var(--bg-primary); border-top: 0.5px solid var(--border-light);
+      padding: 0.9rem 1.5rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      transform: translateY(100%); transition: transform 0.3s ease;
+    }
+    .consent-banner.show { transform: translateY(0); }
+    .consent-text   { font-size: 13px; color: var(--text-secondary); }
+    .consent-actions { display: flex; gap: 8px; }
+    .consent-btn {
+      padding: 6px 14px; border-radius: var(--radius-md); font-size: 13px;
+      cursor: pointer; border: 0.5px solid var(--border-medium);
+      background: var(--bg-secondary); color: var(--text-secondary);
       transition: opacity 0.15s;
     }
-    .restart-btn:hover { opacity: 0.82; }
-
-    .app-screens.finished .main-content { display: none; }
-    .app-screens.finished .done-screen { display: block; }
-    .app-screens:not(.finished) .done-screen { display: none; }
+    .consent-btn.primary { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+    .consent-btn:hover { opacity: 0.8; }
   </style>
 </head>
 <body>
 <div class="app">
 
+  <!-- ── Header ── -->
   <div class="header">
     <h1>日本語 — Flash Cards</h1>
     <p id="headerSub">Cliquez sur la carte pour révéler la réponse</p>
     <div class="header-actions">
+      <button class="hdr-btn" id="settingsBtn" onclick="toggleSettings()" title="Options d'affichage">
+        <i class="ti ti-adjustments-horizontal"></i>
+      </button>
       <button class="hdr-btn" id="statsBtn" onclick="openStats()" title="Statistiques">
         <i class="ti ti-chart-bar"></i>
       </button>
       <button class="hdr-btn" id="infoBtn" onclick="openLegal()" title="Mentions légales">
         <i class="ti ti-info-circle"></i>
       </button>
+      <button class="hdr-btn" id="themeBtn" onclick="toggleTheme()" title="Mode sombre">
+        <i class="ti ti-moon"></i>
+      </button>
     </div>
   </div>
 
-  <div class="lang-bar" id="langBar"></div>
-  <div class="dir-bar"    id="dirBar"></div>
-  <div class="review-bar" id="reviewBar" style="display:none"></div>
-  <div class="category-bar" id="catBar"></div>
+  <!-- ── Barre de contrôle unique : langue + direction ── -->
+  <div class="control-bar">
+    <div class="ctrl-group" id="langGroup"></div>
+    <div class="ctrl-group" id="dirGroup"></div>
+  </div>
 
-  <!-- ── Options panel ── -->
-  <div class="options-panel">
+  <!-- ── Barre de révision (conditionnelle) ── -->
+  <div class="review-bar" id="reviewBar" style="display:none"></div>
+
+  <!-- ── Catégories (défilement horizontal) ── -->
+  <div class="cat-bar-wrap">
+    <div class="category-bar" id="catBar"></div>
+  </div>
+
+  <!-- ── Options d'affichage (collapsible via ⚙️) ── -->
+  <div class="options-panel" id="optionsPanel">
     <span class="options-label" id="rectoLabel">Recto</span>
     <div class="toggle-group" id="frontToggles">
       <div class="toggle-pill on" data-side="front" data-field="kanji"  onclick="toggleField(this)"><span class="dot"></span>Kanji</div>
@@ -433,6 +479,7 @@
     </div>
   </div>
 
+  <!-- ── Contenu principal ── -->
   <div class="app-screens" id="screens">
     <div class="main-content">
 
@@ -444,34 +491,30 @@
       <div class="card-area" id="cardArea" onclick="flipCard()">
         <div class="card-inner" id="cardInner">
 
-          <!-- Front -->
+          <!-- Recto -->
           <div class="card-face card-front">
             <div class="card-tag" id="frontTag">vocabulaire</div>
-            <!-- Mode JP → Langue : japonais sur recto -->
             <div id="jpModeFront">
               <div class="card-placeholder hidden" id="frontPlaceholder">？</div>
               <div class="field-kanji"  id="frontKanji"></div>
               <div class="field-kana"   id="frontKana"></div>
               <div class="field-romaji" id="frontRomaji"></div>
             </div>
-            <!-- Mode Langue → JP : traduction sur recto -->
             <div id="langModeFront" class="hidden">
               <div class="lang-meaning" id="frontMeaning"></div>
               <div class="back-example" id="frontExampleLang"></div>
             </div>
           </div>
 
-          <!-- Back -->
+          <!-- Verso -->
           <div class="card-face card-back">
             <div class="card-tag" id="backTag">réponse</div>
-            <!-- Mode JP → Langue : réponse en langue étrangère -->
             <div id="jpModeBack">
               <div class="back-kana"    id="backKana"></div>
               <div class="back-romaji"  id="backRomaji"></div>
               <div class="back-meaning" id="backMeaning"></div>
               <div class="back-example" id="backExample"></div>
             </div>
-            <!-- Mode Langue → JP : réponse en japonais -->
             <div id="langModeBack" class="hidden">
               <div class="field-kanji"  id="backKanjiJP"></div>
               <div class="field-kana"   id="backKanaJP"></div>
@@ -504,7 +547,7 @@
     <div class="done-screen" id="doneScreen">
       <div class="done-emoji">🎉</div>
       <div class="done-title" id="doneTitle">Session terminée !</div>
-      <div class="done-sub" id="doneSub"></div>
+      <div class="done-sub"   id="doneSub"></div>
       <button id="btnRestart" class="restart-btn" onclick="restart()">Recommencer</button>
     </div>
   </div>
@@ -530,17 +573,14 @@
       <div class="modal-body">
         <p class="modal-app-name">日本語 Flash Cards</p>
         <p class="modal-app-sub">Application de mémorisation de vocabulaire japonais</p>
-
         <div class="modal-section">
           <h3>Contact</h3>
           <p><a href="mailto:marco.taberu@gmail.com">marco.taberu@gmail.com</a></p>
         </div>
-
         <div class="modal-section">
           <h3>Données personnelles</h3>
-          <p>Cette application ne collecte aucune donnée personnelle. Aucun cookie n'est utilisé et aucune information n'est transmise à des tiers.</p>
+          <p>Cette application ne collecte aucune donnée personnelle. Les préférences et la progression sont stockées localement sur votre appareil et ne sont jamais transmises à des tiers.</p>
         </div>
-
         <div class="modal-section">
           <h3>Hébergeur du site</h3>
           <p>
@@ -551,7 +591,6 @@
             <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">www.cloudflare.com</a>
           </p>
         </div>
-
         <div class="modal-section">
           <h3>Propriété intellectuelle</h3>
           <p>© 2025 — <a href="mailto:marco.taberu@gmail.com">marco.taberu@gmail.com</a>. Tous droits réservés.</p>
@@ -560,7 +599,9 @@
     </div>
   </div>
 
-<!-- ── Bannière de consentement (position:fixed, hors .app) ── -->
+</div><!-- /.app -->
+
+<!-- ── Bannière de consentement (hors .app, position:fixed) ── -->
 <div class="consent-banner" id="consentBanner">
   <span class="consent-text" id="consentMsg">💾 Sauvegarder vos progrès entre les sessions ?</span>
   <div class="consent-actions">
@@ -571,20 +612,21 @@
 
 <script>
 // ── Globals ───────────────────────────────────────────────────────────────────
-let VOCAB = {};
-let CATEGORIES = {};
+let VOCAB = {}, CATEGORIES = {};
 let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0;
 let currentCat  = '';
 let currentLang = 'fr';
-let currentDir  = 'jp'; // 'jp' = japonais sur recto | 'lang' = langue sur recto
+let currentDir  = 'jp'; // 'jp' = japonais recto | 'lang' = langue étrangère recto
 
-// ── Progression ───────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'nihon_progress';
-const CONSENT_KEY = 'nihon_consent';
-let progress    = {}; // { wordId: 'known' | 'review' }
+// ── Clés localStorage ─────────────────────────────────────────────────────────
+const STORAGE_KEY  = 'nihon_progress';
+const CONSENT_KEY  = 'nihon_consent';
+const THEME_KEY    = 'nihon_theme';
+const SETTINGS_KEY = 'nihon_settings';
+let progress    = {};
 let saveEnabled = false;
 
-// ── Traductions ───────────────────────────────────────────────────────────────
+// ── Langues disponibles ───────────────────────────────────────────────────────
 const LANGS = [
   { code: 'fr', label: 'FR', name: 'Français'  },
   { code: 'en', label: 'EN', name: 'English'   },
@@ -592,166 +634,189 @@ const LANGS = [
   { code: 'pt', label: 'PT', name: 'Português' },
 ];
 
+// ── Traductions UI ────────────────────────────────────────────────────────────
 const UI = {
   fr: {
-    subtitle:       'Cliquez sur la carte pour révéler la réponse',
-    flipHint:       'Cliquez sur la carte pour retourner',
-    flipBtn:        'Retourner la carte',
-    btnWrong:       'À revoir',    btnSkip:        'Passer',
-    btnCorrect:     'Correct',
-    lblCorrect:     'Corrects',
-    lblWrong:       'À revoir',
-    lblRemain:      'Restants',
-    btnRestart:     'Recommencer',
-    optRecto:       'Recto',
-    optVerso:       'Verso',
-    optVersoJP:     'Verso JP',
-    backTag:        'réponse',
-    legalTitle:     'Mentions légales',
-    statsTitle:     'Statistiques',
-    statsCat:       'Catégorie',
-    statsKnown:     '✓ Connus',
-    statsReview:    '↺ À revoir',
-    statsUnseen:    '○ Non vus',
-    statsTotal:     'Total',
+    subtitle: 'Cliquez sur la carte pour révéler la réponse',
+    flipHint: 'Cliquez sur la carte pour retourner',
+    flipBtn:  'Retourner la carte',
+    btnWrong: 'À revoir', btnSkip: 'Passer', btnCorrect: 'Correct',
+    lblCorrect: 'Corrects', lblWrong: 'À revoir', lblRemain: 'Restants',
+    btnRestart: 'Recommencer',
+    optRecto: 'Recto', optVerso: 'Verso', optVersoJP: 'Verso JP',
+    backTag: 'réponse', legalTitle: 'Mentions légales',
+    statsTitle: 'Statistiques', statsCat: 'Catégorie',
+    statsKnown: '✓ Connus', statsReview: '↺ À revoir',
+    statsUnseen: '○ Non vus', statsTotal: 'Total',
     reviewBtnLabel: 'Réviser',
-    noProgress:     'Commencez à réviser pour voir vos statistiques.',
-    consentMsg:     '💾 Sauvegarder vos progrès entre les sessions ?',
-    consentAccept:  'Oui, sauvegarder',
-    consentReject:  'Non merci',
-    doneTitles:     ['Excellent travail ! 🌸', 'Bon effort ! 頑張って', 'Continuez à pratiquer !'],
-    doneSub:        (c, t, p) => `${c} correct${c > 1 ? 's' : ''} sur ${t} cartes (${p}%)`,
+    noProgress: 'Commencez à réviser pour voir vos statistiques.',
+    consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
+    consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
+    themeLight: 'Mode clair', themeDark: 'Mode sombre',
+    settingsTitle: "Options d'affichage",
+    doneTitles: ['Excellent travail ! 🌸', 'Bon effort ! 頑張って', 'Continuez à pratiquer !'],
+    doneSub: (c, t, p) => `${c} correct${c > 1 ? 's' : ''} sur ${t} cartes (${p}%)`,
   },
   en: {
-    subtitle:       'Click the card to reveal the answer',
-    flipHint:       'Click the card to flip',
-    flipBtn:        'Flip card',
-    btnWrong:       'Review',
-    btnSkip:        'Skip',
-    btnCorrect:     'Correct',
-    lblCorrect:     'Correct',
-    lblWrong:       'Review',
-    lblRemain:      'Left',
-    btnRestart:     'Restart',
-    optRecto:       'Front',
-    optVerso:       'Back',
-    optVersoJP:     'Back JP',
-    backTag:        'answer',
-    legalTitle:     'Legal notice',
-    statsTitle:     'Statistics',
-    statsCat:       'Category',
-    statsKnown:     '✓ Known',
-    statsReview:    '↺ Review',
-    statsUnseen:    '○ Unseen',
-    statsTotal:     'Total',
+    subtitle: 'Click the card to reveal the answer',
+    flipHint: 'Click the card to flip',
+    flipBtn:  'Flip card',
+    btnWrong: 'Review', btnSkip: 'Skip', btnCorrect: 'Correct',
+    lblCorrect: 'Correct', lblWrong: 'Review', lblRemain: 'Left',
+    btnRestart: 'Restart',
+    optRecto: 'Front', optVerso: 'Back', optVersoJP: 'Back JP',
+    backTag: 'answer', legalTitle: 'Legal notice',
+    statsTitle: 'Statistics', statsCat: 'Category',
+    statsKnown: '✓ Known', statsReview: '↺ Review',
+    statsUnseen: '○ Unseen', statsTotal: 'Total',
     reviewBtnLabel: 'Review',
-    noProgress:     'Start studying to see your statistics.',
-    consentMsg:     '💾 Save your progress between sessions?',
-    consentAccept:  'Yes, save',
-    consentReject:  'No thanks',
-    doneTitles:     ['Excellent work! 🌸', 'Good effort! 頑張って', 'Keep practicing!'],
-    doneSub:        (c, t, p) => `${c} correct out of ${t} cards (${p}%)`,
+    noProgress: 'Start studying to see your statistics.',
+    consentMsg: '💾 Save your progress between sessions?',
+    consentAccept: 'Yes, save', consentReject: 'No thanks',
+    themeLight: 'Light mode', themeDark: 'Dark mode',
+    settingsTitle: 'Display options',
+    doneTitles: ['Excellent work! 🌸', 'Good effort! 頑張って', 'Keep practicing!'],
+    doneSub: (c, t, p) => `${c} correct out of ${t} cards (${p}%)`,
   },
   de: {
-    subtitle:       'Klicke auf die Karte, um die Antwort zu sehen',
-    flipHint:       'Klicke auf die Karte zum Umdrehen',
-    flipBtn:        'Karte umdrehen',
-    btnWrong:       'Wiederholen',
-    btnSkip:        'Überspringen',
-    btnCorrect:     'Richtig',
-    lblCorrect:     'Richtig',
-    lblWrong:       'Wiederholen',
-    lblRemain:      'Verbleibend',
-    btnRestart:     'Neu starten',
-    optRecto:       'Vorderseite',
-    optVerso:       'Rückseite',
-    optVersoJP:     'Rückseite JP',
-    backTag:        'Antwort',
-    legalTitle:     'Impressum',
-    statsTitle:     'Statistiken',
-    statsCat:       'Kategorie',
-    statsKnown:     '✓ Bekannt',
-    statsReview:    '↺ Wiederholen',
-    statsUnseen:    '○ Ungesehen',
-    statsTotal:     'Gesamt',
+    subtitle: 'Klicke auf die Karte, um die Antwort zu sehen',
+    flipHint: 'Klicke auf die Karte zum Umdrehen',
+    flipBtn:  'Karte umdrehen',
+    btnWrong: 'Wiederholen', btnSkip: 'Überspringen', btnCorrect: 'Richtig',
+    lblCorrect: 'Richtig', lblWrong: 'Wiederholen', lblRemain: 'Verbleibend',
+    btnRestart: 'Neu starten',
+    optRecto: 'Vorderseite', optVerso: 'Rückseite', optVersoJP: 'Rückseite JP',
+    backTag: 'Antwort', legalTitle: 'Impressum',
+    statsTitle: 'Statistiken', statsCat: 'Kategorie',
+    statsKnown: '✓ Bekannt', statsReview: '↺ Wiederholen',
+    statsUnseen: '○ Ungesehen', statsTotal: 'Gesamt',
     reviewBtnLabel: 'Wiederholen',
-    noProgress:     'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
-    consentMsg:     '💾 Fortschritt zwischen Sitzungen speichern?',
-    consentAccept:  'Ja, speichern',
-    consentReject:  'Nein danke',
-    doneTitles:     ['Ausgezeichnet! 🌸', 'Gute Leistung! 頑張って', 'Weiter üben!'],
-    doneSub:        (c, t, p) => `${c} richtig von ${t} Karten (${p}%)`,
+    noProgress: 'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
+    consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
+    consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
+    themeLight: 'Helles Design', themeDark: 'Dunkles Design',
+    settingsTitle: 'Anzeigeoptionen',
+    doneTitles: ['Ausgezeichnet! 🌸', 'Gute Leistung! 頑張って', 'Weiter üben!'],
+    doneSub: (c, t, p) => `${c} richtig von ${t} Karten (${p}%)`,
   },
   pt: {
-    subtitle:       'Clique no cartão para revelar a resposta',
-    flipHint:       'Clique no cartão para virar',
-    flipBtn:        'Virar o cartão',
-    btnWrong:       'Rever',
-    btnSkip:        'Pular',
-    btnCorrect:     'Correto',
-    lblCorrect:     'Corretos',
-    lblWrong:       'Rever',
-    lblRemain:      'Restantes',
-    btnRestart:     'Recomeçar',
-    optRecto:       'Frente',
-    optVerso:       'Verso',
-    optVersoJP:     'Verso JP',
-    backTag:        'resposta',
-    legalTitle:     'Aviso legal',
-    statsTitle:     'Estatísticas',
-    statsCat:       'Categoria',
-    statsKnown:     '✓ Aprendidos',
-    statsReview:    '↺ Rever',
-    statsUnseen:    '○ Não vistos',
-    statsTotal:     'Total',
+    subtitle: 'Clique no cartão para revelar a resposta',
+    flipHint: 'Clique no cartão para virar',
+    flipBtn:  'Virar o cartão',
+    btnWrong: 'Rever', btnSkip: 'Pular', btnCorrect: 'Correto',
+    lblCorrect: 'Corretos', lblWrong: 'Rever', lblRemain: 'Restantes',
+    btnRestart: 'Recomeçar',
+    optRecto: 'Frente', optVerso: 'Verso', optVersoJP: 'Verso JP',
+    backTag: 'resposta', legalTitle: 'Aviso legal',
+    statsTitle: 'Estatísticas', statsCat: 'Categoria',
+    statsKnown: '✓ Aprendidos', statsReview: '↺ Rever',
+    statsUnseen: '○ Não vistos', statsTotal: 'Total',
     reviewBtnLabel: 'Rever',
-    noProgress:     'Comece a estudar para ver suas estatísticas.',
-    consentMsg:     '💾 Salvar seu progresso entre as sessões?',
-    consentAccept:  'Sim, salvar',
-    consentReject:  'Não, obrigado',
-    doneTitles:     ['Excelente trabalho! 🌸', 'Bom esforço! 頑張って', 'Continue praticando!'],
-    doneSub:        (c, t, p) => `${c} correto${c > 1 ? 's' : ''} de ${t} cartões (${p}%)`,
+    noProgress: 'Comece a estudar para ver suas estatísticas.',
+    consentMsg: '💾 Salvar seu progresso entre as sessões?',
+    consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
+    themeLight: 'Modo claro', themeDark: 'Modo escuro',
+    settingsTitle: 'Opções de exibição',
+    doneTitles: ['Excelente trabalho! 🌸', 'Bom esforço! 頑張って', 'Continue praticando!'],
+    doneSub: (c, t, p) => `${c} correto${c > 1 ? 's' : ''} de ${t} cartões (${p}%)`,
   },
   ja: {
-    subtitle:       'カードをクリックして答えを確認しよう',
-    flipHint:       'カードをクリックして裏返す',
-    flipBtn:        'カードを裏返す',
-    btnWrong:       'もう一度',
-    btnSkip:        'スキップ',
-    btnCorrect:     '正解',
-    lblCorrect:     '正解数',
-    lblWrong:       '復習',
-    lblRemain:      '残り',
-    btnRestart:     'もう一度やる',
-    optRecto:       '表面',
-    optVerso:       '裏面',
-    optVersoJP:     '日本語',
-    backTag:        '答え',
-    legalTitle:     '法的情報',
-    statsTitle:     '統計',
-    statsCat:       'カテゴリ',
-    statsKnown:     '✓ 覚えた',
-    statsReview:    '↺ 復習',
-    statsUnseen:    '○ 未習',
-    statsTotal:     '合計',
+    subtitle: 'カードをクリックして答えを確認しよう',
+    flipHint: 'カードをクリックして裏返す',
+    flipBtn:  'カードを裏返す',
+    btnWrong: 'もう一度', btnSkip: 'スキップ', btnCorrect: '正解',
+    lblCorrect: '正解数', lblWrong: '復習', lblRemain: '残り',
+    btnRestart: 'もう一度やる',
+    optRecto: '表面', optVerso: '裏面', optVersoJP: '日本語',
+    backTag: '答え', legalTitle: '法的情報',
+    statsTitle: '統計', statsCat: 'カテゴリ',
+    statsKnown: '✓ 覚えた', statsReview: '↺ 復習',
+    statsUnseen: '○ 未習', statsTotal: '合計',
     reviewBtnLabel: '復習する',
-    noProgress:     '学習を始めると統計が表示されます。',
-    consentMsg:     '💾 学習記録を保存しますか？',
-    consentAccept:  '保存する',
-    consentReject:  'いいえ',
-    doneTitles:     ['素晴らしい！🌸', 'よく頑張りました！頑張って', '練習を続けよう！'],
-    doneSub:        (c, t, p) => `${t}問中${c}問正解（${p}%）`,
+    noProgress: '学習を始めると統計が表示されます。',
+    consentMsg: '💾 学習記録を保存しますか？',
+    consentAccept: '保存する', consentReject: 'いいえ',
+    themeLight: 'ライトモード', themeDark: 'ダークモード',
+    settingsTitle: '表示オプション',
+    doneTitles: ['素晴らしい！🌸', 'よく頑張りました！頑張って', '練習を続けよう！'],
+    doneSub: (c, t, p) => `${t}問中${c}問正解（${p}%）`,
   },
 };
 
-// Retourne 'ja' en mode Langue→JP, sinon la langue étrangère choisie.
+// Langue de l'UI : japonais en mode Langue→JP, sinon la langue étrangère choisie
 function uiLang() { return currentDir === 'lang' ? 'ja' : currentLang; }
 
-// Visibilité des champs JP
+// Visibilité des champs japonais (valeurs par défaut)
 const show = {
   front: { kanji: true, kana: true, romaji: false },
   back:  { kana: true, romaji: true },
 };
+
+// ── Sauvegarde des préférences d'affichage ────────────────────────────────────
+function saveSettings() {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+    show: { front: { ...show.front }, back: { ...show.back } },
+    lang: currentLang,
+    dir:  currentDir,
+  }));
+}
+
+function loadSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null');
+    if (!saved) return;
+    if (saved.show?.front) Object.assign(show.front, saved.show.front);
+    if (saved.show?.back)  Object.assign(show.back,  saved.show.back);
+    if (saved.lang && LANGS.find(l => l.code === saved.lang)) currentLang = saved.lang;
+    if (saved.dir  && ['jp', 'lang'].includes(saved.dir))     currentDir  = saved.dir;
+  } catch(e) {}
+}
+
+// Synchronise l'état visuel des pills avec l'objet show (après chargement)
+function syncTogglePills() {
+  document.querySelectorAll('.toggle-pill').forEach(pill => {
+    const { side, field } = pill.dataset;
+    if (side && field) pill.classList.toggle('on', !!show[side]?.[field]);
+  });
+}
+
+// ── Thème clair / sombre ──────────────────────────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeBtn();
+}
+
+function toggleTheme() {
+  const root    = document.documentElement;
+  const attr    = root.getAttribute('data-theme');
+  const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark  = attr === 'dark' || (!attr && sysDark);
+  const next    = isDark ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem(THEME_KEY, next);
+  updateThemeBtn();
+}
+
+function updateThemeBtn() {
+  const root    = document.documentElement;
+  const attr    = root.getAttribute('data-theme');
+  const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark  = attr === 'dark' || (!attr && sysDark);
+  const btn = document.getElementById('themeBtn');
+  if (!btn) return;
+  const t = UI[uiLang()];
+  btn.innerHTML = isDark ? '<i class="ti ti-sun"></i>' : '<i class="ti ti-moon"></i>';
+  btn.title     = isDark ? t.themeLight : t.themeDark;
+}
+
+// ── Options panel (collapsible) ───────────────────────────────────────────────
+function toggleSettings() {
+  const panel = document.getElementById('optionsPanel');
+  const btn   = document.getElementById('settingsBtn');
+  const open  = panel.classList.toggle('open');
+  btn.classList.toggle('active', open);
+}
 
 // ── Chargement du vocabulaire ─────────────────────────────────────────────────
 async function loadVocabulary() {
@@ -772,7 +837,7 @@ async function loadVocabulary() {
     if (!VOCAB[catId]) VOCAB[catId] = [];
     const get = tag => word.querySelector(tag)?.textContent?.trim() || '';
     VOCAB[catId].push({
-      id:       word.getAttribute('id'),   // identifiant unique pour la progression
+      id:       word.getAttribute('id'),
       kanji:    get('kanji'),
       kana:     get('kana'),
       romaji:   get('romaji'),
@@ -782,74 +847,51 @@ async function loadVocabulary() {
   });
 }
 
-// ── Progression & localStorage ────────────────────────────────────────────────
+// ── Progression & consentement ────────────────────────────────────────────────
 function loadProgress() {
-  const consent = localStorage.getItem(CONSENT_KEY);
-  if (consent === 'true') {
+  if (localStorage.getItem(CONSENT_KEY) === 'true') {
     saveEnabled = true;
     try { progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { progress = {}; }
   }
 }
-
-function saveProgress() {
-  if (saveEnabled) localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-}
-
-function acceptConsent() {
-  localStorage.setItem(CONSENT_KEY, 'true');
-  saveEnabled = true;
-  saveProgress(); // persiste la progression en mémoire de cette session
-  hideConsent();
-}
-
-function rejectConsent() {
-  localStorage.setItem(CONSENT_KEY, 'false');
-  saveEnabled = false;
-  hideConsent();
-}
-
+function saveProgress()  { if (saveEnabled) localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
+function acceptConsent() { localStorage.setItem(CONSENT_KEY, 'true');  saveEnabled = true; saveProgress(); hideConsent(); }
+function rejectConsent() { localStorage.setItem(CONSENT_KEY, 'false'); saveEnabled = false; hideConsent(); }
+function hideConsent()   { document.getElementById('consentBanner').classList.remove('show'); }
 function showConsentIfNeeded() {
-  if (!localStorage.getItem(CONSENT_KEY)) {
+  if (!localStorage.getItem(CONSENT_KEY))
     setTimeout(() => document.getElementById('consentBanner').classList.add('show'), 900);
-  }
 }
 
-function hideConsent() { document.getElementById('consentBanner').classList.remove('show'); }
-
-// ── Mise à jour de l'interface ────────────────────────────────────────────────
+// ── Mise à jour globale de l'UI ───────────────────────────────────────────────
 function updateUI() {
   const t = UI[uiLang()];
-  document.getElementById('headerSub').textContent    = t.subtitle;
-  document.getElementById('flipHint').textContent     = t.flipHint;
-  document.getElementById('btnFlip').innerHTML        = `<i class="ti ti-rotate"></i> ${t.flipBtn}`;
-  document.getElementById('btnWrong').innerHTML       = `<i class="ti ti-x"></i> ${t.btnWrong}`;
-  document.getElementById('btnSkip').innerHTML        = `<i class="ti ti-arrow-right"></i> ${t.btnSkip}`;
-  document.getElementById('btnCorrect').innerHTML     = `<i class="ti ti-check"></i> ${t.btnCorrect}`;
-  document.getElementById('lblCorrect').textContent   = t.lblCorrect;
-  document.getElementById('lblWrong').textContent     = t.lblWrong;
-  document.getElementById('lblRemain').textContent    = t.lblRemain;
-  document.getElementById('btnRestart').textContent   = t.btnRestart;
-  document.getElementById('legalTitle').textContent   = t.legalTitle;
-  document.getElementById('statsTitle').textContent   = t.statsTitle;
-  document.getElementById('infoBtn').title            = t.legalTitle;
-  document.getElementById('statsBtn').title           = t.statsTitle;
-  document.getElementById('consentMsg').textContent   = t.consentMsg;
+  document.getElementById('headerSub').textContent     = t.subtitle;
+  document.getElementById('flipHint').textContent      = t.flipHint;
+  document.getElementById('btnFlip').innerHTML         = `<i class="ti ti-rotate"></i> ${t.flipBtn}`;
+  document.getElementById('btnWrong').innerHTML        = `<i class="ti ti-x"></i> ${t.btnWrong}`;
+  document.getElementById('btnSkip').innerHTML         = `<i class="ti ti-arrow-right"></i> ${t.btnSkip}`;
+  document.getElementById('btnCorrect').innerHTML      = `<i class="ti ti-check"></i> ${t.btnCorrect}`;
+  document.getElementById('lblCorrect').textContent    = t.lblCorrect;
+  document.getElementById('lblWrong').textContent      = t.lblWrong;
+  document.getElementById('lblRemain').textContent     = t.lblRemain;
+  document.getElementById('btnRestart').textContent    = t.btnRestart;
+  document.getElementById('legalTitle').textContent    = t.legalTitle;
+  document.getElementById('statsTitle').textContent    = t.statsTitle;
+  document.getElementById('infoBtn').title             = t.legalTitle;
+  document.getElementById('statsBtn').title            = t.statsTitle;
+  document.getElementById('settingsBtn').title         = t.settingsTitle;
+  document.getElementById('consentMsg').textContent    = t.consentMsg;
   document.getElementById('consentAccept').textContent = t.consentAccept;
   document.getElementById('consentReject').textContent = t.consentReject;
+  updateThemeBtn();
   updateOptionsPanel();
   updateReviewBar();
 }
 
 // ── Panneau d'options ─────────────────────────────────────────────────────────
-function toggleField(pill) {
-  const side = pill.dataset.side, field = pill.dataset.field;
-  show[side][field] = !show[side][field];
-  pill.classList.toggle('on', show[side][field]);
-  applyVisibility();
-}
-
 function updateOptionsPanel() {
-  const t = UI[uiLang()];
+  const t            = UI[uiLang()];
   const rectoLabel   = document.getElementById('rectoLabel');
   const versoDivider = document.getElementById('versoDivider');
   const versoLabel   = document.getElementById('versoLabel');
@@ -866,6 +908,14 @@ function updateOptionsPanel() {
     versoLabel.style.display   = '';
     backToggles.style.display  = '';
   }
+}
+
+function toggleField(pill) {
+  const { side, field } = pill.dataset;
+  show[side][field] = !show[side][field];
+  pill.classList.toggle('on', show[side][field]);
+  applyVisibility();
+  saveSettings();
 }
 
 function applyVisibility() {
@@ -895,7 +945,78 @@ function setVis(id, visible) {
   document.getElementById(id).classList.toggle('hidden', !visible);
 }
 
-// ── Deck & logique des cartes ─────────────────────────────────────────────────
+// ── Barre de contrôle : langue + direction ────────────────────────────────────
+function buildControlBar() {
+  buildLangGroup();
+  buildDirGroup();
+}
+
+function buildLangGroup() {
+  const group = document.getElementById('langGroup');
+  group.innerHTML = '';
+  LANGS.forEach(lang => {
+    const btn = document.createElement('button');
+    btn.className   = 'ctrl-btn' + (lang.code === currentLang ? ' lang-active' : '');
+    btn.textContent = lang.label;
+    btn.title       = lang.name;
+    btn.onclick = () => {
+      currentLang = lang.code;
+      group.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('lang-active'));
+      btn.classList.add('lang-active');
+      buildDirGroup(); // met à jour les labels de direction avec la nouvelle langue
+      updateUI();
+      buildCatBar();
+      saveSettings();
+      if (deck.length) showCard();
+    };
+    group.appendChild(btn);
+  });
+}
+
+function buildDirGroup() {
+  const group = document.getElementById('dirGroup');
+  group.innerHTML = '';
+  const lbl = LANGS.find(l => l.code === currentLang)?.label || currentLang.toUpperCase();
+  [
+    { dir: 'jp',   text: `🇯🇵 → ${lbl}` },
+    { dir: 'lang', text: `${lbl} → 🇯🇵` },
+  ].forEach(({ dir, text }) => {
+    const btn = document.createElement('button');
+    btn.className   = 'ctrl-btn' + (dir === currentDir ? ' dir-active' : '');
+    btn.textContent = text;
+    btn.onclick = () => {
+      currentDir = dir;
+      group.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('dir-active'));
+      btn.classList.add('dir-active');
+      updateUI();
+      saveSettings();
+      if (deck.length) showCard();
+    };
+    group.appendChild(btn);
+  });
+}
+
+// ── Barre de catégories ───────────────────────────────────────────────────────
+function buildCatBar() {
+  const bar = document.getElementById('catBar');
+  bar.innerHTML = '';
+  Object.keys(CATEGORIES).forEach(catId => {
+    const btn = document.createElement('button');
+    btn.className   = 'cat-btn' + (catId === currentCat ? ' active' : '');
+    btn.textContent = CATEGORIES[catId][currentLang] || catId;
+    btn.onclick = () => {
+      currentCat = catId;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      buildDeck(catId);
+      document.getElementById('screens').classList.remove('finished');
+      showCard();
+    };
+    bar.appendChild(btn);
+  });
+}
+
+// ── Deck & cartes ─────────────────────────────────────────────────────────────
 function buildDeck(cat) {
   deck = [...VOCAB[cat]].sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; flipped = false;
@@ -905,13 +1026,13 @@ function showCard() {
   if (idx >= deck.length) { showDone(); return; }
   const c = deck[idx];
 
-  const cardInner = document.getElementById('cardInner');
-  cardInner.style.transition = 'none';
-  cardInner.classList.remove('flipped');
-  cardInner.offsetHeight;
-  cardInner.style.transition = '';
+  // Reset flip instantané sans animation
+  const ci = document.getElementById('cardInner');
+  ci.style.transition = 'none';
+  ci.classList.remove('flipped');
+  ci.offsetHeight; // force reflow
+  ci.style.transition = '';
 
-  // En mode révision, le tag affiche la catégorie du mot en cours
   const catLabel = currentCat === '__review__'
     ? (CATEGORIES[c._catId]?.[currentLang] || c._catId)
     : (CATEGORIES[currentCat]?.[currentLang] || currentCat);
@@ -994,7 +1115,7 @@ function showDone() {
 
 function restart() {
   document.getElementById('screens').classList.remove('finished');
-  if (currentCat === '__review__') { startReview(); }
+  if (currentCat === '__review__') startReview();
   else { buildDeck(currentCat); showCard(); }
 }
 
@@ -1007,10 +1128,9 @@ function startReview() {
     });
   });
   if (!reviewWords.length) return;
-
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
   currentCat = '__review__';
-  deck       = reviewWords.sort(() => Math.random() - 0.5);
+  deck = reviewWords.sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; flipped = false;
   document.getElementById('screens').classList.remove('finished');
   showCard();
@@ -1031,21 +1151,18 @@ function updateReviewBar() {
   }
 }
 
-// ── Statistiques ──────────────────────────────────────────────────────────────
+// ── Modale statistiques ───────────────────────────────────────────────────────
 function openStats()  { renderStats(); document.getElementById('statsModal').classList.add('open'); }
 function closeStats() { document.getElementById('statsModal').classList.remove('open'); }
 function closeStatsBackdrop(e) { if (e.target === document.getElementById('statsModal')) closeStats(); }
 
 function renderStats() {
-  const t      = UI[uiLang()];
-  const hasAny = Object.values(progress).length > 0;
-
-  if (!hasAny) {
+  const t = UI[uiLang()];
+  if (!Object.keys(progress).length) {
     document.getElementById('statsBody').innerHTML =
       `<p style="text-align:center;padding:1.5rem 0;color:var(--text-tertiary);font-size:13px">${t.noProgress}</p>`;
     return;
   }
-
   let tK = 0, tR = 0, tU = 0, tT = 0, rows = '';
   Object.keys(CATEGORIES).forEach(catId => {
     const words = VOCAB[catId] || [];
@@ -1061,7 +1178,6 @@ function renderStats() {
       <td class="stats-num">${words.length}</td>
     </tr>`;
   });
-
   document.getElementById('statsBody').innerHTML = `
     <table class="stats-table">
       <thead><tr>
@@ -1081,81 +1197,37 @@ function renderStats() {
     </table>`;
 }
 
-// ── Mentions légales ──────────────────────────────────────────────────────────
+// ── Modale mentions légales ───────────────────────────────────────────────────
 function openLegal()  { document.getElementById('legalModal').classList.add('open'); }
 function closeLegal() { document.getElementById('legalModal').classList.remove('open'); }
 function closeLegalBackdrop(e) { if (e.target === document.getElementById('legalModal')) closeLegal(); }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLegal(); closeStats(); } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeLegal(); closeStats(); }
+});
 
-// ── Barre de langues ──────────────────────────────────────────────────────────
-function buildLangBar() {
-  const bar = document.getElementById('langBar');
-  bar.innerHTML = '';
-  LANGS.forEach(lang => {
-    const btn = document.createElement('button');
-    btn.className = 'lang-btn' + (lang.code === currentLang ? ' active' : '');
-    btn.textContent = lang.label;
-    btn.onclick = () => {
-      currentLang = lang.code;
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      updateUI(); buildDirBar(); buildCatBar();
-      if (deck.length) showCard();
-    };
-    bar.appendChild(btn);
-  });
-}
-
-// ── Barre de direction ────────────────────────────────────────────────────────
-function buildDirBar() {
-  const bar = document.getElementById('dirBar');
-  bar.innerHTML = '';
-  const lbl = LANGS.find(l => l.code === currentLang)?.label || currentLang.toUpperCase();
-  [{ dir:'jp', text:`🇯🇵 → ${lbl}` }, { dir:'lang', text:`${lbl} → 🇯🇵` }].forEach(({ dir, text }) => {
-    const btn = document.createElement('button');
-    btn.className = 'dir-btn' + (dir === currentDir ? ' active' : '');
-    btn.textContent = text;
-    btn.onclick = () => {
-      currentDir = dir;
-      document.querySelectorAll('.dir-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      updateUI();
-      if (deck.length) showCard();
-    };
-    bar.appendChild(btn);
-  });
-  updateOptionsPanel();
-}
-
-// ── Barre de catégories ───────────────────────────────────────────────────────
-function buildCatBar() {
-  const bar = document.getElementById('catBar');
-  bar.innerHTML = '';
-  Object.keys(CATEGORIES).forEach(catId => {
-    const btn = document.createElement('button');
-    btn.className = 'cat-btn' + (catId === currentCat ? ' active' : '');
-    btn.textContent = CATEGORIES[catId][currentLang] || catId;
-    btn.onclick = () => {
-      currentCat = catId;
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      buildDeck(catId);
-      document.getElementById('screens').classList.remove('finished');
-      showCard();
-    };
-    bar.appendChild(btn);
-  });
-}
+// Molette verticale → défilement horizontal sur la barre des catégories (PC)
+document.querySelector('.cat-bar-wrap').addEventListener('wheel', e => {
+  if (e.deltaY !== 0) {
+    e.preventDefault();
+    e.currentTarget.scrollLeft += e.deltaY;
+  }
+}, { passive: false });
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 (async () => {
   try {
     await loadVocabulary();
     loadProgress();
+    loadSettings();    // restaure lang, dir, show avant de construire l'UI
+    initTheme();
     currentCat = Object.keys(VOCAB)[0];
-    buildLangBar(); buildDirBar(); updateUI(); buildCatBar();
-    buildDeck(currentCat); showCard();
+    buildControlBar();
+    updateUI();
+    syncTogglePills(); // aligne l'état visuel des pills avec show chargé
+    buildCatBar();
+    buildDeck(currentCat);
+    showCard();
     showConsentIfNeeded();
   } catch (e) {
     document.querySelector('.app').innerHTML = `

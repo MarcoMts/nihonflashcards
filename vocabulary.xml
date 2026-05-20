@@ -1449,6 +1449,160 @@
     <example_de>Gestern war ich müde.</example_de><example_pt>Eu estava cansado(a) ontem.</example_pt>
   </word>
 
+  <!-- Jours de la semaine -->
+  <word id="getsuyoubi" category="temps">
+    <kanji>月曜日</kanji><kana>げつようび</kana><romaji>Getsuyōbi</romaji>
+    <fr>Lundi</fr><en>Monday</en><de>Montag</de><pt>Segunda-feira</pt>
+    <example_jp>月曜日は仕事が始まります。</example_jp>
+    <example_fr>Le lundi, le travail commence.</example_fr><example_en>Monday is when work starts.</example_en>
+    <example_de>Am Montag beginnt die Arbeit.</example_de><example_pt>Na segunda-feira, o trabalho começa.</example_pt>
+  </word>
+
+  <word id="kayoubi" category="temps">
+    <kanji>火曜日</kanji><kana>かようび</kana><romaji>Kayōbi</romaji>
+    <fr>Mardi</fr><en>Tuesday</en><de>Dienstag</de><pt>Terça-feira</pt>
+    <example_jp>火曜日に会議があります。</example_jp>
+    <example_fr>Il y a une réunion mardi.</example_fr><example_en>There is a meeting on Tuesday.</example_en>
+    <example_de>Am Dienstag gibt es ein Meeting.</example_de><example_pt>Há uma reunião na terça-feira.</example_pt>
+  </word>
+
+  <word id="suiyoubi" category="temps">
+    <kanji>水曜日</kanji><kana>すいようび</kana><romaji>Suiyōbi</romaji>
+    <fr>Mercredi</fr><en>Wednesday</en><de>Mittwoch</de><pt>Quarta-feira</pt>
+    <example_jp>水曜日は週の真ん中です。</example_jp>
+    <example_fr>Mercredi est le milieu de la semaine.</example_fr><example_en>Wednesday is the middle of the week.</example_en>
+    <example_de>Mittwoch ist die Mitte der Woche.</example_de><example_pt>Quarta-feira é o meio da semana.</example_pt>
+  </word>
+
+  <word id="mokuyoubi" category="temps">
+    <kanji>木曜日</kanji><kana>もくようび</kana><romaji>Mokuyōbi</romaji>
+    <fr>Jeudi</fr><en>Thursday</en><de>Donnerstag</de><pt>Quinta-feira</pt>
+    <example_jp>木曜日に友達と会います。</example_jp>
+    <example_fr>Je retrouve des amis jeudi.</example_fr><example_en>I meet friends on Thursday.</example_en>
+    <example_de>Ich treffe Freunde am Donnerstag.</example_de><example_pt>Encontro amigos na quinta-feira.</example_pt>
+  </word>
+
+  <word id="kinyoubi" category="temps">
+    <kanji>金曜日</kanji><kana>きんようび</kana><romaji>Kin'yōbi</romaji>
+    <fr>Vendredi</fr><en>Friday</en><de>Freitag</de><pt>Sexta-feira</pt>
+    <example_jp>金曜日の夜は楽しいです。</example_jp>
+    <example_fr>Le vendredi soir est agréable.</example_fr><example_en>Friday night is fun.</example_en>
+    <example_de>Der Freitagabend macht Spaß.</example_de><example_pt>A noite de sexta-feira é divertida.</example_pt>
+  </word>
+
+  <word id="doyoubi" category="temps">
+    <kanji>土曜日</kanji><kana>どようび</kana><romaji>Doyōbi</romaji>
+    <fr>Samedi</fr><en>Saturday</en><de>Samstag</de><pt>Sábado</pt>
+    <example_jp>土曜日は休みです。</example_jp>
+    <example_fr>Samedi, c'est le jour de repos.</example_fr><example_en>Saturday is a day off.</example_en>
+    <example_de>Samstag ist ein freier Tag.</example_de><example_pt>Sábado é um dia de descanso.</example_pt>
+  </word>
+
+  <word id="nichiyoubi" category="temps">
+    <kanji>日曜日</kanji><kana>にちようび</kana><romaji>Nichiyōbi</romaji>
+    <fr>Dimanche</fr><en>Sunday</en><de>Sonntag</de><pt>Domingo</pt>
+    <example_jp>日曜日は家族と過ごします。</example_jp>
+    <example_fr>Je passe le dimanche en famille.</example_fr><example_en>I spend Sunday with my family.</example_en>
+    <example_de>Ich verbringe den Sonntag mit der Familie.</example_de><example_pt>Passo o domingo com a família.</example_pt>
+  </word>
+
+  <!-- Mois de l'année -->
+  <word id="ichigatsu" category="temps">
+    <kanji>一月</kanji><kana>いちがつ</kana><romaji>Ichigatsu</romaji>
+    <fr>Janvier</fr><en>January</en><de>Januar</de><pt>Janeiro</pt>
+    <example_jp>一月は冬です。</example_jp>
+    <example_fr>Janvier, c'est l'hiver.</example_fr><example_en>January is winter.</example_en>
+    <example_de>Januar ist Winter.</example_de><example_pt>Janeiro é inverno.</example_pt>
+  </word>
+
+  <word id="nigatsu" category="temps">
+    <kanji>二月</kanji><kana>にがつ</kana><romaji>Nigatsu</romaji>
+    <fr>Février</fr><en>February</en><de>Februar</de><pt>Fevereiro</pt>
+    <example_jp>二月はバレンタインデーがあります。</example_jp>
+    <example_fr>En février, il y a la Saint-Valentin.</example_fr><example_en>February has Valentine's Day.</example_en>
+    <example_de>Im Februar ist Valentinstag.</example_de><example_pt>Em fevereiro há o Dia dos Namorados.</example_pt>
+  </word>
+
+  <word id="sangatsu" category="temps">
+    <kanji>三月</kanji><kana>さんがつ</kana><romaji>Sangatsu</romaji>
+    <fr>Mars</fr><en>March</en><de>März</de><pt>Março</pt>
+    <example_jp>三月に桜が咲きます。</example_jp>
+    <example_fr>Les cerisiers fleurissent en mars.</example_fr><example_en>Cherry blossoms bloom in March.</example_en>
+    <example_de>Im März blühen die Kirschbäume.</example_de><example_pt>As cerejeiras florescem em março.</example_pt>
+  </word>
+
+  <word id="shigatsu" category="temps">
+    <kanji>四月</kanji><kana>しがつ</kana><romaji>Shigatsu</romaji>
+    <fr>Avril</fr><en>April</en><de>April</de><pt>Abril</pt>
+    <example_jp>四月に新学期が始まります。</example_jp>
+    <example_fr>La nouvelle année scolaire commence en avril.</example_fr><example_en>The new school year starts in April.</example_en>
+    <example_de>Im April beginnt das neue Schuljahr.</example_de><example_pt>O novo ano escolar começa em abril.</example_pt>
+  </word>
+
+  <word id="gogatsu" category="temps">
+    <kanji>五月</kanji><kana>ごがつ</kana><romaji>Gogatsu</romaji>
+    <fr>Mai</fr><en>May</en><de>Mai</de><pt>Maio</pt>
+    <example_jp>五月は気持ちがいい季節です。</example_jp>
+    <example_fr>Mai est une belle saison.</example_fr><example_en>May is a pleasant season.</example_en>
+    <example_de>Mai ist eine angenehme Jahreszeit.</example_de><example_pt>Maio é uma estação agradável.</example_pt>
+  </word>
+
+  <word id="rokugatsu" category="temps">
+    <kanji>六月</kanji><kana>ろくがつ</kana><romaji>Rokugatsu</romaji>
+    <fr>Juin</fr><en>June</en><de>Juni</de><pt>Junho</pt>
+    <example_jp>六月は梅雨です。</example_jp>
+    <example_fr>Juin est la saison des pluies au Japon.</example_fr><example_en>June is the rainy season in Japan.</example_en>
+    <example_de>Im Juni ist Regenzeit in Japan.</example_de><example_pt>Junho é a estação chuvosa no Japão.</example_pt>
+  </word>
+
+  <word id="shichigatsu" category="temps">
+    <kanji>七月</kanji><kana>しちがつ</kana><romaji>Shichigatsu</romaji>
+    <fr>Juillet</fr><en>July</en><de>Juli</de><pt>Julho</pt>
+    <example_jp>七月は夏祭りがあります。</example_jp>
+    <example_fr>En juillet, il y a des festivals d'été.</example_fr><example_en>July has summer festivals.</example_en>
+    <example_de>Im Juli gibt es Sommerfeste.</example_de><example_pt>Em julho há festivais de verão.</example_pt>
+  </word>
+
+  <word id="hachigatsu" category="temps">
+    <kanji>八月</kanji><kana>はちがつ</kana><romaji>Hachigatsu</romaji>
+    <fr>Août</fr><en>August</en><de>August</de><pt>Agosto</pt>
+    <example_jp>八月は暑いです。</example_jp>
+    <example_fr>Août est très chaud.</example_fr><example_en>August is very hot.</example_en>
+    <example_de>August ist sehr heiß.</example_de><example_pt>Agosto é muito quente.</example_pt>
+  </word>
+
+  <word id="kugatsu" category="temps">
+    <kanji>九月</kanji><kana>くがつ</kana><romaji>Kugatsu</romaji>
+    <fr>Septembre</fr><en>September</en><de>September</de><pt>Setembro</pt>
+    <example_jp>九月に秋が始まります。</example_jp>
+    <example_fr>L'automne commence en septembre.</example_fr><example_en>Autumn begins in September.</example_en>
+    <example_de>Im September beginnt der Herbst.</example_de><example_pt>O outono começa em setembro.</example_pt>
+  </word>
+
+  <word id="juugatsu" category="temps">
+    <kanji>十月</kanji><kana>じゅうがつ</kana><romaji>Jūgatsu</romaji>
+    <fr>Octobre</fr><en>October</en><de>Oktober</de><pt>Outubro</pt>
+    <example_jp>十月は紅葉がきれいです。</example_jp>
+    <example_fr>En octobre, les feuilles d'automne sont magnifiques.</example_fr><example_en>In October, the autumn leaves are beautiful.</example_en>
+    <example_de>Im Oktober ist das Herbstlaub wunderschön.</example_de><example_pt>Em outubro, as folhas de outono são bonitas.</example_pt>
+  </word>
+
+  <word id="juuichigatsu" category="temps">
+    <kanji>十一月</kanji><kana>じゅういちがつ</kana><romaji>Jūichigatsu</romaji>
+    <fr>Novembre</fr><en>November</en><de>November</de><pt>Novembro</pt>
+    <example_jp>十一月は少し寒いです。</example_jp>
+    <example_fr>Novembre est un peu froid.</example_fr><example_en>November is a little cold.</example_en>
+    <example_de>November ist ein wenig kalt.</example_de><example_pt>Novembro é um pouco frio.</example_pt>
+  </word>
+
+  <word id="juunigatsu" category="temps">
+    <kanji>十二月</kanji><kana>じゅうにがつ</kana><romaji>Jūnigatsu</romaji>
+    <fr>Décembre</fr><en>December</en><de>Dezember</de><pt>Dezembro</pt>
+    <example_jp>十二月にクリスマスがあります。</example_jp>
+    <example_fr>En décembre, il y a Noël.</example_fr><example_en>December has Christmas.</example_en>
+    <example_de>Im Dezember ist Weihnachten.</example_de><example_pt>Em dezembro há o Natal.</example_pt>
+  </word>
+
   <word id="denwa" category="expressions">
     <kanji>電話</kanji><kana>でんわ</kana><romaji>Denwa</romaji>
     <fr>Téléphone / Appel</fr><en>Telephone / Phone call</en><de>Telefon / Anruf</de><pt>Telefone / Ligação</pt>
