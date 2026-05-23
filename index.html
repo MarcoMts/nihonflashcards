@@ -21,13 +21,15 @@
       --border-strong: rgba(0,0,0,0.26);
       --radius-md: 8px;
       --radius-lg: 12px;
-      --correct-color: #1D9E75;
-      --correct-bg:    #E1F5EE;
-      --wrong-color:   #D85A30;
-      --wrong-bg:      #FAECE7;
-      --accent:        #378ADD;
-      --accent-bg:     #E6F1FB;
-      --shadow-card:   0 1px 4px rgba(0,0,0,0.06);
+      --correct-color:   #1D9E75;
+      --correct-bg:      #E1F5EE;
+      --wrong-color:     #D85A30;
+      --wrong-bg:        #FAECE7;
+      --acquired-color:  #A07020;
+      --acquired-bg:     #FEF4DA;
+      --accent:          #378ADD;
+      --accent-bg:       #E6F1FB;
+      --shadow-card:     0 1px 4px rgba(0,0,0,0.06);
     }
 
     /* ── Thème sombre via préférence système (sans override manuel) ── */
@@ -42,10 +44,11 @@
         --border-light:  rgba(255,255,255,0.07);
         --border-medium: rgba(255,255,255,0.13);
         --border-strong: rgba(255,255,255,0.22);
-        --correct-bg:    #0a2a1f;
-        --wrong-bg:      #2a1208;
-        --accent-bg:     #0c2340;
-        --shadow-card:   0 2px 8px rgba(0,0,0,0.4);
+        --correct-bg:     #0a2a1f;
+        --wrong-bg:       #2a1208;
+        --acquired-bg:    #2a1e00;
+        --accent-bg:      #0c2340;
+        --shadow-card:    0 2px 8px rgba(0,0,0,0.4);
       }
     }
 
@@ -62,6 +65,7 @@
       --border-strong: rgba(255,255,255,0.22);
       --correct-bg:    #0a2a1f;
       --wrong-bg:      #2a1208;
+      --acquired-bg:   #2a1e00;
       --accent-bg:     #0c2340;
       --shadow-card:   0 2px 8px rgba(0,0,0,0.4);
     }
@@ -79,6 +83,7 @@
       --border-strong: rgba(0,0,0,0.26);
       --correct-bg:    #E1F5EE;
       --wrong-bg:      #FAECE7;
+      --acquired-bg:   #FEF4DA;
       --accent-bg:     #E6F1FB;
       --shadow-card:   0 1px 4px rgba(0,0,0,0.06);
     }
@@ -97,12 +102,21 @@
     .app { width: 100%; max-width: 580px; }
 
     /* ── Header ── */
-    .header { position: relative; text-align: center; margin-bottom: 1.5rem; }
+    .header { position: relative; text-align: center; margin-bottom: 2.25rem; }
     .header h1 { font-size: 26px; font-weight: 500; color: var(--text-primary); letter-spacing: -0.4px; }
     .header p  { font-size: 14px; color: var(--text-secondary); margin-top: 6px; }
 
     /* ── Boutons icônes du header ── */
     .header-actions { position: absolute; top: 0; right: 0; display: flex; gap: 2px; }
+
+    /* ── Fix mobile : réserver l'espace pour les boutons ── */
+    @media (max-width: 640px) {
+      /* Les boutons (5 × 34px + 4 × 2px gaps ≈ 178px) sont en absolute top:0.
+         On ajoute un padding-top égal à leur hauteur + un petit gap,
+         ce qui les place dans la zone de padding sans chevaucher le titre. */
+      .header { padding-top: 44px; margin-bottom: 1.75rem; }
+      .header h1 { font-size: 22px; }
+    }
     .hdr-btn {
       width: 34px; height: 34px; border-radius: 50%;
       border: 0.5px solid transparent; background: transparent;
@@ -157,21 +171,27 @@
     }
 
     /* ── Barre de révision ── */
-    .review-bar { display: flex; justify-content: center; margin-bottom: 0.75rem; }
+    .review-bar { display: flex; justify-content: center; gap: 8px; margin-bottom: 0.75rem; flex-wrap: wrap; }
     .review-btn {
-      padding: 7px 16px; border-radius: 20px;
+      padding: 7px 14px; border-radius: 20px;
       border: 0.5px solid var(--wrong-color);
       font-size: 13px; font-weight: 500; cursor: pointer;
       background: var(--wrong-bg); color: var(--wrong-color);
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center; gap: 7px;
       transition: all 0.15s;
     }
     .review-btn:hover { background: var(--wrong-color); color: #fff; }
+    .review-btn.review-btn-known {
+      border-color: var(--accent); background: var(--accent-bg); color: var(--accent);
+    }
+    .review-btn.review-btn-known:hover { background: var(--accent); color: #fff; }
     .review-count {
       background: var(--wrong-color); color: #fff;
       border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 600;
     }
     .review-btn:hover .review-count { background: rgba(255,255,255,0.25); }
+    .review-count-known { background: var(--accent); }
+    .review-btn.review-btn-known:hover .review-count-known { background: rgba(255,255,255,0.25); }
 
     /* ── Barre de catégories (défilement horizontal) ── */
     .cat-bar-wrap {
@@ -301,25 +321,27 @@
     .flip-hint { text-align: center; font-size: 13px; color: var(--text-tertiary); margin-bottom: 1rem; transition: opacity 0.2s; }
     .action-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 1.5rem; }
     .action-btn {
-      flex: 1; max-width: 180px; padding: 11px 0;
+      flex: 1; max-width: 155px; padding: 11px 4px;
       border-radius: var(--radius-md);
       border: 0.5px solid var(--border-medium);
-      font-size: 14px; cursor: pointer;
+      font-size: 13px; cursor: pointer;
       background: var(--bg-primary); color: var(--text-primary);
       transition: all 0.15s;
-      display: flex; align-items: center; justify-content: center; gap: 6px;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
     }
     .action-btn:hover  { background: var(--bg-secondary); }
     .action-btn:active { transform: scale(0.98); }
-    .btn-correct { border-color: var(--correct-color); color: var(--correct-color); }
-    .btn-correct:hover { background: var(--correct-bg); }
-    .btn-wrong   { border-color: var(--wrong-color);   color: var(--wrong-color); }
-    .btn-wrong:hover   { background: var(--wrong-bg); }
-    .btn-skip    { color: var(--text-secondary); }
+    .btn-correct  { border-color: var(--correct-color);   color: var(--correct-color); }
+    .btn-correct:hover  { background: var(--correct-bg); }
+    .btn-wrong    { border-color: var(--wrong-color);     color: var(--wrong-color); }
+    .btn-wrong:hover    { background: var(--wrong-bg); }
+    .btn-acquired { border-color: var(--acquired-color);  color: var(--acquired-color); }
+    .btn-acquired:hover { background: var(--acquired-bg); }
+    .btn-skip     { color: var(--text-secondary); }
 
     /* ── Stats de session ── */
-    .stats-row { display: flex; gap: 10px; justify-content: center; }
-    .stat-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.75rem 1.5rem; text-align: center; min-width: 90px; }
+    .stats-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .stat-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.75rem 1rem; text-align: center; min-width: 70px; }
     .stat-num  { font-size: 22px; font-weight: 500; color: var(--text-primary); }
     .stat-lbl  { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
 
@@ -376,6 +398,28 @@
     }
     .modal-close:hover { background: var(--bg-tertiary); color: var(--text-primary); }
     .modal-body { padding: 1.25rem; }
+    .modal-footer {
+      padding: 0.9rem 1.25rem;
+      border-top: 0.5px solid var(--border-light);
+      display: flex; justify-content: center;
+      position: sticky; bottom: 0; background: var(--bg-primary);
+    }
+    .stats-reset-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.5rem 1.1rem;
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      background: transparent;
+      color: var(--text-tertiary);
+      font-size: 13px; cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .stats-reset-btn:hover {
+      background: #fee2e2; color: #dc2626; border-color: #fca5a5;
+    }
+    [data-theme="dark"] .stats-reset-btn:hover {
+      background: #450a0a; color: #f87171; border-color: #7f1d1d;
+    }
     .modal-app-name { font-size: 22px; font-weight: 500; color: var(--text-primary); text-align: center; margin-bottom: 4px; }
     .modal-app-sub  { font-size: 13px; color: var(--text-tertiary); text-align: center; margin-bottom: 1.4rem; }
     .modal-section  { margin-bottom: 1.1rem; }
@@ -424,6 +468,35 @@
     }
     .consent-btn.primary { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
     .consent-btn:hover { opacity: 0.8; }
+
+    /* ── Modale de confirmation reset ── */
+    .confirm-box {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      width: 100%; max-width: 360px;
+      padding: 2rem 1.75rem 1.5rem;
+      text-align: center;
+      transform: translateY(16px) scale(0.97);
+      transition: transform 0.22s cubic-bezier(.34,1.56,.64,1);
+    }
+    .modal-backdrop.open .confirm-box { transform: translateY(0) scale(1); }
+    .confirm-icon  { font-size: 2.4rem; margin-bottom: 0.75rem; line-height: 1; }
+    .confirm-title { font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .confirm-desc  { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; }
+    .confirm-actions { display: flex; gap: 10px; }
+    .confirm-btn {
+      flex: 1; padding: 10px 0; border-radius: var(--radius-md);
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      border: 0.5px solid var(--border-medium);
+      background: var(--bg-secondary); color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .confirm-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+    .confirm-btn.danger {
+      background: var(--wrong-color); color: #fff; border-color: var(--wrong-color);
+    }
+    .confirm-btn.danger:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -529,9 +602,10 @@
       <div class="flip-hint" id="flipHint">Cliquez sur la carte pour retourner</div>
 
       <div class="action-row" id="actionRow" style="display:none">
-        <button id="btnWrong"   class="action-btn btn-wrong"   onclick="answer(false)"><i class="ti ti-x"></i> À revoir</button>
-        <button id="btnSkip"    class="action-btn btn-skip"    onclick="nextCard()"><i class="ti ti-arrow-right"></i> Passer</button>
-        <button id="btnCorrect" class="action-btn btn-correct" onclick="answer(true)"><i class="ti ti-check"></i> Correct</button>
+        <button id="btnWrong"    class="action-btn btn-wrong"    onclick="answer('review')"><i class="ti ti-x"></i> À revoir</button>
+        <button id="btnSkip"     class="action-btn btn-skip"     onclick="nextCard()"><i class="ti ti-arrow-right"></i> Passer</button>
+        <button id="btnCorrect"  class="action-btn btn-correct"  onclick="answer('known')"><i class="ti ti-check"></i> Correct</button>
+        <button id="btnAcquired" class="action-btn btn-acquired" onclick="answer('acquired')"><i class="ti ti-star"></i> Acquis</button>
       </div>
       <div class="action-row" id="flipRow">
         <button id="btnFlip" class="action-btn" onclick="flipCard()"><i class="ti ti-rotate"></i> Retourner la carte</button>
@@ -539,8 +613,9 @@
 
       <div class="stats-row">
         <div class="stat-card"><div class="stat-num" id="statCorrect">0</div><div class="stat-lbl" id="lblCorrect">Corrects</div></div>
-        <div class="stat-card"><div class="stat-num" id="statWrong">0</div><div class="stat-lbl"  id="lblWrong">À revoir</div></div>
-        <div class="stat-card"><div class="stat-num" id="statRemain">0</div><div class="stat-lbl" id="lblRemain">Restants</div></div>
+        <div class="stat-card"><div class="stat-num" id="statWrong">0</div><div class="stat-lbl"   id="lblWrong">À revoir</div></div>
+        <div class="stat-card"><div class="stat-num" id="statAcquired" style="color:var(--acquired-color)">0</div><div class="stat-lbl" id="lblAcquired">Acquis</div></div>
+        <div class="stat-card"><div class="stat-num" id="statRemain">0</div><div class="stat-lbl"   id="lblRemain">Restants</div></div>
       </div>
     </div>
 
@@ -560,6 +635,25 @@
         <button class="modal-close" onclick="closeStats()"><i class="ti ti-x"></i></button>
       </div>
       <div class="modal-body" id="statsBody"></div>
+      <div class="modal-footer">
+        <button class="stats-reset-btn" onclick="openResetConfirm()">
+          <i class="ti ti-trash"></i>
+          <span id="statsResetBtnLabel">Réinitialiser la progression</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Modale confirmation reset ── -->
+  <div class="modal-backdrop" id="resetModal" onclick="closeResetConfirmBackdrop(event)">
+    <div class="confirm-box">
+      <div class="confirm-icon">🗑️</div>
+      <div class="confirm-title" id="resetConfirmTitle">Réinitialiser la progression ?</div>
+      <div class="confirm-desc"  id="resetConfirmDesc">Cette action supprimera tous vos mots acquis, corrects et à revoir. Elle est irréversible.</div>
+      <div class="confirm-actions">
+        <button class="confirm-btn"        id="resetCancelBtn" onclick="closeResetConfirm()">Annuler</button>
+        <button class="confirm-btn danger" id="resetConfirmBtn" onclick="confirmReset()">Réinitialiser</button>
+      </div>
     </div>
   </div>
 
@@ -613,7 +707,7 @@
 <script>
 // ── Globals ───────────────────────────────────────────────────────────────────
 let VOCAB = {}, CATEGORIES = {};
-let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0;
+let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0, sessionAcquired = 0;
 let currentCat  = '';
 let currentLang = 'fr';
 let currentDir  = 'jp'; // 'jp' = japonais recto | 'lang' = langue étrangère recto
@@ -640,20 +734,24 @@ const UI = {
     subtitle: 'Cliquez sur la carte pour révéler la réponse',
     flipHint: 'Cliquez sur la carte pour retourner',
     flipBtn:  'Retourner la carte',
-    btnWrong: 'À revoir', btnSkip: 'Passer', btnCorrect: 'Correct',
-    lblCorrect: 'Corrects', lblWrong: 'À revoir', lblRemain: 'Restants',
+    btnWrong: 'À revoir', btnSkip: 'Passer', btnCorrect: 'Correct', btnAcquired: 'Acquis',
+    lblCorrect: 'Corrects', lblWrong: 'À revoir', lblAcquired: 'Acquis', lblRemain: 'Restants',
     btnRestart: 'Recommencer',
     optRecto: 'Recto', optVerso: 'Verso', optVersoJP: 'Verso JP',
     backTag: 'réponse', legalTitle: 'Mentions légales',
     statsTitle: 'Statistiques', statsCat: 'Catégorie',
-    statsKnown: '✓ Connus', statsReview: '↺ À revoir',
-    statsUnseen: '○ Non vus', statsTotal: 'Total',
-    reviewBtnLabel: 'Réviser',
+    statsKnown: '✓ En cours', statsReview: '↺ À revoir',
+    statsAcquired: '⭐ Acquis', statsUnseen: '○ Non vus', statsTotal: 'Total',
+    reviewBtnLabel: 'À revoir', reviewKnownBtnLabel: 'En cours',
     noProgress: 'Commencez à réviser pour voir vos statistiques.',
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
     consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
     themeLight: 'Mode clair', themeDark: 'Mode sombre',
     settingsTitle: "Options d'affichage",
+    resetTitle: 'Réinitialiser la progression',
+    resetConfirmTitle: 'Réinitialiser la progression ?',
+    resetConfirmDesc: 'Cette action supprimera tous vos mots acquis, corrects et à revoir. Elle est irréversible.',
+    resetCancel: 'Annuler', resetConfirm: 'Réinitialiser',
     doneTitles: ['Excellent travail ! 🌸', 'Bon effort ! 頑張って', 'Continuez à pratiquer !'],
     doneSub: (c, t, p) => `${c} correct${c > 1 ? 's' : ''} sur ${t} cartes (${p}%)`,
   },
@@ -661,20 +759,24 @@ const UI = {
     subtitle: 'Click the card to reveal the answer',
     flipHint: 'Click the card to flip',
     flipBtn:  'Flip card',
-    btnWrong: 'Review', btnSkip: 'Skip', btnCorrect: 'Correct',
-    lblCorrect: 'Correct', lblWrong: 'Review', lblRemain: 'Left',
+    btnWrong: 'Review', btnSkip: 'Skip', btnCorrect: 'Correct', btnAcquired: 'Mastered',
+    lblCorrect: 'Correct', lblWrong: 'Review', lblAcquired: 'Mastered', lblRemain: 'Left',
     btnRestart: 'Restart',
     optRecto: 'Front', optVerso: 'Back', optVersoJP: 'Back JP',
     backTag: 'answer', legalTitle: 'Legal notice',
     statsTitle: 'Statistics', statsCat: 'Category',
-    statsKnown: '✓ Known', statsReview: '↺ Review',
-    statsUnseen: '○ Unseen', statsTotal: 'Total',
-    reviewBtnLabel: 'Review',
+    statsKnown: '✓ Learning', statsReview: '↺ Review',
+    statsAcquired: '⭐ Mastered', statsUnseen: '○ Unseen', statsTotal: 'Total',
+    reviewBtnLabel: 'To review', reviewKnownBtnLabel: 'Learning',
     noProgress: 'Start studying to see your statistics.',
     consentMsg: '💾 Save your progress between sessions?',
     consentAccept: 'Yes, save', consentReject: 'No thanks',
     themeLight: 'Light mode', themeDark: 'Dark mode',
     settingsTitle: 'Display options',
+    resetTitle: 'Reset progress',
+    resetConfirmTitle: 'Reset all progress?',
+    resetConfirmDesc: 'This will delete all your mastered, correct and review words. This cannot be undone.',
+    resetCancel: 'Cancel', resetConfirm: 'Reset',
     doneTitles: ['Excellent work! 🌸', 'Good effort! 頑張って', 'Keep practicing!'],
     doneSub: (c, t, p) => `${c} correct out of ${t} cards (${p}%)`,
   },
@@ -682,20 +784,24 @@ const UI = {
     subtitle: 'Klicke auf die Karte, um die Antwort zu sehen',
     flipHint: 'Klicke auf die Karte zum Umdrehen',
     flipBtn:  'Karte umdrehen',
-    btnWrong: 'Wiederholen', btnSkip: 'Überspringen', btnCorrect: 'Richtig',
-    lblCorrect: 'Richtig', lblWrong: 'Wiederholen', lblRemain: 'Verbleibend',
+    btnWrong: 'Wiederholen', btnSkip: 'Überspringen', btnCorrect: 'Richtig', btnAcquired: 'Gelernt',
+    lblCorrect: 'Richtig', lblWrong: 'Wiederholen', lblAcquired: 'Gelernt', lblRemain: 'Verbleibend',
     btnRestart: 'Neu starten',
     optRecto: 'Vorderseite', optVerso: 'Rückseite', optVersoJP: 'Rückseite JP',
     backTag: 'Antwort', legalTitle: 'Impressum',
     statsTitle: 'Statistiken', statsCat: 'Kategorie',
-    statsKnown: '✓ Bekannt', statsReview: '↺ Wiederholen',
-    statsUnseen: '○ Ungesehen', statsTotal: 'Gesamt',
-    reviewBtnLabel: 'Wiederholen',
+    statsKnown: '✓ Lernend', statsReview: '↺ Wiederholen',
+    statsAcquired: '⭐ Gelernt', statsUnseen: '○ Ungesehen', statsTotal: 'Gesamt',
+    reviewBtnLabel: 'Wiederholen', reviewKnownBtnLabel: 'Lernend',
     noProgress: 'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
     consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
     themeLight: 'Helles Design', themeDark: 'Dunkles Design',
     settingsTitle: 'Anzeigeoptionen',
+    resetTitle: 'Fortschritt zurücksetzen',
+    resetConfirmTitle: 'Fortschritt zurücksetzen?',
+    resetConfirmDesc: 'Dies löscht alle gelernten, richtigen und zu wiederholenden Wörter. Dieser Vorgang kann nicht rückgängig gemacht werden.',
+    resetCancel: 'Abbrechen', resetConfirm: 'Zurücksetzen',
     doneTitles: ['Ausgezeichnet! 🌸', 'Gute Leistung! 頑張って', 'Weiter üben!'],
     doneSub: (c, t, p) => `${c} richtig von ${t} Karten (${p}%)`,
   },
@@ -703,20 +809,24 @@ const UI = {
     subtitle: 'Clique no cartão para revelar a resposta',
     flipHint: 'Clique no cartão para virar',
     flipBtn:  'Virar o cartão',
-    btnWrong: 'Rever', btnSkip: 'Pular', btnCorrect: 'Correto',
-    lblCorrect: 'Corretos', lblWrong: 'Rever', lblRemain: 'Restantes',
+    btnWrong: 'Rever', btnSkip: 'Pular', btnCorrect: 'Correto', btnAcquired: 'Dominado',
+    lblCorrect: 'Corretos', lblWrong: 'Rever', lblAcquired: 'Dominados', lblRemain: 'Restantes',
     btnRestart: 'Recomeçar',
     optRecto: 'Frente', optVerso: 'Verso', optVersoJP: 'Verso JP',
     backTag: 'resposta', legalTitle: 'Aviso legal',
     statsTitle: 'Estatísticas', statsCat: 'Categoria',
-    statsKnown: '✓ Aprendidos', statsReview: '↺ Rever',
-    statsUnseen: '○ Não vistos', statsTotal: 'Total',
-    reviewBtnLabel: 'Rever',
+    statsKnown: '✓ Aprendendo', statsReview: '↺ Rever',
+    statsAcquired: '⭐ Dominados', statsUnseen: '○ Não vistos', statsTotal: 'Total',
+    reviewBtnLabel: 'A rever', reviewKnownBtnLabel: 'Aprendendo',
     noProgress: 'Comece a estudar para ver suas estatísticas.',
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
     consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
     themeLight: 'Modo claro', themeDark: 'Modo escuro',
     settingsTitle: 'Opções de exibição',
+    resetTitle: 'Reiniciar progresso',
+    resetConfirmTitle: 'Reiniciar todo o progresso?',
+    resetConfirmDesc: 'Isso apagará todas as palavras dominadas, corretas e a rever. Esta ação é irreversível.',
+    resetCancel: 'Cancelar', resetConfirm: 'Reiniciar',
     doneTitles: ['Excelente trabalho! 🌸', 'Bom esforço! 頑張って', 'Continue praticando!'],
     doneSub: (c, t, p) => `${c} correto${c > 1 ? 's' : ''} de ${t} cartões (${p}%)`,
   },
@@ -724,20 +834,24 @@ const UI = {
     subtitle: 'カードをクリックして答えを確認しよう',
     flipHint: 'カードをクリックして裏返す',
     flipBtn:  'カードを裏返す',
-    btnWrong: 'もう一度', btnSkip: 'スキップ', btnCorrect: '正解',
-    lblCorrect: '正解数', lblWrong: '復習', lblRemain: '残り',
+    btnWrong: 'もう一度', btnSkip: 'スキップ', btnCorrect: '正解', btnAcquired: '習得済み',
+    lblCorrect: '正解数', lblWrong: '復習', lblAcquired: '習得済み', lblRemain: '残り',
     btnRestart: 'もう一度やる',
     optRecto: '表面', optVerso: '裏面', optVersoJP: '日本語',
     backTag: '答え', legalTitle: '法的情報',
     statsTitle: '統計', statsCat: 'カテゴリ',
-    statsKnown: '✓ 覚えた', statsReview: '↺ 復習',
-    statsUnseen: '○ 未習', statsTotal: '合計',
-    reviewBtnLabel: '復習する',
+    statsKnown: '✓ 学習中', statsReview: '↺ 復習',
+    statsAcquired: '⭐ 習得済み', statsUnseen: '○ 未習', statsTotal: '合計',
+    reviewBtnLabel: '要復習', reviewKnownBtnLabel: '学習中',
     noProgress: '学習を始めると統計が表示されます。',
     consentMsg: '💾 学習記録を保存しますか？',
     consentAccept: '保存する', consentReject: 'いいえ',
     themeLight: 'ライトモード', themeDark: 'ダークモード',
     settingsTitle: '表示オプション',
+    resetTitle: '進捗をリセット',
+    resetConfirmTitle: '進捗を全てリセットしますか？',
+    resetConfirmDesc: '習得済み・正解・要復習の全単語が削除されます。この操作は取り消せません。',
+    resetCancel: 'キャンセル', resetConfirm: 'リセット',
     doneTitles: ['素晴らしい！🌸', 'よく頑張りました！頑張って', '練習を続けよう！'],
     doneSub: (c, t, p) => `${t}問中${c}問正解（${p}%）`,
   },
@@ -872,8 +986,10 @@ function updateUI() {
   document.getElementById('btnWrong').innerHTML        = `<i class="ti ti-x"></i> ${t.btnWrong}`;
   document.getElementById('btnSkip').innerHTML         = `<i class="ti ti-arrow-right"></i> ${t.btnSkip}`;
   document.getElementById('btnCorrect').innerHTML      = `<i class="ti ti-check"></i> ${t.btnCorrect}`;
+  document.getElementById('btnAcquired').innerHTML     = `<i class="ti ti-star"></i> ${t.btnAcquired}`;
   document.getElementById('lblCorrect').textContent    = t.lblCorrect;
   document.getElementById('lblWrong').textContent      = t.lblWrong;
+  document.getElementById('lblAcquired').textContent   = t.lblAcquired;
   document.getElementById('lblRemain').textContent     = t.lblRemain;
   document.getElementById('btnRestart').textContent    = t.btnRestart;
   document.getElementById('legalTitle').textContent    = t.legalTitle;
@@ -881,6 +997,11 @@ function updateUI() {
   document.getElementById('infoBtn').title             = t.legalTitle;
   document.getElementById('statsBtn').title            = t.statsTitle;
   document.getElementById('settingsBtn').title         = t.settingsTitle;
+  document.getElementById('statsResetBtnLabel').textContent = t.resetTitle;
+  document.getElementById('resetConfirmTitle').textContent = t.resetConfirmTitle;
+  document.getElementById('resetConfirmDesc').textContent  = t.resetConfirmDesc;
+  document.getElementById('resetCancelBtn').textContent    = t.resetCancel;
+  document.getElementById('resetConfirmBtn').textContent   = t.resetConfirm;
   document.getElementById('consentMsg').textContent    = t.consentMsg;
   document.getElementById('consentAccept').textContent = t.consentAccept;
   document.getElementById('consentReject').textContent = t.consentReject;
@@ -1018,8 +1139,11 @@ function buildCatBar() {
 
 // ── Deck & cartes ─────────────────────────────────────────────────────────────
 function buildDeck(cat) {
-  deck = [...VOCAB[cat]].sort(() => Math.random() - 0.5);
-  idx = 0; correct = 0; wrong = 0; flipped = false;
+  // Exclure les mots marqués "acquis" du deck normal
+  deck = [...VOCAB[cat]]
+    .filter(w => progress[w.id] !== 'acquired')
+    .sort(() => Math.random() - 0.5);
+  idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
 }
 
 function showCard() {
@@ -1033,7 +1157,7 @@ function showCard() {
   ci.offsetHeight; // force reflow
   ci.style.transition = '';
 
-  const catLabel = currentCat === '__review__'
+  const catLabel = currentCat.startsWith('__')
     ? (CATEGORIES[c._catId]?.[currentLang] || c._catId)
     : (CATEGORIES[currentCat]?.[currentLang] || currentCat);
 
@@ -1077,14 +1201,17 @@ function flipCard() {
   }
 }
 
-function answer(ok) {
+function answer(status) {
+  // status: 'known' | 'review' | 'acquired'
   const word = deck[idx];
   if (word?.id) {
-    progress[word.id] = ok ? 'known' : 'review';
+    progress[word.id] = status;
     saveProgress();
     updateReviewBar();
   }
-  if (ok) correct++; else wrong++;
+  if (status === 'known')    correct++;
+  else if (status === 'review')   wrong++;
+  else if (status === 'acquired') sessionAcquired++;
   nextCard();
 }
 
@@ -1097,58 +1224,74 @@ function nextCard() {
 function updateProgressBar() {
   const total = deck.length;
   const pct   = total ? Math.round((idx / total) * 100) : 0;
-  document.getElementById('progressFill').style.width  = pct + '%';
-  document.getElementById('progressLabel').textContent = idx + ' / ' + total;
-  document.getElementById('statCorrect').textContent   = correct;
-  document.getElementById('statWrong').textContent     = wrong;
-  document.getElementById('statRemain').textContent    = total - idx;
+  document.getElementById('progressFill').style.width   = pct + '%';
+  document.getElementById('progressLabel').textContent  = idx + ' / ' + total;
+  document.getElementById('statCorrect').textContent    = correct;
+  document.getElementById('statWrong').textContent      = wrong;
+  document.getElementById('statAcquired').textContent   = sessionAcquired;
+  document.getElementById('statRemain').textContent     = total - idx;
 }
 
 function showDone() {
   document.getElementById('screens').classList.add('finished');
   const t   = UI[uiLang()];
-  const pct = deck.length ? Math.round((correct / deck.length) * 100) : 0;
+  // Les mots "acquis" comptent aussi comme réussis pour le score
+  const total   = deck.length;
+  const success = correct + sessionAcquired;
+  const pct     = total ? Math.round((success / total) * 100) : 0;
   document.getElementById('doneTitle').textContent =
     pct >= 80 ? t.doneTitles[0] : pct >= 50 ? t.doneTitles[1] : t.doneTitles[2];
-  document.getElementById('doneSub').textContent = t.doneSub(correct, deck.length, pct);
+  document.getElementById('doneSub').textContent = t.doneSub(success, total, pct);
 }
 
 function restart() {
   document.getElementById('screens').classList.remove('finished');
-  if (currentCat === '__review__') startReview();
+  if (currentCat === '__review__') startReview('review');
+  else if (currentCat === '__known__') startReview('known');
   else { buildDeck(currentCat); showCard(); }
 }
 
 // ── Mode révision ─────────────────────────────────────────────────────────────
-function startReview() {
-  const reviewWords = [];
+// mode: 'review' = mots à revoir | 'known' = mots corrects/en cours
+function startReview(mode = 'review') {
+  const words = [];
   Object.keys(VOCAB).forEach(catId => {
     (VOCAB[catId] || []).forEach(w => {
-      if (progress[w.id] === 'review') reviewWords.push({ ...w, _catId: catId });
+      if (progress[w.id] === mode) words.push({ ...w, _catId: catId });
     });
   });
-  if (!reviewWords.length) return;
+  if (!words.length) return;
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  currentCat = '__review__';
-  deck = reviewWords.sort(() => Math.random() - 0.5);
-  idx = 0; correct = 0; wrong = 0; flipped = false;
+  currentCat = `__${mode}__`;
+  deck = words.sort(() => Math.random() - 0.5);
+  idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
   document.getElementById('screens').classList.remove('finished');
   showCard();
 }
 
 function updateReviewBar() {
-  const count = Object.values(VOCAB).flat().filter(w => progress[w.id] === 'review').length;
-  const bar   = document.getElementById('reviewBar');
-  if (count > 0) {
-    const t = UI[uiLang()];
-    bar.innerHTML = `<button class="review-btn" onclick="startReview()">
+  const allWords    = Object.values(VOCAB).flat();
+  const reviewCount = allWords.filter(w => progress[w.id] === 'review').length;
+  const knownCount  = allWords.filter(w => progress[w.id] === 'known').length;
+  const bar = document.getElementById('reviewBar');
+  const t   = UI[uiLang()];
+  let html  = '';
+
+  if (reviewCount > 0) {
+    html += `<button class="review-btn" onclick="startReview('review')">
       <i class="ti ti-refresh"></i> ${t.reviewBtnLabel}
-      <span class="review-count">${count}</span>
+      <span class="review-count">${reviewCount}</span>
     </button>`;
-    bar.style.display = 'flex';
-  } else {
-    bar.style.display = 'none';
   }
+  if (knownCount > 0) {
+    html += `<button class="review-btn review-btn-known" onclick="startReview('known')">
+      <i class="ti ti-rotate-clockwise"></i> ${t.reviewKnownBtnLabel}
+      <span class="review-count review-count-known">${knownCount}</span>
+    </button>`;
+  }
+
+  if (html) { bar.innerHTML = html; bar.style.display = 'flex'; }
+  else       { bar.style.display = 'none'; }
 }
 
 // ── Modale statistiques ───────────────────────────────────────────────────────
@@ -1163,18 +1306,23 @@ function renderStats() {
       `<p style="text-align:center;padding:1.5rem 0;color:var(--text-tertiary);font-size:13px">${t.noProgress}</p>`;
     return;
   }
-  let tK = 0, tR = 0, tU = 0, tT = 0, rows = '';
+  let tK = 0, tR = 0, tA = 0, tU = 0, tT = 0, rows = '';
   Object.keys(CATEGORIES).forEach(catId => {
     const words = VOCAB[catId] || [];
-    let k = 0, r = 0;
-    words.forEach(w => { if (progress[w.id] === 'known') k++; else if (progress[w.id] === 'review') r++; });
-    const u = words.length - k - r;
-    tK += k; tR += r; tU += u; tT += words.length;
+    let k = 0, r = 0, a = 0;
+    words.forEach(w => {
+      if      (progress[w.id] === 'known')    k++;
+      else if (progress[w.id] === 'review')   r++;
+      else if (progress[w.id] === 'acquired') a++;
+    });
+    const u = words.length - k - r - a;
+    tK += k; tR += r; tA += a; tU += u; tT += words.length;
     rows += `<tr>
       <td class="stats-cat">${CATEGORIES[catId][currentLang] || catId}</td>
-      <td class="stats-num s-known" >${k || '—'}</td>
-      <td class="stats-num s-review">${r || '—'}</td>
-      <td class="stats-num s-unseen">${u}</td>
+      <td class="stats-num s-known"   >${k || '—'}</td>
+      <td class="stats-num s-review"  >${r || '—'}</td>
+      <td class="stats-num" style="color:var(--acquired-color)">${a || '—'}</td>
+      <td class="stats-num s-unseen"  >${u}</td>
       <td class="stats-num">${words.length}</td>
     </tr>`;
   });
@@ -1182,15 +1330,17 @@ function renderStats() {
     <table class="stats-table">
       <thead><tr>
         <th>${t.statsCat}</th><th>${t.statsKnown}</th>
-        <th>${t.statsReview}</th><th>${t.statsUnseen}</th><th>${t.statsTotal}</th>
+        <th>${t.statsReview}</th><th>${t.statsAcquired}</th>
+        <th>${t.statsUnseen}</th><th>${t.statsTotal}</th>
       </tr></thead>
       <tbody>
         ${rows}
         <tr class="stats-foot">
           <td>${t.statsTotal}</td>
-          <td class="stats-num s-known" ><strong>${tK || '—'}</strong></td>
-          <td class="stats-num s-review"><strong>${tR || '—'}</strong></td>
-          <td class="stats-num s-unseen"><strong>${tU}</strong></td>
+          <td class="stats-num s-known"  ><strong>${tK || '—'}</strong></td>
+          <td class="stats-num s-review" ><strong>${tR || '—'}</strong></td>
+          <td class="stats-num" style="color:var(--acquired-color)"><strong>${tA || '—'}</strong></td>
+          <td class="stats-num s-unseen" ><strong>${tU}</strong></td>
           <td class="stats-num"><strong>${tT}</strong></td>
         </tr>
       </tbody>
@@ -1202,8 +1352,36 @@ function openLegal()  { document.getElementById('legalModal').classList.add('ope
 function closeLegal() { document.getElementById('legalModal').classList.remove('open'); }
 function closeLegalBackdrop(e) { if (e.target === document.getElementById('legalModal')) closeLegal(); }
 
+// ── Modale reset ──────────────────────────────────────────────────────────────
+function openResetConfirm()  { document.getElementById('resetModal').classList.add('open'); }
+function closeResetConfirm() { document.getElementById('resetModal').classList.remove('open'); }
+function closeResetConfirmBackdrop(e) { if (e.target === document.getElementById('resetModal')) closeResetConfirm(); }
+
+function confirmReset() {
+  // Effacer toute la progression
+  progress = {};
+  saveProgress();
+  // Remettre à zéro la session en cours
+  correct = 0; wrong = 0; sessionAcquired = 0;
+  // Fermer la modale
+  closeResetConfirm();
+  // Mettre à jour la barre de révision et les stats
+  updateReviewBar();
+  updateProgressBar();
+  // Reconstruire le deck (les mots "acquis" sont maintenant réincorporés)
+  if (!currentCat.startsWith('__')) buildDeck(currentCat);
+  else {
+    // Si on était en mode révision spécial, revenir à la première catégorie
+    currentCat = Object.keys(VOCAB)[0];
+    document.querySelectorAll('.cat-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+    buildDeck(currentCat);
+  }
+  document.getElementById('screens').classList.remove('finished');
+  showCard();
+}
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeLegal(); closeStats(); }
+  if (e.key === 'Escape') { closeLegal(); closeStats(); closeResetConfirm(); }
 });
 
 // Molette verticale → défilement horizontal sur la barre des catégories (PC)

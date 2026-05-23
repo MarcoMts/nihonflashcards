@@ -253,6 +253,62 @@
     <example_de>100-Yen-Laden</example_de><example_pt>Loja de 100 ienes</example_pt>
   </word>
 
+  <word id="sen" category="nombres">
+    <kanji>千</kanji><kana>せん</kana><romaji>Sen</romaji>
+    <fr>1 000 — Mille</fr><en>1,000 — Thousand</en><de>1.000 — Tausend</de><pt>1.000 — Mil</pt>
+    <example_jp>千円ください。</example_jp>
+    <example_fr>Mille yens, s'il vous plaît.</example_fr><example_en>A thousand yen, please.</example_en>
+    <example_de>Tausend Yen, bitte.</example_de><example_pt>Mil ienes, por favor.</example_pt>
+  </word>
+
+  <word id="nijuu" category="nombres">
+    <kanji>二十</kanji><kana>にじゅう</kana><romaji>Nijū</romaji>
+    <fr>20 — Vingt</fr><en>20 — Twenty</en><de>20 — Zwanzig</de><pt>20 — Vinte</pt>
+    <example_jp>二十歳になりました。</example_jp>
+    <example_fr>J'ai eu vingt ans.</example_fr><example_en>I turned twenty years old.</example_en>
+    <example_de>Ich bin zwanzig Jahre alt geworden.</example_de><example_pt>Completei vinte anos.</example_pt>
+  </word>
+
+  <word id="sanjuu" category="nombres">
+    <kanji>三十</kanji><kana>さんじゅう</kana><romaji>Sanjū</romaji>
+    <fr>30 — Trente</fr><en>30 — Thirty</en><de>30 — Dreißig</de><pt>30 — Trinta</pt>
+    <example_jp>三十分待ちました。</example_jp>
+    <example_fr>J'ai attendu trente minutes.</example_fr><example_en>I waited thirty minutes.</example_en>
+    <example_de>Ich habe dreißig Minuten gewartet.</example_de><example_pt>Esperei trinta minutos.</example_pt>
+  </word>
+
+  <word id="man" category="nombres">
+    <kanji>万</kanji><kana>まん</kana><romaji>Man</romaji>
+    <fr>10 000 — Dix mille</fr><en>10,000 — Ten thousand</en><de>10.000 — Zehntausend</de><pt>10.000 — Dez mil</pt>
+    <example_jp>一万円のシャツを買いました。</example_jp>
+    <example_fr>J'ai acheté une chemise à dix mille yens.</example_fr><example_en>I bought a shirt for ten thousand yen.</example_en>
+    <example_de>Ich kaufte ein Hemd für zehntausend Yen.</example_de><example_pt>Comprei uma camisa por dez mil ienes.</example_pt>
+  </word>
+
+  <word id="gojuu" category="nombres">
+    <kanji>五十</kanji><kana>ごじゅう</kana><romaji>Gojū</romaji>
+    <fr>50 — Cinquante</fr><en>50 — Fifty</en><de>50 — Fünfzig</de><pt>50 — Cinquenta</pt>
+    <example_jp>五十円玉です。</example_jp>
+    <example_fr>C'est une pièce de cinquante yens.</example_fr><example_en>It's a fifty yen coin.</example_en>
+    <example_de>Das ist eine Fünfzig-Yen-Münze.</example_de><example_pt>É uma moeda de cinquenta ienes.</example_pt>
+  </word>
+
+  <word id="yonjuu" category="nombres">
+    <kanji>四十</kanji><kana>よんじゅう</kana><romaji>Yonjū</romaji>
+    <fr>40 — Quarante</fr><en>40 — Forty</en><de>40 — Vierzig</de><pt>40 — Quarenta</pt>
+    <example_jp>四十分かかります。</example_jp>
+    <example_fr>Ça prend quarante minutes.</example_fr><example_en>It takes forty minutes.</example_en>
+    <example_de>Es dauert vierzig Minuten.</example_de><example_pt>Leva quarenta minutos.</example_pt>
+  </word>
+
+  <word id="kyuujuu" category="nombres">
+    <kanji>九十</kanji><kana>きゅうじゅう</kana><romaji>Kyūjū</romaji>
+    <fr>90 — Quatre-vingt-dix</fr><en>90 — Ninety</en><de>90 — Neunzig</de><pt>90 — Noventa</pt>
+    <example_jp>九十歳まで生きたいです。</example_jp>
+    <example_fr>Je veux vivre jusqu'à quatre-vingt-dix ans.</example_fr><example_en>I want to live to ninety.</example_en>
+    <example_de>Ich möchte bis neunzig leben.</example_de><example_pt>Quero viver até noventa anos.</example_pt>
+  </word>
+
   <!-- ════════════════════════════════════════════════════════
        QUOTIDIEN
        ════════════════════════════════════════════════════════ -->
@@ -609,6 +665,14 @@
     <example_de>Ich habe einen Stift. / Es gibt einen Stift.</example_de><example_pt>Eu tenho uma caneta. / Há uma caneta.</example_pt>
   </word>
 
+  <word id="imasu" category="verbes">
+    <kanji>います</kanji><kana>います</kana><romaji>… ga imasu</romaji>
+    <fr>Être / Il y a (êtres vivants)</fr><en>To be / There is (animate)</en><de>Sein / Es gibt (Lebewesen)</de><pt>Estar / Há (seres vivos)</pt>
+    <example_jp>部屋に人がいます。</example_jp>
+    <example_fr>Il y a quelqu'un dans la pièce.</example_fr><example_en>There is someone in the room.</example_en>
+    <example_de>Es ist jemand im Zimmer.</example_de><example_pt>Há alguém no quarto.</example_pt>
+  </word>
+
   <word id="suki_desu" category="verbes">
     <kanji>好きです</kanji><kana>すきです</kana><romaji>… ga suki desu</romaji>
     <fr>Aimer (j'aime qqch)</fr><en>To like</en><de>Mögen</de><pt>Gostar de</pt>
@@ -801,6 +865,142 @@
     <example_de>Bitte warten Sie hier.</example_de><example_pt>Por favor, espere aqui.</example_pt>
   </word>
 
+  <word id="shimaimasu" category="verbes">
+    <kanji>仕舞います</kanji><kana>しまいます</kana><romaji>Shimaimasu</romaji>
+    <fr>Finir par faire / Ranger / (Faire par mégarde)</fr><en>To end up doing / To put away / To finish</en><de>Am Ende tun / Aufräumen / Fertigmachen</de><pt>Acabar fazendo / Guardar / Terminar</pt>
+    <example_jp>また財布を忘れてしまいました。</example_jp>
+    <example_fr>J'ai encore fini par oublier mon portefeuille.</example_fr><example_en>I ended up forgetting my wallet again.</example_en>
+    <example_de>Ich habe mein Portemonnaie wieder vergessen.</example_de><example_pt>Acabei esquecendo minha carteira de novo.</example_pt>
+  </word>
+
+  <word id="mochimasu" category="verbes">
+    <kanji>持ちます</kanji><kana>もちます</kana><romaji>Mochimasu</romaji>
+    <fr>Tenir / Porter / Avoir (sur soi)</fr><en>To hold / To carry / To have</en><de>Halten / Tragen / Haben</de><pt>Segurar / Carregar / Ter</pt>
+    <example_jp>重いかばんを持っています。</example_jp>
+    <example_fr>Je porte un sac lourd.</example_fr><example_en>I am carrying a heavy bag.</example_en>
+    <example_de>Ich trage eine schwere Tasche.</example_de><example_pt>Estou carregando uma bolsa pesada.</example_pt>
+  </word>
+
+  <word id="kangaemasu" category="verbes">
+    <kanji>考えます</kanji><kana>かんがえます</kana><romaji>Kangaemasu</romaji>
+    <fr>Penser / Réfléchir</fr><en>To think / To consider</en><de>Denken / Nachdenken</de><pt>Pensar / Refletir</pt>
+    <example_jp>よく考えてから決めます。</example_jp>
+    <example_fr>Je décide après avoir bien réfléchi.</example_fr><example_en>I decide after thinking carefully.</example_en>
+    <example_de>Ich entscheide nach sorgfältigem Nachdenken.</example_de><example_pt>Decido depois de pensar bem.</example_pt>
+  </word>
+
+  <word id="yarimasu" category="verbes">
+    <kanji>遣ります</kanji><kana>やります</kana><romaji>Yarimasu</romaji>
+    <fr>Faire (informel) / S'y mettre</fr><en>To do (casual) / To go for it</en><de>Machen (umgangsspr.) / Angehen</de><pt>Fazer (informal) / Ir em frente</pt>
+    <example_jp>やってみます！</example_jp>
+    <example_fr>Je vais essayer !</example_fr><example_en>I'll give it a try!</example_en>
+    <example_de>Ich werde es versuchen!</example_de><example_pt>Vou tentar!</example_pt>
+  </word>
+
+  <word id="torimasu" category="verbes">
+    <kanji>取ります</kanji><kana>とります</kana><romaji>Torimasu</romaji>
+    <fr>Prendre / Saisir / Obtenir</fr><en>To take / To get / To grab</en><de>Nehmen / Greifen / Holen</de><pt>Pegar / Tomar / Obter</pt>
+    <example_jp>写真を取ってもいいですか？</example_jp>
+    <example_fr>Puis-je prendre une photo ?</example_fr><example_en>May I take a photo?</example_en>
+    <example_de>Darf ich ein Foto machen?</example_de><example_pt>Posso tirar uma foto?</example_pt>
+  </word>
+
+  <word id="kuremasu" category="verbes">
+    <kanji>呉れます</kanji><kana>くれます</kana><romaji>Kuremasu</romaji>
+    <fr>Donner (à moi / nous)</fr><en>To give (to me / us)</en><de>Geben (mir / uns)</de><pt>Dar (para mim / nós)</pt>
+    <example_jp>友達が本をくれました。</example_jp>
+    <example_fr>Mon ami m'a donné un livre.</example_fr><example_en>My friend gave me a book.</example_en>
+    <example_de>Mein Freund hat mir ein Buch gegeben.</example_de><example_pt>Meu amigo me deu um livro.</example_pt>
+  </word>
+
+  <word id="hairimasu" category="verbes">
+    <kanji>入ります</kanji><kana>はいります</kana><romaji>Hairimasu</romaji>
+    <fr>Entrer / Rentrer dans</fr><en>To enter / To go in</en><de>Eintreten / Hineingehen</de><pt>Entrar</pt>
+    <example_jp>部屋に入ってもいいですか？</example_jp>
+    <example_fr>Puis-je entrer dans la pièce ?</example_fr><example_en>May I enter the room?</example_en>
+    <example_de>Darf ich das Zimmer betreten?</example_de><example_pt>Posso entrar no quarto?</example_pt>
+  </word>
+
+  <word id="okimasu" category="verbes">
+    <kanji>置きます</kanji><kana>おきます</kana><romaji>Okimasu</romaji>
+    <fr>Poser / Mettre / Placer</fr><en>To put / To place / To leave</en><de>Legen / Stellen / Platzieren</de><pt>Colocar / Pôr / Deixar</pt>
+    <example_jp>テーブルの上に置いてください。</example_jp>
+    <example_fr>Posez-le sur la table, s'il vous plaît.</example_fr><example_en>Please put it on the table.</example_en>
+    <example_de>Bitte stellen Sie es auf den Tisch.</example_de><example_pt>Por favor, coloque-o sobre a mesa.</example_pt>
+  </word>
+
+  <word id="dashimasu" category="verbes">
+    <kanji>出します</kanji><kana>だします</kana><romaji>Dashimasu</romaji>
+    <fr>Sortir / Remettre / Soumettre</fr><en>To take out / To submit / To send</en><de>Herausnehmen / Einreichen / Abschicken</de><pt>Tirar / Enviar / Entregar</pt>
+    <example_jp>宿題を先生に出します。</example_jp>
+    <example_fr>Je remets mes devoirs au professeur.</example_fr><example_en>I submit my homework to the teacher.</example_en>
+    <example_de>Ich gebe meine Hausaufgaben dem Lehrer ab.</example_de><example_pt>Entrego minha lição de casa ao professor.</example_pt>
+  </word>
+
+  <word id="tsukurimasu" category="verbes">
+    <kanji>作ります</kanji><kana>つくります</kana><romaji>Tsukurimasu</romaji>
+    <fr>Faire / Créer / Cuisiner</fr><en>To make / To create / To cook</en><de>Machen / Erstellen / Kochen</de><pt>Fazer / Criar / Cozinhar</pt>
+    <example_jp>母がケーキを作りました。</example_jp>
+    <example_fr>Ma mère a fait un gâteau.</example_fr><example_en>My mother made a cake.</example_en>
+    <example_de>Meine Mutter hat einen Kuchen gemacht.</example_de><example_pt>Minha mãe fez um bolo.</example_pt>
+  </word>
+
+  <word id="okonaimasu" category="verbes">
+    <kanji>行います</kanji><kana>おこないます</kana><romaji>Okonaimasu</romaji>
+    <fr>Effectuer / Organiser / Réaliser</fr><en>To carry out / To hold / To perform</en><de>Durchführen / Veranstalten / Ausführen</de><pt>Realizar / Organizar / Efetuar</pt>
+    <example_jp>明日、会議を行います。</example_jp>
+    <example_fr>Nous tiendrons une réunion demain.</example_fr><example_en>We will hold a meeting tomorrow.</example_en>
+    <example_de>Morgen werden wir ein Meeting abhalten.</example_de><example_pt>Realizaremos uma reunião amanhã.</example_pt>
+  </word>
+
+  <word id="tsukemasu" category="verbes">
+    <kanji>付けます</kanji><kana>つけます</kana><romaji>Tsukemasu</romaji>
+    <fr>Attacher / Allumer / Mettre (sur soi)</fr><en>To attach / To turn on / To put on</en><de>Befestigen / Einschalten / Anlegen</de><pt>Anexar / Ligar / Colocar</pt>
+    <example_jp>電気を付けてください。</example_jp>
+    <example_fr>Allumez la lumière, s'il vous plaît.</example_fr><example_en>Please turn on the light.</example_en>
+    <example_de>Bitte schalten Sie das Licht ein.</example_de><example_pt>Por favor, acenda a luz.</example_pt>
+  </word>
+
+  <word id="moraimasu" category="verbes">
+    <kanji>貰います</kanji><kana>もらいます</kana><romaji>Moraimasu</romaji>
+    <fr>Recevoir / Obtenir (de quelqu'un)</fr><en>To receive / To get (from someone)</en><de>Erhalten / Bekommen (von jemandem)</de><pt>Receber / Obter (de alguém)</pt>
+    <example_jp>友達からプレゼントをもらいました。</example_jp>
+    <example_fr>J'ai reçu un cadeau d'un ami.</example_fr><example_en>I received a gift from a friend.</example_en>
+    <example_de>Ich habe ein Geschenk von einem Freund bekommen.</example_de><example_pt>Recebi um presente de um amigo.</example_pt>
+  </word>
+
+  <word id="oshiemasu" category="verbes">
+    <kanji>教えます</kanji><kana>おしえます</kana><romaji>Oshiemasu</romaji>
+    <fr>Enseigner / Apprendre à / Expliquer</fr><en>To teach / To tell / To show</en><de>Lehren / Beibringen / Erklären</de><pt>Ensinar / Explicar / Mostrar</pt>
+    <example_jp>日本語を教えてもらえますか？</example_jp>
+    <example_fr>Pouvez-vous m'enseigner le japonais ?</example_fr><example_en>Could you teach me Japanese?</example_en>
+    <example_de>Können Sie mir Japanisch beibringen?</example_de><example_pt>Você poderia me ensinar japonês?</example_pt>
+  </word>
+
+  <word id="kakemasu" category="verbes">
+    <kanji>掛けます</kanji><kana>かけます</kana><romaji>Kakemasu</romaji>
+    <fr>Accrocher / Appeler (tél.) / Mettre (lunettes)</fr><en>To hang / To call (phone) / To put on</en><de>Hängen / Anrufen / Aufsetzen</de><pt>Pendurar / Ligar (telefone) / Colocar</pt>
+    <example_jp>電話をかけてもいいですか？</example_jp>
+    <example_fr>Puis-je passer un appel ?</example_fr><example_en>May I make a phone call?</example_en>
+    <example_de>Darf ich telefonieren?</example_de><example_pt>Posso fazer uma ligação?</example_pt>
+  </word>
+
+  <word id="emasu" category="verbes">
+    <kanji>得ます</kanji><kana>えます</kana><romaji>Emasu</romaji>
+    <fr>Obtenir / Acquérir / Gagner</fr><en>To get / To obtain / To gain</en><de>Erhalten / Erlangen / Gewinnen</de><pt>Obter / Conseguir / Ganhar</pt>
+    <example_jp>いい結果を得ることができました。</example_jp>
+    <example_fr>J'ai pu obtenir un bon résultat.</example_fr><example_en>I was able to get a good result.</example_en>
+    <example_de>Ich konnte ein gutes Ergebnis erzielen.</example_de><example_pt>Consegui obter um bom resultado.</example_pt>
+  </word>
+
+  <word id="miemasu" category="verbes">
+    <kanji>見えます</kanji><kana>みえます</kana><romaji>Miemasu</romaji>
+    <fr>Être visible / Paraître / Sembler</fr><en>To be visible / To appear / To look</en><de>Sichtbar sein / Erscheinen / Aussehen</de><pt>Ser visível / Parecer / Aparecer</pt>
+    <example_jp>ここから富士山が見えます。</example_jp>
+    <example_fr>On peut voir le mont Fuji d'ici.</example_fr><example_en>You can see Mount Fuji from here.</example_en>
+    <example_de>Von hier aus sieht man den Fuji.</example_de><example_pt>Daqui dá para ver o monte Fuji.</example_pt>
+  </word>
+
   <!-- ════════════════════════════════════════════════════════
        PRONOMS
        ════════════════════════════════════════════════════════ -->
@@ -881,6 +1081,22 @@
     <example_jp>みんな元気ですか？</example_jp>
     <example_fr>Tout le monde va bien ?</example_fr><example_en>Is everyone okay?</example_en>
     <example_de>Geht es allen gut?</example_de><example_pt>Todo mundo está bem?</example_pt>
+  </word>
+
+  <word id="jibun" category="pronoms">
+    <kanji>自分</kanji><kana>じぶん</kana><romaji>Jibun</romaji>
+    <fr>Soi-même / Moi-même</fr><en>Oneself / Myself</en><de>Selbst / Sich selbst</de><pt>Si mesmo / Eu mesmo</pt>
+    <example_jp>自分でやってみます。</example_jp>
+    <example_fr>Je vais essayer par moi-même.</example_fr><example_en>I will try it myself.</example_en>
+    <example_de>Ich werde es selbst versuchen.</example_de><example_pt>Vou tentar fazer eu mesmo.</example_pt>
+  </word>
+
+  <word id="boku" category="pronoms">
+    <kanji>僕</kanji><kana>ぼく</kana><romaji>Boku</romaji>
+    <fr>Je / Moi (masculin, informel)</fr><en>I / Me (masculine, informal)</en><de>Ich (maskulin, informell)</de><pt>Eu (masculino, informal)</pt>
+    <example_jp>僕は学生です。</example_jp>
+    <example_fr>Je suis étudiant.</example_fr><example_en>I am a student.</example_en>
+    <example_de>Ich bin Student.</example_de><example_pt>Eu sou estudante.</example_pt>
   </word>
 
   <!-- ════════════════════════════════════════════════════════
@@ -1601,6 +1817,422 @@
     <example_jp>十二月にクリスマスがあります。</example_jp>
     <example_fr>En décembre, il y a Noël.</example_fr><example_en>December has Christmas.</example_en>
     <example_de>Im Dezember ist Weihnachten.</example_de><example_pt>Em dezembro há o Natal.</example_pt>
+  </word>
+
+  <word id="nen" category="temps">
+    <kanji>年</kanji><kana>ねん</kana><romaji>Nen</romaji>
+    <fr>Année / An</fr><en>Year</en><de>Jahr</de><pt>Ano</pt>
+    <example_jp>今年は何年ですか？</example_jp>
+    <example_fr>Quelle année est-on cette année ?</example_fr><example_en>What year is it this year?</example_en>
+    <example_de>Welches Jahr ist dieses Jahr?</example_de><example_pt>Que ano é este ano?</example_pt>
+  </word>
+
+  <word id="toki" category="temps">
+    <kanji>時</kanji><kana>とき</kana><romaji>Toki</romaji>
+    <fr>Moment / Quand (temporel)</fr><en>Time (moment) / When</en><de>Moment / Als (zeitlich)</de><pt>Momento / Quando</pt>
+    <example_jp>子供の時、よく海に行きました。</example_jp>
+    <example_fr>Quand j'étais enfant, j'allais souvent à la mer.</example_fr><example_en>When I was a child, I often went to the sea.</example_en>
+    <example_de>Als ich ein Kind war, ging ich oft ans Meer.</example_de><example_pt>Quando era criança, ia frequentemente ao mar.</example_pt>
+  </word>
+
+  <word id="hi" category="temps">
+    <kanji>日</kanji><kana>ひ</kana><romaji>Hi</romaji>
+    <fr>Jour / Soleil</fr><en>Day / Sun</en><de>Tag / Sonne</de><pt>Dia / Sol</pt>
+    <example_jp>今日はいい日ですね。</example_jp>
+    <example_fr>C'est une belle journée aujourd'hui.</example_fr><example_en>It's a nice day today.</example_en>
+    <example_de>Heute ist ein schöner Tag.</example_de><example_pt>É um lindo dia hoje.</example_pt>
+  </word>
+
+  <word id="fun" category="temps">
+    <kanji>分</kanji><kana>ふん・ぷん</kana><romaji>Fun / Pun</romaji>
+    <fr>Minute</fr><en>Minute</en><de>Minute</de><pt>Minuto</pt>
+    <example_jp>五分後に来てください。</example_jp>
+    <example_fr>Venez dans cinq minutes.</example_fr><example_en>Please come in five minutes.</example_en>
+    <example_de>Bitte kommen Sie in fünf Minuten.</example_de><example_pt>Por favor, venha em cinco minutos.</example_pt>
+  </word>
+
+  <word id="koto" category="expressions">
+    <kanji>事</kanji><kana>こと</kana><romaji>Koto</romaji>
+    <fr>Chose / Fait / Affaire</fr><en>Thing / Fact / Matter</en><de>Sache / Angelegenheit</de><pt>Coisa / Fato / Assunto</pt>
+    <example_jp>大切なことを話したいです。</example_jp>
+    <example_fr>Je veux parler d'une chose importante.</example_fr><example_en>I want to talk about something important.</example_en>
+    <example_de>Ich möchte über etwas Wichtiges sprechen.</example_de><example_pt>Quero falar sobre uma coisa importante.</example_pt>
+  </word>
+
+  <word id="nai" category="expressions">
+    <kanji>無い</kanji><kana>ない</kana><romaji>Nai</romaji>
+    <fr>Ne pas avoir / Inexistant / Il n'y a pas</fr><en>Not exist / There is no / Don't have</en><de>Nicht vorhanden / Es gibt kein</de><pt>Não ter / Não existe / Não há</pt>
+    <example_jp>お金がない。どうしよう。</example_jp>
+    <example_fr>Je n'ai pas d'argent. Qu'est-ce que je vais faire ?</example_fr><example_en>I have no money. What should I do?</example_en>
+    <example_de>Ich habe kein Geld. Was soll ich tun?</example_de><example_pt>Não tenho dinheiro. O que devo fazer?</example_pt>
+  </word>
+
+  <word id="you" category="expressions">
+    <kanji>様</kanji><kana>よう</kana><romaji>Yō</romaji>
+    <fr>Il semble que / Comme / Façon / Manière</fr><en>It seems like / Like / Way / Manner</en><de>Es scheint / Wie / Art und Weise</de><pt>Parece que / Como / Maneira / Jeito</pt>
+    <example_jp>今日は雨が降りそうなようです。</example_jp>
+    <example_fr>Il semble qu'il va pleuvoir aujourd'hui.</example_fr><example_en>It seems like it will rain today.</example_en>
+    <example_de>Es sieht so aus, als würde es heute regnen.</example_de><example_pt>Parece que vai chover hoje.</example_pt>
+  </word>
+
+  <word id="sou" category="expressions">
+    <kanji>そう</kanji><kana>そう</kana><romaji>Sō</romaji>
+    <fr>Comme ça / C'est vrai / Ah bon</fr><en>Like that / I see / So / That's right</en><de>So / Das stimmt / Ach so</de><pt>Assim / É isso / Entendo</pt>
+    <example_jp>そうですね。わかりました。</example_jp>
+    <example_fr>C'est vrai. J'ai compris.</example_fr><example_en>That's right. I understand.</example_en>
+    <example_de>Das stimmt. Ich verstehe.</example_de><example_pt>É isso mesmo. Entendi.</example_pt>
+  </word>
+
+  <word id="hou" category="expressions">
+    <kanji>方</kanji><kana>ほう</kana><romaji>Hō</romaji>
+    <fr>Côté / Direction / (De préférence)</fr><en>Direction / Side / (Prefer ~ over)</en><de>Seite / Richtung / (Bevorzugen)</de><pt>Lado / Direção / (Preferir)</pt>
+    <example_jp>こちらの方がいいです。</example_jp>
+    <example_fr>Celui-ci est meilleur.</example_fr><example_en>This one is better.</example_en>
+    <example_de>Diese Seite ist besser.</example_de><example_pt>Este é melhor.</example_pt>
+  </word>
+
+  <word id="nado" category="expressions">
+    <kanji>など</kanji><kana>など</kana><romaji>Nado</romaji>
+    <fr>Etc. / Et ainsi de suite</fr><en>Etc. / And so on</en><de>Usw. / Und so weiter</de><pt>Etc. / Entre outros</pt>
+    <example_jp>りんごやバナナなどが好きです。</example_jp>
+    <example_fr>J'aime les pommes, les bananes, etc.</example_fr><example_en>I like apples, bananas, etc.</example_en>
+    <example_de>Ich mag Äpfel, Bananen usw.</example_de><example_pt>Gosto de maçãs, bananas, etc.</example_pt>
+  </word>
+
+  <word id="tame" category="expressions">
+    <kanji>ため</kanji><kana>ため</kana><romaji>Tame</romaji>
+    <fr>Pour / Dans le but de / À cause de</fr><en>For / In order to / Because of</en><de>Für / Um ... zu / Wegen</de><pt>Para / Com o objetivo de / Por causa de</pt>
+    <example_jp>健康のために毎日運動します。</example_jp>
+    <example_fr>Je fais de l'exercice chaque jour pour ma santé.</example_fr><example_en>I exercise every day for my health.</example_en>
+    <example_de>Ich treibe täglich Sport für meine Gesundheit.</example_de><example_pt>Faço exercício diariamente pela minha saúde.</example_pt>
+  </word>
+
+  <word id="nihon" category="expressions">
+    <kanji>日本</kanji><kana>にほん・にっぽん</kana><romaji>Nihon / Nippon</romaji>
+    <fr>Japon</fr><en>Japan</en><de>Japan</de><pt>Japão</pt>
+    <example_jp>日本語を勉強しています。</example_jp>
+    <example_fr>J'étudie le japonais.</example_fr><example_en>I am studying Japanese.</example_en>
+    <example_de>Ich lerne Japanisch.</example_de><example_pt>Estou estudando japonês.</example_pt>
+  </word>
+
+  <word id="ato" category="expressions">
+    <kanji>後</kanji><kana>あと</kana><romaji>Ato</romaji>
+    <fr>Après / Plus tard / Restant</fr><en>After / Later / Remaining</en><de>Danach / Später / Noch übrig</de><pt>Depois / Mais tarde / Restante</pt>
+    <example_jp>仕事の後で食事をします。</example_jp>
+    <example_fr>Je mange après le travail.</example_fr><example_en>I eat after work.</example_en>
+    <example_de>Ich esse nach der Arbeit.</example_de><example_pt>Eu como depois do trabalho.</example_pt>
+  </word>
+
+  <word id="me" category="expressions">
+    <kanji>目</kanji><kana>め</kana><romaji>Me</romaji>
+    <fr>Œil / Yeux</fr><en>Eye / Eyes</en><de>Auge / Augen</de><pt>Olho / Olhos</pt>
+    <example_jp>目が疲れました。</example_jp>
+    <example_fr>Mes yeux sont fatigués.</example_fr><example_en>My eyes are tired.</example_en>
+    <example_de>Meine Augen sind müde.</example_de><example_pt>Meus olhos estão cansados.</example_pt>
+  </word>
+
+  <word id="baai" category="expressions">
+    <kanji>場合</kanji><kana>ばあい</kana><romaji>Baai</romaji>
+    <fr>Cas / Situation</fr><en>Case / Situation</en><de>Fall / Situation</de><pt>Caso / Situação</pt>
+    <example_jp>雨の場合は、中止します。</example_jp>
+    <example_fr>En cas de pluie, c'est annulé.</example_fr><example_en>In case of rain, it will be cancelled.</example_en>
+    <example_de>Bei Regen wird es abgesagt.</example_de><example_pt>Em caso de chuva, será cancelado.</example_pt>
+  </word>
+
+  <word id="ue" category="expressions">
+    <kanji>上</kanji><kana>うえ</kana><romaji>Ue</romaji>
+    <fr>Au-dessus / Sur / Haut</fr><en>Above / On top / Up</en><de>Oben / Darüber / Auf</de><pt>Acima / Em cima / Sobre</pt>
+    <example_jp>テーブルの上に猫がいます。</example_jp>
+    <example_fr>Il y a un chat sur la table.</example_fr><example_en>There is a cat on the table.</example_en>
+    <example_de>Auf dem Tisch ist eine Katze.</example_de><example_pt>Há um gato em cima da mesa.</example_pt>
+  </word>
+
+  <word id="shikashi" category="expressions">
+    <kanji>然し</kanji><kana>しかし</kana><romaji>Shikashi</romaji>
+    <fr>Cependant / Mais (formel)</fr><en>However / But (formal)</en><de>Jedoch / Aber (förmlich)</de><pt>Porém / Contudo (formal)</pt>
+    <example_jp>頑張りました。しかし、失敗しました。</example_jp>
+    <example_fr>J'ai fait de mon mieux. Cependant, j'ai échoué.</example_fr><example_en>I tried hard. However, I failed.</example_en>
+    <example_de>Ich habe mein Bestes gegeben. Jedoch bin ich gescheitert.</example_de><example_pt>Me esforcei. Contudo, falhei.</example_pt>
+  </word>
+
+  <word id="yori" category="expressions">
+    <kanji>より</kanji><kana>より</kana><romaji>Yori</romaji>
+    <fr>Que (comparatif) / Plus que / Depuis</fr><en>Than (comparative) / More than / From</en><de>Als (Vergleich) / Mehr als / Von</de><pt>Do que (comparativo) / Mais do que</pt>
+    <example_jp>日本語は英語より難しいです。</example_jp>
+    <example_fr>Le japonais est plus difficile que l'anglais.</example_fr><example_en>Japanese is more difficult than English.</example_en>
+    <example_de>Japanisch ist schwieriger als Englisch.</example_de><example_pt>O japonês é mais difícil do que o inglês.</example_pt>
+  </word>
+
+  <word id="ki" category="expressions">
+    <kanji>気</kanji><kana>き</kana><romaji>Ki</romaji>
+    <fr>Ésprit / Humeur / Attention / Sentiment</fr><en>Spirit / Mood / Feeling / Mind</en><de>Geist / Stimmung / Aufmerksamkeit</de><pt>Espírito / Humor / Atenção / Sentimento</pt>
+    <example_jp>気をつけてください。</example_jp>
+    <example_fr>Faites attention, s'il vous plaît.</example_fr><example_en>Please be careful.</example_en>
+    <example_de>Bitte passen Sie auf.</example_de><example_pt>Por favor, tome cuidado.</example_pt>
+  </word>
+
+  <word id="aida" category="expressions">
+    <kanji>間</kanji><kana>あいだ</kana><romaji>Aida</romaji>
+    <fr>Entre / Intervalle / Pendant (durée)</fr><en>Between / Interval / During</en><de>Zwischen / Abstand / Während</de><pt>Entre / Intervalo / Durante</pt>
+    <example_jp>学校と駅の間にコンビニがあります。</example_jp>
+    <example_fr>Il y a un konbini entre l'école et la gare.</example_fr><example_en>There is a convenience store between the school and the station.</example_en>
+    <example_de>Zwischen Schule und Bahnhof gibt es einen Konbini.</example_de><example_pt>Há uma loja de conveniência entre a escola e a estação.</example_pt>
+  </word>
+
+  <word id="soko" category="expressions">
+    <kanji>そこ</kanji><kana>そこ</kana><romaji>Soko</romaji>
+    <fr>Là / Là-bas (près de vous)</fr><en>There (near you)</en><de>Da / Dort (bei Ihnen)</de><pt>Aí / Ali (perto de você)</pt>
+    <example_jp>そこに置いてください。</example_jp>
+    <example_fr>Posez-le là, s'il vous plaît.</example_fr><example_en>Please put it there.</example_en>
+    <example_de>Bitte legen Sie es dort hin.</example_de><example_pt>Por favor, coloque aí.</example_pt>
+  </word>
+
+  <word id="mondai" category="expressions">
+    <kanji>問題</kanji><kana>もんだい</kana><romaji>Mondai</romaji>
+    <fr>Problème / Question</fr><en>Problem / Question / Issue</en><de>Problem / Frage / Thema</de><pt>Problema / Questão</pt>
+    <example_jp>問題ありません。大丈夫です。</example_jp>
+    <example_fr>Pas de problème. Ça va.</example_fr><example_en>No problem. It's okay.</example_en>
+    <example_de>Kein Problem. Alles gut.</example_de><example_pt>Sem problema. Está bem.</example_pt>
+  </word>
+
+  <word id="wake" category="expressions">
+    <kanji>訳</kanji><kana>わけ</kana><romaji>Wake</romaji>
+    <fr>Raison / Signification / C'est-à-dire</fr><en>Reason / Meaning / That's why</en><de>Grund / Bedeutung / Das heißt</de><pt>Razão / Significado / Por isso</pt>
+    <example_jp>わけがわかりません。</example_jp>
+    <example_fr>Je ne comprends pas la raison.</example_fr><example_en>I don't understand the reason.</example_en>
+    <example_de>Ich verstehe den Grund nicht.</example_de><example_pt>Não entendo o motivo.</example_pt>
+  </word>
+
+  <word id="hitsuyou" category="expressions">
+    <kanji>必要</kanji><kana>ひつよう</kana><romaji>Hitsuyō</romaji>
+    <fr>Nécessaire / Besoin</fr><en>Necessary / Needed</en><de>Notwendig / Nötig</de><pt>Necessário / Preciso</pt>
+    <example_jp>パスポートが必要です。</example_jp>
+    <example_fr>Un passeport est nécessaire.</example_fr><example_en>A passport is necessary.</example_en>
+    <example_de>Ein Reisepass ist notwendig.</example_de><example_pt>Um passaporte é necessário.</example_pt>
+  </word>
+
+  <word id="te" category="expressions">
+    <kanji>手</kanji><kana>て</kana><romaji>Te</romaji>
+    <fr>Main</fr><en>Hand</en><de>Hand</de><pt>Mão</pt>
+    <example_jp>手を洗ってください。</example_jp>
+    <example_fr>Lavez-vous les mains.</example_fr><example_en>Please wash your hands.</example_en>
+    <example_de>Bitte waschen Sie sich die Hände.</example_de><example_pt>Por favor, lave as mãos.</example_pt>
+  </word>
+
+  <word id="ooi" category="expressions">
+    <kanji>多い</kanji><kana>おおい</kana><romaji>Ōi</romaji>
+    <fr>Nombreux / Beaucoup (de)</fr><en>Many / A lot (of)</en><de>Viele / Zahlreich</de><pt>Muitos / Numerosos</pt>
+    <example_jp>東京には人が多いです。</example_jp>
+    <example_fr>Il y a beaucoup de monde à Tokyo.</example_fr><example_en>There are many people in Tokyo.</example_en>
+    <example_de>In Tokio gibt es viele Menschen.</example_de><example_pt>Há muitas pessoas em Tóquio.</example_pt>
+  </word>
+
+  <word id="kurai" category="expressions">
+    <kanji>くらい</kanji><kana>くらい</kana><romaji>Kurai</romaji>
+    <fr>Environ / À peu près / Autant que</fr><en>About / Approximately / As much as</en><de>Ungefähr / Etwa / So wie</de><pt>Cerca de / Aproximadamente</pt>
+    <example_jp>三十分くらいかかります。</example_jp>
+    <example_fr>Ça prend environ trente minutes.</example_fr><example_en>It takes about thirty minutes.</example_en>
+    <example_de>Es dauert ungefähr dreißig Minuten.</example_de><example_pt>Leva cerca de trinta minutos.</example_pt>
+  </word>
+
+  <word id="ningen" category="expressions">
+    <kanji>人間</kanji><kana>にんげん</kana><romaji>Ningen</romaji>
+    <fr>Être humain / Personne</fr><en>Human being / Person</en><de>Mensch / Menschliches Wesen</de><pt>Ser humano / Pessoa</pt>
+    <example_jp>人間はみんな平等です。</example_jp>
+    <example_fr>Tous les êtres humains sont égaux.</example_fr><example_en>All human beings are equal.</example_en>
+    <example_de>Alle Menschen sind gleich.</example_de><example_pt>Todos os seres humanos são iguais.</example_pt>
+  </word>
+
+  <word id="kou" category="expressions">
+    <kanji>こう</kanji><kana>こう</kana><romaji>Kō</romaji>
+    <fr>Comme ça / De cette façon / Ainsi</fr><en>Like this / In this way / Thus</en><de>So / Auf diese Weise / Damit</de><pt>Assim / Desta forma / Deste jeito</pt>
+    <example_jp>こうすればいいですよ。</example_jp>
+    <example_fr>Il suffit de faire comme ça.</example_fr><example_en>You just need to do it like this.</example_en>
+    <example_de>So muss man es machen.</example_de><example_pt>É só fazer assim.</example_pt>
+  </word>
+
+  <word id="kankei" category="expressions">
+    <kanji>関係</kanji><kana>かんけい</kana><romaji>Kankei</romaji>
+    <fr>Relation / Rapport / Lien</fr><en>Relationship / Connection / Link</en><de>Beziehung / Zusammenhang / Verbindung</de><pt>Relação / Ligação / Vínculo</pt>
+    <example_jp>二人の関係はとても仲がいいです。</example_jp>
+    <example_fr>La relation entre les deux est très bonne.</example_fr><example_en>The relationship between the two is very good.</example_en>
+    <example_de>Die Beziehung zwischen den beiden ist sehr gut.</example_de><example_pt>A relação entre os dois é muito boa.</example_pt>
+  </word>
+
+  <word id="hanashi" category="expressions">
+    <kanji>話</kanji><kana>はなし</kana><romaji>Hanashi</romaji>
+    <fr>Histoire / Conversation / Sujet</fr><en>Story / Talk / Topic</en><de>Geschichte / Gespräch / Thema</de><pt>Conversa / História / Assunto</pt>
+    <example_jp>面白い話をしてください。</example_jp>
+    <example_fr>Racontez-moi une histoire intéressante.</example_fr><example_en>Please tell me an interesting story.</example_en>
+    <example_de>Erzählen Sie mir eine interessante Geschichte.</example_de><example_pt>Por favor, conte-me uma história interessante.</example_pt>
+  </word>
+
+  <word id="kuni" category="expressions">
+    <kanji>国</kanji><kana>くに</kana><romaji>Kuni</romaji>
+    <fr>Pays / Nation</fr><en>Country / Nation</en><de>Land / Nation</de><pt>País / Nação</pt>
+    <example_jp>あなたの国はどこですか？</example_jp>
+    <example_fr>De quel pays venez-vous ?</example_fr><example_en>Which country are you from?</example_en>
+    <example_de>Aus welchem Land kommen Sie?</example_de><example_pt>De qual país você é?</example_pt>
+  </word>
+
+  <word id="otoko" category="expressions">
+    <kanji>男</kanji><kana>おとこ</kana><romaji>Otoko</romaji>
+    <fr>Homme / Garçon</fr><en>Man / Boy</en><de>Mann / Junge</de><pt>Homem / Rapaz</pt>
+    <example_jp>あの男の人は誰ですか？</example_jp>
+    <example_fr>Qui est cet homme ?</example_fr><example_en>Who is that man?</example_en>
+    <example_de>Wer ist dieser Mann?</example_de><example_pt>Quem é aquele homem?</example_pt>
+  </word>
+
+  <word id="shakai" category="expressions">
+    <kanji>社会</kanji><kana>しゃかい</kana><romaji>Shakai</romaji>
+    <fr>Société</fr><en>Society</en><de>Gesellschaft</de><pt>Sociedade</pt>
+    <example_jp>社会のために何かしたいです。</example_jp>
+    <example_fr>Je veux faire quelque chose pour la société.</example_fr><example_en>I want to do something for society.</example_en>
+    <example_de>Ich möchte etwas für die Gesellschaft tun.</example_de><example_pt>Quero fazer algo pela sociedade.</example_pt>
+  </word>
+
+  <word id="sonna" category="expressions">
+    <kanji>そんな</kanji><kana>そんな</kana><romaji>Sonna</romaji>
+    <fr>Tel / Pareil / Comme ça</fr><en>Such / That kind of / Like that</en><de>Solch / So ein</de><pt>Tal / Assim / Desse tipo</pt>
+    <example_jp>そんなことを言わないでください。</example_jp>
+    <example_fr>Ne dites pas des choses pareilles.</example_fr><example_en>Please don't say such things.</example_en>
+    <example_de>Bitte sagen Sie so etwas nicht.</example_de><example_pt>Por favor, não diga coisas assim.</example_pt>
+  </word>
+
+  <word id="kao" category="expressions">
+    <kanji>顔</kanji><kana>かお</kana><romaji>Kao</romaji>
+    <fr>Visage / Figure</fr><en>Face</en><de>Gesicht</de><pt>Rosto / Cara</pt>
+    <example_jp>彼女はきれいな顔をしています。</example_jp>
+    <example_fr>Elle a un beau visage.</example_fr><example_en>She has a beautiful face.</example_en>
+    <example_de>Sie hat ein schönes Gesicht.</example_de><example_pt>Ela tem um rosto bonito.</example_pt>
+  </word>
+
+  <word id="tsugi" category="expressions">
+    <kanji>次</kanji><kana>つぎ</kana><romaji>Tsugi</romaji>
+    <fr>Prochain(e) / Suivant(e)</fr><en>Next / Following</en><de>Nächste(r/s) / Folgend</de><pt>Próximo / Seguinte</pt>
+    <example_jp>次の駅で降ります。</example_jp>
+    <example_fr>Je descends à la prochaine station.</example_fr><example_en>I get off at the next station.</example_en>
+    <example_de>Ich steige an der nächsten Station aus.</example_de><example_pt>Desço na próxima estação.</example_pt>
+  </word>
+
+  <word id="en" category="expressions">
+    <kanji>円</kanji><kana>えん</kana><romaji>En</romaji>
+    <fr>Yen (monnaie japonaise)</fr><en>Yen (Japanese currency)</en><de>Yen (japanische Währung)</de><pt>Iene (moeda japonesa)</pt>
+    <example_jp>このりんごは百円です。</example_jp>
+    <example_fr>Cette pomme coûte cent yens.</example_fr><example_en>This apple costs one hundred yen.</example_en>
+    <example_de>Dieser Apfel kostet hundert Yen.</example_de><example_pt>Esta maçã custa cem ienes.</example_pt>
+  </word>
+
+  <word id="ko" category="expressions">
+    <kanji>子</kanji><kana>こ</kana><romaji>Ko</romaji>
+    <fr>Enfant / Gamin(e)</fr><en>Child / Kid</en><de>Kind</de><pt>Criança / Filho(a)</pt>
+    <example_jp>あの子はとてもかわいいです。</example_jp>
+    <example_fr>Cet enfant est vraiment mignon.</example_fr><example_en>That child is very cute.</example_en>
+    <example_de>Dieses Kind ist sehr süß.</example_de><example_pt>Aquela criança é muito fofinha.</example_pt>
+  </word>
+
+  <word id="imi" category="expressions">
+    <kanji>意味</kanji><kana>いみ</kana><romaji>Imi</romaji>
+    <fr>Signification / Sens</fr><en>Meaning / Sense</en><de>Bedeutung / Sinn</de><pt>Significado / Sentido</pt>
+    <example_jp>この言葉の意味は何ですか？</example_jp>
+    <example_fr>Quel est le sens de ce mot ?</example_fr><example_en>What is the meaning of this word?</example_en>
+    <example_de>Was bedeutet dieses Wort?</example_de><example_pt>Qual é o significado desta palavra?</example_pt>
+  </word>
+
+  <word id="mama" category="expressions">
+    <kanji>まま</kanji><kana>まま</kana><romaji>Mama</romaji>
+    <fr>Tel quel / En l'état / Comme c'est</fr><en>As is / Just as / Leaving it be</en><de>So wie es ist / Im gleichen Zustand</de><pt>Como está / Do jeito que está</pt>
+    <example_jp>そのままでいいです。</example_jp>
+    <example_fr>Laissez-le tel quel, c'est bien.</example_fr><example_en>It's fine just as it is.</example_en>
+    <example_de>So wie es ist, ist es gut.</example_de><example_pt>Está bem assim mesmo.</example_pt>
+  </word>
+
+  <word id="chikara" category="expressions">
+    <kanji>力</kanji><kana>ちから</kana><romaji>Chikara</romaji>
+    <fr>Force / Puissance / Énergie</fr><en>Strength / Power / Ability</en><de>Kraft / Stärke / Fähigkeit</de><pt>Força / Poder / Energia</pt>
+    <example_jp>諦めないで、力を出して！</example_jp>
+    <example_fr>N'abandonne pas, montre ta force !</example_fr><example_en>Don't give up, show your strength!</example_en>
+    <example_de>Gib nicht auf, zeig deine Kraft!</example_de><example_pt>Não desista, mostre sua força!</example_pt>
+  </word>
+
+  <word id="kokoro" category="expressions">
+    <kanji>心</kanji><kana>こころ</kana><romaji>Kokoro</romaji>
+    <fr>Cœur / Esprit / Âme</fr><en>Heart / Mind / Soul</en><de>Herz / Geist / Seele</de><pt>Coração / Mente / Alma</pt>
+    <example_jp>心から感謝しています。</example_jp>
+    <example_fr>Je vous remercie du fond du cœur.</example_fr><example_en>I thank you from the bottom of my heart.</example_en>
+    <example_de>Ich danke Ihnen von Herzen.</example_de><example_pt>Agradeço de coração.</example_pt>
+  </word>
+
+  <word id="jidai" category="expressions">
+    <kanji>時代</kanji><kana>じだい</kana><romaji>Jidai</romaji>
+    <fr>Ère / Époque / Période</fr><en>Era / Period / Age</en><de>Ära / Epoche / Zeitalter</de><pt>Era / Época / Período</pt>
+    <example_jp>今は便利な時代です。</example_jp>
+    <example_fr>Nous vivons à une époque pratique.</example_fr><example_en>We live in a convenient era.</example_en>
+    <example_de>Wir leben in einer praktischen Ära.</example_de><example_pt>Vivemos numa era conveniente.</example_pt>
+  </word>
+
+  <word id="sekai" category="expressions">
+    <kanji>世界</kanji><kana>せかい</kana><romaji>Sekai</romaji>
+    <fr>Monde</fr><en>World</en><de>Welt</de><pt>Mundo</pt>
+    <example_jp>世界中を旅したいです。</example_jp>
+    <example_fr>Je veux voyager dans le monde entier.</example_fr><example_en>I want to travel around the world.</example_en>
+    <example_de>Ich möchte die ganze Welt bereisen.</example_de><example_pt>Quero viajar pelo mundo inteiro.</example_pt>
+  </word>
+
+  <word id="onna" category="expressions">
+    <kanji>女</kanji><kana>おんな</kana><romaji>Onna</romaji>
+    <fr>Femme / Fille</fr><en>Woman / Girl</en><de>Frau / Mädchen</de><pt>Mulher / Menina</pt>
+    <example_jp>あの女の人はきれいですね。</example_jp>
+    <example_fr>Cette femme est belle.</example_fr><example_en>That woman is beautiful.</example_en>
+    <example_de>Diese Frau ist schön.</example_de><example_pt>Aquela mulher é bonita.</example_pt>
+  </word>
+
+  <word id="kaisha" category="expressions">
+    <kanji>会社</kanji><kana>かいしゃ</kana><romaji>Kaisha</romaji>
+    <fr>Entreprise / Société</fr><en>Company / Corporation</en><de>Unternehmen / Firma</de><pt>Empresa / Companhia</pt>
+    <example_jp>父は会社員です。</example_jp>
+    <example_fr>Mon père est employé de bureau.</example_fr><example_en>My father is a company employee.</example_en>
+    <example_de>Mein Vater ist Büroangestellter.</example_de><example_pt>Meu pai é funcionário de empresa.</example_pt>
+  </word>
+
+  <word id="koe" category="expressions">
+    <kanji>声</kanji><kana>こえ</kana><romaji>Koe</romaji>
+    <fr>Voix</fr><en>Voice</en><de>Stimme</de><pt>Voz</pt>
+    <example_jp>声が大きすぎます。</example_jp>
+    <example_fr>La voix est trop forte.</example_fr><example_en>The voice is too loud.</example_en>
+    <example_de>Die Stimme ist zu laut.</example_de><example_pt>A voz está muito alta.</example_pt>
+  </word>
+
+  <word id="tomo" category="expressions">
+    <kanji>共</kanji><kana>とも</kana><romaji>Tomo</romaji>
+    <fr>Ensemble / Compagnon</fr><en>Together / Companion</en><de>Zusammen / Begleiter</de><pt>Juntos / Companheiro</pt>
+    <example_jp>友と一緒に旅しました。</example_jp>
+    <example_fr>J'ai voyagé avec des amis.</example_fr><example_en>I traveled together with friends.</example_en>
+    <example_de>Ich reiste mit Freunden zusammen.</example_de><example_pt>Viajei junto com amigos.</example_pt>
+  </word>
+
+  <word id="sai" category="expressions">
+    <kanji>歳</kanji><kana>さい</kana><romaji>Sai</romaji>
+    <fr>Ans (âge)</fr><en>Years old (age)</en><de>Jahre alt</de><pt>Anos de idade</pt>
+    <example_jp>私は二十歳です。</example_jp>
+    <example_fr>J'ai vingt ans.</example_fr><example_en>I am twenty years old.</example_en>
+    <example_de>Ich bin zwanzig Jahre alt.</example_de><example_pt>Tenho vinte anos.</example_pt>
+  </word>
+
+  <word id="hitori" category="expressions">
+    <kanji>一人</kanji><kana>ひとり</kana><romaji>Hitori</romaji>
+    <fr>Seul(e) / Une personne</fr><en>Alone / One person</en><de>Allein / Eine Person</de><pt>Sozinho(a) / Uma pessoa</pt>
+    <example_jp>一人で旅行するのが好きです。</example_jp>
+    <example_fr>J'aime voyager seul(e).</example_fr><example_en>I like to travel alone.</example_en>
+    <example_de>Ich reise gern allein.</example_de><example_pt>Gosto de viajar sozinho(a).</example_pt>
+  </word>
+
+  <word id="mada" category="expressions">
+    <kanji>未だ</kanji><kana>まだ</kana><romaji>Mada</romaji>
+    <fr>Pas encore / Toujours (en cours)</fr><en>Not yet / Still</en><de>Noch nicht / Immer noch</de><pt>Ainda não / Ainda</pt>
+    <example_jp>まだ終わっていません。</example_jp>
+    <example_fr>Ce n'est pas encore fini.</example_fr><example_en>It's not done yet.</example_en>
+    <example_de>Es ist noch nicht fertig.</example_de><example_pt>Ainda não está pronto.</example_pt>
   </word>
 
   <word id="denwa" category="expressions">
