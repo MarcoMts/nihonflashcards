@@ -19,6 +19,7 @@
       --border-light:  rgba(0,0,0,0.09);
       --border-medium: rgba(0,0,0,0.16);
       --border-strong: rgba(0,0,0,0.26);
+      --radius-sm: 6px;
       --radius-md: 8px;
       --radius-lg: 12px;
       --correct-color:   #1D9E75;
@@ -86,6 +87,35 @@
       --acquired-bg:   #FEF4DA;
       --accent-bg:     #E6F1FB;
       --shadow-card:   0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* ── Thème EVA-01 (Evangelion Unit-01) ── */
+    :root[data-theme="eva"] {
+      /* Armure violette profonde */
+      --bg-primary:    #1e0f42;
+      --bg-secondary:  #160830;
+      --bg-tertiary:   #0d0420;
+      /* Texte lavande */
+      --text-primary:  #dccfff;
+      --text-secondary:#8a68c8;
+      --text-tertiary: #523a88;
+      /* Bordures teintées violet */
+      --border-light:  rgba(140, 80, 255, 0.18);
+      --border-medium: rgba(140, 80, 255, 0.34);
+      --border-strong: rgba(140, 80, 255, 0.56);
+      /* Vert lime EVA-01 (œil + liserés) */
+      --accent:        #84d01a;
+      --accent-bg:     rgba(132, 208, 26, 0.16);
+      --correct-color: #84d01a;
+      --correct-bg:    rgba(132, 208, 26, 0.14);
+      /* Orange alerte NERV */
+      --wrong-color:   #e05418;
+      --wrong-bg:      rgba(224, 84, 24, 0.16);
+      /* Or – récompense */
+      --acquired-color:#d4a820;
+      --acquired-bg:   rgba(212, 168, 32, 0.14);
+      /* Halo violet sur les cartes */
+      --shadow-card:   0 2px 20px rgba(110, 10, 230, 0.45);
     }
 
     body {
@@ -178,7 +208,7 @@
     }
     .ctrl-swap-btn {
       background: none;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-sm);
       color: var(--text-secondary);
       cursor: pointer;
@@ -798,7 +828,7 @@ const UI = {
     noProgress: 'Commencez à réviser pour voir vos statistiques.',
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
     consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
-    themeLight: 'Mode clair', themeDark: 'Mode sombre',
+    themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01',
     settingsTitle: "Options d'affichage",
     resetTitle: 'Réinitialiser la progression',
     resetConfirmTitle: 'Réinitialiser la progression ?',
@@ -826,7 +856,7 @@ const UI = {
     noProgress: 'Start studying to see your statistics.',
     consentMsg: '💾 Save your progress between sessions?',
     consentAccept: 'Yes, save', consentReject: 'No thanks',
-    themeLight: 'Light mode', themeDark: 'Dark mode',
+    themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode',
     settingsTitle: 'Display options',
     resetTitle: 'Reset progress',
     resetConfirmTitle: 'Reset all progress?',
@@ -854,7 +884,7 @@ const UI = {
     noProgress: 'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
     consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
-    themeLight: 'Helles Design', themeDark: 'Dunkles Design',
+    themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design',
     settingsTitle: 'Anzeigeoptionen',
     resetTitle: 'Fortschritt zurücksetzen',
     resetConfirmTitle: 'Fortschritt zurücksetzen?',
@@ -882,7 +912,7 @@ const UI = {
     noProgress: 'Comece a estudar para ver suas estatísticas.',
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
     consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
-    themeLight: 'Modo claro', themeDark: 'Modo escuro',
+    themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01',
     settingsTitle: 'Opções de exibição',
     resetTitle: 'Reiniciar progresso',
     resetConfirmTitle: 'Reiniciar todo o progresso?',
@@ -910,7 +940,7 @@ const UI = {
     noProgress: '学習を始めると統計が表示されます。',
     consentMsg: '💾 学習記録を保存しますか？',
     consentAccept: '保存する', consentReject: 'いいえ',
-    themeLight: 'ライトモード', themeDark: 'ダークモード',
+    themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード',
     settingsTitle: '表示オプション',
     resetTitle: '進捗をリセット',
     resetConfirmTitle: '進捗を全てリセットしますか？',
@@ -938,7 +968,7 @@ const UI = {
     noProgress: '학습을 시작하면 통계가 표시됩니다.',
     consentMsg: '💾 세션 간 진도를 저장하시겠습니까?',
     consentAccept: '네, 저장합니다', consentReject: '아니요',
-    themeLight: '라이트 모드', themeDark: '다크 모드',
+    themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드',
     settingsTitle: '표시 옵션',
     resetTitle: '진도 초기화',
     resetConfirmTitle: '진도를 초기화할까요?',
@@ -1010,27 +1040,32 @@ function initTheme() {
   updateThemeBtn();
 }
 
-function toggleTheme() {
-  const root    = document.documentElement;
-  const attr    = root.getAttribute('data-theme');
+function currentTheme() {
+  const attr    = document.documentElement.getAttribute('data-theme');
   const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark  = attr === 'dark' || (!attr && sysDark);
-  const next    = isDark ? 'light' : 'dark';
-  root.setAttribute('data-theme', next);
+  if (attr === 'dark' || attr === 'light' || attr === 'eva') return attr;
+  return sysDark ? 'dark' : 'light';
+}
+
+function toggleTheme() {
+  // Cycle : light → dark → eva → light
+  const cycle = { light: 'dark', dark: 'eva', eva: 'light' };
+  const next  = cycle[currentTheme()] || 'dark';
+  document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem(THEME_KEY, next);
   updateThemeBtn();
 }
 
 function updateThemeBtn() {
-  const root    = document.documentElement;
-  const attr    = root.getAttribute('data-theme');
-  const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark  = attr === 'dark' || (!attr && sysDark);
   const btn = document.getElementById('themeBtn');
   if (!btn) return;
-  const t = UI[uiLang()];
-  btn.innerHTML = isDark ? '<i class="ti ti-sun"></i>' : '<i class="ti ti-moon"></i>';
-  btn.title     = isDark ? t.themeLight : t.themeDark;
+  const t   = UI[uiLang()];
+  const cur = currentTheme();
+  // L'icône et le tooltip indiquent le PROCHAIN thème
+  const icons  = { light: 'ti-moon', dark: 'ti-eye', eva: 'ti-sun' };
+  const titles = { light: t.themeDark, dark: t.themeEva, eva: t.themeLight };
+  btn.innerHTML = `<i class="ti ${icons[cur]}"></i>`;
+  btn.title     = titles[cur] || '';
 }
 
 // ── Options panel (collapsible) ───────────────────────────────────────────────
