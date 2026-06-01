@@ -651,7 +651,7 @@
     </div>
 
     <div class="done-screen" id="doneScreen">
-      <div class="done-emoji">🎉</div>
+      <div class="done-emoji" id="doneEmoji">🎉</div>
       <div class="done-title" id="doneTitle">Session terminée !</div>
       <div class="done-sub"   id="doneSub"></div>
       <button id="btnRestart" class="restart-btn" onclick="restart()">Recommencer</button>
@@ -789,6 +789,8 @@ const UI = {
     resetCancel: 'Annuler', resetConfirm: 'Réinitialiser',
     doneTitles: ['Excellent travail ! 🌸', 'Bon effort ! 頑張って', 'Continuez à pratiquer !'],
     doneSub: (c, t, p) => `${c} correct${c > 1 ? 's' : ''} sur ${t} cartes (${p}%)`,
+    doneAllAcquired: 'Tous les mots ont été acquis !',
+    doneAllAcquiredSub: 'Vous maîtrisez parfaitement cette catégorie. 完璧！',
   },
   en: {
     subtitle: 'Click the card to reveal the answer',
@@ -815,6 +817,8 @@ const UI = {
     resetCancel: 'Cancel', resetConfirm: 'Reset',
     doneTitles: ['Excellent work! 🌸', 'Good effort! 頑張って', 'Keep practicing!'],
     doneSub: (c, t, p) => `${c} correct out of ${t} cards (${p}%)`,
+    doneAllAcquired: 'All words have been acquired!',
+    doneAllAcquiredSub: 'You have mastered this category perfectly. 完璧！',
   },
   de: {
     subtitle: 'Klicke auf die Karte, um die Antwort zu sehen',
@@ -841,6 +845,8 @@ const UI = {
     resetCancel: 'Abbrechen', resetConfirm: 'Zurücksetzen',
     doneTitles: ['Ausgezeichnet! 🌸', 'Gute Leistung! 頑張って', 'Weiter üben!'],
     doneSub: (c, t, p) => `${c} richtig von ${t} Karten (${p}%)`,
+    doneAllAcquired: 'Alle Wörter wurden erworben!',
+    doneAllAcquiredSub: 'Sie haben diese Kategorie perfekt gemeistert. 完璧！',
   },
   pt: {
     subtitle: 'Clique no cartão para revelar a resposta',
@@ -867,6 +873,8 @@ const UI = {
     resetCancel: 'Cancelar', resetConfirm: 'Reiniciar',
     doneTitles: ['Excelente trabalho! 🌸', 'Bom esforço! 頑張って', 'Continue praticando!'],
     doneSub: (c, t, p) => `${c} correto${c > 1 ? 's' : ''} de ${t} cartões (${p}%)`,
+    doneAllAcquired: 'Todas as palavras foram adquiridas!',
+    doneAllAcquiredSub: 'Você dominou perfeitamente esta categoria. 完璧！',
   },
   ja: {
     subtitle: 'カードをクリックして答えを確認しよう',
@@ -893,6 +901,8 @@ const UI = {
     resetCancel: 'キャンセル', resetConfirm: 'リセット',
     doneTitles: ['素晴らしい！🌸', 'よく頑張りました！頑張って', '練習を続けよう！'],
     doneSub: (c, t, p) => `${t}問中${c}問正解（${p}%）`,
+    doneAllAcquired: 'このカテゴリの単語をすべて習得しました！',
+    doneAllAcquiredSub: 'このカテゴリを完璧にマスターしました。完璧！',
   },
   ko: {
     subtitle: '카드를 클릭하여 답을 확인하세요',
@@ -919,6 +929,8 @@ const UI = {
     resetCancel: '취소', resetConfirm: '초기화',
     doneTitles: ['훌륭합니다! 🌸', '잘했어요! 頑張って', '계속 연습하세요!'],
     doneSub: (c, t, p) => `${t}문제 중 ${c}문제 정답 (${p}%)`,
+    doneAllAcquired: '이 카테고리의 모든 단어를 습득했습니다!',
+    doneAllAcquiredSub: '이 카테고리를 완벽히 마스터했습니다. 完璧！',
   },
 };
 
@@ -1344,14 +1356,29 @@ function updateProgressBar() {
 
 function showDone() {
   document.getElementById('screens').classList.add('finished');
-  const t   = UI[uiLang()];
-  // Les mots "acquis" comptent aussi comme réussis pour le score
-  const total   = deck.length;
-  const success = correct + sessionAcquired;
-  const pct     = total ? Math.round((success / total) * 100) : 0;
-  document.getElementById('doneTitle').textContent =
-    pct >= 80 ? t.doneTitles[0] : pct >= 50 ? t.doneTitles[1] : t.doneTitles[2];
-  document.getElementById('doneSub').textContent = t.doneSub(success, total, pct);
+  const t = UI[uiLang()];
+
+  // Cas spécial : tous les mots de la catégorie sont acquis (deck vide dès le départ)
+  const allAcquired = deck.length === 0
+    && !currentCat.startsWith('__')
+    && VOCAB[currentCat] && VOCAB[currentCat].length > 0;
+
+  document.getElementById('btnRestart').style.display = allAcquired ? 'none' : '';
+
+  if (allAcquired) {
+    document.getElementById('doneEmoji').textContent  = '⭐';
+    document.getElementById('doneTitle').textContent  = t.doneAllAcquired;
+    document.getElementById('doneSub').textContent    = t.doneAllAcquiredSub;
+  } else {
+    document.getElementById('doneEmoji').textContent  = '🎉';
+    // Les mots "acquis" comptent aussi comme réussis pour le score
+    const total   = deck.length;
+    const success = correct + sessionAcquired;
+    const pct     = total ? Math.round((success / total) * 100) : 0;
+    document.getElementById('doneTitle').textContent =
+      pct >= 80 ? t.doneTitles[0] : pct >= 50 ? t.doneTitles[1] : t.doneTitles[2];
+    document.getElementById('doneSub').textContent = t.doneSub(success, total, pct);
+  }
 }
 
 function restart() {
