@@ -431,6 +431,7 @@
 
   <word id="taberu" category="verbes">
     <kanji>食べる</kanji><kana>たべる</kana><romaji>Taberu</romaji>
+    <kanji_masu>食べます</kanji_masu><kana_masu>たべます</kana_masu><romaji_masu>Tabemasu</romaji_masu>
     <fr>Manger</fr><en>To eat</en><de>Essen</de><pt>Comer</pt><ko>먹다</ko>
     <example_jp>ラーメンを食べます。</example_jp>
     <example_fr>Je mange des rāmen.</example_fr><example_en>I eat ramen.</example_en>
@@ -439,6 +440,7 @@
 
   <word id="nomu" category="verbes">
     <kanji>飲む</kanji><kana>のむ</kana><romaji>Nomu</romaji>
+    <kanji_masu>飲みます</kanji_masu><kana_masu>のみます</kana_masu><romaji_masu>Nomimasu</romaji_masu>
     <fr>Boire</fr><en>To drink</en><de>Trinken</de><pt>Beber</pt><ko>마시다</ko>
     <example_jp>お茶を飲みます。</example_jp>
     <example_fr>Je bois du thé.</example_fr><example_en>I drink tea.</example_en>
@@ -447,6 +449,7 @@
 
   <word id="iku" category="verbes">
     <kanji>行く</kanji><kana>いく</kana><romaji>Iku</romaji>
+    <kanji_masu>行きます</kanji_masu><kana_masu>いきます</kana_masu><romaji_masu>Ikimasu</romaji_masu>
     <fr>Aller</fr><en>To go</en><de>Gehen</de><pt>Ir</pt><ko>가다</ko>
     <example_jp>東京に行きます。</example_jp>
     <example_fr>Je vais à Tokyo.</example_fr><example_en>I go to Tokyo.</example_en>
@@ -455,6 +458,7 @@
 
   <word id="miru" category="verbes">
     <kanji>見る</kanji><kana>みる</kana><romaji>Miru</romaji>
+    <kanji_masu>見ます</kanji_masu><kana_masu>みます</kana_masu><romaji_masu>Mimasu</romaji_masu>
     <fr>Voir / Regarder</fr><en>To see / To watch</en><de>Sehen / Schauen</de><pt>Ver / Assistir</pt><ko>보다</ko>
     <example_jp>映画を見ます。</example_jp>
     <example_fr>Je regarde un film.</example_fr><example_en>I watch a movie.</example_en>
@@ -952,40 +956,36 @@
        VERBES
        ════════════════════════════════════════════════════════ -->
 
-  <word id="ikimasu" category="verbes">
-    <kanji>行きます</kanji><kana>いきます</kana><romaji>Ikimasu</romaji>
-    <fr>Aller</fr><en>To go</en><de>Gehen</de><pt>Ir</pt><ko>갑니다</ko>
-    <example_jp>学校に行きます。</example_jp>
-    <example_fr>Je vais à l'école.</example_fr><example_en>I go to school.</example_en>
-    <example_de>Ich gehe zur Schule.</example_de><example_pt>Eu vou para a escola.</example_pt>
-  </word>
-
   <word id="arimasu" category="verbes">
-    <kanji>あります</kanji><kana>あります</kana><romaji>… ga arimasu</romaji>
-    <fr>Avoir / Il y a (qqch)</fr><en>To have / There is</en><de>Haben / Es gibt</de><pt>Ter / Há</pt><ko>있습니다 (사물)</ko>
+    <kanji>ある</kanji><kana>ある</kana><romaji>Aru</romaji>
+    <kanji_masu>あります</kanji_masu><kana_masu>あります</kana_masu><romaji_masu>Arimasu</romaji_masu>
+    <fr>Avoir / Il y a (qqch)</fr><en>To have / There is</en><de>Haben / Es gibt</de><pt>Ter / Há</pt><ko>있다 (사물)</ko>
     <example_jp>ペンがあります。</example_jp>
     <example_fr>J'ai un stylo. / Il y a un stylo.</example_fr><example_en>I have a pen. / There is a pen.</example_en>
     <example_de>Ich habe einen Stift. / Es gibt einen Stift.</example_de><example_pt>Eu tenho uma caneta. / Há uma caneta.</example_pt>
   </word>
 
   <word id="imasu" category="verbes">
-    <kanji>います</kanji><kana>います</kana><romaji>… ga imasu</romaji>
-    <fr>Être / Il y a (êtres vivants)</fr><en>To be / There is (animate)</en><de>Sein / Es gibt (Lebewesen)</de><pt>Estar / Há (seres vivos)</pt><ko>있습니다 (사람/동물)</ko>
+    <kanji>いる</kanji><kana>いる</kana><romaji>Iru</romaji>
+    <kanji_masu>います</kanji_masu><kana_masu>います</kana_masu><romaji_masu>Imasu</romaji_masu>
+    <fr>Être / Il y a (êtres vivants)</fr><en>To be / There is (animate)</en><de>Sein / Es gibt (Lebewesen)</de><pt>Estar / Há (seres vivos)</pt><ko>있다 (사람/동물)</ko>
     <example_jp>部屋に人がいます。</example_jp>
     <example_fr>Il y a quelqu'un dans la pièce.</example_fr><example_en>There is someone in the room.</example_en>
     <example_de>Es ist jemand im Zimmer.</example_de><example_pt>Há alguém no quarto.</example_pt>
   </word>
 
   <word id="suki_desu" category="verbes">
-    <kanji>好きです</kanji><kana>すきです</kana><romaji>… ga suki desu</romaji>
-    <fr>Aimer (j'aime qqch)</fr><en>To like</en><de>Mögen</de><pt>Gostar de</pt><ko>좋아합니다</ko>
+    <kanji>好きだ</kanji><kana>すきだ</kana><romaji>Suki da</romaji>
+    <kanji_masu>好きです</kanji_masu><kana_masu>すきです</kana_masu><romaji_masu>Suki desu</romaji_masu>
+    <fr>Aimer (j'aime qqch)</fr><en>To like</en><de>Mögen</de><pt>Gostar de</pt><ko>좋아하다</ko>
     <example_jp>音楽がすきです。</example_jp>
     <example_fr>J'aime la musique.</example_fr><example_en>I like music.</example_en>
     <example_de>Ich mag Musik.</example_de><example_pt>Eu gosto de música.</example_pt>
   </word>
 
   <word id="wakarimasu" category="verbes">
-    <kanji>分かります</kanji><kana>わかります</kana><romaji>Wakarimasu</romaji>
+    <kanji>分かる</kanji><kana>わかる</kana><romaji>Wakaru</romaji>
+    <kanji_masu>分かります</kanji_masu><kana_masu>わかります</kana_masu><romaji_masu>Wakarimasu</romaji_masu>
     <fr>Comprendre</fr><en>To understand</en><de>Verstehen</de><pt>Entender</pt><ko>이해합니다</ko>
     <example_jp>日本語がわかります。</example_jp>
     <example_fr>Je comprends le japonais.</example_fr><example_en>I understand Japanese.</example_en>
@@ -993,7 +993,8 @@
   </word>
 
   <word id="narimasu" category="verbes">
-    <kanji>なります</kanji><kana>なります</kana><romaji>Narimasu</romaji>
+    <kanji>なる</kanji><kana>なる</kana><romaji>Naru</romaji>
+    <kanji_masu>なります</kanji_masu><kana_masu>なります</kana_masu><romaji_masu>Narimasu</romaji_masu>
     <fr>Devenir</fr><en>To become</en><de>Werden</de><pt>Tornar-se</pt><ko>됩니다</ko>
     <example_jp>医者になりたいです。</example_jp>
     <example_fr>Je veux devenir médecin.</example_fr><example_en>I want to become a doctor.</example_en>
@@ -1001,7 +1002,8 @@
   </word>
 
   <word id="iimasu" category="verbes">
-    <kanji>言います</kanji><kana>いいます</kana><romaji>Iimasu</romaji>
+    <kanji>言う</kanji><kana>いう</kana><romaji>Iu</romaji>
+    <kanji_masu>言います</kanji_masu><kana_masu>いいます</kana_masu><romaji_masu>Iimasu</romaji_masu>
     <fr>Dire</fr><en>To say</en><de>Sagen</de><pt>Dizer</pt><ko>말합니다</ko>
     <example_jp>何と言いましたか？</example_jp>
     <example_fr>Qu'avez-vous dit ?</example_fr><example_en>What did you say?</example_en>
@@ -1009,7 +1011,8 @@
   </word>
 
   <word id="kikimasu" category="verbes">
-    <kanji>聞きます</kanji><kana>ききます</kana><romaji>Kikimasu</romaji>
+    <kanji>聞く</kanji><kana>きく</kana><romaji>Kiku</romaji>
+    <kanji_masu>聞きます</kanji_masu><kana_masu>ききます</kana_masu><romaji_masu>Kikimasu</romaji_masu>
     <fr>Écouter / Demander</fr><en>To listen / To ask</en><de>Zuhören / Fragen</de><pt>Ouvir / Perguntar</pt><ko>듣습니다 / 묻습니다</ko>
     <example_jp>音楽を聞きます。</example_jp>
     <example_fr>J'écoute de la musique.</example_fr><example_en>I listen to music.</example_en>
@@ -1017,7 +1020,8 @@
   </word>
 
   <word id="desu" category="verbes">
-    <kanji>です</kanji><kana>です</kana><romaji>Desu</romaji>
+    <kanji>だ</kanji><kana>だ</kana><romaji>Da</romaji>
+    <kanji_masu>です</kanji_masu><kana_masu>です</kana_masu><romaji_masu>Desu</romaji_masu>
     <fr>Être</fr><en>To be</en><de>Sein</de><pt>Ser / Estar</pt><ko>입니다</ko>
     <example_jp>私は学生です。</example_jp>
     <example_fr>Je suis étudiant(e).</example_fr><example_en>I am a student.</example_en>
@@ -1025,7 +1029,8 @@
   </word>
 
   <word id="shimasu" category="verbes">
-    <kanji>します</kanji><kana>します</kana><romaji>Shimasu</romaji>
+    <kanji>する</kanji><kana>する</kana><romaji>Suru</romaji>
+    <kanji_masu>します</kanji_masu><kana_masu>します</kana_masu><romaji_masu>Shimasu</romaji_masu>
     <fr>Faire</fr><en>To do</en><de>Machen</de><pt>Fazer</pt><ko>합니다</ko>
     <example_jp>宿題をします。</example_jp>
     <example_fr>Je fais mes devoirs.</example_fr><example_en>I do my homework.</example_en>
@@ -1033,7 +1038,8 @@
   </word>
 
   <word id="ja_arimasen" category="verbes">
-    <kanji>じゃありません</kanji><kana>じゃありません</kana><romaji>Ja arimasen</romaji>
+    <kanji>じゃない</kanji><kana>じゃない</kana><romaji>Ja nai</romaji>
+    <kanji_masu>じゃありません</kanji_masu><kana_masu>じゃありません</kana_masu><romaji_masu>Ja arimasen</romaji_masu>
     <fr>Ne pas être (négatif)</fr><en>Is not / Am not</en><de>Nicht sein</de><pt>Não ser / Não é</pt><ko>아닙니다</ko>
     <example_jp>私は先生じゃありません。</example_jp>
     <example_fr>Je ne suis pas professeur.</example_fr><example_en>I am not a teacher.</example_en>
@@ -1041,7 +1047,8 @@
   </word>
 
   <word id="omoimasu" category="verbes">
-    <kanji>思います</kanji><kana>おもいます</kana><romaji>Omoimasu</romaji>
+    <kanji>思う</kanji><kana>おもう</kana><romaji>Omou</romaji>
+    <kanji_masu>思います</kanji_masu><kana_masu>おもいます</kana_masu><romaji_masu>Omoimasu</romaji_masu>
     <fr>Penser</fr><en>To think</en><de>Denken</de><pt>Pensar</pt><ko>생각합니다</ko>
     <example_jp>いいと思います。</example_jp>
     <example_fr>Je pense que c'est bien.</example_fr><example_en>I think it's good.</example_en>
@@ -1049,23 +1056,17 @@
   </word>
 
   <word id="dekimasu" category="verbes">
-    <kanji>できます</kanji><kana>できます</kana><romaji>Dekimasu</romaji>
+    <kanji>できる</kanji><kana>できる</kana><romaji>Dekiru</romaji>
+    <kanji_masu>できます</kanji_masu><kana_masu>できます</kana_masu><romaji_masu>Dekimasu</romaji_masu>
     <fr>Pouvoir / Être capable de</fr><en>Can / To be able to</en><de>Können</de><pt>Poder / Conseguir</pt><ko>할 수 있습니다</ko>
     <example_jp>日本語が話せます。</example_jp>
     <example_fr>Je peux parler japonais.</example_fr><example_en>I can speak Japanese.</example_en>
     <example_de>Ich kann Japanisch sprechen.</example_de><example_pt>Eu consigo falar japonês.</example_pt>
   </word>
 
-  <word id="mimasu" category="verbes">
-    <kanji>見ます</kanji><kana>みます</kana><romaji>Mimasu</romaji>
-    <fr>Regarder / Voir</fr><en>To watch / To see</en><de>Schauen / Sehen</de><pt>Assistir / Ver</pt><ko>봅니다</ko>
-    <example_jp>テレビを見ます。</example_jp>
-    <example_fr>Je regarde la télévision.</example_fr><example_en>I watch television.</example_en>
-    <example_de>Ich schaue Fernsehen.</example_de><example_pt>Eu assisto televisão.</example_pt>
-  </word>
-
   <word id="shitteimasu" category="verbes">
-    <kanji>知っています</kanji><kana>しっています</kana><romaji>Shitteimasu</romaji>
+    <kanji>知っている</kanji><kana>しっている</kana><romaji>Shitte iru</romaji>
+    <kanji_masu>知っています</kanji_masu><kana_masu>しっています</kana_masu><romaji_masu>Shitteimasu</romaji_masu>
     <fr>Savoir / Connaître</fr><en>To know</en><de>Wissen / Kennen</de><pt>Saber / Conhecer</pt><ko>알고 있습니다</ko>
     <example_jp>その人を知っています。</example_jp>
     <example_fr>Je connais cette personne.</example_fr><example_en>I know that person.</example_en>
@@ -1073,7 +1074,8 @@
   </word>
 
   <word id="demasu" category="verbes">
-    <kanji>出ます</kanji><kana>でます</kana><romaji>Demasu</romaji>
+    <kanji>出る</kanji><kana>でる</kana><romaji>Deru</romaji>
+    <kanji_masu>出ます</kanji_masu><kana_masu>でます</kana_masu><romaji_masu>Demasu</romaji_masu>
     <fr>Sortir / Partir</fr><en>To go out / To leave</en><de>Herausgehen / Verlassen</de><pt>Sair</pt><ko>나갑니다</ko>
     <example_jp>七時に出ます。</example_jp>
     <example_fr>Je sors à sept heures.</example_fr><example_en>I leave at seven o'clock.</example_en>
@@ -1081,7 +1083,8 @@
   </word>
 
   <word id="mitsukemasu" category="verbes">
-    <kanji>見つけます</kanji><kana>みつけます</kana><romaji>Mitsukemasu</romaji>
+    <kanji>見つける</kanji><kana>みつける</kana><romaji>Mitsukeru</romaji>
+    <kanji_masu>見つけます</kanji_masu><kana_masu>みつけます</kana_masu><romaji_masu>Mitsukemasu</romaji_masu>
     <fr>Trouver</fr><en>To find</en><de>Finden</de><pt>Encontrar</pt><ko>찾습니다</ko>
     <example_jp>鍵を見つけました。</example_jp>
     <example_fr>J'ai trouvé la clé.</example_fr><example_en>I found the key.</example_en>
@@ -1089,7 +1092,8 @@
   </word>
 
   <word id="tsukaimasu" category="verbes">
-    <kanji>使います</kanji><kana>つかいます</kana><romaji>Tsukaimasu</romaji>
+    <kanji>使う</kanji><kana>つかう</kana><romaji>Tsukau</romaji>
+    <kanji_masu>使います</kanji_masu><kana_masu>つかいます</kana_masu><romaji_masu>Tsukaimasu</romaji_masu>
     <fr>Utiliser</fr><en>To use</en><de>Benutzen</de><pt>Usar</pt><ko>사용합니다</ko>
     <example_jp>毎日パソコンを使います。</example_jp>
     <example_fr>J'utilise l'ordinateur tous les jours.</example_fr><example_en>I use the computer every day.</example_en>
@@ -1097,7 +1101,8 @@
   </word>
 
   <word id="kimasu" category="verbes">
-    <kanji>来ます</kanji><kana>きます</kana><romaji>Kimasu</romaji>
+    <kanji>来る</kanji><kana>くる</kana><romaji>Kuru</romaji>
+    <kanji_masu>来ます</kanji_masu><kana_masu>きます</kana_masu><romaji_masu>Kimasu</romaji_masu>
     <fr>Venir</fr><en>To come</en><de>Kommen</de><pt>Vir</pt><ko>옵니다</ko>
     <example_jp>明日来ますか？</example_jp>
     <example_fr>Vous venez demain ?</example_fr><example_en>Are you coming tomorrow?</example_en>
@@ -1106,6 +1111,7 @@
 
   <word id="hanasu" category="verbes">
     <kanji>話す</kanji><kana>はなす</kana><romaji>Hanasu</romaji>
+    <kanji_masu>話します</kanji_masu><kana_masu>はなします</kana_masu><romaji_masu>Hanashimasu</romaji_masu>
     <fr>Parler</fr><en>To speak / To talk</en><de>Sprechen / Reden</de><pt>Falar</pt><ko>이야기합니다</ko>
     <example_jp>日本語で話せますか？</example_jp>
     <example_fr>Pouvez-vous parler en japonais ?</example_fr><example_en>Can you speak in Japanese?</example_en>
@@ -1114,6 +1120,7 @@
 
   <word id="kaku" category="verbes">
     <kanji>書く</kanji><kana>かく</kana><romaji>Kaku</romaji>
+    <kanji_masu>書きます</kanji_masu><kana_masu>かきます</kana_masu><romaji_masu>Kakimasu</romaji_masu>
     <fr>Écrire</fr><en>To write</en><de>Schreiben</de><pt>Escrever</pt><ko>씁니다</ko>
     <example_jp>手紙を書きます。</example_jp>
     <example_fr>J'écris une lettre.</example_fr><example_en>I write a letter.</example_en>
@@ -1122,6 +1129,7 @@
 
   <word id="yomu" category="verbes">
     <kanji>読む</kanji><kana>よむ</kana><romaji>Yomu</romaji>
+    <kanji_masu>読みます</kanji_masu><kana_masu>よみます</kana_masu><romaji_masu>Yomimasu</romaji_masu>
     <fr>Lire</fr><en>To read</en><de>Lesen</de><pt>Ler</pt><ko>읽습니다</ko>
     <example_jp>本を毎日読みます。</example_jp>
     <example_fr>Je lis un livre chaque jour.</example_fr><example_en>I read a book every day.</example_en>
@@ -1130,6 +1138,7 @@
 
   <word id="neru" category="verbes">
     <kanji>寝る</kanji><kana>ねる</kana><romaji>Neru</romaji>
+    <kanji_masu>寝ます</kanji_masu><kana_masu>ねます</kana_masu><romaji_masu>Nemasu</romaji_masu>
     <fr>Dormir / Se coucher</fr><en>To sleep / To go to bed</en><de>Schlafen / Ins Bett gehen</de><pt>Dormir / Deitar-se</pt><ko>잡니다</ko>
     <example_jp>何時に寝ますか？</example_jp>
     <example_fr>À quelle heure vous couchez-vous ?</example_fr><example_en>What time do you go to bed?</example_en>
@@ -1138,6 +1147,7 @@
 
   <word id="okiru" category="verbes">
     <kanji>起きる</kanji><kana>おきる</kana><romaji>Okiru</romaji>
+    <kanji_masu>起きます</kanji_masu><kana_masu>おきます</kana_masu><romaji_masu>Okimasu</romaji_masu>
     <fr>Se lever / Se réveiller</fr><en>To wake up / To get up</en><de>Aufwachen / Aufstehen</de><pt>Acordar / Levantar-se</pt><ko>일어납니다</ko>
     <example_jp>毎朝六時に起きます。</example_jp>
     <example_fr>Je me lève à six heures chaque matin.</example_fr><example_en>I wake up at six every morning.</example_en>
@@ -1146,6 +1156,7 @@
 
   <word id="asobu" category="verbes">
     <kanji>遊ぶ</kanji><kana>あそぶ</kana><romaji>Asobu</romaji>
+    <kanji_masu>遊びます</kanji_masu><kana_masu>あそびます</kana_masu><romaji_masu>Asobimasu</romaji_masu>
     <fr>Jouer / S'amuser</fr><en>To play / To have fun</en><de>Spielen / Sich vergnügen</de><pt>Brincar / Se divertir</pt><ko>놉니다</ko>
     <example_jp>友達と公園で遊びます。</example_jp>
     <example_fr>Je joue au parc avec des amis.</example_fr><example_en>I play at the park with friends.</example_en>
@@ -1154,6 +1165,7 @@
 
   <word id="kau" category="verbes">
     <kanji>買う</kanji><kana>かう</kana><romaji>Kau</romaji>
+    <kanji_masu>買います</kanji_masu><kana_masu>かいます</kana_masu><romaji_masu>Kaimasu</romaji_masu>
     <fr>Acheter</fr><en>To buy</en><de>Kaufen</de><pt>Comprar</pt><ko>삽니다</ko>
     <example_jp>スーパーで食べ物を買います。</example_jp>
     <example_fr>J'achète de la nourriture au supermarché.</example_fr><example_en>I buy food at the supermarket.</example_en>
@@ -1162,6 +1174,7 @@
 
   <word id="matsu" category="verbes">
     <kanji>待つ</kanji><kana>まつ</kana><romaji>Matsu</romaji>
+    <kanji_masu>待ちます</kanji_masu><kana_masu>まちます</kana_masu><romaji_masu>Machimasu</romaji_masu>
     <fr>Attendre</fr><en>To wait</en><de>Warten</de><pt>Esperar</pt><ko>기다립니다</ko>
     <example_jp>ここで待っていてください。</example_jp>
     <example_fr>Veuillez attendre ici.</example_fr><example_en>Please wait here.</example_en>
@@ -1169,7 +1182,8 @@
   </word>
 
   <word id="shimaimasu" category="verbes">
-    <kanji>仕舞います</kanji><kana>しまいます</kana><romaji>Shimaimasu</romaji>
+    <kanji>しまう</kanji><kana>しまう</kana><romaji>Shimau</romaji>
+    <kanji_masu>しまいます</kanji_masu><kana_masu>しまいます</kana_masu><romaji_masu>Shimaimasu</romaji_masu>
     <fr>Finir par faire / Ranger / (Faire par mégarde)</fr><en>To end up doing / To put away / To finish</en><de>Am Ende tun / Aufräumen / Fertigmachen</de><pt>Acabar fazendo / Guardar / Terminar</pt><ko>해버립니다</ko>
     <example_jp>また財布を忘れてしまいました。</example_jp>
     <example_fr>J'ai encore fini par oublier mon portefeuille.</example_fr><example_en>I ended up forgetting my wallet again.</example_en>
@@ -1177,7 +1191,8 @@
   </word>
 
   <word id="mochimasu" category="verbes">
-    <kanji>持ちます</kanji><kana>もちます</kana><romaji>Mochimasu</romaji>
+    <kanji>持つ</kanji><kana>もつ</kana><romaji>Motsu</romaji>
+    <kanji_masu>持ちます</kanji_masu><kana_masu>もちます</kana_masu><romaji_masu>Mochimasu</romaji_masu>
     <fr>Tenir / Porter / Avoir (sur soi)</fr><en>To hold / To carry / To have</en><de>Halten / Tragen / Haben</de><pt>Segurar / Carregar / Ter</pt><ko>들고 있습니다</ko>
     <example_jp>重いかばんを持っています。</example_jp>
     <example_fr>Je porte un sac lourd.</example_fr><example_en>I am carrying a heavy bag.</example_en>
@@ -1185,7 +1200,8 @@
   </word>
 
   <word id="kangaemasu" category="verbes">
-    <kanji>考えます</kanji><kana>かんがえます</kana><romaji>Kangaemasu</romaji>
+    <kanji>考える</kanji><kana>かんがえる</kana><romaji>Kangaeru</romaji>
+    <kanji_masu>考えます</kanji_masu><kana_masu>かんがえます</kana_masu><romaji_masu>Kangaemasu</romaji_masu>
     <fr>Penser / Réfléchir</fr><en>To think / To consider</en><de>Denken / Nachdenken</de><pt>Pensar / Refletir</pt><ko>생각합니다 (깊이)</ko>
     <example_jp>よく考えてから決めます。</example_jp>
     <example_fr>Je décide après avoir bien réfléchi.</example_fr><example_en>I decide after thinking carefully.</example_en>

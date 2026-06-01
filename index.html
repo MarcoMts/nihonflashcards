@@ -393,6 +393,7 @@
     .field-kanji  { font-size: 68px; line-height: 1; color: var(--text-primary); margin-bottom: 6px; }
     .field-kana   { font-size: 26px; color: var(--text-secondary); margin-bottom: 4px; }
     .field-romaji { font-size: 16px; color: var(--text-tertiary); font-style: italic; }
+    .field-masu   { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; opacity: 0.85; }
 
     /* Champs verso */
     .back-kana    { font-size: 22px; color: var(--text-secondary); margin-bottom: 4px; }
@@ -1303,9 +1304,12 @@ async function loadVocabulary() {
     const get = tag => word.querySelector(tag)?.textContent?.trim() || '';
     VOCAB[catId].push({
       id:       word.getAttribute('id'),
-      kanji:    get('kanji'),
-      kana:     get('kana'),
-      romaji:   get('romaji'),
+      kanji:      get('kanji'),
+      kana:       get('kana'),
+      romaji:     get('romaji'),
+      kanji_masu: get('kanji_masu'),
+      kana_masu:  get('kana_masu'),
+      romaji_masu:get('romaji_masu'),
       meanings: { fr: get('fr'), en: get('en'), de: get('de'), pt: get('pt'), ko: get('ko') },
       examples: { jp: get('example_jp'), fr: get('example_fr'), en: get('example_en'), de: get('example_de'), pt: get('example_pt'), ko: get('example_ko') },
     });
@@ -1909,9 +1913,9 @@ function showCard() {
     document.getElementById('jpModeFront').classList.remove('hidden');
     document.getElementById('langModeFront').classList.add('hidden');
     document.getElementById('frontTag').textContent    = catLabel;
-    document.getElementById('frontKanji').textContent  = c.kanji;
-    document.getElementById('frontKana').textContent   = c.kana;
-    document.getElementById('frontRomaji').textContent = c.romaji;
+    document.getElementById('frontKanji').textContent  = c.kanji  + (c.kanji_masu  ? ', ' + c.kanji_masu  : '');
+    document.getElementById('frontKana').textContent   = c.kana   + (c.kana_masu   ? ', ' + c.kana_masu   : '');
+    document.getElementById('frontRomaji').textContent = c.romaji + (c.romaji_masu ? ', ' + c.romaji_masu : '');
   } else {
     document.getElementById('jpModeFront').classList.add('hidden');
     document.getElementById('langModeFront').classList.remove('hidden');
@@ -1928,9 +1932,9 @@ function showCard() {
     document.getElementById('jpModeBack').classList.add('hidden');
     document.getElementById('langModeBack').classList.remove('hidden');
     document.getElementById('backTag').textContent      = '日本語';
-    document.getElementById('backKanjiJP').textContent  = c.kanji;
-    document.getElementById('backKanaJP').textContent   = c.kana;
-    document.getElementById('backRomajiJP').textContent = c.romaji;
+    document.getElementById('backKanjiJP').textContent  = c.kanji  + (c.kanji_masu  ? ', ' + c.kanji_masu  : '');
+    document.getElementById('backKanaJP').textContent   = c.kana   + (c.kana_masu   ? ', ' + c.kana_masu   : '');
+    document.getElementById('backRomajiJP').textContent = c.romaji + (c.romaji_masu ? ', ' + c.romaji_masu : '');
     const exSrc = (sourceLang !== 'jp' && c.examples[sourceLang]) ? '\n' + c.examples[sourceLang] : '';
     document.getElementById('backExampleJP').textContent = (c.examples.jp || '') + exSrc;
   } else {
