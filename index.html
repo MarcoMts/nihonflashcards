@@ -330,7 +330,7 @@
                   padding 0.28s ease, opacity 0.2s ease;
     }
     .options-panel.open {
-      max-height: 100px;
+      max-height: 220px;
       margin-bottom: 1.25rem;
       padding-top: 14px;
       padding-bottom: 14px;
@@ -646,6 +646,11 @@
       <div class="toggle-pill on" data-side="back" data-field="kana"   onclick="toggleField(this)"><span class="dot"></span>Kana</div>
       <div class="toggle-pill on" data-side="back" data-field="romaji" onclick="toggleField(this)"><span class="dot"></span>Romaji</div>
     </div>
+    <div class="options-divider" id="koDivider"></div>
+    <span class="options-label" id="koLabel">한국어</span>
+    <div class="toggle-group" id="koToggles">
+      <div class="toggle-pill on" data-side="ko" data-field="romaja" onclick="toggleField(this)"><span class="dot"></span>Romaja</div>
+    </div>
   </div>
 
   <!-- ── Contenu principal ── -->
@@ -671,6 +676,7 @@
             </div>
             <div id="langModeFront" class="hidden">
               <div class="lang-meaning" id="frontMeaning"></div>
+              <div class="back-romaji hidden" id="frontRomaja"></div>
               <div class="back-example" id="frontExampleLang"></div>
             </div>
           </div>
@@ -682,6 +688,7 @@
               <div class="back-kana"    id="backKana"></div>
               <div class="back-romaji"  id="backRomaji"></div>
               <div class="back-meaning" id="backMeaning"></div>
+              <div class="back-romaji hidden" id="backRomaja"></div>
               <div class="back-example" id="backExample"></div>
             </div>
             <div id="langModeBack" class="hidden">
@@ -1019,12 +1026,13 @@ function progressKey(wordId) { return `${targetLang}:${wordId}`; }
 const show = {
   front: { kanji: true, kana: true, romaji: true },
   back:  { kana: true, romaji: true },
+  ko:    { romaja: true },
 };
 
 // ── Sauvegarde des préférences d'affichage ────────────────────────────────────
 function saveSettings() {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-    show:   { front: { ...show.front }, back: { ...show.back } },
+    show:   { front: { ...show.front }, back: { ...show.back }, ko: { ...show.ko } },
     source: sourceLang,
     target: targetLang,
   }));
@@ -1036,6 +1044,7 @@ function loadSettings() {
     if (!saved) return;
     if (saved.show?.front) Object.assign(show.front, saved.show.front);
     if (saved.show?.back)  Object.assign(show.back,  saved.show.back);
+    if (saved.show?.ko)    Object.assign(show.ko,    saved.show.ko);
     const allCodes = LANGS.map(l => l.code);
     if (saved.source && allCodes.includes(saved.source)) sourceLang = saved.source;
     if (saved.target && allCodes.includes(saved.target)) targetLang = saved.target;
@@ -1203,26 +1212,39 @@ function updateOptionsPanel() {
   const backToggles = document.getElementById('backToggles');
   const frontToggles= document.getElementById('frontToggles');
   const jpInvolved  = (sourceLang === 'jp' || targetLang === 'jp');
-  // Masquer tout le panneau si aucun JP impliqué
-  if (!jpInvolved) {
+  const koInvolved  = (sourceLang === 'ko' || targetLang === 'ko');
+
+  // Masquer tout le panneau si ni JP ni KO n'est impliqué
+  if (!jpInvolved && !koInvolved) {
     document.getElementById('optionsPanel').classList.remove('open');
-    return;
   }
-  if (sourceLang === 'jp') {
-    rectoLabel.textContent     = t.optRecto;
-    frontToggles.style.display = '';
-    versoDivider.style.display = targetLang !== 'jp' ? '' : 'none';
-    versoLabel.textContent     = t.optVerso;
-    versoLabel.style.display   = targetLang !== 'jp' ? '' : 'none';
-    backToggles.style.display  = targetLang !== 'jp' ? '' : 'none';
+
+  // ── Section japonais ──
+  rectoLabel.style.display   = jpInvolved ? '' : 'none';
+  frontToggles.style.display = jpInvolved ? '' : 'none';
+  if (jpInvolved) {
+    if (sourceLang === 'jp') {
+      rectoLabel.textContent     = t.optRecto;
+      versoDivider.style.display = targetLang !== 'jp' ? '' : 'none';
+      versoLabel.textContent     = t.optVerso;
+      versoLabel.style.display   = targetLang !== 'jp' ? '' : 'none';
+      backToggles.style.display  = targetLang !== 'jp' ? '' : 'none';
+    } else {
+      rectoLabel.textContent     = t.optVerso + ' JP';
+      versoDivider.style.display = 'none';
+      versoLabel.style.display   = 'none';
+      backToggles.style.display  = 'none';
+    }
   } else {
-    // Source non-JP, cible JP : seuls les toggles du verso JP sont utiles
-    rectoLabel.textContent     = t.optVerso + ' JP';
-    frontToggles.style.display = '';
     versoDivider.style.display = 'none';
     versoLabel.style.display   = 'none';
     backToggles.style.display  = 'none';
   }
+
+  // ── Section coréen ──
+  document.getElementById('koDivider').style.display = (koInvolved && jpInvolved) ? '' : 'none';
+  document.getElementById('koLabel').style.display   = koInvolved ? '' : 'none';
+  document.getElementById('koToggles').style.display = koInvolved ? '' : 'none';
 }
 
 function toggleField(pill) {
@@ -1251,14 +1273,41 @@ function applyVisibility() {
     setVis('backKanaJP',   show.front.kana);
     setVis('backRomajiJP', show.front.romaji);
   }
-  // Panel de réglages : visible seulement si JP impliqué
-  const jpInvolved = (sourceLang === 'jp' || targetLang === 'jp');
+  // ── Romaja coréen ──
+  setVis('frontRomaja', sourceLang === 'ko' && show.ko.romaja);
+  setVis('backRomaja',  targetLang === 'ko' && show.ko.romaja);
+
+  // Bouton paramètres : visible si JP ou KO impliqué
+  const jpInvolved  = (sourceLang === 'jp' || targetLang === 'jp');
+  const koInvolved  = (sourceLang === 'ko' || targetLang === 'ko');
   const settingsBtn = document.getElementById('settingsBtn');
-  if (settingsBtn) settingsBtn.style.visibility = jpInvolved ? '' : 'hidden';
+  if (settingsBtn) settingsBtn.style.visibility = (jpInvolved || koInvolved) ? '' : 'hidden';
 }
 
 function setVis(id, visible) {
   document.getElementById(id).classList.toggle('hidden', !visible);
+}
+
+// ── Translittération Hangul → Romaja (Romanisation Révisée) ──────────────────
+function hangulToRomaja(str) {
+  if (!str) return '';
+  const INIT  = ['g','kk','n','d','dd','r','m','b','bb','s','ss','','j','jj','ch','k','t','p','h'];
+  const VOWEL = ['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i'];
+  const FINAL = ['','k','k','k','n','n','n','t','l','k','m','l','l','l','p','l','m','p','p','t','t','ng','t','t','k','t','p','t'];
+  let out = '';
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+    if (code >= 0xAC00 && code <= 0xD7A3) {
+      const n  = code - 0xAC00;
+      const fi = n % 28;
+      const vi = ((n - fi) / 28) % 21;
+      const ii = Math.floor(n / 28 / 21);
+      out += INIT[ii] + VOWEL[vi] + FINAL[fi];
+    } else {
+      out += str[i];
+    }
+  }
+  return out;
 }
 
 // ── Barre de contrôle : source → cible ────────────────────────────────────────
@@ -1371,6 +1420,7 @@ function showCard() {
     const srcName = LANGS.find(l => l.code === sourceLang)?.name || sourceLang;
     document.getElementById('frontTag').textContent         = srcName;
     document.getElementById('frontMeaning').textContent     = c.meanings[sourceLang] || '—';
+    document.getElementById('frontRomaja').textContent      = hangulToRomaja(c.meanings['ko'] || '');
     document.getElementById('frontExampleLang').textContent = c.examples[sourceLang] || '';
   }
 
@@ -1396,6 +1446,7 @@ function showCard() {
     setVis('backKana',   showAids);
     setVis('backRomaji', showAids);
     document.getElementById('backMeaning').textContent = c.meanings[targetLang] || '—';
+    document.getElementById('backRomaja').textContent  = hangulToRomaja(c.meanings['ko'] || '');
     const exJP  = (sourceLang === 'jp' && c.examples.jp)         ? c.examples.jp + '\n'          : '';
     const exTgt = c.examples[targetLang] || '';
     document.getElementById('backExample').textContent = exJP + exTgt;
