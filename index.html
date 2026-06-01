@@ -164,9 +164,23 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 0.75rem;
       flex-wrap: wrap;
       row-gap: 6px;
+      /* collapsible */
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-bottom: 0;
+      transition: max-height 0.28s ease, margin-bottom 0.28s ease, opacity 0.2s ease;
+    }
+    .control-bar.open {
+      max-height: 60px;
+      margin-bottom: 0.75rem;
+      opacity: 1;
+    }
+    @media (max-width: 520px) {
+      .control-bar { flex-direction: column; align-items: center; }
+      .control-bar.open { max-height: 160px; }
     }
     .ctrl-group {
       display: flex;
@@ -588,6 +602,9 @@
       <button class="hdr-btn" id="settingsBtn" onclick="toggleSettings()" title="Options d'affichage">
         <i class="ti ti-adjustments-horizontal"></i>
       </button>
+      <button class="hdr-btn" id="langBtn" onclick="toggleLangBar()" title="Langues">
+        <i class="ti ti-language"></i>
+      </button>
       <button class="hdr-btn" id="statsBtn" onclick="openStats()" title="Statistiques">
         <i class="ti ti-chart-bar"></i>
       </button>
@@ -601,7 +618,7 @@
   </div>
 
   <!-- ── Barre de contrôle : origine → cible ── -->
-  <div class="control-bar">
+  <div class="control-bar" id="langBar">
     <div class="ctrl-group" id="targetGroup"></div>
     <button class="ctrl-swap-btn" onclick="swapLangs()" title="Inverser les langues"><i class="ti ti-arrows-exchange"></i></button>
     <div class="ctrl-group" id="sourceGroup"></div>
@@ -829,6 +846,7 @@ const UI = {
     noProgress: 'Commencez à réviser pour voir vos statistiques.',
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
     consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
+    langBtn: 'Langues',
     themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01',
     settingsTitle: "Options d'affichage",
     resetTitle: 'Réinitialiser la progression',
@@ -857,6 +875,7 @@ const UI = {
     noProgress: 'Start studying to see your statistics.',
     consentMsg: '💾 Save your progress between sessions?',
     consentAccept: 'Yes, save', consentReject: 'No thanks',
+    langBtn: 'Languages',
     themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode',
     settingsTitle: 'Display options',
     resetTitle: 'Reset progress',
@@ -885,6 +904,7 @@ const UI = {
     noProgress: 'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
     consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
+    langBtn: 'Sprachen',
     themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design',
     settingsTitle: 'Anzeigeoptionen',
     resetTitle: 'Fortschritt zurücksetzen',
@@ -913,6 +933,7 @@ const UI = {
     noProgress: 'Comece a estudar para ver suas estatísticas.',
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
     consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
+    langBtn: 'Idiomas',
     themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01',
     settingsTitle: 'Opções de exibição',
     resetTitle: 'Reiniciar progresso',
@@ -941,6 +962,7 @@ const UI = {
     noProgress: '学習を始めると統計が表示されます。',
     consentMsg: '💾 学習記録を保存しますか？',
     consentAccept: '保存する', consentReject: 'いいえ',
+    langBtn: '言語',
     themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード',
     settingsTitle: '表示オプション',
     resetTitle: '進捗をリセット',
@@ -969,6 +991,7 @@ const UI = {
     noProgress: '학습을 시작하면 통계가 표시됩니다.',
     consentMsg: '💾 세션 간 진도를 저장하시겠습니까?',
     consentAccept: '네, 저장합니다', consentReject: '아니요',
+    langBtn: '언어',
     themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드',
     settingsTitle: '표시 옵션',
     resetTitle: '진도 초기화',
@@ -1069,6 +1092,14 @@ function updateThemeBtn() {
   btn.title     = titles[cur] || '';
 }
 
+// ── Barre langues (collapsible) ───────────────────────────────────────────────
+function toggleLangBar() {
+  const bar = document.getElementById('langBar');
+  const btn = document.getElementById('langBtn');
+  const open = bar.classList.toggle('open');
+  btn.classList.toggle('active', open);
+}
+
 // ── Options panel (collapsible) ───────────────────────────────────────────────
 function toggleSettings() {
   const panel = document.getElementById('optionsPanel');
@@ -1148,6 +1179,7 @@ function updateUI() {
   document.getElementById('statsTitle').textContent    = t.statsTitle;
   document.getElementById('infoBtn').title             = t.legalTitle;
   document.getElementById('statsBtn').title            = t.statsTitle;
+  document.getElementById('langBtn').title             = t.langBtn;
   document.getElementById('settingsBtn').title         = t.settingsTitle;
   document.getElementById('statsResetBtnLabel').textContent = t.resetTitle;
   document.getElementById('resetConfirmTitle').textContent = t.resetConfirmTitle;
