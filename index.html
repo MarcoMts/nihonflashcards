@@ -454,6 +454,55 @@
     .app-screens.finished .done-screen  { display: block; }
     .app-screens:not(.finished) .done-screen { display: none; }
 
+    /* ── Formulaire ajout de mot ── */
+    .aw-group  { margin-bottom: 1rem; }
+    .aw-label  { display:block; font-size:12px; font-weight:500; color:var(--text-secondary); margin-bottom:6px; }
+    .aw-row    { display:flex; gap:8px; }
+    .aw-select {
+      width:64px; flex-shrink:0; padding:8px 4px;
+      border:1px solid var(--border-medium); border-radius:var(--radius-sm);
+      background:var(--bg-secondary); color:var(--text-primary);
+      font-size:14px; font-weight:600; text-align:center; cursor:pointer;
+      appearance:none; -webkit-appearance:none;
+    }
+    .aw-input {
+      flex:1; padding:8px 12px;
+      border:1px solid var(--border-medium); border-radius:var(--radius-sm);
+      background:var(--bg-secondary); color:var(--text-primary);
+      font-size:14px; outline:none; font-family:inherit;
+    }
+    .aw-input:focus { border-color:var(--accent); }
+    .aw-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:1.25rem; }
+    .aw-cancel {
+      padding:9px 20px; border:1px solid var(--border-medium); border-radius:var(--radius-md);
+      background:none; color:var(--text-secondary); font-size:14px; cursor:pointer;
+    }
+    .aw-submit {
+      padding:9px 22px; border:none; border-radius:var(--radius-md);
+      background:var(--accent); color:#fff; font-size:14px; font-weight:500; cursor:pointer;
+      transition:opacity 0.15s;
+    }
+    .aw-submit:hover { opacity:0.85; }
+    .aw-error { font-size:12px; color:#e05418; margin-top:6px; min-height:16px; }
+    .aw-divider { border:none; border-top:0.5px solid var(--border-light); margin:1.1rem 0 0.9rem; }
+    .aw-list-title { font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:8px; }
+    .aw-list-scroll { max-height:200px; overflow-y:auto; }
+    .aw-item {
+      display:flex; align-items:center; gap:6px;
+      padding:7px 0; border-bottom:0.5px solid var(--border-light);
+    }
+    .aw-item:last-child { border-bottom:none; }
+    .aw-item-text { flex:1; font-size:13px; color:var(--text-primary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .aw-item-lbl { font-size:10px; font-weight:700; color:var(--text-tertiary); }
+    .aw-item-btn {
+      flex-shrink:0; width:28px; height:28px; border:none; background:none;
+      color:var(--text-tertiary); cursor:pointer; border-radius:var(--radius-sm);
+      display:flex; align-items:center; justify-content:center; transition:background 0.15s,color 0.15s;
+    }
+    .aw-item-btn:hover { background:var(--bg-tertiary); color:var(--text-primary); }
+    .aw-item-btn.aw-del:hover { color:var(--wrong-color); background:var(--wrong-bg); }
+    .aw-item-btn.aw-editing { color:var(--accent); }
+
     /* ── Modales ── */
     .modal-backdrop {
       position: fixed; inset: 0;
@@ -599,6 +648,9 @@
     <h1>Flashcards</h1>
     <p id="headerSub">Cliquez sur la carte pour révéler la réponse</p>
     <div class="header-actions">
+      <button class="hdr-btn" id="addWordBtn" onclick="openAddWord()" title="Ajouter un mot">
+        <i class="ti ti-plus"></i>
+      </button>
       <button class="hdr-btn" id="settingsBtn" onclick="toggleSettings()" title="Options d'affichage">
         <i class="ti ti-adjustments-horizontal"></i>
       </button>
@@ -760,6 +812,43 @@
     </div>
   </div>
 
+  <!-- ── Modale ajout de mot ── -->
+  <div class="modal-backdrop" id="addWordModal" onclick="closeAddWordBackdrop(event)">
+    <div class="modal-box" style="max-width:380px">
+      <div class="modal-header">
+        <span class="modal-title" id="addWordModalTitle">Ajouter un mot</span>
+        <button class="modal-close" onclick="closeAddWord()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="aw-group">
+          <label class="aw-label" id="addWordRectoLabel">Recto</label>
+          <div class="aw-row">
+            <select class="aw-select" id="addWordSrcLang"></select>
+            <input  class="aw-input"  id="addWordSrcText" type="text">
+          </div>
+        </div>
+        <div class="aw-group">
+          <label class="aw-label" id="addWordVersoLabel">Verso</label>
+          <div class="aw-row">
+            <select class="aw-select" id="addWordTgtLang"></select>
+            <input  class="aw-input"  id="addWordTgtText" type="text">
+          </div>
+        </div>
+        <div class="aw-error" id="addWordError"></div>
+        <div class="aw-actions">
+          <button class="aw-cancel" id="addWordCancelBtn" onclick="closeAddWord()">Annuler</button>
+          <button class="aw-submit" id="addWordSubmitBtn" onclick="submitAddWord()">Ajouter</button>
+        </div>
+        <!-- ── Liste des mots personnalisés ── -->
+        <div id="awListSection" style="display:none">
+          <hr class="aw-divider">
+          <div class="aw-list-title" id="awListTitle">Mots ajoutés</div>
+          <div class="aw-list-scroll" id="awListScroll"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Modale mentions légales ── -->
   <div class="modal-backdrop" id="legalModal" onclick="closeLegalBackdrop(event)">
     <div class="modal-box">
@@ -811,6 +900,7 @@
 // ── Globals ───────────────────────────────────────────────────────────────────
 let VOCAB = {}, CATEGORIES = {};
 let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0, sessionAcquired = 0;
+let editingWordId = null;
 let currentCat  = '';
 let sourceLang  = 'jp';  // langue affichée au recto (ce qu'on connaît)
 let targetLang  = 'fr';  // langue affichée au verso (ce qu'on apprend)
@@ -821,12 +911,13 @@ const STORAGE_KEY  = 'nihon_progress';
 const CONSENT_KEY  = 'nihon_consent';
 const THEME_KEY    = 'nihon_theme';
 const SETTINGS_KEY = 'nihon_settings';
+const CUSTOM_KEY   = 'nihon_custom';
 let progress    = {};
 let saveEnabled = false;
 
 // ── Langues disponibles ───────────────────────────────────────────────────────
 const LANGS = [
-  { code: 'jp', label: '🇯🇵', name: 'Japonais'  },
+  { code: 'jp', label: 'JP',  name: 'Japonais'  },
   { code: 'fr', label: 'FR',  name: 'Français'  },
   { code: 'en', label: 'EN',  name: 'English'   },
   { code: 'de', label: 'DE',  name: 'Deutsch'   },
@@ -854,6 +945,12 @@ const UI = {
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
     consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
     langBtn: 'Langues',
+    catCustom: 'Personnalisé',
+    addWordTitle: 'Ajouter un mot', addWordRecto: 'Recto', addWordVerso: 'Verso',
+    addWordAdd: 'Ajouter', addWordModify: 'Modifier', addWordPlaceholder: 'Saisir…',
+    addWordListTitle: 'Mots ajoutés',
+    addWordErrEmpty: 'Les deux champs sont obligatoires.',
+    addWordErrSame: 'Les deux langues doivent être différentes.',
     themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01',
     settingsTitle: "Options d'affichage",
     resetTitle: 'Réinitialiser la progression',
@@ -883,6 +980,12 @@ const UI = {
     consentMsg: '💾 Save your progress between sessions?',
     consentAccept: 'Yes, save', consentReject: 'No thanks',
     langBtn: 'Languages',
+    catCustom: 'Custom',
+    addWordTitle: 'Add a word', addWordRecto: 'Front', addWordVerso: 'Back',
+    addWordAdd: 'Add', addWordModify: 'Update', addWordPlaceholder: 'Enter…',
+    addWordListTitle: 'Added words',
+    addWordErrEmpty: 'Both fields are required.',
+    addWordErrSame: 'The two languages must be different.',
     themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode',
     settingsTitle: 'Display options',
     resetTitle: 'Reset progress',
@@ -912,6 +1015,12 @@ const UI = {
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
     consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
     langBtn: 'Sprachen',
+    catCustom: 'Benutzerdefiniert',
+    addWordTitle: 'Wort hinzufügen', addWordRecto: 'Vorderseite', addWordVerso: 'Rückseite',
+    addWordAdd: 'Hinzufügen', addWordModify: 'Aktualisieren', addWordPlaceholder: 'Eingeben…',
+    addWordListTitle: 'Hinzugefügte Wörter',
+    addWordErrEmpty: 'Beide Felder sind erforderlich.',
+    addWordErrSame: 'Die zwei Sprachen müssen unterschiedlich sein.',
     themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design',
     settingsTitle: 'Anzeigeoptionen',
     resetTitle: 'Fortschritt zurücksetzen',
@@ -941,6 +1050,12 @@ const UI = {
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
     consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
     langBtn: 'Idiomas',
+    catCustom: 'Personalizado',
+    addWordTitle: 'Adicionar palavra', addWordRecto: 'Frente', addWordVerso: 'Verso',
+    addWordAdd: 'Adicionar', addWordModify: 'Atualizar', addWordPlaceholder: 'Digitar…',
+    addWordListTitle: 'Palavras adicionadas',
+    addWordErrEmpty: 'Os dois campos são obrigatórios.',
+    addWordErrSame: 'Os dois idiomas devem ser diferentes.',
     themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01',
     settingsTitle: 'Opções de exibição',
     resetTitle: 'Reiniciar progresso',
@@ -970,6 +1085,12 @@ const UI = {
     consentMsg: '💾 学習記録を保存しますか？',
     consentAccept: '保存する', consentReject: 'いいえ',
     langBtn: '言語',
+    catCustom: 'カスタム',
+    addWordTitle: '単語を追加', addWordRecto: '表面', addWordVerso: '裏面',
+    addWordAdd: '追加', addWordModify: '更新', addWordPlaceholder: '入力…',
+    addWordListTitle: '追加された単語',
+    addWordErrEmpty: '両方のフィールドが必要です。',
+    addWordErrSame: '2つの言語は異なる必要があります。',
     themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード',
     settingsTitle: '表示オプション',
     resetTitle: '進捗をリセット',
@@ -999,6 +1120,12 @@ const UI = {
     consentMsg: '💾 세션 간 진도를 저장하시겠습니까?',
     consentAccept: '네, 저장합니다', consentReject: '아니요',
     langBtn: '언어',
+    catCustom: '사용자 정의',
+    addWordTitle: '단어 추가', addWordRecto: '앞면', addWordVerso: '뒷면',
+    addWordAdd: '추가', addWordModify: '수정', addWordPlaceholder: '입력…',
+    addWordListTitle: '추가된 단어',
+    addWordErrEmpty: '두 필드 모두 필수입니다.',
+    addWordErrSame: '두 언어는 달라야 합니다.',
     themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드',
     settingsTitle: '표시 옵션',
     resetTitle: '진도 초기화',
@@ -1288,6 +1415,183 @@ function setVis(id, visible) {
   document.getElementById(id).classList.toggle('hidden', !visible);
 }
 
+// ── Mots personnalisés ────────────────────────────────────────────────────────
+function loadCustomWords() {
+  CATEGORIES['custom'] = {
+    fr: 'Personnalisé', en: 'Custom', de: 'Benutzerdefiniert',
+    pt: 'Personalizado', ko: '사용자 정의', ja: 'カスタム', jp: 'カスタム'
+  };
+  try {
+    VOCAB['custom'] = JSON.parse(localStorage.getItem(CUSTOM_KEY) || '[]');
+  } catch(e) { VOCAB['custom'] = []; }
+}
+
+function saveCustomWords() {
+  localStorage.setItem(CUSTOM_KEY, JSON.stringify(VOCAB['custom'] || []));
+}
+
+function openAddWord() {
+  const t = UI[uiLang()];
+  document.getElementById('addWordModalTitle').textContent = t.addWordTitle;
+  document.getElementById('addWordRectoLabel').textContent = t.addWordRecto;
+  document.getElementById('addWordVersoLabel').textContent = t.addWordVerso;
+  document.getElementById('addWordCancelBtn').textContent  = t.resetCancel;
+  document.getElementById('addWordSubmitBtn').textContent  = t.addWordAdd;
+  document.getElementById('addWordSrcText').placeholder   = t.addWordPlaceholder;
+  document.getElementById('addWordTgtText').placeholder   = t.addWordPlaceholder;
+  document.getElementById('addWordError').textContent     = '';
+  document.getElementById('addWordSrcText').value = '';
+  document.getElementById('addWordTgtText').value = '';
+  // Remplir les selects avec les langues disponibles
+  ['addWordSrcLang','addWordTgtLang'].forEach((id, i) => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = '';
+    LANGS.forEach(lang => {
+      const opt = document.createElement('option');
+      opt.value = lang.code;
+      opt.textContent = lang.label;
+      sel.appendChild(opt);
+    });
+    sel.value = i === 0 ? sourceLang : targetLang;
+  });
+  // Réinitialiser le mode édition
+  editingWordId = null;
+  renderCustomWordList();
+  document.getElementById('addWordModal').classList.add('open');
+  setTimeout(() => document.getElementById('addWordSrcText').focus(), 150);
+}
+
+function closeAddWord() {
+  document.getElementById('addWordModal').classList.remove('open');
+}
+function closeAddWordBackdrop(e) {
+  if (e.target === document.getElementById('addWordModal')) closeAddWord();
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function getWordDisplay(w) {
+  if (w.srcLang && w.tgtLang) {
+    return {
+      front:    w.srcLang === 'jp' ? w.kanji : (w.meanings[w.srcLang] || '—'),
+      back:     w.tgtLang === 'jp' ? w.kanji : (w.meanings[w.tgtLang] || '—'),
+      srcLabel: LANGS.find(l => l.code === w.srcLang)?.label || w.srcLang,
+      tgtLabel: LANGS.find(l => l.code === w.tgtLang)?.label || w.tgtLang,
+    };
+  }
+  // Fallback pour anciens mots sans srcLang/tgtLang
+  const pairs = [];
+  if (w.kanji) pairs.push({ label:'JP', text: w.kanji });
+  Object.entries(w.meanings||{}).forEach(([lg,v]) => {
+    if (v) pairs.push({ label: LANGS.find(l=>l.code===lg)?.label||lg, text: v });
+  });
+  return { front: pairs[0]?.text||'—', back: pairs[1]?.text||'—',
+           srcLabel: pairs[0]?.label||'?', tgtLabel: pairs[1]?.label||'?' };
+}
+
+function renderCustomWordList() {
+  const words   = VOCAB['custom'] || [];
+  const section = document.getElementById('awListSection');
+  const scroll  = document.getElementById('awListScroll');
+  const titleEl = document.getElementById('awListTitle');
+  const t       = UI[uiLang()];
+  if (!words.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  titleEl.textContent   = t.addWordListTitle + ' (' + words.length + ')';
+  scroll.innerHTML = words.map(w => {
+    const d   = getWordDisplay(w);
+    const isE = editingWordId === w.id;
+    return `<div class="aw-item" id="awi_${w.id}">
+      <div class="aw-item-text">
+        <span class="aw-item-lbl">${escHtml(d.srcLabel)}</span> ${escHtml(d.front)}
+        &nbsp;→&nbsp;
+        <span class="aw-item-lbl">${escHtml(d.tgtLabel)}</span> ${escHtml(d.back)}
+      </div>
+      <button class="aw-item-btn${isE?' aw-editing':''}" onclick="editCustomWord('${w.id}')" title="Modifier"><i class="ti ti-pencil"></i></button>
+      <button class="aw-item-btn aw-del" onclick="deleteCustomWord('${w.id}')" title="Supprimer"><i class="ti ti-trash"></i></button>
+    </div>`;
+  }).join('');
+}
+
+function editCustomWord(id) {
+  const word = (VOCAB['custom']||[]).find(w => w.id === id);
+  if (!word) return;
+  const d = getWordDisplay(word);
+  editingWordId = id;
+  document.getElementById('addWordSrcLang').value = word.srcLang || 'jp';
+  document.getElementById('addWordSrcText').value = d.front !== '—' ? d.front : '';
+  document.getElementById('addWordTgtLang').value = word.tgtLang || 'fr';
+  document.getElementById('addWordTgtText').value = d.back  !== '—' ? d.back  : '';
+  document.getElementById('addWordError').textContent = '';
+  document.getElementById('addWordSubmitBtn').textContent = UI[uiLang()].addWordModify;
+  renderCustomWordList();
+  document.getElementById('addWordSrcText').focus();
+}
+
+function deleteCustomWord(id) {
+  VOCAB['custom'] = (VOCAB['custom']||[]).filter(w => w.id !== id);
+  saveCustomWords();
+  if (editingWordId === id) {
+    editingWordId = null;
+    document.getElementById('addWordSrcText').value = '';
+    document.getElementById('addWordTgtText').value = '';
+    document.getElementById('addWordSubmitBtn').textContent = UI[uiLang()].addWordAdd;
+  }
+  renderCustomWordList();
+  buildCatBar();
+  if (currentCat === 'custom') {
+    buildDeck('custom');
+    document.getElementById('screens').classList.remove('finished');
+    showCard();
+  }
+}
+
+function submitAddWord() {
+  const t       = UI[uiLang()];
+  const srcLang = document.getElementById('addWordSrcLang').value;
+  const tgtLang = document.getElementById('addWordTgtLang').value;
+  const srcText = document.getElementById('addWordSrcText').value.trim();
+  const tgtText = document.getElementById('addWordTgtText').value.trim();
+  const errEl   = document.getElementById('addWordError');
+
+  if (!srcText || !tgtText) { errEl.textContent = t.addWordErrEmpty; return; }
+  if (srcLang === tgtLang)  { errEl.textContent = t.addWordErrSame;  return; }
+  errEl.textContent = '';
+
+  const applyFields = (w) => {
+    w.srcLang  = srcLang; w.tgtLang = tgtLang;
+    w.kanji = ''; w.kana = ''; w.romaji = '';
+    w.meanings = { fr:'', en:'', de:'', pt:'', ko:'' };
+    w.examples = {};
+    if (srcLang === 'jp') w.kanji = srcText; else w.meanings[srcLang] = srcText;
+    if (tgtLang === 'jp') w.kanji = tgtText; else w.meanings[tgtLang] = tgtText;
+  };
+
+  if (editingWordId) {
+    const word = (VOCAB['custom']||[]).find(w => w.id === editingWordId);
+    if (word) applyFields(word);
+    editingWordId = null;
+    document.getElementById('addWordSubmitBtn').textContent = t.addWordAdd;
+  } else {
+    const word = { id: 'custom_' + Date.now() + '_' + Math.floor(Math.random()*1000) };
+    applyFields(word);
+    VOCAB['custom'].push(word);
+  }
+
+  saveCustomWords();
+  document.getElementById('addWordSrcText').value = '';
+  document.getElementById('addWordTgtText').value = '';
+  renderCustomWordList();
+  buildCatBar();
+  if (!editingWordId) {
+    currentCat = 'custom';
+    buildDeck('custom');
+    document.getElementById('screens').classList.remove('finished');
+  }
+}
+
 // ── Translittération Hangul → Romaja (Romanisation Révisée) ──────────────────
 function hangulToRomaja(str) {
   if (!str) return '';
@@ -1368,9 +1672,11 @@ function buildCatBar() {
   const bar = document.getElementById('catBar');
   bar.innerHTML = '';
   Object.keys(CATEGORIES).forEach(catId => {
+    if (!VOCAB[catId]?.length) return; // masquer catégories vides (ex: Personnalisé si vide)
     const btn = document.createElement('button');
-    btn.className   = 'cat-btn' + (catId === currentCat ? ' active' : '');
-    btn.textContent = CATEGORIES[catId][uiLang()] || CATEGORIES[catId]['fr'] || catId;
+    btn.className    = 'cat-btn' + (catId === currentCat ? ' active' : '');
+    btn.dataset.cat  = catId;
+    btn.textContent  = CATEGORIES[catId][uiLang()] || CATEGORIES[catId]['fr'] || catId;
     btn.onclick = () => {
       currentCat = catId;
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -1721,6 +2027,7 @@ document.querySelector('.cat-bar-wrap').addEventListener('wheel', e => {
 (async () => {
   try {
     await loadVocabulary();
+    loadCustomWords(); // injecte la catégorie Personnalisé + mots sauvegardés
     loadProgress();
     loadSettings();    // restaure lang, dir, show avant de construire l'UI
     initTheme();
