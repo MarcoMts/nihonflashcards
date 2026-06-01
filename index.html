@@ -590,7 +590,7 @@
     <div class="toggle-group" id="frontToggles">
       <div class="toggle-pill on" data-side="front" data-field="kanji"  onclick="toggleField(this)"><span class="dot"></span>Kanji</div>
       <div class="toggle-pill on" data-side="front" data-field="kana"   onclick="toggleField(this)"><span class="dot"></span>Kana</div>
-      <div class="toggle-pill"   data-side="front" data-field="romaji" onclick="toggleField(this)"><span class="dot"></span>Romaji</div>
+      <div class="toggle-pill on" data-side="front" data-field="romaji" onclick="toggleField(this)"><span class="dot"></span>Romaji</div>
     </div>
     <div class="options-divider" id="versoDivider"></div>
     <span class="options-label" id="versoLabel">Verso</span>
@@ -963,7 +963,7 @@ function progressKey(wordId) { return `${targetLang}:${wordId}`; }
 
 // Visibilité des champs japonais (valeurs par défaut)
 const show = {
-  front: { kanji: true, kana: true, romaji: false },
+  front: { kanji: true, kana: true, romaji: true },
   back:  { kana: true, romaji: true },
 };
 
