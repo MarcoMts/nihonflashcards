@@ -176,6 +176,23 @@
       font-size: 15px; color: var(--text-tertiary);
       font-weight: 400; flex-shrink: 0; user-select: none;
     }
+    .ctrl-swap-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px 9px;
+      font-size: 15px;
+      flex-shrink: 0;
+      line-height: 1;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .ctrl-swap-btn:hover {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
     /* ── Onglets langue dans les stats ── */
     .stats-lang-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 0.5px solid var(--border-light); }
     .stats-lang-tab {
@@ -555,7 +572,7 @@
   <!-- ── Barre de contrôle : origine → cible ── -->
   <div class="control-bar">
     <div class="ctrl-group" id="targetGroup"></div>
-    <span class="ctrl-separator">→</span>
+    <button class="ctrl-swap-btn" onclick="swapLangs()" title="Inverser les langues"><i class="ti ti-arrows-exchange"></i></button>
     <div class="ctrl-group" id="sourceGroup"></div>
   </div>
 
@@ -1195,6 +1212,18 @@ function buildControlBar() {
     buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
     showCard();
   });
+}
+
+function swapLangs() {
+  const tmp = targetLang;
+  targetLang = sourceLang;
+  sourceLang = tmp;
+  buildControlBar();
+  buildDeck(currentCat);
+  updateUI();
+  buildCatBar();
+  saveSettings();
+  showCard();
 }
 
 function buildLangPicker(groupId, activeLang, onSelect) {
