@@ -1209,7 +1209,8 @@
   </word>
 
   <word id="yarimasu" category="verbes">
-    <kanji>遣ります</kanji><kana>やります</kana><romaji>Yarimasu</romaji>
+    <kanji>やる</kanji><kana>やる</kana><romaji>Yaru</romaji>
+    <kanji_masu>やります</kanji_masu><kana_masu>やります</kana_masu><romaji_masu>Yarimasu</romaji_masu>
     <fr>Faire (informel) / S'y mettre</fr><en>To do (casual) / To go for it</en><de>Machen (umgangsspr.) / Angehen</de><pt>Fazer (informal) / Ir em frente</pt><ko>합니다 (비격식)</ko>
     <example_jp>やってみます！</example_jp>
     <example_fr>Je vais essayer !</example_fr><example_en>I'll give it a try!</example_en>
@@ -1217,7 +1218,8 @@
   </word>
 
   <word id="torimasu" category="verbes">
-    <kanji>取ります</kanji><kana>とります</kana><romaji>Torimasu</romaji>
+    <kanji>取る</kanji><kana>とる</kana><romaji>Toru</romaji>
+    <kanji_masu>取ります</kanji_masu><kana_masu>とります</kana_masu><romaji_masu>Torimasu</romaji_masu>
     <fr>Prendre / Saisir / Obtenir</fr><en>To take / To get / To grab</en><de>Nehmen / Greifen / Holen</de><pt>Pegar / Tomar / Obter</pt><ko>가져갑니다</ko>
     <example_jp>写真を取ってもいいですか？</example_jp>
     <example_fr>Puis-je prendre une photo ?</example_fr><example_en>May I take a photo?</example_en>
@@ -1225,7 +1227,8 @@
   </word>
 
   <word id="kuremasu" category="verbes">
-    <kanji>呉れます</kanji><kana>くれます</kana><romaji>Kuremasu</romaji>
+    <kanji>くれる</kanji><kana>くれる</kana><romaji>Kureru</romaji>
+    <kanji_masu>くれます</kanji_masu><kana_masu>くれます</kana_masu><romaji_masu>Kuremasu</romaji_masu>
     <fr>Donner (à moi / nous)</fr><en>To give (to me / us)</en><de>Geben (mir / uns)</de><pt>Dar (para mim / nós)</pt><ko>줍니다 (나에게)</ko>
     <example_jp>友達が本をくれました。</example_jp>
     <example_fr>Mon ami m'a donné un livre.</example_fr><example_en>My friend gave me a book.</example_en>
@@ -1233,7 +1236,8 @@
   </word>
 
   <word id="hairimasu" category="verbes">
-    <kanji>入ります</kanji><kana>はいります</kana><romaji>Hairimasu</romaji>
+    <kanji>入る</kanji><kana>はいる</kana><romaji>Hairu</romaji>
+    <kanji_masu>入ります</kanji_masu><kana_masu>はいります</kana_masu><romaji_masu>Hairimasu</romaji_masu>
     <fr>Entrer / Rentrer dans</fr><en>To enter / To go in</en><de>Eintreten / Hineingehen</de><pt>Entrar</pt><ko>들어갑니다</ko>
     <example_jp>部屋に入ってもいいですか？</example_jp>
     <example_fr>Puis-je entrer dans la pièce ?</example_fr><example_en>May I enter the room?</example_en>
@@ -1241,7 +1245,8 @@
   </word>
 
   <word id="okimasu" category="verbes">
-    <kanji>置きます</kanji><kana>おきます</kana><romaji>Okimasu</romaji>
+    <kanji>置く</kanji><kana>おく</kana><romaji>Oku</romaji>
+    <kanji_masu>置きます</kanji_masu><kana_masu>おきます</kana_masu><romaji_masu>Okimasu</romaji_masu>
     <fr>Poser / Mettre / Placer</fr><en>To put / To place / To leave</en><de>Legen / Stellen / Platzieren</de><pt>Colocar / Pôr / Deixar</pt><ko>놓습니다</ko>
     <example_jp>テーブルの上に置いてください。</example_jp>
     <example_fr>Posez-le sur la table, s'il vous plaît.</example_fr><example_en>Please put it on the table.</example_en>
@@ -1249,7 +1254,8 @@
   </word>
 
   <word id="dashimasu" category="verbes">
-    <kanji>出します</kanji><kana>だします</kana><romaji>Dashimasu</romaji>
+    <kanji>出す</kanji><kana>だす</kana><romaji>Dasu</romaji>
+    <kanji_masu>出します</kanji_masu><kana_masu>だします</kana_masu><romaji_masu>Dashimasu</romaji_masu>
     <fr>Sortir / Remettre / Soumettre</fr><en>To take out / To submit / To send</en><de>Herausnehmen / Einreichen / Abschicken</de><pt>Tirar / Enviar / Entregar</pt><ko>꺼냅니다 / 제출합니다</ko>
     <example_jp>宿題を先生に出します。</example_jp>
     <example_fr>Je remets mes devoirs au professeur.</example_fr><example_en>I submit my homework to the teacher.</example_en>
@@ -1257,7 +1263,8 @@
   </word>
 
   <word id="tsukurimasu" category="verbes">
-    <kanji>作ります</kanji><kana>つくります</kana><romaji>Tsukurimasu</romaji>
+    <kanji>作る</kanji><kana>つくる</kana><romaji>Tsukuru</romaji>
+    <kanji_masu>作ります</kanji_masu><kana_masu>つくります</kana_masu><romaji_masu>Tsukurimasu</romaji_masu>
     <fr>Faire / Créer / Cuisiner</fr><en>To make / To create / To cook</en><de>Machen / Erstellen / Kochen</de><pt>Fazer / Criar / Cozinhar</pt><ko>만듭니다</ko>
     <example_jp>母がケーキを作りました。</example_jp>
     <example_fr>Ma mère a fait un gâteau.</example_fr><example_en>My mother made a cake.</example_en>
@@ -1265,7 +1272,8 @@
   </word>
 
   <word id="okonaimasu" category="verbes">
-    <kanji>行います</kanji><kana>おこないます</kana><romaji>Okonaimasu</romaji>
+    <kanji>行う</kanji><kana>おこなう</kana><romaji>Okonau</romaji>
+    <kanji_masu>行います</kanji_masu><kana_masu>おこないます</kana_masu><romaji_masu>Okonaimasu</romaji_masu>
     <fr>Effectuer / Organiser / Réaliser</fr><en>To carry out / To hold / To perform</en><de>Durchführen / Veranstalten / Ausführen</de><pt>Realizar / Organizar / Efetuar</pt><ko>실시합니다</ko>
     <example_jp>明日、会議を行います。</example_jp>
     <example_fr>Nous tiendrons une réunion demain.</example_fr><example_en>We will hold a meeting tomorrow.</example_en>
@@ -1273,7 +1281,8 @@
   </word>
 
   <word id="tsukemasu" category="verbes">
-    <kanji>付けます</kanji><kana>つけます</kana><romaji>Tsukemasu</romaji>
+    <kanji>付ける</kanji><kana>つける</kana><romaji>Tsukeru</romaji>
+    <kanji_masu>付けます</kanji_masu><kana_masu>つけます</kana_masu><romaji_masu>Tsukemasu</romaji_masu>
     <fr>Attacher / Allumer / Mettre (sur soi)</fr><en>To attach / To turn on / To put on</en><de>Befestigen / Einschalten / Anlegen</de><pt>Anexar / Ligar / Colocar</pt><ko>켭니다 / 붙입니다</ko>
     <example_jp>電気を付けてください。</example_jp>
     <example_fr>Allumez la lumière, s'il vous plaît.</example_fr><example_en>Please turn on the light.</example_en>
@@ -1281,7 +1290,8 @@
   </word>
 
   <word id="moraimasu" category="verbes">
-    <kanji>貰います</kanji><kana>もらいます</kana><romaji>Moraimasu</romaji>
+    <kanji>貰う</kanji><kana>もらう</kana><romaji>Morau</romaji>
+    <kanji_masu>貰います</kanji_masu><kana_masu>もらいます</kana_masu><romaji_masu>Moraimasu</romaji_masu>
     <fr>Recevoir / Obtenir (de quelqu'un)</fr><en>To receive / To get (from someone)</en><de>Erhalten / Bekommen (von jemandem)</de><pt>Receber / Obter (de alguém)</pt><ko>받습니다</ko>
     <example_jp>友達からプレゼントをもらいました。</example_jp>
     <example_fr>J'ai reçu un cadeau d'un ami.</example_fr><example_en>I received a gift from a friend.</example_en>
@@ -1289,7 +1299,8 @@
   </word>
 
   <word id="oshiemasu" category="verbes">
-    <kanji>教えます</kanji><kana>おしえます</kana><romaji>Oshiemasu</romaji>
+    <kanji>教える</kanji><kana>おしえる</kana><romaji>Oshieru</romaji>
+    <kanji_masu>教えます</kanji_masu><kana_masu>おしえます</kana_masu><romaji_masu>Oshiemasu</romaji_masu>
     <fr>Enseigner / Apprendre à / Expliquer</fr><en>To teach / To tell / To show</en><de>Lehren / Beibringen / Erklären</de><pt>Ensinar / Explicar / Mostrar</pt><ko>가르칩니다</ko>
     <example_jp>日本語を教えてもらえますか？</example_jp>
     <example_fr>Pouvez-vous m'enseigner le japonais ?</example_fr><example_en>Could you teach me Japanese?</example_en>
@@ -1297,7 +1308,8 @@
   </word>
 
   <word id="kakemasu" category="verbes">
-    <kanji>掛けます</kanji><kana>かけます</kana><romaji>Kakemasu</romaji>
+    <kanji>掛ける</kanji><kana>かける</kana><romaji>Kakeru</romaji>
+    <kanji_masu>掛けます</kanji_masu><kana_masu>かけます</kana_masu><romaji_masu>Kakemasu</romaji_masu>
     <fr>Accrocher / Appeler (tél.) / Mettre (lunettes)</fr><en>To hang / To call (phone) / To put on</en><de>Hängen / Anrufen / Aufsetzen</de><pt>Pendurar / Ligar (telefone) / Colocar</pt><ko>전화합니다</ko>
     <example_jp>電話をかけてもいいですか？</example_jp>
     <example_fr>Puis-je passer un appel ?</example_fr><example_en>May I make a phone call?</example_en>
@@ -1305,7 +1317,8 @@
   </word>
 
   <word id="emasu" category="verbes">
-    <kanji>得ます</kanji><kana>えます</kana><romaji>Emasu</romaji>
+    <kanji>得る</kanji><kana>える</kana><romaji>Eru</romaji>
+    <kanji_masu>得ます</kanji_masu><kana_masu>えます</kana_masu><romaji_masu>Emasu</romaji_masu>
     <fr>Obtenir / Acquérir / Gagner</fr><en>To get / To obtain / To gain</en><de>Erhalten / Erlangen / Gewinnen</de><pt>Obter / Conseguir / Ganhar</pt><ko>얻습니다</ko>
     <example_jp>いい結果を得ることができました。</example_jp>
     <example_fr>J'ai pu obtenir un bon résultat.</example_fr><example_en>I was able to get a good result.</example_en>
@@ -1313,7 +1326,8 @@
   </word>
 
   <word id="miemasu" category="verbes">
-    <kanji>見えます</kanji><kana>みえます</kana><romaji>Miemasu</romaji>
+    <kanji>見える</kanji><kana>みえる</kana><romaji>Mieru</romaji>
+    <kanji_masu>見えます</kanji_masu><kana_masu>みえます</kana_masu><romaji_masu>Miemasu</romaji_masu>
     <fr>Être visible / Paraître / Sembler</fr><en>To be visible / To appear / To look</en><de>Sichtbar sein / Erscheinen / Aussehen</de><pt>Ser visível / Parecer / Aparecer</pt><ko>보입니다</ko>
     <example_jp>ここから富士山が見えます。</example_jp>
     <example_fr>On peut voir le mont Fuji d'ici.</example_fr><example_en>You can see Mount Fuji from here.</example_en>
