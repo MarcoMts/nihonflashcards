@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>日本語 — Flash Cards</title>
+  <title>Flashcards</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -169,6 +169,36 @@
       color: var(--accent);
       font-weight: 500;
     }
+    .ctrl-btn.ctrl-disabled {
+      opacity: 0.28; cursor: not-allowed; pointer-events: none;
+    }
+    .ctrl-separator {
+      font-size: 15px; color: var(--text-tertiary);
+      font-weight: 400; flex-shrink: 0; user-select: none;
+    }
+    /* ── Onglets langue dans les stats ── */
+    .stats-lang-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 0.5px solid var(--border-light); }
+    .stats-lang-tab {
+      padding: 5px 13px; border-radius: 18px;
+      border: 0.5px solid var(--border-medium);
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      background: var(--bg-secondary); color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .stats-lang-tab:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .stats-lang-tab.active {
+      background: var(--accent-bg); border-color: var(--accent);
+      color: var(--accent); font-weight: 600;
+    }
+    .stats-study-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px; border-radius: 20px;
+      border: 0.5px solid var(--accent);
+      background: var(--accent-bg); color: var(--accent);
+      font-size: 13px; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .stats-study-btn:hover { background: var(--accent); color: #fff; }
 
     /* ── Barre de révision ── */
     .review-bar { display: flex; justify-content: center; gap: 8px; margin-bottom: 0.75rem; flex-wrap: wrap; }
@@ -504,7 +534,7 @@
 
   <!-- ── Header ── -->
   <div class="header">
-    <h1>日本語 — Flash Cards</h1>
+    <h1>Flashcards</h1>
     <p id="headerSub">Cliquez sur la carte pour révéler la réponse</p>
     <div class="header-actions">
       <button class="hdr-btn" id="settingsBtn" onclick="toggleSettings()" title="Options d'affichage">
@@ -522,10 +552,11 @@
     </div>
   </div>
 
-  <!-- ── Barre de contrôle unique : langue + direction ── -->
+  <!-- ── Barre de contrôle : origine → cible ── -->
   <div class="control-bar">
-    <div class="ctrl-group" id="langGroup"></div>
-    <div class="ctrl-group" id="dirGroup"></div>
+    <div class="ctrl-group" id="targetGroup"></div>
+    <span class="ctrl-separator">→</span>
+    <div class="ctrl-group" id="sourceGroup"></div>
   </div>
 
   <!-- ── Barre de révision (conditionnelle) ── -->
@@ -602,8 +633,8 @@
       <div class="flip-hint" id="flipHint">Cliquez sur la carte pour retourner</div>
 
       <div class="action-row" id="actionRow" style="display:none">
-        <button id="btnWrong"    class="action-btn btn-wrong"    onclick="answer('review')"><i class="ti ti-x"></i> À revoir</button>
         <button id="btnSkip"     class="action-btn btn-skip"     onclick="nextCard()"><i class="ti ti-arrow-right"></i> Passer</button>
+        <button id="btnWrong"    class="action-btn btn-wrong"    onclick="answer('review')"><i class="ti ti-x"></i> À revoir</button>
         <button id="btnCorrect"  class="action-btn btn-correct"  onclick="answer('known')"><i class="ti ti-check"></i> Correct</button>
         <button id="btnAcquired" class="action-btn btn-acquired" onclick="answer('acquired')"><i class="ti ti-star"></i> Acquis</button>
       </div>
@@ -665,7 +696,7 @@
         <button class="modal-close" onclick="closeLegal()"><i class="ti ti-x"></i></button>
       </div>
       <div class="modal-body">
-        <p class="modal-app-name">日本語 Flash Cards</p>
+        <p class="modal-app-name">Flashcards</p>
         <p class="modal-app-sub">Application de mémorisation de vocabulaire japonais</p>
         <div class="modal-section">
           <h3>Contact</h3>
@@ -709,8 +740,9 @@
 let VOCAB = {}, CATEGORIES = {};
 let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0, sessionAcquired = 0;
 let currentCat  = '';
-let currentLang = 'fr';
-let currentDir  = 'jp'; // 'jp' = japonais recto | 'lang' = langue étrangère recto
+let sourceLang  = 'jp';  // langue affichée au recto (ce qu'on connaît)
+let targetLang  = 'fr';  // langue affichée au verso (ce qu'on apprend)
+let statsViewLang = null; // langue affichée dans les stats
 
 // ── Clés localStorage ─────────────────────────────────────────────────────────
 const STORAGE_KEY  = 'nihon_progress';
@@ -722,10 +754,12 @@ let saveEnabled = false;
 
 // ── Langues disponibles ───────────────────────────────────────────────────────
 const LANGS = [
-  { code: 'fr', label: 'FR', name: 'Français'  },
-  { code: 'en', label: 'EN', name: 'English'   },
-  { code: 'de', label: 'DE', name: 'Deutsch'   },
-  { code: 'pt', label: 'PT', name: 'Português' },
+  { code: 'jp', label: '🇯🇵', name: 'Japonais'  },
+  { code: 'fr', label: 'FR',  name: 'Français'  },
+  { code: 'en', label: 'EN',  name: 'English'   },
+  { code: 'de', label: 'DE',  name: 'Deutsch'   },
+  { code: 'pt', label: 'PT',  name: 'Português' },
+  { code: 'ko', label: 'KO',  name: '한국어'    },
 ];
 
 // ── Traductions UI ────────────────────────────────────────────────────────────
@@ -737,11 +771,12 @@ const UI = {
     btnWrong: 'À revoir', btnSkip: 'Passer', btnCorrect: 'Correct', btnAcquired: 'Acquis',
     lblCorrect: 'Corrects', lblWrong: 'À revoir', lblAcquired: 'Acquis', lblRemain: 'Restants',
     btnRestart: 'Recommencer',
-    optRecto: 'Recto', optVerso: 'Verso', optVersoJP: 'Verso JP',
+    optRecto: 'Recto', optVerso: 'Verso',
     backTag: 'réponse', legalTitle: 'Mentions légales',
     statsTitle: 'Statistiques', statsCat: 'Catégorie',
     statsKnown: '✓ En cours', statsReview: '↺ À revoir',
     statsAcquired: '⭐ Acquis', statsUnseen: '○ Non vus', statsTotal: 'Total',
+    statsStudyBtn: 'Étudier cette langue',
     reviewBtnLabel: 'À revoir', reviewKnownBtnLabel: 'En cours',
     noProgress: 'Commencez à réviser pour voir vos statistiques.',
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
@@ -762,11 +797,12 @@ const UI = {
     btnWrong: 'Review', btnSkip: 'Skip', btnCorrect: 'Correct', btnAcquired: 'Mastered',
     lblCorrect: 'Correct', lblWrong: 'Review', lblAcquired: 'Mastered', lblRemain: 'Left',
     btnRestart: 'Restart',
-    optRecto: 'Front', optVerso: 'Back', optVersoJP: 'Back JP',
+    optRecto: 'Front', optVerso: 'Back',
     backTag: 'answer', legalTitle: 'Legal notice',
     statsTitle: 'Statistics', statsCat: 'Category',
     statsKnown: '✓ Learning', statsReview: '↺ Review',
     statsAcquired: '⭐ Mastered', statsUnseen: '○ Unseen', statsTotal: 'Total',
+    statsStudyBtn: 'Study this language',
     reviewBtnLabel: 'To review', reviewKnownBtnLabel: 'Learning',
     noProgress: 'Start studying to see your statistics.',
     consentMsg: '💾 Save your progress between sessions?',
@@ -787,11 +823,12 @@ const UI = {
     btnWrong: 'Wiederholen', btnSkip: 'Überspringen', btnCorrect: 'Richtig', btnAcquired: 'Gelernt',
     lblCorrect: 'Richtig', lblWrong: 'Wiederholen', lblAcquired: 'Gelernt', lblRemain: 'Verbleibend',
     btnRestart: 'Neu starten',
-    optRecto: 'Vorderseite', optVerso: 'Rückseite', optVersoJP: 'Rückseite JP',
+    optRecto: 'Vorderseite', optVerso: 'Rückseite',
     backTag: 'Antwort', legalTitle: 'Impressum',
     statsTitle: 'Statistiken', statsCat: 'Kategorie',
     statsKnown: '✓ Lernend', statsReview: '↺ Wiederholen',
     statsAcquired: '⭐ Gelernt', statsUnseen: '○ Ungesehen', statsTotal: 'Gesamt',
+    statsStudyBtn: 'Diese Sprache lernen',
     reviewBtnLabel: 'Wiederholen', reviewKnownBtnLabel: 'Lernend',
     noProgress: 'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
@@ -812,11 +849,12 @@ const UI = {
     btnWrong: 'Rever', btnSkip: 'Pular', btnCorrect: 'Correto', btnAcquired: 'Dominado',
     lblCorrect: 'Corretos', lblWrong: 'Rever', lblAcquired: 'Dominados', lblRemain: 'Restantes',
     btnRestart: 'Recomeçar',
-    optRecto: 'Frente', optVerso: 'Verso', optVersoJP: 'Verso JP',
+    optRecto: 'Frente', optVerso: 'Verso',
     backTag: 'resposta', legalTitle: 'Aviso legal',
     statsTitle: 'Estatísticas', statsCat: 'Categoria',
     statsKnown: '✓ Aprendendo', statsReview: '↺ Rever',
     statsAcquired: '⭐ Dominados', statsUnseen: '○ Não vistos', statsTotal: 'Total',
+    statsStudyBtn: 'Estudar este idioma',
     reviewBtnLabel: 'A rever', reviewKnownBtnLabel: 'Aprendendo',
     noProgress: 'Comece a estudar para ver suas estatísticas.',
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
@@ -837,11 +875,12 @@ const UI = {
     btnWrong: 'もう一度', btnSkip: 'スキップ', btnCorrect: '正解', btnAcquired: '習得済み',
     lblCorrect: '正解数', lblWrong: '復習', lblAcquired: '習得済み', lblRemain: '残り',
     btnRestart: 'もう一度やる',
-    optRecto: '表面', optVerso: '裏面', optVersoJP: '日本語',
+    optRecto: '表面', optVerso: '裏面',
     backTag: '答え', legalTitle: '法的情報',
     statsTitle: '統計', statsCat: 'カテゴリ',
     statsKnown: '✓ 学習中', statsReview: '↺ 復習',
     statsAcquired: '⭐ 習得済み', statsUnseen: '○ 未習', statsTotal: '合計',
+    statsStudyBtn: 'この言語を学ぶ',
     reviewBtnLabel: '要復習', reviewKnownBtnLabel: '学習中',
     noProgress: '学習を始めると統計が表示されます。',
     consentMsg: '💾 学習記録を保存しますか？',
@@ -855,10 +894,43 @@ const UI = {
     doneTitles: ['素晴らしい！🌸', 'よく頑張りました！頑張って', '練習を続けよう！'],
     doneSub: (c, t, p) => `${t}問中${c}問正解（${p}%）`,
   },
+  ko: {
+    subtitle: '카드를 클릭하여 답을 확인하세요',
+    flipHint: '카드를 클릭하여 뒤집기',
+    flipBtn:  '카드 뒤집기',
+    btnWrong: '복습', btnSkip: '건너뛰기', btnCorrect: '정답', btnAcquired: '완료',
+    lblCorrect: '정답', lblWrong: '복습', lblAcquired: '완료', lblRemain: '남은',
+    btnRestart: '다시 시작',
+    optRecto: '앞면', optVerso: '뒷면',
+    backTag: '답', legalTitle: '법적 고지',
+    statsTitle: '통계', statsCat: '카테고리',
+    statsKnown: '✓ 학습 중', statsReview: '↺ 복습',
+    statsAcquired: '⭐ 완료', statsUnseen: '○ 미학습', statsTotal: '합계',
+    statsStudyBtn: '이 언어 학습하기',
+    reviewBtnLabel: '복습', reviewKnownBtnLabel: '학습 중',
+    noProgress: '학습을 시작하면 통계가 표시됩니다.',
+    consentMsg: '💾 세션 간 진도를 저장하시겠습니까?',
+    consentAccept: '네, 저장합니다', consentReject: '아니요',
+    themeLight: '라이트 모드', themeDark: '다크 모드',
+    settingsTitle: '표시 옵션',
+    resetTitle: '진도 초기화',
+    resetConfirmTitle: '진도를 초기화할까요?',
+    resetConfirmDesc: '모든 완료, 정답, 복습 단어가 삭제됩니다. 이 작업은 취소할 수 없습니다.',
+    resetCancel: '취소', resetConfirm: '초기화',
+    doneTitles: ['훌륭합니다! 🌸', '잘했어요! 頑張って', '계속 연습하세요!'],
+    doneSub: (c, t, p) => `${t}문제 중 ${c}문제 정답 (${p}%)`,
+  },
 };
 
-// Langue de l'UI : japonais en mode Langue→JP, sinon la langue étrangère choisie
-function uiLang() { return currentDir === 'lang' ? 'ja' : currentLang; }
+// Langue de l'UI : suit la langue d'origine (1ère liste = targetGroup), ou 'fr' par défaut
+function uiLang() {
+  if (targetLang !== 'jp') return targetLang;
+  if (sourceLang !== 'jp') return sourceLang;
+  return 'fr';
+}
+
+// Clé de progression par mot + langue cible
+function progressKey(wordId) { return `${targetLang}:${wordId}`; }
 
 // Visibilité des champs japonais (valeurs par défaut)
 const show = {
@@ -869,9 +941,9 @@ const show = {
 // ── Sauvegarde des préférences d'affichage ────────────────────────────────────
 function saveSettings() {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-    show: { front: { ...show.front }, back: { ...show.back } },
-    lang: currentLang,
-    dir:  currentDir,
+    show:   { front: { ...show.front }, back: { ...show.back } },
+    source: sourceLang,
+    target: targetLang,
   }));
 }
 
@@ -881,8 +953,16 @@ function loadSettings() {
     if (!saved) return;
     if (saved.show?.front) Object.assign(show.front, saved.show.front);
     if (saved.show?.back)  Object.assign(show.back,  saved.show.back);
-    if (saved.lang && LANGS.find(l => l.code === saved.lang)) currentLang = saved.lang;
-    if (saved.dir  && ['jp', 'lang'].includes(saved.dir))     currentDir  = saved.dir;
+    const allCodes = LANGS.map(l => l.code);
+    if (saved.source && allCodes.includes(saved.source)) sourceLang = saved.source;
+    if (saved.target && allCodes.includes(saved.target)) targetLang = saved.target;
+    // Sécurité : source ≠ target
+    if (sourceLang === targetLang) targetLang = sourceLang === 'jp' ? 'fr' : 'jp';
+    // Compat ancien format (lang + dir)
+    if (!saved.source && saved.lang) {
+      sourceLang = saved.dir === 'lang' ? saved.lang : 'jp';
+      targetLang = saved.dir === 'lang' ? 'jp' : saved.lang;
+    }
   } catch(e) {}
 }
 
@@ -955,8 +1035,8 @@ async function loadVocabulary() {
       kanji:    get('kanji'),
       kana:     get('kana'),
       romaji:   get('romaji'),
-      meanings: { fr: get('fr'), en: get('en'), de: get('de'), pt: get('pt') },
-      examples: { jp: get('example_jp'), fr: get('example_fr'), en: get('example_en'), de: get('example_de'), pt: get('example_pt') },
+      meanings: { fr: get('fr'), en: get('en'), de: get('de'), pt: get('pt'), ko: get('ko') },
+      examples: { jp: get('example_jp'), fr: get('example_fr'), en: get('example_en'), de: get('example_de'), pt: get('example_pt'), ko: get('example_ko') },
     });
   });
 }
@@ -965,7 +1045,14 @@ async function loadVocabulary() {
 function loadProgress() {
   if (localStorage.getItem(CONSENT_KEY) === 'true') {
     saveEnabled = true;
-    try { progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { progress = {}; }
+    try {
+      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      // Migration ancien format (sans préfixe de langue) → jp:wordId
+      progress = {};
+      Object.entries(raw).forEach(([k, v]) => {
+        progress[k.includes(':') ? k : `jp:${k}`] = v;
+      });
+    } catch(e) { progress = {}; }
   }
 }
 function saveProgress()  { if (saveEnabled) localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
@@ -1012,22 +1099,32 @@ function updateUI() {
 
 // ── Panneau d'options ─────────────────────────────────────────────────────────
 function updateOptionsPanel() {
-  const t            = UI[uiLang()];
-  const rectoLabel   = document.getElementById('rectoLabel');
-  const versoDivider = document.getElementById('versoDivider');
-  const versoLabel   = document.getElementById('versoLabel');
-  const backToggles  = document.getElementById('backToggles');
-  if (currentDir === 'lang') {
-    rectoLabel.textContent     = t.optVersoJP;
+  const t           = UI[uiLang()];
+  const rectoLabel  = document.getElementById('rectoLabel');
+  const versoDivider= document.getElementById('versoDivider');
+  const versoLabel  = document.getElementById('versoLabel');
+  const backToggles = document.getElementById('backToggles');
+  const frontToggles= document.getElementById('frontToggles');
+  const jpInvolved  = (sourceLang === 'jp' || targetLang === 'jp');
+  // Masquer tout le panneau si aucun JP impliqué
+  if (!jpInvolved) {
+    document.getElementById('optionsPanel').classList.remove('open');
+    return;
+  }
+  if (sourceLang === 'jp') {
+    rectoLabel.textContent     = t.optRecto;
+    frontToggles.style.display = '';
+    versoDivider.style.display = targetLang !== 'jp' ? '' : 'none';
+    versoLabel.textContent     = t.optVerso;
+    versoLabel.style.display   = targetLang !== 'jp' ? '' : 'none';
+    backToggles.style.display  = targetLang !== 'jp' ? '' : 'none';
+  } else {
+    // Source non-JP, cible JP : seuls les toggles du verso JP sont utiles
+    rectoLabel.textContent     = t.optVerso + ' JP';
+    frontToggles.style.display = '';
     versoDivider.style.display = 'none';
     versoLabel.style.display   = 'none';
     backToggles.style.display  = 'none';
-  } else {
-    rectoLabel.textContent     = t.optRecto;
-    versoLabel.textContent     = t.optVerso;
-    versoDivider.style.display = '';
-    versoLabel.style.display   = '';
-    backToggles.style.display  = '';
   }
 }
 
@@ -1040,79 +1137,70 @@ function toggleField(pill) {
 }
 
 function applyVisibility() {
-  if (currentDir === 'jp') {
-    document.getElementById('jpModeFront').classList.remove('hidden');
-    document.getElementById('langModeFront').classList.add('hidden');
+  if (sourceLang === 'jp') {
+    // Toggles du recto (kanji/kana/romaji)
     setVis('frontKanji',       show.front.kanji);
     setVis('frontKana',        show.front.kana);
     setVis('frontRomaji',      show.front.romaji);
     setVis('frontPlaceholder', !show.front.kanji && !show.front.kana && !show.front.romaji);
-    document.getElementById('jpModeBack').classList.remove('hidden');
-    document.getElementById('langModeBack').classList.add('hidden');
-    setVis('backKana',   show.back.kana);
-    setVis('backRomaji', show.back.romaji);
-  } else {
-    document.getElementById('jpModeFront').classList.add('hidden');
-    document.getElementById('langModeFront').classList.remove('hidden');
-    document.getElementById('jpModeBack').classList.add('hidden');
-    document.getElementById('langModeBack').classList.remove('hidden');
+    if (targetLang !== 'jp') {
+      // Aids lecture au verso (kana/romaji japonais)
+      setVis('backKana',   show.back.kana);
+      setVis('backRomaji', show.back.romaji);
+    }
+  } else if (targetLang === 'jp') {
+    // Source non-JP, cible JP → toggles sur le verso japonais
     setVis('backKanjiJP',  show.front.kanji);
     setVis('backKanaJP',   show.front.kana);
     setVis('backRomajiJP', show.front.romaji);
   }
+  // Panel de réglages : visible seulement si JP impliqué
+  const jpInvolved = (sourceLang === 'jp' || targetLang === 'jp');
+  const settingsBtn = document.getElementById('settingsBtn');
+  if (settingsBtn) settingsBtn.style.visibility = jpInvolved ? '' : 'hidden';
 }
 
 function setVis(id, visible) {
   document.getElementById(id).classList.toggle('hidden', !visible);
 }
 
-// ── Barre de contrôle : langue + direction ────────────────────────────────────
+// ── Barre de contrôle : source → cible ────────────────────────────────────────
 function buildControlBar() {
-  buildLangGroup();
-  buildDirGroup();
-}
-
-function buildLangGroup() {
-  const group = document.getElementById('langGroup');
-  group.innerHTML = '';
-  LANGS.forEach(lang => {
-    const btn = document.createElement('button');
-    btn.className   = 'ctrl-btn' + (lang.code === currentLang ? ' lang-active' : '');
-    btn.textContent = lang.label;
-    btn.title       = lang.name;
-    btn.onclick = () => {
-      currentLang = lang.code;
-      group.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('lang-active'));
-      btn.classList.add('lang-active');
-      buildDirGroup(); // met à jour les labels de direction avec la nouvelle langue
-      updateUI();
-      buildCatBar();
-      saveSettings();
-      if (deck.length) showCard();
-    };
-    group.appendChild(btn);
+  buildLangPicker('sourceGroup', sourceLang, (code) => {
+    sourceLang = code;
+    if (sourceLang === targetLang) {
+      // Choisir automatiquement la cible la plus logique
+      targetLang = code === 'jp' ? 'fr' : 'jp';
+    }
+    buildControlBar(); updateUI(); buildCatBar(); saveSettings();
+    if (deck.length) showCard();
+  });
+  buildLangPicker('targetGroup', targetLang, (code) => {
+    targetLang = code;
+    if (targetLang === sourceLang) {
+      sourceLang = code === 'jp' ? 'fr' : 'jp';
+    }
+    buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
+    showCard();
   });
 }
 
-function buildDirGroup() {
-  const group = document.getElementById('dirGroup');
+function buildLangPicker(groupId, activeLang, onSelect) {
+  const group = document.getElementById(groupId);
   group.innerHTML = '';
-  const lbl = LANGS.find(l => l.code === currentLang)?.label || currentLang.toUpperCase();
-  [
-    { dir: 'jp',   text: `🇯🇵 → ${lbl}` },
-    { dir: 'lang', text: `${lbl} → 🇯🇵` },
-  ].forEach(({ dir, text }) => {
+  const isSource = (groupId === 'sourceGroup');
+  const otherLang = isSource ? targetLang : sourceLang;
+  LANGS.forEach(lang => {
     const btn = document.createElement('button');
-    btn.className   = 'ctrl-btn' + (dir === currentDir ? ' dir-active' : '');
-    btn.textContent = text;
-    btn.onclick = () => {
-      currentDir = dir;
-      group.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('dir-active'));
-      btn.classList.add('dir-active');
-      updateUI();
-      saveSettings();
-      if (deck.length) showCard();
-    };
+    const isActive   = lang.code === activeLang;
+    const isDisabled = lang.code === otherLang;
+    btn.className = 'ctrl-btn'
+      + (isActive   ? (isSource ? ' lang-active' : ' dir-active') : '')
+      + (isDisabled ? ' ctrl-disabled' : '');
+    btn.textContent = lang.label;
+    btn.title       = lang.name;
+    btn.disabled    = isDisabled;
+    if (!isDisabled) btn.onclick = () => onSelect(lang.code);
     group.appendChild(btn);
   });
 }
@@ -1124,7 +1212,7 @@ function buildCatBar() {
   Object.keys(CATEGORIES).forEach(catId => {
     const btn = document.createElement('button');
     btn.className   = 'cat-btn' + (catId === currentCat ? ' active' : '');
-    btn.textContent = CATEGORIES[catId][currentLang] || catId;
+    btn.textContent = CATEGORIES[catId][uiLang()] || CATEGORIES[catId]['fr'] || catId;
     btn.onclick = () => {
       currentCat = catId;
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -1139,9 +1227,8 @@ function buildCatBar() {
 
 // ── Deck & cartes ─────────────────────────────────────────────────────────────
 function buildDeck(cat) {
-  // Exclure les mots marqués "acquis" du deck normal
   deck = [...VOCAB[cat]]
-    .filter(w => progress[w.id] !== 'acquired')
+    .filter(w => progress[progressKey(w.id)] !== 'acquired')
     .sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
 }
@@ -1154,33 +1241,55 @@ function showCard() {
   const ci = document.getElementById('cardInner');
   ci.style.transition = 'none';
   ci.classList.remove('flipped');
-  ci.offsetHeight; // force reflow
+  ci.offsetHeight;
   ci.style.transition = '';
 
-  const catLabel = currentCat.startsWith('__')
-    ? (CATEGORIES[c._catId]?.[currentLang] || c._catId)
-    : (CATEGORIES[currentCat]?.[currentLang] || currentCat);
+  const ui    = uiLang();
+  const catId = currentCat.startsWith('__') ? c._catId : currentCat;
+  const catLabel = CATEGORIES[catId]?.[ui] || CATEGORIES[catId]?.['fr'] || catId;
 
-  if (currentDir === 'jp') {
+  // ── RECTO ──
+  if (sourceLang === 'jp') {
+    document.getElementById('jpModeFront').classList.remove('hidden');
+    document.getElementById('langModeFront').classList.add('hidden');
     document.getElementById('frontTag').textContent    = catLabel;
     document.getElementById('frontKanji').textContent  = c.kanji;
     document.getElementById('frontKana').textContent   = c.kana;
     document.getElementById('frontRomaji').textContent = c.romaji;
-    document.getElementById('backTag').textContent     = UI[currentLang].backTag;
-    document.getElementById('backKana').textContent    = c.kana;
-    document.getElementById('backRomaji').textContent  = c.romaji;
-    document.getElementById('backMeaning').textContent = c.meanings[currentLang];
-    document.getElementById('backExample').textContent = c.examples.jp + '\n' + c.examples[currentLang];
   } else {
-    const lang = LANGS.find(l => l.code === currentLang);
-    document.getElementById('frontTag').textContent         = lang?.name || currentLang;
-    document.getElementById('frontMeaning').textContent     = c.meanings[currentLang];
-    document.getElementById('frontExampleLang').textContent = c.examples[currentLang];
-    document.getElementById('backTag').textContent          = '日本語';
-    document.getElementById('backKanjiJP').textContent      = c.kanji;
-    document.getElementById('backKanaJP').textContent       = c.kana;
-    document.getElementById('backRomajiJP').textContent     = c.romaji;
-    document.getElementById('backExampleJP').textContent    = c.examples.jp + '\n' + c.examples[currentLang];
+    document.getElementById('jpModeFront').classList.add('hidden');
+    document.getElementById('langModeFront').classList.remove('hidden');
+    const srcName = LANGS.find(l => l.code === sourceLang)?.name || sourceLang;
+    document.getElementById('frontTag').textContent         = srcName;
+    document.getElementById('frontMeaning').textContent     = c.meanings[sourceLang] || '—';
+    document.getElementById('frontExampleLang').textContent = c.examples[sourceLang] || '';
+  }
+
+  // ── VERSO ──
+  if (targetLang === 'jp') {
+    // Cible JP → utilise langModeBack (kanji/kana/romaji)
+    document.getElementById('jpModeBack').classList.add('hidden');
+    document.getElementById('langModeBack').classList.remove('hidden');
+    document.getElementById('backTag').textContent      = '日本語';
+    document.getElementById('backKanjiJP').textContent  = c.kanji;
+    document.getElementById('backKanaJP').textContent   = c.kana;
+    document.getElementById('backRomajiJP').textContent = c.romaji;
+    const exSrc = (sourceLang !== 'jp' && c.examples[sourceLang]) ? '\n' + c.examples[sourceLang] : '';
+    document.getElementById('backExampleJP').textContent = (c.examples.jp || '') + exSrc;
+  } else {
+    // Cible non-JP → utilise jpModeBack (sens + exemple)
+    document.getElementById('jpModeBack').classList.remove('hidden');
+    document.getElementById('langModeBack').classList.add('hidden');
+    document.getElementById('backTag').textContent     = UI[ui].backTag;
+    const showAids = (sourceLang === 'jp');
+    document.getElementById('backKana').textContent    = showAids ? c.kana   : '';
+    document.getElementById('backRomaji').textContent  = showAids ? c.romaji : '';
+    setVis('backKana',   showAids);
+    setVis('backRomaji', showAids);
+    document.getElementById('backMeaning').textContent = c.meanings[targetLang] || '—';
+    const exJP  = (sourceLang === 'jp' && c.examples.jp)         ? c.examples.jp + '\n'          : '';
+    const exTgt = c.examples[targetLang] || '';
+    document.getElementById('backExample').textContent = exJP + exTgt;
   }
 
   document.getElementById('actionRow').style.display = 'none';
@@ -1198,14 +1307,15 @@ function flipCard() {
     document.getElementById('flipRow').style.display   = 'none';
     document.getElementById('flipHint').style.opacity  = '0';
     flipped = true;
+  } else {
+    nextCard();
   }
 }
 
 function answer(status) {
-  // status: 'known' | 'review' | 'acquired'
   const word = deck[idx];
   if (word?.id) {
-    progress[word.id] = status;
+    progress[progressKey(word.id)] = status;
     saveProgress();
     updateReviewBar();
   }
@@ -1257,7 +1367,7 @@ function startReview(mode = 'review') {
   const words = [];
   Object.keys(VOCAB).forEach(catId => {
     (VOCAB[catId] || []).forEach(w => {
-      if (progress[w.id] === mode) words.push({ ...w, _catId: catId });
+      if (progress[progressKey(w.id)] === mode) words.push({ ...w, _catId: catId });
     });
   });
   if (!words.length) return;
@@ -1271,8 +1381,8 @@ function startReview(mode = 'review') {
 
 function updateReviewBar() {
   const allWords    = Object.values(VOCAB).flat();
-  const reviewCount = allWords.filter(w => progress[w.id] === 'review').length;
-  const knownCount  = allWords.filter(w => progress[w.id] === 'known').length;
+  const reviewCount = allWords.filter(w => progress[progressKey(w.id)] === 'review').length;
+  const knownCount  = allWords.filter(w => progress[progressKey(w.id)] === 'known').length;
   const bar = document.getElementById('reviewBar');
   const t   = UI[uiLang()];
   let html  = '';
@@ -1295,56 +1405,100 @@ function updateReviewBar() {
 }
 
 // ── Modale statistiques ───────────────────────────────────────────────────────
-function openStats()  { renderStats(); document.getElementById('statsModal').classList.add('open'); }
+function openStats() {
+  if (!statsViewLang) statsViewLang = targetLang;
+  renderStats();
+  document.getElementById('statsModal').classList.add('open');
+}
 function closeStats() { document.getElementById('statsModal').classList.remove('open'); }
 function closeStatsBackdrop(e) { if (e.target === document.getElementById('statsModal')) closeStats(); }
 
+function switchStatsLang(lang) { statsViewLang = lang; renderStats(); }
+
+function setTargetFromStats(lang) {
+  targetLang = lang;
+  if (sourceLang === targetLang) sourceLang = lang === 'jp' ? 'fr' : 'jp';
+  statsViewLang = lang;
+  buildControlBar(); updateUI(); buildCatBar(); saveSettings();
+  buildDeck(currentCat); showCard();
+  closeStats();
+}
+
 function renderStats() {
-  const t = UI[uiLang()];
-  if (!Object.keys(progress).length) {
-    document.getElementById('statsBody').innerHTML =
-      `<p style="text-align:center;padding:1.5rem 0;color:var(--text-tertiary);font-size:13px">${t.noProgress}</p>`;
-    return;
-  }
+  const t    = UI[uiLang()];
+  const ui   = uiLang();
+
+  // Langues ayant au moins 1 entrée de progression
+  const seenLangs = new Set(
+    Object.keys(progress)
+      .map(k => { const i = k.indexOf(':'); return i > 0 ? k.substring(0, i) : null; })
+      .filter(Boolean)
+  );
+  seenLangs.add(targetLang); // toujours inclure la langue courante
+
+  // Onglets
+  const tabsHTML = [...seenLangs].map(lang => {
+    const info = LANGS.find(l => l.code === lang);
+    const isActive = lang === statsViewLang;
+    return `<button class="stats-lang-tab${isActive ? ' active' : ''}" onclick="switchStatsLang('${lang}')">
+      ${info?.label || lang} <span style="font-weight:400;opacity:.7">${info?.name || ''}</span>
+    </button>`;
+  }).join('');
+
+  // Table pour la langue affichée
+  const vl = statsViewLang || targetLang;
   let tK = 0, tR = 0, tA = 0, tU = 0, tT = 0, rows = '';
   Object.keys(CATEGORIES).forEach(catId => {
     const words = VOCAB[catId] || [];
     let k = 0, r = 0, a = 0;
     words.forEach(w => {
-      if      (progress[w.id] === 'known')    k++;
-      else if (progress[w.id] === 'review')   r++;
-      else if (progress[w.id] === 'acquired') a++;
+      const st = progress[`${vl}:${w.id}`];
+      if      (st === 'known')    k++;
+      else if (st === 'review')   r++;
+      else if (st === 'acquired') a++;
     });
     const u = words.length - k - r - a;
     tK += k; tR += r; tA += a; tU += u; tT += words.length;
     rows += `<tr>
-      <td class="stats-cat">${CATEGORIES[catId][currentLang] || catId}</td>
-      <td class="stats-num s-known"   >${k || '—'}</td>
-      <td class="stats-num s-review"  >${r || '—'}</td>
+      <td class="stats-cat">${CATEGORIES[catId][ui] || CATEGORIES[catId]['fr'] || catId}</td>
+      <td class="stats-num s-known">${k || '—'}</td>
+      <td class="stats-num s-review">${r || '—'}</td>
       <td class="stats-num" style="color:var(--acquired-color)">${a || '—'}</td>
-      <td class="stats-num s-unseen"  >${u}</td>
+      <td class="stats-num s-unseen">${u}</td>
       <td class="stats-num">${words.length}</td>
     </tr>`;
   });
+
+  const noData = (tK + tR + tA === 0);
+  const studyBtnHTML = (vl !== targetLang)
+    ? `<div style="text-align:center;margin-top:1rem">
+        <button class="stats-study-btn" onclick="setTargetFromStats('${vl}')">
+          <i class="ti ti-target"></i> ${t.statsStudyBtn}
+        </button></div>` : '';
+
   document.getElementById('statsBody').innerHTML = `
-    <table class="stats-table">
-      <thead><tr>
-        <th>${t.statsCat}</th><th>${t.statsKnown}</th>
-        <th>${t.statsReview}</th><th>${t.statsAcquired}</th>
-        <th>${t.statsUnseen}</th><th>${t.statsTotal}</th>
-      </tr></thead>
-      <tbody>
-        ${rows}
-        <tr class="stats-foot">
-          <td>${t.statsTotal}</td>
-          <td class="stats-num s-known"  ><strong>${tK || '—'}</strong></td>
-          <td class="stats-num s-review" ><strong>${tR || '—'}</strong></td>
-          <td class="stats-num" style="color:var(--acquired-color)"><strong>${tA || '—'}</strong></td>
-          <td class="stats-num s-unseen" ><strong>${tU}</strong></td>
-          <td class="stats-num"><strong>${tT}</strong></td>
-        </tr>
-      </tbody>
-    </table>`;
+    <div class="stats-lang-tabs">${tabsHTML}</div>
+    ${noData
+      ? `<p style="text-align:center;padding:1.5rem 0;color:var(--text-tertiary);font-size:13px">${t.noProgress}</p>`
+      : `<table class="stats-table">
+          <thead><tr>
+            <th>${t.statsCat}</th><th>${t.statsKnown}</th>
+            <th>${t.statsReview}</th><th>${t.statsAcquired}</th>
+            <th>${t.statsUnseen}</th><th>${t.statsTotal}</th>
+          </tr></thead>
+          <tbody>${rows}
+            <tr class="stats-foot">
+              <td>${t.statsTotal}</td>
+              <td class="stats-num s-known"><strong>${tK || '—'}</strong></td>
+              <td class="stats-num s-review"><strong>${tR || '—'}</strong></td>
+              <td class="stats-num" style="color:var(--acquired-color)"><strong>${tA || '—'}</strong></td>
+              <td class="stats-num s-unseen"><strong>${tU}</strong></td>
+              <td class="stats-num"><strong>${tT}</strong></td>
+            </tr>
+          </tbody>
+        </table>`
+    }
+    ${studyBtnHTML}`;
 }
 
 // ── Modale mentions légales ───────────────────────────────────────────────────
@@ -1358,20 +1512,16 @@ function closeResetConfirm() { document.getElementById('resetModal').classList.r
 function closeResetConfirmBackdrop(e) { if (e.target === document.getElementById('resetModal')) closeResetConfirm(); }
 
 function confirmReset() {
-  // Effacer toute la progression
-  progress = {};
+  // Effacer uniquement la progression de la langue cible courante
+  const prefix = targetLang + ':';
+  Object.keys(progress).forEach(k => { if (k.startsWith(prefix)) delete progress[k]; });
   saveProgress();
-  // Remettre à zéro la session en cours
   correct = 0; wrong = 0; sessionAcquired = 0;
-  // Fermer la modale
   closeResetConfirm();
-  // Mettre à jour la barre de révision et les stats
   updateReviewBar();
   updateProgressBar();
-  // Reconstruire le deck (les mots "acquis" sont maintenant réincorporés)
   if (!currentCat.startsWith('__')) buildDeck(currentCat);
   else {
-    // Si on était en mode révision spécial, revenir à la première catégorie
     currentCat = Object.keys(VOCAB)[0];
     document.querySelectorAll('.cat-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
     buildDeck(currentCat);
