@@ -140,6 +140,20 @@
     <label lang="pt">Sufixos</label>
     <label lang="ko">경칭</label>
   </category>
+  <category id="meteo">
+    <label lang="fr">Météo</label>
+    <label lang="en">Weather</label>
+    <label lang="de">Wetter</label>
+    <label lang="pt">Clima</label>
+    <label lang="ko">날씨</label>
+  </category>
+  <category id="corps">
+    <label lang="fr">Corps</label>
+    <label lang="en">Body</label>
+    <label lang="de">Körper</label>
+    <label lang="pt">Corpo</label>
+    <label lang="ko">신체</label>
+  </category>
 
   <word id="konnichiwa" category="salutations">
     <kanji>今日は</kanji>
@@ -910,6 +924,101 @@
     <example_de>Möchten Sie eine Tasse Kaffee?</example_de><example_pt>Quer uma xícara de café?</example_pt>
   </word>
 
+  <word id="ringo" category="nourriture">
+    <kanji>林檎</kanji><kana>りんご</kana><romaji>Ringo</romaji>
+    <fr>Pomme</fr><en>Apple</en><de>Apfel</de><pt>Maçã</pt><ko>사과</ko>
+    <example_jp>りんごを一つください。</example_jp>
+    <example_fr>Une pomme, s'il vous plaît.</example_fr><example_en>One apple, please.</example_en>
+    <example_de>Einen Apfel, bitte.</example_de><example_pt>Uma maçã, por favor.</example_pt>
+  </word>
+
+  <word id="banana" category="nourriture">
+    <kanji>バナナ</kanji><kana>ばなな</kana><romaji>Banana</romaji>
+    <fr>Banane</fr><en>Banana</en><de>Banane</de><pt>Banana</pt><ko>바나나</ko>
+    <example_jp>バナナが大好きです。</example_jp>
+    <example_fr>J'adore les bananes.</example_fr><example_en>I love bananas.</example_en>
+    <example_de>Ich liebe Bananen.</example_de><example_pt>Eu adoro bananas.</example_pt>
+  </word>
+
+  <word id="ichigo" category="nourriture">
+    <kanji>苺</kanji><kana>いちご</kana><romaji>Ichigo</romaji>
+    <fr>Fraise</fr><en>Strawberry</en><de>Erdbeere</de><pt>Morango</pt><ko>딸기</ko>
+    <example_jp>いちごのケーキを食べました。</example_jp>
+    <example_fr>J'ai mangé un gâteau à la fraise.</example_fr><example_en>I ate a strawberry cake.</example_en>
+    <example_de>Ich habe einen Erdbeerkuchen gegessen.</example_de><example_pt>Comi um bolo de morango.</example_pt>
+  </word>
+
+  <word id="mikan" category="nourriture">
+    <kanji>蜜柑</kanji><kana>みかん</kana><romaji>Mikan</romaji>
+    <fr>Mandarine / Orange</fr><en>Mandarin / Tangerine</en><de>Mandarine</de><pt>Tangerina</pt><ko>귤</ko>
+    <example_jp>冬にみかんをよく食べます。</example_jp>
+    <example_fr>Je mange souvent des mandarines en hiver.</example_fr><example_en>I often eat mandarins in winter.</example_en>
+    <example_de>Im Winter esse ich oft Mandarinen.</example_de><example_pt>Como bastante tangerina no inverno.</example_pt>
+  </word>
+
+  <word id="budou" category="nourriture">
+    <kanji>葡萄</kanji><kana>ぶどう</kana><romaji>Budō</romaji>
+    <fr>Raisin</fr><en>Grapes</en><de>Weintrauben</de><pt>Uva</pt><ko>포도</ko>
+    <example_jp>このぶどうは甘いですね。</example_jp>
+    <example_fr>Ces raisins sont sucrés.</example_fr><example_en>These grapes are sweet.</example_en>
+    <example_de>Diese Trauben sind süß.</example_de><example_pt>Estas uvas são doces.</example_pt>
+  </word>
+
+  <word id="suika" category="nourriture">
+    <kanji>西瓜</kanji><kana>すいか</kana><romaji>Suika</romaji>
+    <fr>Pastèque</fr><en>Watermelon</en><de>Wassermelone</de><pt>Melancia</pt><ko>수박</ko>
+    <example_jp>夏にすいかを食べるのが好きです。</example_jp>
+    <example_fr>J'aime manger de la pastèque en été.</example_fr><example_en>I like eating watermelon in summer.</example_en>
+    <example_de>Im Sommer esse ich gerne Wassermelone.</example_de><example_pt>Gosto de comer melancia no verão.</example_pt>
+  </word>
+
+  <word id="ninjin" category="nourriture">
+    <kanji>人参</kanji><kana>にんじん</kana><romaji>Ninjin</romaji>
+    <fr>Carotte</fr><en>Carrot</en><de>Karotte</de><pt>Cenoura</pt><ko>당근</ko>
+    <example_jp>にんじんは体にいいです。</example_jp>
+    <example_fr>Les carottes sont bonnes pour la santé.</example_fr><example_en>Carrots are good for your health.</example_en>
+    <example_de>Karotten sind gut für die Gesundheit.</example_de><example_pt>As cenouras são boas para a saúde.</example_pt>
+  </word>
+
+  <word id="tomato" category="nourriture">
+    <kanji>トマト</kanji><kana>とまと</kana><romaji>Tomato</romaji>
+    <fr>Tomate</fr><en>Tomato</en><de>Tomate</de><pt>Tomate</pt><ko>토마토</ko>
+    <example_jp>このトマトはとても赤いです。</example_jp>
+    <example_fr>Cette tomate est très rouge.</example_fr><example_en>This tomato is very red.</example_en>
+    <example_de>Diese Tomate ist sehr rot.</example_de><example_pt>Este tomate é muito vermelho.</example_pt>
+  </word>
+
+  <word id="tamanegi" category="nourriture">
+    <kanji>玉葱</kanji><kana>たまねぎ</kana><romaji>Tamanegi</romaji>
+    <fr>Oignon</fr><en>Onion</en><de>Zwiebel</de><pt>Cebola</pt><ko>양파</ko>
+    <example_jp>カレーに玉ねぎを入れます。</example_jp>
+    <example_fr>Je mets des oignons dans le curry.</example_fr><example_en>I put onions in the curry.</example_en>
+    <example_de>Ich gebe Zwiebeln ins Curry.</example_de><example_pt>Coloco cebola no curry.</example_pt>
+  </word>
+
+  <word id="kyuuri" category="nourriture">
+    <kanji>胡瓜</kanji><kana>きゅうり</kana><romaji>Kyūri</romaji>
+    <fr>Concombre</fr><en>Cucumber</en><de>Gurke</de><pt>Pepino</pt><ko>오이</ko>
+    <example_jp>きゅうりのサラダが好きです。</example_jp>
+    <example_fr>J'aime la salade de concombre.</example_fr><example_en>I like cucumber salad.</example_en>
+    <example_de>Ich mag Gurkensalat.</example_de><example_pt>Gosto de salada de pepino.</example_pt>
+  </word>
+
+  <word id="nasu" category="nourriture">
+    <kanji>茄子</kanji><kana>なす</kana><romaji>Nasu</romaji>
+    <fr>Aubergine</fr><en>Eggplant / Aubergine</en><de>Aubergine</de><pt>Berinjela</pt><ko>가지</ko>
+    <example_jp>なすの炒め物が美味しいです。</example_jp>
+    <example_fr>L'aubergine sautée est délicieuse.</example_fr><example_en>Stir-fried eggplant is delicious.</example_en>
+    <example_de>Gebratene Aubergine ist köstlich.</example_de><example_pt>Berinjela refogada é deliciosa.</example_pt>
+  </word>
+
+  <word id="kyabetsu" category="nourriture">
+    <kanji>キャベツ</kanji><kana>きゃべつ</kana><romaji>Kyabetsu</romaji>
+    <fr>Chou</fr><en>Cabbage</en><de>Kohl</de><pt>Repolho</pt><ko>양배추</ko>
+    <example_jp>お好み焼きにキャベツを入れます。</example_jp>
+    <example_fr>Je mets du chou dans l'okonomiyaki.</example_fr><example_en>I put cabbage in okonomiyaki.</example_en>
+    <example_de>Ich gebe Kohl in Okonomiyaki.</example_de><example_pt>Coloco repolho no okonomiyaki.</example_pt>
+  </word>
 
   <!-- Extra salutations (formes polies / expressions de départ) -->
   <word id="ohayou_gozaimasu" category="salutations">
@@ -1946,6 +2055,70 @@
     <example_de>Wo ist der Bahnhof?</example_de><example_pt>Onde fica a estação?</example_pt>
   </word>
 
+  <word id="inaka" category="lieux">
+    <kanji>田舎</kanji><kana>いなか</kana><romaji>Inaka</romaji>
+    <fr>Campagne / Province</fr><en>Countryside / Rural area</en><de>Land / Ländliche Gegend</de><pt>Campo / Interior</pt><ko>시골</ko>
+    <example_jp>田舎の空気はきれいです。</example_jp>
+    <example_fr>L'air à la campagne est pur.</example_fr><example_en>The air in the countryside is clean.</example_en>
+    <example_de>Die Luft auf dem Land ist sauber.</example_de><example_pt>O ar no campo é puro.</example_pt>
+  </word>
+
+  <word id="yama" category="lieux">
+    <kanji>山</kanji><kana>やま</kana><romaji>Yama</romaji>
+    <fr>Montagne</fr><en>Mountain</en><de>Berg</de><pt>Montanha</pt><ko>산</ko>
+    <example_jp>富士山は日本一高い山です。</example_jp>
+    <example_fr>Le mont Fuji est la plus haute montagne du Japon.</example_fr><example_en>Mount Fuji is the tallest mountain in Japan.</example_en>
+    <example_de>Der Fuji ist der höchste Berg Japans.</example_de><example_pt>O Monte Fuji é a montanha mais alta do Japão.</example_pt>
+  </word>
+
+  <word id="hatake" category="lieux">
+    <kanji>畑</kanji><kana>はたけ</kana><romaji>Hatake</romaji>
+    <fr>Champ (cultures sèches)</fr><en>Field / Cultivated land</en><de>Feld / Ackerland</de><pt>Campo cultivado</pt><ko>밭</ko>
+    <example_jp>畑でトマトを育てています。</example_jp>
+    <example_fr>Je cultive des tomates dans le champ.</example_fr><example_en>I'm growing tomatoes in the field.</example_en>
+    <example_de>Ich baue Tomaten auf dem Feld an.</example_de><example_pt>Estou cultivando tomates no campo.</example_pt>
+  </word>
+
+  <word id="tanbo" category="lieux">
+    <kanji>田んぼ</kanji><kana>たんぼ</kana><romaji>Tanbo</romaji>
+    <fr>Rizière / Champ de riz</fr><en>Rice field / Paddy field</en><de>Reisfeld</de><pt>Arrozal</pt><ko>논</ko>
+    <example_jp>秋に田んぼが黄色くなります。</example_jp>
+    <example_fr>En automne, les rizières deviennent jaunes.</example_fr><example_en>In autumn, the rice fields turn yellow.</example_en>
+    <example_de>Im Herbst werden die Reisfelder gelb.</example_de><example_pt>No outono, os arrozais ficam amarelos.</example_pt>
+  </word>
+
+  <word id="noujou" category="lieux">
+    <kanji>農場</kanji><kana>のうじょう</kana><romaji>Nōjō</romaji>
+    <fr>Ferme</fr><en>Farm</en><de>Bauernhof</de><pt>Fazenda</pt><ko>농장</ko>
+    <example_jp>農場で働いています。</example_jp>
+    <example_fr>Je travaille dans une ferme.</example_fr><example_en>I work on a farm.</example_en>
+    <example_de>Ich arbeite auf einem Bauernhof.</example_de><example_pt>Trabalho em uma fazenda.</example_pt>
+  </word>
+
+  <word id="mori" category="lieux">
+    <kanji>森</kanji><kana>もり</kana><romaji>Mori</romaji>
+    <fr>Forêt</fr><en>Forest / Woods</en><de>Wald</de><pt>Floresta</pt><ko>숲</ko>
+    <example_jp>森の中を散歩しました。</example_jp>
+    <example_fr>Je me suis promené dans la forêt.</example_fr><example_en>I took a walk in the forest.</example_en>
+    <example_de>Ich bin im Wald spazieren gegangen.</example_de><example_pt>Dei uma caminhada na floresta.</example_pt>
+  </word>
+
+  <word id="umi" category="lieux">
+    <kanji>海</kanji><kana>うみ</kana><romaji>Umi</romaji>
+    <fr>Mer / Océan</fr><en>Sea / Ocean</en><de>Meer / Ozean</de><pt>Mar / Oceano</pt><ko>바다</ko>
+    <example_jp>夏は海で泳ぎます。</example_jp>
+    <example_fr>En été, je nage dans la mer.</example_fr><example_en>In summer, I swim in the sea.</example_en>
+    <example_de>Im Sommer schwimme ich im Meer.</example_de><example_pt>No verão, nado no mar.</example_pt>
+  </word>
+
+  <word id="kawa" category="lieux">
+    <kanji>川</kanji><kana>かわ</kana><romaji>Kawa</romaji>
+    <fr>Rivière / Fleuve</fr><en>River</en><de>Fluss</de><pt>Rio</pt><ko>강</ko>
+    <example_jp>川で魚を釣りました。</example_jp>
+    <example_fr>J'ai pêché des poissons dans la rivière.</example_fr><example_en>I fished in the river.</example_en>
+    <example_de>Ich habe im Fluss gefischt.</example_de><example_pt>Pesquei no rio.</example_pt>
+  </word>
+
   <!-- ════════════════════════════════════════════════════════
        TEMPS
        ════════════════════════════════════════════════════════ -->
@@ -2158,6 +2331,38 @@
     <example_jp>五分後に来てください。</example_jp>
     <example_fr>Venez dans cinq minutes.</example_fr><example_en>Please come in five minutes.</example_en>
     <example_de>Bitte kommen Sie in fünf Minuten.</example_de><example_pt>Por favor, venha em cinco minutos.</example_pt>
+  </word>
+
+  <word id="haru" category="temps">
+    <kanji>春</kanji><kana>はる</kana><romaji>Haru</romaji>
+    <fr>Printemps</fr><en>Spring</en><de>Frühling</de><pt>Primavera</pt><ko>봄</ko>
+    <example_jp>春は桜がきれいです。</example_jp>
+    <example_fr>Au printemps, les cerisiers sont beaux.</example_fr><example_en>In spring, the cherry blossoms are beautiful.</example_en>
+    <example_de>Im Frühling sind die Kirschblüten wunderschön.</example_de><example_pt>Na primavera, as flores de cerejeira são lindas.</example_pt>
+  </word>
+
+  <word id="natsu" category="temps">
+    <kanji>夏</kanji><kana>なつ</kana><romaji>Natsu</romaji>
+    <fr>Été</fr><en>Summer</en><de>Sommer</de><pt>Verão</pt><ko>여름</ko>
+    <example_jp>夏は暑くて海に行きたいです。</example_jp>
+    <example_fr>En été il fait chaud et j'ai envie d'aller à la mer.</example_fr><example_en>In summer it's hot and I want to go to the sea.</example_en>
+    <example_de>Im Sommer ist es heiß und ich möchte ans Meer.</example_de><example_pt>No verão está quente e quero ir ao mar.</example_pt>
+  </word>
+
+  <word id="aki" category="temps">
+    <kanji>秋</kanji><kana>あき</kana><romaji>Aki</romaji>
+    <fr>Automne</fr><en>Autumn / Fall</en><de>Herbst</de><pt>Outono</pt><ko>가을</ko>
+    <example_jp>秋は紅葉がとても美しいです。</example_jp>
+    <example_fr>En automne, les feuilles rouges sont très belles.</example_fr><example_en>In autumn, the red leaves are very beautiful.</example_en>
+    <example_de>Im Herbst sind die roten Blätter sehr schön.</example_de><example_pt>No outono, as folhas vermelhas são muito bonitas.</example_pt>
+  </word>
+
+  <word id="fuyu" category="temps">
+    <kanji>冬</kanji><kana>ふゆ</kana><romaji>Fuyu</romaji>
+    <fr>Hiver</fr><en>Winter</en><de>Winter</de><pt>Inverno</pt><ko>겨울</ko>
+    <example_jp>冬は雪が降ることがあります。</example_jp>
+    <example_fr>En hiver, il peut neiger.</example_fr><example_en>In winter, it sometimes snows.</example_en>
+    <example_de>Im Winter kann es schneien.</example_de><example_pt>No inverno, às vezes neva.</example_pt>
   </word>
 
   <word id="koto" category="expressions">
@@ -3048,6 +3253,38 @@
     <example_de>Ich sitze am Rand des Tisches.</example_de><example_pt>Estou sentado na borda da mesa.</example_pt>
   </word>
 
+  <word id="kita" category="positions">
+    <kanji>北</kanji><kana>きた</kana><romaji>Kita</romaji>
+    <fr>Nord</fr><en>North</en><de>Norden</de><pt>Norte</pt><ko>북쪽</ko>
+    <example_jp>北の方向に進んでください。</example_jp>
+    <example_fr>Avancez vers le nord.</example_fr><example_en>Please proceed towards the north.</example_en>
+    <example_de>Bitte gehen Sie in Richtung Norden.</example_de><example_pt>Por favor, siga em direção ao norte.</example_pt>
+  </word>
+
+  <word id="minami" category="positions">
+    <kanji>南</kanji><kana>みなみ</kana><romaji>Minami</romaji>
+    <fr>Sud</fr><en>South</en><de>Süden</de><pt>Sul</pt><ko>남쪽</ko>
+    <example_jp>南に行くほど暖かくなります。</example_jp>
+    <example_fr>Plus on va vers le sud, plus il fait chaud.</example_fr><example_en>The further south you go, the warmer it gets.</example_en>
+    <example_de>Je weiter man nach Süden geht, desto wärmer wird es.</example_de><example_pt>Quanto mais ao sul, mais quente fica.</example_pt>
+  </word>
+
+  <word id="higashi" category="positions">
+    <kanji>東</kanji><kana>ひがし</kana><romaji>Higashi</romaji>
+    <fr>Est</fr><en>East</en><de>Osten</de><pt>Leste</pt><ko>동쪽</ko>
+    <example_jp>東の空が明るくなってきました。</example_jp>
+    <example_fr>Le ciel à l'est commence à s'éclaircir.</example_fr><example_en>The eastern sky is beginning to brighten.</example_en>
+    <example_de>Der östliche Himmel beginnt heller zu werden.</example_de><example_pt>O céu a leste começa a clarear.</example_pt>
+  </word>
+
+  <word id="nishi" category="positions">
+    <kanji>西</kanji><kana>にし</kana><romaji>Nishi</romaji>
+    <fr>Ouest</fr><en>West</en><de>Westen</de><pt>Oeste</pt><ko>서쪽</ko>
+    <example_jp>西の空が赤く染まっています。</example_jp>
+    <example_fr>Le ciel à l'ouest est teinté de rouge.</example_fr><example_en>The western sky is dyed red.</example_en>
+    <example_de>Der westliche Himmel ist rot gefärbt.</example_de><example_pt>O céu a oeste está tingido de vermelho.</example_pt>
+  </word>
+
   <!-- ════════════════════════════════════════════════════════
        TRANSPORT
        ════════════════════════════════════════════════════════ -->
@@ -3198,6 +3435,398 @@
     <example_jp>冬は日本もかなり寒いです。</example_jp>
     <example_fr>En hiver, le Japon aussi est assez froid.</example_fr><example_en>In winter, Japan is also quite cold.</example_en>
     <example_de>Im Winter ist es auch in Japan ziemlich kalt.</example_de><example_pt>No inverno, o Japão também é bastante frio.</example_pt>
+  </word>
+
+  <!-- ════════════════════════════════════════════════════════
+       MÉTÉO
+       ════════════════════════════════════════════════════════ -->
+
+  <word id="tenki" category="meteo">
+    <kanji>天気</kanji><kana>てんき</kana><romaji>Tenki</romaji>
+    <fr>Météo / Temps (qu'il fait)</fr><en>Weather</en><de>Wetter</de><pt>Tempo (clima)</pt><ko>날씨</ko>
+    <example_jp>今日の天気はどうですか？</example_jp>
+    <example_fr>Quel temps fait-il aujourd'hui ?</example_fr><example_en>How is the weather today?</example_en>
+    <example_de>Wie ist das Wetter heute?</example_de><example_pt>Como está o tempo hoje?</example_pt>
+  </word>
+
+  <word id="ame" category="meteo">
+    <kanji>雨</kanji><kana>あめ</kana><romaji>Ame</romaji>
+    <fr>Pluie</fr><en>Rain</en><de>Regen</de><pt>Chuva</pt><ko>비</ko>
+    <example_jp>今日は雨が降っています。</example_jp>
+    <example_fr>Il pleut aujourd'hui.</example_fr><example_en>It is raining today.</example_en>
+    <example_de>Heute regnet es.</example_de><example_pt>Está chovendo hoje.</example_pt>
+  </word>
+
+  <word id="kumo" category="meteo">
+    <kanji>雲</kanji><kana>くも</kana><romaji>Kumo</romaji>
+    <fr>Nuage</fr><en>Cloud</en><de>Wolke</de><pt>Nuvem</pt><ko>구름</ko>
+    <example_jp>空に雲が多いですね。</example_jp>
+    <example_fr>Il y a beaucoup de nuages dans le ciel.</example_fr><example_en>There are many clouds in the sky.</example_en>
+    <example_de>Es gibt viele Wolken am Himmel.</example_de><example_pt>Há muitas nuvens no céu.</example_pt>
+  </word>
+
+  <word id="hare" category="meteo">
+    <kanji>晴れ</kanji><kana>はれ</kana><romaji>Hare</romaji>
+    <fr>Soleil / Ciel dégagé</fr><en>Sunny / Clear sky</en><de>Sonnig / Klarer Himmel</de><pt>Ensolarado / Céu limpo</pt><ko>맑음 / 맑은 날씨</ko>
+    <example_jp>明日は晴れの予報です。</example_jp>
+    <example_fr>Demain il fera beau selon les prévisions.</example_fr><example_en>Tomorrow's forecast is sunny.</example_en>
+    <example_de>Die Prognose für morgen ist sonnig.</example_de><example_pt>A previsão para amanhã é de sol.</example_pt>
+  </word>
+
+  <word id="arashi" category="meteo">
+    <kanji>嵐</kanji><kana>あらし</kana><romaji>Arashi</romaji>
+    <fr>Tempête</fr><en>Storm</en><de>Sturm</de><pt>Tempestade</pt><ko>폭풍</ko>
+    <example_jp>嵐が近づいています。</example_jp>
+    <example_fr>La tempête approche.</example_fr><example_en>A storm is approaching.</example_en>
+    <example_de>Ein Sturm nähert sich.</example_de><example_pt>A tempestade está se aproximando.</example_pt>
+  </word>
+
+  <word id="raiu" category="meteo">
+    <kanji>雷雨</kanji><kana>らいう</kana><romaji>Raiu</romaji>
+    <fr>Orage (pluie + tonnerre)</fr><en>Thunderstorm</en><de>Gewitter</de><pt>Trovoada / Tempestade com raios</pt><ko>뇌우</ko>
+    <example_jp>今夜は雷雨になりそうです。</example_jp>
+    <example_fr>Il y aura probablement un orage ce soir.</example_fr><example_en>There is likely to be a thunderstorm tonight.</example_en>
+    <example_de>Heute Nacht wird es wahrscheinlich ein Gewitter geben.</example_de><example_pt>Esta noite provavelmente haverá uma trovoada.</example_pt>
+  </word>
+
+  <word id="kaminari" category="meteo">
+    <kanji>雷</kanji><kana>かみなり</kana><romaji>Kaminari</romaji>
+    <fr>Tonnerre / Foudre</fr><en>Thunder / Lightning</en><de>Donner / Blitz</de><pt>Trovão / Relâmpago</pt><ko>천둥 / 번개</ko>
+    <example_jp>雷の音が怖いです。</example_jp>
+    <example_fr>Le bruit du tonnerre me fait peur.</example_fr><example_en>The sound of thunder is scary.</example_en>
+    <example_de>Der Donner klingt beängstigend.</example_de><example_pt>O som do trovão me assusta.</example_pt>
+  </word>
+
+  <word id="taifuu" category="meteo">
+    <kanji>台風</kanji><kana>たいふう</kana><romaji>Taifū</romaji>
+    <fr>Typhon</fr><en>Typhoon</en><de>Taifun</de><pt>Tufão</pt><ko>태풍</ko>
+    <example_jp>台風が来るので気をつけてください。</example_jp>
+    <example_fr>Un typhon approche, faites attention.</example_fr><example_en>A typhoon is coming, so please be careful.</example_en>
+    <example_de>Ein Taifun kommt, also bitte vorsichtig sein.</example_de><example_pt>Um tufão está chegando, tome cuidado.</example_pt>
+  </word>
+
+  <word id="kaze_wind" category="meteo">
+    <kanji>風</kanji><kana>かぜ</kana><romaji>Kaze</romaji>
+    <fr>Vent</fr><en>Wind</en><de>Wind</de><pt>Vento</pt><ko>바람</ko>
+    <example_jp>今日は風が強いですね。</example_jp>
+    <example_fr>Il y a beaucoup de vent aujourd'hui.</example_fr><example_en>It is very windy today.</example_en>
+    <example_de>Heute ist es sehr windig.</example_de><example_pt>Está muito ventoso hoje.</example_pt>
+  </word>
+
+  <word id="yuki" category="meteo">
+    <kanji>雪</kanji><kana>ゆき</kana><romaji>Yuki</romaji>
+    <fr>Neige</fr><en>Snow</en><de>Schnee</de><pt>Neve</pt><ko>눈</ko>
+    <example_jp>昨日雪が降りました。</example_jp>
+    <example_fr>Il a neigé hier.</example_fr><example_en>It snowed yesterday.</example_en>
+    <example_de>Gestern hat es geschneit.</example_de><example_pt>Nevou ontem.</example_pt>
+  </word>
+
+  <word id="kiri" category="meteo">
+    <kanji>霧</kanji><kana>きり</kana><romaji>Kiri</romaji>
+    <fr>Brouillard</fr><en>Fog / Mist</en><de>Nebel</de><pt>Neblina / Névoa</pt><ko>안개</ko>
+    <example_jp>朝、霧が濃いです。</example_jp>
+    <example_fr>Le matin, le brouillard est épais.</example_fr><example_en>In the morning, the fog is thick.</example_en>
+    <example_de>Am Morgen ist der Nebel dicht.</example_de><example_pt>De manhã, a névoa é densa.</example_pt>
+  </word>
+
+  <word id="niji" category="meteo">
+    <kanji>虹</kanji><kana>にじ</kana><romaji>Niji</romaji>
+    <fr>Arc-en-ciel</fr><en>Rainbow</en><de>Regenbogen</de><pt>Arco-íris</pt><ko>무지개</ko>
+    <example_jp>雨の後に虹が出ました。</example_jp>
+    <example_fr>Un arc-en-ciel est apparu après la pluie.</example_fr><example_en>A rainbow appeared after the rain.</example_en>
+    <example_de>Nach dem Regen erschien ein Regenbogen.</example_de><example_pt>Um arco-íris apareceu depois da chuva.</example_pt>
+  </word>
+
+  <word id="suzushii" category="meteo">
+    <kanji>涼しい</kanji><kana>すずしい</kana><romaji>Suzushii</romaji>
+    <fr>Frais (agréablement)</fr><en>Cool / Refreshing</en><de>Kühl / Frisch</de><pt>Fresco / Agradável</pt><ko>시원하다</ko>
+    <example_jp>今日は涼しくて気持ちいいですね。</example_jp>
+    <example_fr>Il fait frais et agréable aujourd'hui.</example_fr><example_en>It's cool and pleasant today.</example_en>
+    <example_de>Heute ist es kühl und angenehm.</example_de><example_pt>Está fresco e agradável hoje.</example_pt>
+  </word>
+
+  <word id="atatakai" category="meteo">
+    <kanji>暖かい</kanji><kana>あたたかい</kana><romaji>Atatakai</romaji>
+    <fr>Doux / Chaud (agréablement)</fr><en>Warm / Mild</en><de>Warm / Mild</de><pt>Morno / Ameno</pt><ko>따뜻하다</ko>
+    <example_jp>春は暖かくて過ごしやすいです。</example_jp>
+    <example_fr>Le printemps est doux et agréable.</example_fr><example_en>Spring is warm and pleasant to live in.</example_en>
+    <example_de>Der Frühling ist warm und angenehm.</example_de><example_pt>A primavera é amena e agradável.</example_pt>
+  </word>
+
+  <word id="mushiatsui" category="meteo">
+    <kanji>蒸し暑い</kanji><kana>むしあつい</kana><romaji>Mushiatsui</romaji>
+    <fr>Humide et chaud / Étouffant</fr><en>Hot and humid / Muggy</en><de>Schwül / Heiß und feucht</de><pt>Abafado / Quente e úmido</pt><ko>무덥다 / 후덥지근하다</ko>
+    <example_jp>夏は蒸し暑くて大変です。</example_jp>
+    <example_fr>L'été est étouffant et difficile à supporter.</example_fr><example_en>Summer is hot and humid and hard to bear.</example_en>
+    <example_de>Der Sommer ist schwül und schwer zu ertragen.</example_de><example_pt>O verão é abafado e difícil de suportar.</example_pt>
+  </word>
+
+  <word id="shikke" category="meteo">
+    <kanji>湿気</kanji><kana>しっけ</kana><romaji>Shikke</romaji>
+    <fr>Humidité</fr><en>Humidity / Moisture</en><de>Luftfeuchtigkeit</de><pt>Umidade</pt><ko>습기</ko>
+    <example_jp>梅雨は湿気が多いです。</example_jp>
+    <example_fr>Pendant la saison des pluies, l'humidité est forte.</example_fr><example_en>During the rainy season, there is a lot of humidity.</example_en>
+    <example_de>Während der Regenzeit ist die Luftfeuchtigkeit hoch.</example_de><example_pt>Durante a estação chuvosa, a umidade é elevada.</example_pt>
+  </word>
+
+  <word id="taiyou" category="meteo">
+    <kanji>太陽</kanji><kana>たいよう</kana><romaji>Taiyō</romaji>
+    <fr>Soleil (astre)</fr><en>Sun</en><de>Sonne</de><pt>Sol</pt><ko>태양</ko>
+    <example_jp>太陽がまぶしいです。</example_jp>
+    <example_fr>Le soleil est éblouissant.</example_fr><example_en>The sun is dazzling.</example_en>
+    <example_de>Die Sonne ist blendend.</example_de><example_pt>O sol está ofuscante.</example_pt>
+  </word>
+
+  <!-- ════════════════════════════════════════════════════════
+       CORPS
+       ════════════════════════════════════════════════════════ -->
+
+  <word id="karada" category="corps">
+    <kanji>体</kanji><kana>からだ</kana><romaji>Karada</romaji>
+    <fr>Corps</fr><en>Body</en><de>Körper</de><pt>Corpo</pt><ko>몸</ko>
+    <example_jp>体を大切にしてください。</example_jp>
+    <example_fr>Prenez soin de votre corps.</example_fr><example_en>Please take care of your body.</example_en>
+    <example_de>Bitte achten Sie auf Ihren Körper.</example_de><example_pt>Por favor, cuide do seu corpo.</example_pt>
+  </word>
+
+  <word id="atama" category="corps">
+    <kanji>頭</kanji><kana>あたま</kana><romaji>Atama</romaji>
+    <fr>Tête</fr><en>Head</en><de>Kopf</de><pt>Cabeça</pt><ko>머리</ko>
+    <example_jp>頭が痛いです。</example_jp>
+    <example_fr>J'ai mal à la tête.</example_fr><example_en>I have a headache.</example_en>
+    <example_de>Ich habe Kopfschmerzen.</example_de><example_pt>Estou com dor de cabeça.</example_pt>
+  </word>
+
+  <word id="kao" category="corps">
+    <kanji>顔</kanji><kana>かお</kana><romaji>Kao</romaji>
+    <fr>Visage / Figure</fr><en>Face</en><de>Gesicht</de><pt>Rosto</pt><ko>얼굴</ko>
+    <example_jp>彼女はきれいな顔をしています。</example_jp>
+    <example_fr>Elle a un beau visage.</example_fr><example_en>She has a beautiful face.</example_en>
+    <example_de>Sie hat ein schönes Gesicht.</example_de><example_pt>Ela tem um rosto bonito.</example_pt>
+  </word>
+
+  <word id="me" category="corps">
+    <kanji>目</kanji><kana>め</kana><romaji>Me</romaji>
+    <fr>Œil / Yeux</fr><en>Eye / Eyes</en><de>Auge / Augen</de><pt>Olho / Olhos</pt><ko>눈</ko>
+    <example_jp>目が疲れました。</example_jp>
+    <example_fr>Mes yeux sont fatigués.</example_fr><example_en>My eyes are tired.</example_en>
+    <example_de>Meine Augen sind müde.</example_de><example_pt>Meus olhos estão cansados.</example_pt>
+  </word>
+
+  <word id="mimi" category="corps">
+    <kanji>耳</kanji><kana>みみ</kana><romaji>Mimi</romaji>
+    <fr>Oreille</fr><en>Ear</en><de>Ohr</de><pt>Orelha</pt><ko>귀</ko>
+    <example_jp>耳が聞こえにくいです。</example_jp>
+    <example_fr>J'ai du mal à entendre.</example_fr><example_en>I have trouble hearing.</example_en>
+    <example_de>Ich höre schlecht.</example_de><example_pt>Tenho dificuldade para ouvir.</example_pt>
+  </word>
+
+  <word id="hana_nose" category="corps">
+    <kanji>鼻</kanji><kana>はな</kana><romaji>Hana</romaji>
+    <fr>Nez</fr><en>Nose</en><de>Nase</de><pt>Nariz</pt><ko>코</ko>
+    <example_jp>鼻が詰まっています。</example_jp>
+    <example_fr>Mon nez est bouché.</example_fr><example_en>My nose is stuffy.</example_en>
+    <example_de>Meine Nase ist verstopft.</example_de><example_pt>Meu nariz está entupido.</example_pt>
+  </word>
+
+  <word id="kuchi" category="corps">
+    <kanji>口</kanji><kana>くち</kana><romaji>Kuchi</romaji>
+    <fr>Bouche</fr><en>Mouth</en><de>Mund</de><pt>Boca</pt><ko>입</ko>
+    <example_jp>口を開けてください。</example_jp>
+    <example_fr>Ouvrez la bouche, s'il vous plaît.</example_fr><example_en>Please open your mouth.</example_en>
+    <example_de>Bitte öffnen Sie den Mund.</example_de><example_pt>Por favor, abra a boca.</example_pt>
+  </word>
+
+  <word id="ha" category="corps">
+    <kanji>歯</kanji><kana>は</kana><romaji>Ha</romaji>
+    <fr>Dent / Dents</fr><en>Tooth / Teeth</en><de>Zahn / Zähne</de><pt>Dente / Dentes</pt><ko>이 / 치아</ko>
+    <example_jp>歯を磨いてから寝ます。</example_jp>
+    <example_fr>Je me brosse les dents avant de dormir.</example_fr><example_en>I brush my teeth before going to bed.</example_en>
+    <example_de>Ich putze mir die Zähne bevor ich schlafen gehe.</example_de><example_pt>Escovo os dentes antes de dormir.</example_pt>
+  </word>
+
+  <word id="shita_tongue" category="corps">
+    <kanji>舌</kanji><kana>した</kana><romaji>Shita</romaji>
+    <fr>Langue</fr><en>Tongue</en><de>Zunge</de><pt>Língua</pt><ko>혀</ko>
+    <example_jp>舌をやけどしました。</example_jp>
+    <example_fr>Je me suis brûlé la langue.</example_fr><example_en>I burned my tongue.</example_en>
+    <example_de>Ich habe mir die Zunge verbrannt.</example_de><example_pt>Queimei minha língua.</example_pt>
+  </word>
+
+  <word id="kubi" category="corps">
+    <kanji>首</kanji><kana>くび</kana><romaji>Kubi</romaji>
+    <fr>Cou</fr><en>Neck</en><de>Hals</de><pt>Pescoço</pt><ko>목</ko>
+    <example_jp>首が痛いです。</example_jp>
+    <example_fr>J'ai mal au cou.</example_fr><example_en>My neck hurts.</example_en>
+    <example_de>Mein Hals tut weh.</example_de><example_pt>Meu pescoço dói.</example_pt>
+  </word>
+
+  <word id="kata" category="corps">
+    <kanji>肩</kanji><kana>かた</kana><romaji>Kata</romaji>
+    <fr>Épaule</fr><en>Shoulder</en><de>Schulter</de><pt>Ombro</pt><ko>어깨</ko>
+    <example_jp>肩こりがひどいです。</example_jp>
+    <example_fr>J'ai de fortes tensions aux épaules.</example_fr><example_en>I have severe stiffness in my shoulders.</example_en>
+    <example_de>Ich habe starke Verspannungen in den Schultern.</example_de><example_pt>Tenho muita tensão nos ombros.</example_pt>
+  </word>
+
+  <word id="ude" category="corps">
+    <kanji>腕</kanji><kana>うで</kana><romaji>Ude</romaji>
+    <fr>Bras</fr><en>Arm</en><de>Arm</de><pt>Braço</pt><ko>팔</ko>
+    <example_jp>腕に怪我をしました。</example_jp>
+    <example_fr>Je me suis blessé le bras.</example_fr><example_en>I injured my arm.</example_en>
+    <example_de>Ich habe meinen Arm verletzt.</example_de><example_pt>Machuquei meu braço.</example_pt>
+  </word>
+
+  <word id="hiji" category="corps">
+    <kanji>肘</kanji><kana>ひじ</kana><romaji>Hiji</romaji>
+    <fr>Coude</fr><en>Elbow</en><de>Ellbogen</de><pt>Cotovelo</pt><ko>팔꿈치</ko>
+    <example_jp>肘をテーブルに打ちました。</example_jp>
+    <example_fr>Je me suis cogné le coude sur la table.</example_fr><example_en>I hit my elbow on the table.</example_en>
+    <example_de>Ich habe meinen Ellbogen am Tisch angestoßen.</example_de><example_pt>Bati o cotovelo na mesa.</example_pt>
+  </word>
+
+  <word id="te" category="corps">
+    <kanji>手</kanji><kana>て</kana><romaji>Te</romaji>
+    <fr>Main</fr><en>Hand</en><de>Hand</de><pt>Mão</pt><ko>손</ko>
+    <example_jp>手を洗ってください。</example_jp>
+    <example_fr>Lavez-vous les mains, s'il vous plaît.</example_fr><example_en>Please wash your hands.</example_en>
+    <example_de>Bitte waschen Sie sich die Hände.</example_de><example_pt>Por favor, lave as mãos.</example_pt>
+  </word>
+
+  <word id="yubi" category="corps">
+    <kanji>指</kanji><kana>ゆび</kana><romaji>Yubi</romaji>
+    <fr>Doigt</fr><en>Finger</en><de>Finger</de><pt>Dedo</pt><ko>손가락</ko>
+    <example_jp>指を切ってしまいました。</example_jp>
+    <example_fr>Je me suis coupé le doigt.</example_fr><example_en>I cut my finger.</example_en>
+    <example_de>Ich habe mir den Finger geschnitten.</example_de><example_pt>Cortei meu dedo.</example_pt>
+  </word>
+
+  <word id="mune" category="corps">
+    <kanji>胸</kanji><kana>むね</kana><romaji>Mune</romaji>
+    <fr>Poitrine / Torse</fr><en>Chest / Breast</en><de>Brust</de><pt>Peito / Tórax</pt><ko>가슴</ko>
+    <example_jp>胸がドキドキします。</example_jp>
+    <example_fr>Mon cœur bat la chamade.</example_fr><example_en>My heart is pounding.</example_en>
+    <example_de>Mein Herz klopft.</example_de><example_pt>Meu coração está acelerado.</example_pt>
+  </word>
+
+  <word id="onaka" category="corps">
+    <kanji>お腹</kanji><kana>おなか</kana><romaji>Onaka</romaji>
+    <fr>Ventre / Estomac</fr><en>Stomach / Belly</en><de>Bauch / Magen</de><pt>Barriga / Estômago</pt><ko>배</ko>
+    <example_jp>お腹が痛いです。</example_jp>
+    <example_fr>J'ai mal au ventre.</example_fr><example_en>I have a stomachache.</example_en>
+    <example_de>Ich habe Bauchschmerzen.</example_de><example_pt>Estou com dor de barriga.</example_pt>
+  </word>
+
+  <word id="senaka" category="corps">
+    <kanji>背中</kanji><kana>せなか</kana><romaji>Senaka</romaji>
+    <fr>Dos</fr><en>Back</en><de>Rücken</de><pt>Costas</pt><ko>등</ko>
+    <example_jp>背中が痛いです。</example_jp>
+    <example_fr>J'ai mal au dos.</example_fr><example_en>My back hurts.</example_en>
+    <example_de>Mein Rücken tut weh.</example_de><example_pt>Minhas costas estão doendo.</example_pt>
+  </word>
+
+  <word id="koshi" category="corps">
+    <kanji>腰</kanji><kana>こし</kana><romaji>Koshi</romaji>
+    <fr>Hanches / Bas du dos</fr><en>Hips / Lower back</en><de>Hüften / Lendenwirbelbereich</de><pt>Quadris / Lombar</pt><ko>허리</ko>
+    <example_jp>腰が痛くて立てません。</example_jp>
+    <example_fr>J'ai tellement mal aux hanches que je ne peux pas me lever.</example_fr><example_en>My lower back hurts so much I can't stand.</example_en>
+    <example_de>Meine Lenden schmerzen so sehr, dass ich nicht stehen kann.</example_de><example_pt>Minha lombar dói tanto que não consigo me levantar.</example_pt>
+  </word>
+
+  <word id="ashi" category="corps">
+    <kanji>足</kanji><kana>あし</kana><romaji>Ashi</romaji>
+    <fr>Pied / Jambe</fr><en>Foot / Leg</en><de>Fuß / Bein</de><pt>Pé / Perna</pt><ko>발 / 다리</ko>
+    <example_jp>足が疲れました。</example_jp>
+    <example_fr>Mes jambes sont fatiguées.</example_fr><example_en>My legs are tired.</example_en>
+    <example_de>Meine Beine sind müde.</example_de><example_pt>Minhas pernas estão cansadas.</example_pt>
+  </word>
+
+  <word id="hiza" category="corps">
+    <kanji>膝</kanji><kana>ひざ</kana><romaji>Hiza</romaji>
+    <fr>Genou</fr><en>Knee</en><de>Knie</de><pt>Joelho</pt><ko>무릎</ko>
+    <example_jp>膝を怪我しました。</example_jp>
+    <example_fr>Je me suis blessé le genou.</example_fr><example_en>I injured my knee.</example_en>
+    <example_de>Ich habe mein Knie verletzt.</example_de><example_pt>Machuquei meu joelho.</example_pt>
+  </word>
+
+  <word id="ashikubi" category="corps">
+    <kanji>足首</kanji><kana>あしくび</kana><romaji>Ashikubi</romaji>
+    <fr>Cheville</fr><en>Ankle</en><de>Knöchel</de><pt>Tornozelo</pt><ko>발목</ko>
+    <example_jp>足首をくじきました。</example_jp>
+    <example_fr>Je me suis foulé la cheville.</example_fr><example_en>I sprained my ankle.</example_en>
+    <example_de>Ich habe mir den Knöchel verstaucht.</example_de><example_pt>Torci o tornozelo.</example_pt>
+  </word>
+
+  <word id="kakato" category="corps">
+    <kanji>踵</kanji><kana>かかと</kana><romaji>Kakato</romaji>
+    <fr>Talon</fr><en>Heel</en><de>Ferse</de><pt>Calcanhar</pt><ko>발뒤꿈치</ko>
+    <example_jp>かかとが痛いです。</example_jp>
+    <example_fr>J'ai mal au talon.</example_fr><example_en>My heel hurts.</example_en>
+    <example_de>Meine Ferse tut weh.</example_de><example_pt>Meu calcanhar dói.</example_pt>
+  </word>
+
+  <word id="kami_hair" category="corps">
+    <kanji>髪</kanji><kana>かみ</kana><romaji>Kami</romaji>
+    <fr>Cheveux</fr><en>Hair</en><de>Haare</de><pt>Cabelo</pt><ko>머리카락</ko>
+    <example_jp>髪を切りました。</example_jp>
+    <example_fr>Je me suis coupé les cheveux.</example_fr><example_en>I got my hair cut.</example_en>
+    <example_de>Ich habe mir die Haare schneiden lassen.</example_de><example_pt>Cortei meu cabelo.</example_pt>
+  </word>
+
+  <word id="hitai" category="corps">
+    <kanji>額</kanji><kana>ひたい</kana><romaji>Hitai</romaji>
+    <fr>Front</fr><en>Forehead</en><de>Stirn</de><pt>Testa</pt><ko>이마</ko>
+    <example_jp>額に汗をかいています。</example_jp>
+    <example_fr>Je transpire sur le front.</example_fr><example_en>I am sweating on my forehead.</example_en>
+    <example_de>Ich schwitze auf der Stirn.</example_de><example_pt>Estou suando na testa.</example_pt>
+  </word>
+
+  <word id="hoo" category="corps">
+    <kanji>頬</kanji><kana>ほお</kana><romaji>Hō</romaji>
+    <fr>Joue</fr><en>Cheek</en><de>Wange</de><pt>Bochecha</pt><ko>볼 / 뺨</ko>
+    <example_jp>赤ちゃんの頬はやわらかいです。</example_jp>
+    <example_fr>Les joues d'un bébé sont douces.</example_fr><example_en>A baby's cheeks are soft.</example_en>
+    <example_de>Die Wangen eines Babys sind weich.</example_de><example_pt>As bochechas de um bebê são macias.</example_pt>
+  </word>
+
+  <word id="ago" category="corps">
+    <kanji>顎</kanji><kana>あご</kana><romaji>Ago</romaji>
+    <fr>Menton / Mâchoire</fr><en>Chin / Jaw</en><de>Kinn / Kiefer</de><pt>Queixo / Mandíbula</pt><ko>턱</ko>
+    <example_jp>顎が外れそうなくらい大きな口を開けました。</example_jp>
+    <example_fr>J'ai ouvert la bouche si grand que j'ai failli décrocher la mâchoire.</example_fr><example_en>I opened my mouth so wide I almost dislocated my jaw.</example_en>
+    <example_de>Ich habe den Mund so weit aufgemacht, dass ich fast den Kiefer ausgekugelt hätte.</example_de><example_pt>Abri a boca tão grande que quase desconjuntei a mandíbula.</example_pt>
+  </word>
+
+  <word id="shinkei" category="corps">
+    <kanji>心臓</kanji><kana>しんぞう</kana><romaji>Shinzō</romaji>
+    <fr>Cœur (organe)</fr><en>Heart (organ)</en><de>Herz (Organ)</de><pt>Coração (órgão)</pt><ko>심장</ko>
+    <example_jp>心臓の音を聴いてください。</example_jp>
+    <example_fr>Écoutez le battement de mon cœur.</example_fr><example_en>Please listen to my heartbeat.</example_en>
+    <example_de>Bitte hören Sie auf meinen Herzschlag.</example_de><example_pt>Por favor, ouça meu batimento cardíaco.</example_pt>
+  </word>
+
+  <word id="hone" category="corps">
+    <kanji>骨</kanji><kana>ほね</kana><romaji>Hone</romaji>
+    <fr>Os</fr><en>Bone</en><de>Knochen</de><pt>Osso</pt><ko>뼈</ko>
+    <example_jp>骨が折れているかもしれません。</example_jp>
+    <example_fr>Il se peut que l'os soit cassé.</example_fr><example_en>The bone might be broken.</example_en>
+    <example_de>Der Knochen könnte gebrochen sein.</example_de><example_pt>O osso pode estar quebrado.</example_pt>
+  </word>
+
+  <word id="hifu" category="corps">
+    <kanji>皮膚</kanji><kana>ひふ</kana><romaji>Hifu</romaji>
+    <fr>Peau</fr><en>Skin</en><de>Haut</de><pt>Pele</pt><ko>피부</ko>
+    <example_jp>彼女の皮膚はとても白いです。</example_jp>
+    <example_fr>Sa peau est très blanche.</example_fr><example_en>Her skin is very fair.</example_en>
+    <example_de>Ihre Haut ist sehr hell.</example_de><example_pt>A pele dela é muito clara.</example_pt>
+  </word>
+
+  <word id="chichi_chest" category="corps">
+    <kanji>胃</kanji><kana>い</kana><romaji>I</romaji>
+    <fr>Estomac (organe)</fr><en>Stomach (organ)</en><de>Magen</de><pt>Estômago</pt><ko>위 (장기)</ko>
+    <example_jp>胃が痛いです。</example_jp>
+    <example_fr>J'ai mal à l'estomac.</example_fr><example_en>My stomach hurts.</example_en>
+    <example_de>Mein Magen tut weh.</example_de><example_pt>Meu estômago está doendo.</example_pt>
   </word>
 
 </vocabulary>
