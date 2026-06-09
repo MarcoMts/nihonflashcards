@@ -4627,6 +4627,62 @@
   </word>
 
   <!-- ════════════════════════════════════════════════════════
+       NOURRITURE (ajouts)
+       ════════════════════════════════════════════════════════ -->
+
+  <word id="minto" category="nourriture">
+    <kanji>ミント</kanji><kana>みんと</kana><romaji>Minto</romaji>
+    <fr>Menthe</fr><en>Mint</en><de>Minze</de><pt>Hortelã</pt><ko>민트</ko>
+    <example_jp>ミントのアイスが好きです。</example_jp>
+    <example_fr>J'aime la glace à la menthe.</example_fr><example_en>I like mint ice cream.</example_en>
+    <example_de>Ich mag Minzeis.</example_de><example_pt>Gosto de sorvete de hortelã.</example_pt>
+  </word>
+
+  <!-- ════════════════════════════════════════════════════════
+       ADJECTIFS (ajouts)
+       ════════════════════════════════════════════════════════ -->
+
+  <word id="mazui" category="adjectif">
+    <kanji>不味い</kanji><kana>まずい</kana><romaji>Mazui</romaji>
+    <fr>Mauvais (goût) / Dégoûtant / Maladroit</fr><en>Bad-tasting / Disgusting / Awkward</en><de>Schlecht schmeckend / Eklig / Unangenehm</de><pt>De gosto ruim / Horrível / Inadequado</pt><ko>맛없다 / 형편없다</ko>
+    <example_jp>この料理はまずいです。</example_jp>
+    <example_fr>Ce plat n'est pas bon.</example_fr><example_en>This dish tastes bad.</example_en>
+    <example_de>Dieses Gericht schmeckt schlecht.</example_de><example_pt>Este prato tem gosto ruim.</example_pt>
+  </word>
+
+  <word id="osoi" category="adjectif">
+    <kanji>遅い</kanji><kana>おそい</kana><romaji>Osoi</romaji>
+    <fr>Lent / En retard / Tard</fr><en>Slow / Late</en><de>Langsam / Spät / Verspätet</de><pt>Lento / Atrasado / Tarde</pt><ko>느리다 / 늦다</ko>
+    <example_jp>このパソコンはとても遅いです。</example_jp>
+    <example_fr>Cet ordinateur est très lent.</example_fr><example_en>This computer is very slow.</example_en>
+    <example_de>Dieser Computer ist sehr langsam.</example_de><example_pt>Este computador é muito lento.</example_pt>
+  </word>
+
+  <word id="shoppai" category="adjectif">
+    <kanji>しょっぱい</kanji><kana>しょっぱい</kana><romaji>Shoppai</romaji>
+    <fr>Salé (goût prononcé)</fr><en>Salty</en><de>Salzig</de><pt>Salgado</pt><ko>짜다</ko>
+    <example_jp>このスープはしょっぱいです。</example_jp>
+    <example_fr>Cette soupe est trop salée.</example_fr><example_en>This soup is too salty.</example_en>
+    <example_de>Diese Suppe ist zu salzig.</example_de><example_pt>Esta sopa está muito salgada.</example_pt>
+  </word>
+
+  <word id="suppai" category="adjectif">
+    <kanji>酸っぱい</kanji><kana>すっぱい</kana><romaji>Suppai</romaji>
+    <fr>Acide / Aigre</fr><en>Sour / Tart</en><de>Sauer</de><pt>Azedo / Ácido</pt><ko>시다 / 새콤하다</ko>
+    <example_jp>このレモンはとても酸っぱいです。</example_jp>
+    <example_fr>Ce citron est très acide.</example_fr><example_en>This lemon is very sour.</example_en>
+    <example_de>Diese Zitrone ist sehr sauer.</example_de><example_pt>Este limão é muito ácido.</example_pt>
+  </word>
+
+  <word id="sukina" category="adjectif">
+    <kanji>好き</kanji><kana>すきな</kana><romaji>Suki (na)</romaji>
+    <fr>Aimé / Favori / Apprécié (adjectif en な)</fr><en>Liked / Favorite / To like (na-adjective)</en><de>Gemocht / Beliebt / Lieblings- (na-Adjektiv)</de><pt>Preferido / Apreciado / Gostar de (adjetivo em な)</pt><ko>좋아하다 / 좋아하는</ko>
+    <example_jp>私はラーメンが好きです。</example_jp>
+    <example_fr>J'aime le ramen.</example_fr><example_en>I like ramen.</example_en>
+    <example_de>Ich mag Ramen.</example_de><example_pt>Eu gosto de ramen.</example_pt>
+  </word>
+
+  <!-- ════════════════════════════════════════════════════════
        COMPTEURS
        ════════════════════════════════════════════════════════ -->
 
