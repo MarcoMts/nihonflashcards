@@ -174,13 +174,13 @@
       transition: max-height 0.28s ease, margin-bottom 0.28s ease, opacity 0.2s ease;
     }
     .control-bar.open {
-      max-height: 60px;
+      max-height: 120px;
       margin-bottom: 0.75rem;
       opacity: 1;
     }
     @media (max-width: 520px) {
       .control-bar { flex-direction: column; align-items: center; }
-      .control-bar.open { max-height: 160px; }
+      .control-bar.open { max-height: 220px; }
     }
     .ctrl-group {
       display: flex;
@@ -284,6 +284,16 @@
     .review-btn:hover .review-count { background: rgba(255,255,255,0.25); }
     .review-count-known { background: var(--accent); }
     .review-btn.review-btn-known:hover .review-count-known { background: rgba(255,255,255,0.25); }
+    .review-btn.review-btn-acquired {
+      border-color: #c9910a; background: #fef9ec; color: #c9910a;
+    }
+    [data-theme="dark"] .review-btn.review-btn-acquired,
+    [data-theme="eva"]  .review-btn.review-btn-acquired {
+      background: rgba(201,145,10,0.12); color: #f0b429;
+    }
+    .review-btn.review-btn-acquired:hover { background: #c9910a; color: #fff; }
+    .review-count-acquired { background: #c9910a; color: #fff; }
+    .review-btn.review-btn-acquired:hover .review-count-acquired { background: rgba(255,255,255,0.25); }
 
     /* ── Barre de catégories (défilement horizontal) ── */
     .cat-bar-wrap {
@@ -685,9 +695,10 @@
 
   <!-- ── Barre de contrôle : origine → cible ── -->
   <div class="control-bar" id="langBar">
-    <div class="ctrl-group" id="targetGroup"></div>
-    <button class="ctrl-swap-btn" onclick="swapLangs()" title="Inverser les langues"><i class="ti ti-arrows-exchange"></i></button>
     <div class="ctrl-group" id="sourceGroup"></div>
+    <button class="ctrl-swap-btn" onclick="swapLangs()" title="Inverser les langues"><i class="ti ti-arrows-exchange"></i></button>
+    <div class="ctrl-group" id="targetGroup"></div>
+    <div class="ctrl-group" id="uiLangGroup"></div>
   </div>
 
   <!-- ── Barre de révision (conditionnelle) ── -->
@@ -700,6 +711,10 @@
 
   <!-- ── Options d'affichage (collapsible via ⚙️) ── -->
   <div class="options-panel" id="optionsPanel">
+    <div class="toggle-group">
+      <div class="toggle-pill" id="reverseCardsPill" onclick="toggleReverseCards()"><span class="dot"></span><span id="reverseCardsLabel">Inverser les cartes</span></div>
+    </div>
+    <div class="options-divider"></div>
     <span class="options-label" id="rectoLabel">Recto</span>
     <div class="toggle-group" id="frontToggles">
       <div class="toggle-pill on" data-side="front" data-field="kanji"  onclick="toggleField(this)"><span class="dot"></span>Kanji</div>
@@ -935,9 +950,11 @@ let VOCAB = {}, CATEGORIES = {};
 let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0, sessionAcquired = 0;
 let editingWordId = null;
 let currentCat  = '';
-let sourceLang  = 'jp';  // langue affichée au recto (ce qu'on connaît)
-let targetLang  = 'fr';  // langue affichée au verso (ce qu'on apprend)
+let sourceLang  = 'jp';  // langue NATALE de l'utilisateur (1ère liste) → détermine la langue d'interface
+let targetLang  = 'fr';  // langue CIBLE à apprendre (2ème liste) → détermine la progression stockée
 let statsViewLang = null; // langue affichée dans les stats
+let uiLangOverride = null; // null = automatique
+let reverseCards   = false; // inverser le sens recto/verso des cartes
 
 // ── Clés localStorage ─────────────────────────────────────────────────────────
 const STORAGE_KEY  = 'nihon_progress';
@@ -950,6 +967,15 @@ let progress    = {};
 let saveEnabled = false;
 
 // ── Langues disponibles ───────────────────────────────────────────────────────
+const UI_LANGS = [
+  { code: 'fr', label: 'FR', name: 'Français'  },
+  { code: 'en', label: 'EN', name: 'English'   },
+  { code: 'de', label: 'DE', name: 'Deutsch'   },
+  { code: 'pt', label: 'PT', name: 'Português' },
+  { code: 'ja', label: 'JP', name: '日本語'    },
+  { code: 'ko', label: 'KO', name: '한국어'    },
+];
+
 const LANGS = [
   { code: 'jp', label: 'JP',  name: 'Japonais'  },
   { code: 'fr', label: 'FR',  name: 'Français'  },
@@ -974,7 +1000,7 @@ const UI = {
     statsKnown: '✓ En cours', statsReview: '↺ À revoir',
     statsAcquired: '⭐ Acquis', statsUnseen: '○ Non vus', statsTotal: 'Total',
     statsStudyBtn: 'Étudier cette langue',
-    reviewBtnLabel: 'À revoir', reviewKnownBtnLabel: 'En cours',
+    reviewBtnLabel: 'À revoir', reviewKnownBtnLabel: 'En cours', reviewAcquiredBtnLabel: 'Acquis',
     noProgress: 'Commencez à réviser pour voir vos statistiques.',
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
     consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
@@ -986,6 +1012,7 @@ const UI = {
     addWordListTitle: 'Mots ajoutés',
     addWordErrEmpty: 'Les deux champs sont obligatoires.',
     addWordErrSame: 'Les deux langues doivent être différentes.',
+    reverseCards: 'Inverser les cartes',
     themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01',
     settingsTitle: "Options d'affichage",
     resetTitle: 'Réinitialiser la progression',
@@ -1010,7 +1037,7 @@ const UI = {
     statsKnown: '✓ Learning', statsReview: '↺ Review',
     statsAcquired: '⭐ Mastered', statsUnseen: '○ Unseen', statsTotal: 'Total',
     statsStudyBtn: 'Study this language',
-    reviewBtnLabel: 'To review', reviewKnownBtnLabel: 'Learning',
+    reviewBtnLabel: 'To review', reviewKnownBtnLabel: 'Learning', reviewAcquiredBtnLabel: 'Mastered',
     noProgress: 'Start studying to see your statistics.',
     consentMsg: '💾 Save your progress between sessions?',
     consentAccept: 'Yes, save', consentReject: 'No thanks',
@@ -1022,6 +1049,7 @@ const UI = {
     addWordListTitle: 'Added words',
     addWordErrEmpty: 'Both fields are required.',
     addWordErrSame: 'The two languages must be different.',
+    reverseCards: 'Reverse cards',
     themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode',
     settingsTitle: 'Display options',
     resetTitle: 'Reset progress',
@@ -1046,7 +1074,7 @@ const UI = {
     statsKnown: '✓ Lernend', statsReview: '↺ Wiederholen',
     statsAcquired: '⭐ Gelernt', statsUnseen: '○ Ungesehen', statsTotal: 'Gesamt',
     statsStudyBtn: 'Diese Sprache lernen',
-    reviewBtnLabel: 'Wiederholen', reviewKnownBtnLabel: 'Lernend',
+    reviewBtnLabel: 'Wiederholen', reviewKnownBtnLabel: 'Lernend', reviewAcquiredBtnLabel: 'Gelernt',
     noProgress: 'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
     consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
@@ -1058,6 +1086,7 @@ const UI = {
     addWordListTitle: 'Hinzugefügte Wörter',
     addWordErrEmpty: 'Beide Felder sind erforderlich.',
     addWordErrSame: 'Die zwei Sprachen müssen unterschiedlich sein.',
+    reverseCards: 'Karten umkehren',
     themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design',
     settingsTitle: 'Anzeigeoptionen',
     resetTitle: 'Fortschritt zurücksetzen',
@@ -1082,7 +1111,7 @@ const UI = {
     statsKnown: '✓ Aprendendo', statsReview: '↺ Rever',
     statsAcquired: '⭐ Dominados', statsUnseen: '○ Não vistos', statsTotal: 'Total',
     statsStudyBtn: 'Estudar este idioma',
-    reviewBtnLabel: 'A rever', reviewKnownBtnLabel: 'Aprendendo',
+    reviewBtnLabel: 'A rever', reviewKnownBtnLabel: 'Aprendendo', reviewAcquiredBtnLabel: 'Dominados',
     noProgress: 'Comece a estudar para ver suas estatísticas.',
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
     consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
@@ -1094,6 +1123,7 @@ const UI = {
     addWordListTitle: 'Palavras adicionadas',
     addWordErrEmpty: 'Os dois campos são obrigatórios.',
     addWordErrSame: 'Os dois idiomas devem ser diferentes.',
+    reverseCards: 'Inverter cartas',
     themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01',
     settingsTitle: 'Opções de exibição',
     resetTitle: 'Reiniciar progresso',
@@ -1118,7 +1148,7 @@ const UI = {
     statsKnown: '✓ 学習中', statsReview: '↺ 復習',
     statsAcquired: '⭐ 習得済み', statsUnseen: '○ 未習', statsTotal: '合計',
     statsStudyBtn: 'この言語を学ぶ',
-    reviewBtnLabel: '要復習', reviewKnownBtnLabel: '学習中',
+    reviewBtnLabel: '要復習', reviewKnownBtnLabel: '学習中', reviewAcquiredBtnLabel: '習得済み',
     noProgress: '学習を始めると統計が表示されます。',
     consentMsg: '💾 学習記録を保存しますか？',
     consentAccept: '保存する', consentReject: 'いいえ',
@@ -1130,6 +1160,7 @@ const UI = {
     addWordListTitle: '追加された単語',
     addWordErrEmpty: '両方のフィールドが必要です。',
     addWordErrSame: '2つの言語は異なる必要があります。',
+    reverseCards: 'カードを反転',
     themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード',
     settingsTitle: '表示オプション',
     resetTitle: '進捗をリセット',
@@ -1154,7 +1185,7 @@ const UI = {
     statsKnown: '✓ 학습 중', statsReview: '↺ 복습',
     statsAcquired: '⭐ 완료', statsUnseen: '○ 미학습', statsTotal: '합계',
     statsStudyBtn: '이 언어 학습하기',
-    reviewBtnLabel: '복습', reviewKnownBtnLabel: '학습 중',
+    reviewBtnLabel: '복습', reviewKnownBtnLabel: '학습 중', reviewAcquiredBtnLabel: '습득 완료',
     noProgress: '학습을 시작하면 통계가 표시됩니다.',
     consentMsg: '💾 세션 간 진도를 저장하시겠습니까?',
     consentAccept: '네, 저장합니다', consentReject: '아니요',
@@ -1166,6 +1197,7 @@ const UI = {
     addWordListTitle: '추가된 단어',
     addWordErrEmpty: '두 필드 모두 필수입니다.',
     addWordErrSame: '두 언어는 달라야 합니다.',
+    reverseCards: '카드 반전',
     themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드',
     settingsTitle: '표시 옵션',
     resetTitle: '진도 초기화',
@@ -1179,11 +1211,12 @@ const UI = {
   },
 };
 
-// Langue de l'UI : suit la langue d'origine (1ère liste = targetGroup), ou 'fr' par défaut
+// Langue de l'UI : override manuel, sinon = langue de la 1ère liste (sourceLang)
+// Mapping nécessaire car LANGS utilise 'jp' mais UI utilise 'ja'
+const LANG_TO_UI = { jp: 'ja', fr: 'fr', en: 'en', de: 'de', pt: 'pt', ko: 'ko' };
 function uiLang() {
-  if (targetLang !== 'jp') return targetLang;
-  if (sourceLang !== 'jp') return sourceLang;
-  return 'fr';
+  if (uiLangOverride) return uiLangOverride;
+  return LANG_TO_UI[sourceLang] || 'fr';
 }
 
 // Clé de progression par mot + langue cible
@@ -1202,6 +1235,8 @@ function saveSettings() {
     show:   { front: { ...show.front }, back: { ...show.back }, ko: { ...show.ko } },
     source: sourceLang,
     target: targetLang,
+    uiLang: uiLangOverride,
+    reverseCards,
   }));
 }
 
@@ -1215,6 +1250,8 @@ function loadSettings() {
     const allCodes = LANGS.map(l => l.code);
     if (saved.source && allCodes.includes(saved.source)) sourceLang = saved.source;
     if (saved.target && allCodes.includes(saved.target)) targetLang = saved.target;
+    if (saved.uiLang && UI_LANGS.some(l => l.code === saved.uiLang)) uiLangOverride = saved.uiLang;
+    if (saved.reverseCards) reverseCards = true;
     // Sécurité : source ≠ target
     if (sourceLang === targetLang) targetLang = sourceLang === 'jp' ? 'fr' : 'jp';
     // Compat ancien format (lang + dir)
@@ -1231,6 +1268,7 @@ function syncTogglePills() {
     const { side, field } = pill.dataset;
     if (side && field) pill.classList.toggle('on', !!show[side]?.[field]);
   });
+  document.getElementById('reverseCardsPill')?.classList.toggle('on', reverseCards);
 }
 
 // ── Thème clair / sombre ──────────────────────────────────────────────────────
@@ -1360,6 +1398,7 @@ function updateUI() {
   document.getElementById('statsBtn').title            = t.statsTitle;
   document.getElementById('langBtn').title             = t.langBtn;
   document.getElementById('settingsBtn').title         = t.settingsTitle;
+  document.getElementById('reverseCardsLabel').textContent = t.reverseCards;
   document.getElementById('statsResetBtnLabel').textContent = t.resetTitle;
   document.getElementById('resetConfirmTitle').textContent = t.resetConfirmTitle;
   document.getElementById('resetConfirmDesc').textContent  = t.resetConfirmDesc;
@@ -1417,6 +1456,14 @@ function updateOptionsPanel() {
   document.getElementById('koToggles').style.display = koInvolved ? '' : 'none';
 }
 
+function toggleReverseCards() {
+  reverseCards = !reverseCards;
+  document.getElementById('reverseCardsPill').classList.toggle('on', reverseCards);
+  saveSettings();
+  buildDeck(currentCat);
+  showCard();
+}
+
 function toggleField(pill) {
   const { side, field } = pill.dataset;
   show[side][field] = !show[side][field];
@@ -1451,7 +1498,7 @@ function applyVisibility() {
   const jpInvolved  = (sourceLang === 'jp' || targetLang === 'jp');
   const koInvolved  = (sourceLang === 'ko' || targetLang === 'ko');
   const settingsBtn = document.getElementById('settingsBtn');
-  if (settingsBtn) settingsBtn.style.visibility = (jpInvolved || koInvolved) ? '' : 'hidden';
+  if (settingsBtn) settingsBtn.style.visibility = ''; // toujours visible (bouton inverser disponible pour toutes les langues)
 }
 
 function setVis(id, visible) {
@@ -1810,6 +1857,24 @@ function hangulToRomaja(str) {
   return out;
 }
 
+function buildUiLangPicker() {
+  const group = document.getElementById('uiLangGroup');
+  group.innerHTML = '';
+  const autoBtn = document.createElement('button');
+  autoBtn.className = 'ctrl-btn' + (!uiLangOverride ? ' lang-active' : '');
+  autoBtn.textContent = 'Auto';
+  autoBtn.onclick = () => { uiLangOverride = null; buildControlBar(); updateUI(); saveSettings(); };
+  group.appendChild(autoBtn);
+  UI_LANGS.forEach(lang => {
+    const btn = document.createElement('button');
+    btn.className = 'ctrl-btn' + (uiLangOverride === lang.code ? ' lang-active' : '');
+    btn.textContent = lang.label;
+    btn.title = lang.name;
+    btn.onclick = () => { uiLangOverride = lang.code; buildControlBar(); updateUI(); saveSettings(); };
+    group.appendChild(btn);
+  });
+}
+
 // ── Barre de contrôle : source → cible ────────────────────────────────────────
 function buildControlBar() {
   buildLangPicker('sourceGroup', sourceLang, (code) => {
@@ -1818,8 +1883,8 @@ function buildControlBar() {
       // Choisir automatiquement la cible la plus logique
       targetLang = code === 'jp' ? 'fr' : 'jp';
     }
-    buildControlBar(); updateUI(); buildCatBar(); saveSettings();
-    if (deck.length) showCard();
+    buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
+    showCard();
   });
   buildLangPicker('targetGroup', targetLang, (code) => {
     targetLang = code;
@@ -1829,6 +1894,7 @@ function buildControlBar() {
     buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
     showCard();
   });
+  buildUiLangPicker();
 }
 
 function swapLangs() {
@@ -1908,8 +1974,12 @@ function showCard() {
   const catId = currentCat.startsWith('__') ? c._catId : currentCat;
   const catLabel = CATEGORIES[catId]?.[ui] || CATEGORIES[catId]?.['fr'] || catId;
 
+  // Sens d'affichage : normal ou inversé selon reverseCards
+  const srcL = reverseCards ? targetLang : sourceLang;
+  const tgtL = reverseCards ? sourceLang : targetLang;
+
   // ── RECTO ──
-  if (sourceLang === 'jp') {
+  if (srcL === 'jp') {
     document.getElementById('jpModeFront').classList.remove('hidden');
     document.getElementById('langModeFront').classList.add('hidden');
     document.getElementById('frontTag').textContent    = catLabel;
@@ -1919,15 +1989,15 @@ function showCard() {
   } else {
     document.getElementById('jpModeFront').classList.add('hidden');
     document.getElementById('langModeFront').classList.remove('hidden');
-    const srcName = LANGS.find(l => l.code === sourceLang)?.name || sourceLang;
+    const srcName = LANGS.find(l => l.code === srcL)?.name || srcL;
     document.getElementById('frontTag').textContent         = srcName;
-    document.getElementById('frontMeaning').textContent     = c.meanings[sourceLang] || '—';
+    document.getElementById('frontMeaning').textContent     = c.meanings[srcL] || '—';
     document.getElementById('frontRomaja').textContent      = hangulToRomaja(c.meanings['ko'] || '');
-    document.getElementById('frontExampleLang').textContent = c.examples[sourceLang] || '';
+    document.getElementById('frontExampleLang').textContent = c.examples[srcL] || '';
   }
 
   // ── VERSO ──
-  if (targetLang === 'jp') {
+  if (tgtL === 'jp') {
     // Cible JP → utilise langModeBack (kanji/kana/romaji)
     document.getElementById('jpModeBack').classList.add('hidden');
     document.getElementById('langModeBack').classList.remove('hidden');
@@ -1935,22 +2005,22 @@ function showCard() {
     document.getElementById('backKanjiJP').textContent  = c.kanji  + (c.kanji_masu  ? ', ' + c.kanji_masu  : '');
     document.getElementById('backKanaJP').textContent   = c.kana   + (c.kana_masu   ? ', ' + c.kana_masu   : '');
     document.getElementById('backRomajiJP').textContent = c.romaji + (c.romaji_masu ? ', ' + c.romaji_masu : '');
-    const exSrc = (sourceLang !== 'jp' && c.examples[sourceLang]) ? '\n' + c.examples[sourceLang] : '';
+    const exSrc = (srcL !== 'jp' && c.examples[srcL]) ? '\n' + c.examples[srcL] : '';
     document.getElementById('backExampleJP').textContent = (c.examples.jp || '') + exSrc;
   } else {
     // Cible non-JP → utilise jpModeBack (sens + exemple)
     document.getElementById('jpModeBack').classList.remove('hidden');
     document.getElementById('langModeBack').classList.add('hidden');
     document.getElementById('backTag').textContent     = UI[ui].backTag;
-    const showAids = (sourceLang === 'jp');
+    const showAids = (srcL === 'jp');
     document.getElementById('backKana').textContent    = showAids ? c.kana   : '';
     document.getElementById('backRomaji').textContent  = showAids ? c.romaji : '';
     setVis('backKana',   showAids);
     setVis('backRomaji', showAids);
-    document.getElementById('backMeaning').textContent = c.meanings[targetLang] || '—';
+    document.getElementById('backMeaning').textContent = c.meanings[tgtL] || '—';
     document.getElementById('backRomaja').textContent  = hangulToRomaja(c.meanings['ko'] || '');
-    const exJP  = (sourceLang === 'jp' && c.examples.jp)         ? c.examples.jp + '\n'          : '';
-    const exTgt = c.examples[targetLang] || '';
+    const exJP  = (srcL === 'jp' && c.examples.jp) ? c.examples.jp + '\n' : '';
+    const exTgt = c.examples[tgtL] || '';
     document.getElementById('backExample').textContent = exJP + exTgt;
   }
 
@@ -2035,6 +2105,7 @@ function restart() {
   document.getElementById('screens').classList.remove('finished');
   if (currentCat === '__review__') startReview('review');
   else if (currentCat === '__known__') startReview('known');
+  else if (currentCat === '__acquired__') startReview('acquired');
   else { buildDeck(currentCat); showCard(); }
 }
 
@@ -2057,9 +2128,10 @@ function startReview(mode = 'review') {
 }
 
 function updateReviewBar() {
-  const allWords    = Object.values(VOCAB).flat();
-  const reviewCount = allWords.filter(w => progress[progressKey(w.id)] === 'review').length;
-  const knownCount  = allWords.filter(w => progress[progressKey(w.id)] === 'known').length;
+  const allWords      = Object.values(VOCAB).flat();
+  const reviewCount   = allWords.filter(w => progress[progressKey(w.id)] === 'review').length;
+  const knownCount    = allWords.filter(w => progress[progressKey(w.id)] === 'known').length;
+  const acquiredCount = allWords.filter(w => progress[progressKey(w.id)] === 'acquired').length;
   const bar = document.getElementById('reviewBar');
   const t   = UI[uiLang()];
   let html  = '';
@@ -2074,6 +2146,12 @@ function updateReviewBar() {
     html += `<button class="review-btn review-btn-known" onclick="startReview('known')">
       <i class="ti ti-rotate-clockwise"></i> ${t.reviewKnownBtnLabel}
       <span class="review-count review-count-known">${knownCount}</span>
+    </button>`;
+  }
+  if (acquiredCount > 0) {
+    html += `<button class="review-btn review-btn-acquired" onclick="startReview('acquired')">
+      <i class="ti ti-star"></i> ${t.reviewAcquiredBtnLabel}
+      <span class="review-count review-count-acquired">${acquiredCount}</span>
     </button>`;
   }
 
