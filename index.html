@@ -933,26 +933,29 @@
         <p class="modal-app-name">Flashcards</p>
         <p class="modal-app-sub">Application de mémorisation de vocabulaire japonais</p>
         <div class="modal-section">
-          <h3>Contact</h3>
+          <p id="aboutText1"></p>
+          <p id="aboutText2" style="margin-top:0.5rem"></p>
+        </div>
+        <div class="modal-section">
+          <h3 id="infoContactTitle"></h3>
           <p><a href="mailto:marco.taberu@gmail.com">marco.taberu@gmail.com</a></p>
         </div>
         <div class="modal-section">
-          <h3>Données personnelles</h3>
-          <p>Cette application ne collecte aucune donnée personnelle. Les préférences et la progression sont stockées localement sur votre appareil et ne sont jamais transmises à des tiers.</p>
+          <h3 id="infoPrivacyTitle"></h3>
+          <p id="infoPrivacyText"></p>
         </div>
         <div class="modal-section">
-          <h3>Hébergeur du site</h3>
+          <h3 id="infoHostTitle"></h3>
           <p>
             Cloudflare, Inc.<br>
-            Attn: Legal Department, 101 Townsend St,<br>
-            San Francisco, CA 94107, États-Unis<br>
-            Tél. : +1 (650) 319-8930<br>
+            101 Townsend St, San Francisco, CA 94107<br>
+            +1 (650) 319-8930<br>
             <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">www.cloudflare.com</a>
           </p>
         </div>
         <div class="modal-section">
-          <h3>Propriété intellectuelle</h3>
-          <p>© 2025 — <a href="mailto:marco.taberu@gmail.com">marco.taberu@gmail.com</a>. Tous droits réservés.</p>
+          <h3 id="infoIPTitle"></h3>
+          <p id="infoIPText"></p>
         </div>
       </div>
     </div>
@@ -1021,6 +1024,12 @@ const UI = {
     btnRestart: 'Recommencer',
     optRecto: 'Recto', optVerso: 'Verso',
     backTag: 'réponse', legalTitle: 'Mentions légales',
+    aboutText1: 'Passionné par le Japon et l\'apprentissage du japonais, j\'ai créé cette application avec l\'aide de Claude pour mon usage personnel. Je l\'ai ensuite publiée en ligne afin que tout le monde puisse en profiter.',
+    aboutText2: 'L\'application est avant tout optimisée pour le japonais, des incohérences peuvent exister pour les autres langues disponibles. N\'hésitez pas à me signaler tout problème ou à me faire part de vos retours à l\'adresse ci-dessous.',
+    infoContact: 'Contact',
+    infoPrivacy: 'Données personnelles', infoPrivacyText: 'Cette application ne collecte aucune donnée personnelle. Les préférences et la progression sont stockées localement sur votre appareil et ne sont jamais transmises à des tiers.',
+    infoHost: 'Hébergeur du site',
+    infoIP: 'Propriété intellectuelle', infoIPText: '© 2026 — Tous droits réservés.',
     statsTitle: 'Statistiques', statsCat: 'Catégorie',
     statsKnown: '✓ En cours', statsReview: '↺ À revoir',
     statsAcquired: '⭐ Acquis', statsUnseen: '○ Non vus', statsTotal: 'Total',
@@ -1058,6 +1067,12 @@ const UI = {
     btnRestart: 'Restart',
     optRecto: 'Front', optVerso: 'Back',
     backTag: 'answer', legalTitle: 'Legal notice',
+    aboutText1: 'Passionate about Japan and learning Japanese, I created this app with the help of Claude for personal use, then published it online so everyone can enjoy it.',
+    aboutText2: 'The app is primarily optimized for Japanese, there may be inconsistencies in other available languages. Feel free to report any issues or share your feedback at the address below.',
+    infoContact: 'Contact',
+    infoPrivacy: 'Privacy', infoPrivacyText: 'This app does not collect any personal data. Preferences and progress are stored locally on your device and are never shared with third parties.',
+    infoHost: 'Web hosting',
+    infoIP: 'Intellectual property', infoIPText: '© 2026 — All rights reserved.',
     statsTitle: 'Statistics', statsCat: 'Category',
     statsKnown: '✓ Learning', statsReview: '↺ Review',
     statsAcquired: '⭐ Mastered', statsUnseen: '○ Unseen', statsTotal: 'Total',
@@ -1095,6 +1110,12 @@ const UI = {
     btnRestart: 'Neu starten',
     optRecto: 'Vorderseite', optVerso: 'Rückseite',
     backTag: 'Antwort', legalTitle: 'Impressum',
+    aboutText1: 'Aus Begeisterung für Japan und das Japanischlernen habe ich diese App mit Hilfe von Claude für den persönlichen Gebrauch entwickelt und sie dann online veröffentlicht, damit alle davon profitieren können.',
+    aboutText2: 'Die App ist in erster Linie für Japanisch optimiert, bei anderen verfügbaren Sprachen kann es zu Ungenauigkeiten kommen. Probleme oder Feedback können Sie gerne an die unten stehende Adresse senden.',
+    infoContact: 'Kontakt',
+    infoPrivacy: 'Datenschutz', infoPrivacyText: 'Diese App sammelt keine persönlichen Daten. Einstellungen und Fortschritt werden lokal auf Ihrem Gerät gespeichert und niemals an Dritte weitergegeben.',
+    infoHost: 'Hosting',
+    infoIP: 'Geistiges Eigentum', infoIPText: '© 2026 — Alle Rechte vorbehalten.',
     statsTitle: 'Statistiken', statsCat: 'Kategorie',
     statsKnown: '✓ Lernend', statsReview: '↺ Wiederholen',
     statsAcquired: '⭐ Gelernt', statsUnseen: '○ Ungesehen', statsTotal: 'Gesamt',
@@ -1132,6 +1153,12 @@ const UI = {
     btnRestart: 'Recomeçar',
     optRecto: 'Frente', optVerso: 'Verso',
     backTag: 'resposta', legalTitle: 'Aviso legal',
+    aboutText1: 'Apaixonado pelo Japão e pelo aprendizado do japonês, criei este aplicativo com a ajuda do Claude para uso pessoal e depois o publiquei online para que todos possam aproveitá-lo.',
+    aboutText2: 'O app é otimizado principalmente para o japonês, podendo haver inconsistências nas outras línguas disponíveis. Sinta-se à vontade para reportar problemas ou enviar seu feedback para o endereço abaixo.',
+    infoContact: 'Contato',
+    infoPrivacy: 'Privacidade', infoPrivacyText: 'Este aplicativo não coleta nenhum dado pessoal. As preferências e o progresso são armazenados localmente no seu dispositivo e nunca são compartilhados com terceiros.',
+    infoHost: 'Hospedagem',
+    infoIP: 'Propriedade intelectual', infoIPText: '© 2026 — Todos os direitos reservados.',
     statsTitle: 'Estatísticas', statsCat: 'Categoria',
     statsKnown: '✓ Aprendendo', statsReview: '↺ Rever',
     statsAcquired: '⭐ Dominados', statsUnseen: '○ Não vistos', statsTotal: 'Total',
@@ -1169,6 +1196,12 @@ const UI = {
     btnRestart: 'もう一度やる',
     optRecto: '表面', optVerso: '裏面',
     backTag: '答え', legalTitle: '法的情報',
+    aboutText1: '日本とその言語への情熱から、このアプリをClaudeの助けを借りて個人用に作成し、その後みんなに使ってもらえるようにネット上で公開しました。',
+    aboutText2: 'アプリは主に日本語向けに最適化されており、他の言語では不整合が生じる場合があります。問題点やご意見は、下記のアドレスまでお気軽にお送りください。',
+    infoContact: 'お問い合わせ',
+    infoPrivacy: '個人情報', infoPrivacyText: 'このアプリは個人データを収集しません。設定と学習進捗はお使いのデバイスにローカル保存され、第三者に送信されることはありません。',
+    infoHost: 'ホスティング',
+    infoIP: '著作権', infoIPText: '© 2026 — 全著作権所有。',
     statsTitle: '統計', statsCat: 'カテゴリ',
     statsKnown: '✓ 学習中', statsReview: '↺ 復習',
     statsAcquired: '⭐ 習得済み', statsUnseen: '○ 未習', statsTotal: '合計',
@@ -1206,6 +1239,12 @@ const UI = {
     btnRestart: '다시 시작',
     optRecto: '앞면', optVerso: '뒷면',
     backTag: '답', legalTitle: '법적 고지',
+    aboutText1: '일본과 일본어 학습에 대한 열정으로, Claude의 도움을 받아 개인용으로 이 앱을 만들었고, 이후 모두가 활용할 수 있도록 온라인에 공개했습니다.',
+    aboutText2: '이 앱은 주로 일본어에 최적화되어 있으며, 다른 언어에서는 오류가 있을 수 있습니다. 문제나 피드백은 아래 주소로 자유롭게 보내주세요.',
+    infoContact: '연락처',
+    infoPrivacy: '개인정보', infoPrivacyText: '이 앱은 개인 데이터를 수집하지 않습니다. 설정과 학습 진행 상황은 기기에 로컬 저장되며 제3자와 공유되지 않습니다.',
+    infoHost: '호스팅',
+    infoIP: '지적 재산권', infoIPText: '© 2026 — 모든 권리 보유.',
     statsTitle: '통계', statsCat: '카테고리',
     statsKnown: '✓ 학습 중', statsReview: '↺ 복습',
     statsAcquired: '⭐ 완료', statsUnseen: '○ 미학습', statsTotal: '합계',
@@ -1420,6 +1459,14 @@ function updateUI() {
   document.getElementById('legalTitle').textContent    = t.legalTitle;
   document.getElementById('statsTitle').textContent    = t.statsTitle;
   document.getElementById('infoBtn').title             = t.legalTitle;
+  document.getElementById('aboutText1').textContent    = t.aboutText1;
+  document.getElementById('aboutText2').textContent    = t.aboutText2;
+  document.getElementById('infoContactTitle').textContent = t.infoContact;
+  document.getElementById('infoPrivacyTitle').textContent = t.infoPrivacy;
+  document.getElementById('infoPrivacyText').textContent  = t.infoPrivacyText;
+  document.getElementById('infoHostTitle').textContent    = t.infoHost;
+  document.getElementById('infoIPTitle').textContent      = t.infoIP;
+  document.getElementById('infoIPText').textContent       = t.infoIPText;
   document.getElementById('statsBtn').title            = t.statsTitle;
   document.getElementById('langBtn').title             = t.langBtn;
   document.getElementById('settingsBtn').title         = t.settingsTitle;
@@ -1892,14 +1939,14 @@ function buildUiLangPicker() {
   const autoBtn = document.createElement('button');
   autoBtn.className = 'ctrl-btn' + (!uiLangOverride ? ' lang-active' : '');
   autoBtn.textContent = 'Auto';
-  autoBtn.onclick = () => { uiLangOverride = null; buildControlBar(); updateUI(); saveSettings(); };
+  autoBtn.onclick = () => { uiLangOverride = null; buildControlBar(); updateUI(); buildCatBar(); saveSettings(); };
   group.appendChild(autoBtn);
   UI_LANGS.forEach(lang => {
     const btn = document.createElement('button');
     btn.className = 'ctrl-btn' + (uiLangOverride === lang.code ? ' lang-active' : '');
     btn.textContent = lang.label;
     btn.title = lang.name;
-    btn.onclick = () => { uiLangOverride = lang.code; buildControlBar(); updateUI(); saveSettings(); };
+    btn.onclick = () => { uiLangOverride = lang.code; buildControlBar(); updateUI(); buildCatBar(); saveSettings(); };
     group.appendChild(btn);
   });
 }
