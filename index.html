@@ -328,6 +328,17 @@
     .review-btn.review-btn-acquired:hover { background: #c9910a; color: #fff; }
     .review-count-acquired { background: #c9910a; color: #fff; }
     .review-btn.review-btn-acquired:hover .review-count-acquired { background: rgba(255,255,255,0.25); }
+    .review-lbl   { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .review-count { flex-shrink: 0; }
+    /* Mobile : À revoir / En cours / Acquis se partagent une seule ligne */
+    @media (max-width: 480px) {
+      .review-bar { gap: 4px; }
+      .review-btn {
+        flex: 1 1 0; min-width: 0; justify-content: center;
+        padding: 7px 5px; font-size: 11px; gap: 4px;
+      }
+      .review-count { padding: 1px 5px; font-size: 10px; }
+    }
 
     /* ── Barre de catégories (défilement horizontal) ── */
     .cat-bar-wrap {
@@ -2341,26 +2352,26 @@ function updateReviewBar() {
   if (dueCount > 0) {
     // Toujours en premier, sur sa propre ligne
     html += `<button class="review-btn review-btn-smart" onclick="startSmartReview()">
-      <i class="ti ti-brain"></i> ${t.smartBtnLabel}
+      <i class="ti ti-brain"></i> <span class="review-lbl">${t.smartBtnLabel}</span>
       <span class="review-count review-count-smart">${dueCount}</span>
     </button>`;
     if (reviewCount > 0 || knownCount > 0 || acquiredCount > 0) html += '<div class="review-break"></div>';
   }
   if (reviewCount > 0) {
     html += `<button class="review-btn" onclick="startReview('review')">
-      <i class="ti ti-refresh"></i> ${t.reviewBtnLabel}
+      <i class="ti ti-refresh"></i> <span class="review-lbl">${t.reviewBtnLabel}</span>
       <span class="review-count">${reviewCount}</span>
     </button>`;
   }
   if (knownCount > 0) {
     html += `<button class="review-btn review-btn-known" onclick="startReview('known')">
-      <i class="ti ti-rotate-clockwise"></i> ${t.reviewKnownBtnLabel}
+      <i class="ti ti-rotate-clockwise"></i> <span class="review-lbl">${t.reviewKnownBtnLabel}</span>
       <span class="review-count review-count-known">${knownCount}</span>
     </button>`;
   }
   if (acquiredCount > 0) {
     html += `<button class="review-btn review-btn-acquired" onclick="startReview('acquired')">
-      <i class="ti ti-star"></i> ${t.reviewAcquiredBtnLabel}
+      <i class="ti ti-star"></i> <span class="review-lbl">${t.reviewAcquiredBtnLabel}</span>
       <span class="review-count review-count-acquired">${acquiredCount}</span>
     </button>`;
   }
