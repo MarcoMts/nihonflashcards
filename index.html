@@ -309,6 +309,15 @@
     .review-btn:hover .review-count { background: rgba(255,255,255,0.25); }
     .review-count-known { background: var(--accent); }
     .review-btn.review-btn-known:hover .review-count-known { background: rgba(255,255,255,0.25); }
+    .review-break { flex-basis: 100%; height: 0; }
+    .review-btn.review-btn-smart {
+      border-color: #7c5cd6; background: rgba(124,92,214,0.10); color: #7c5cd6;
+    }
+    [data-theme="dark"] .review-btn.review-btn-smart,
+    [data-theme="eva"]  .review-btn.review-btn-smart { color: #a78bfa; }
+    .review-btn.review-btn-smart:hover { background: #7c5cd6; color: #fff; }
+    .review-count-smart { background: #7c5cd6; }
+    .review-btn.review-btn-smart:hover .review-count-smart { background: rgba(255,255,255,0.25); }
     .review-btn.review-btn-acquired {
       border-color: #c9910a; background: #fef9ec; color: #c9910a;
     }
@@ -1004,8 +1013,33 @@ const THEME_KEY    = 'nihon_theme';
 const SETTINGS_KEY = 'nihon_settings';
 const CUSTOM_KEY      = 'nihon_custom';
 const CUSTOM_CATS_KEY = 'nihon_custom_cats';
+const SRS_KEY         = 'nihon_srs';
 let progress    = {};
 let saveEnabled = false;
+
+// ── Révision intelligente (répétition espacée Fibonacci) ─────────────────────
+// srs[clé] = { s: étage (bonnes réponses consécutives), d: jour de la dernière révision }
+// Le mot redevient "dû" FIB_DAYS[s] jours après d. Réponse fausse → retour à zéro.
+let srs = {};
+const FIB_DAYS = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144];
+
+function todayIdx() {
+  const d = new Date();
+  return Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000);
+}
+
+function isDue(w) {
+  const key = progressKey(w.id);
+  const st  = progress[key];
+  // Seuls les mots "en cours" ou "à revoir" entrent dans le cycle (ni acquis, ni jamais vus)
+  if (st !== 'known' && st !== 'review') return false;
+  const rec = srs[key];
+  if (!rec) return true; // pas encore de planning → dû immédiatement
+  return (todayIdx() - rec.d) >= FIB_DAYS[Math.min(rec.s, FIB_DAYS.length - 1)];
+}
+
+function loadSrs() { try { srs = JSON.parse(localStorage.getItem(SRS_KEY) || '{}'); } catch(e) { srs = {}; } }
+function saveSrs() { if (saveEnabled) localStorage.setItem(SRS_KEY, JSON.stringify(srs)); }
 
 // ── Langues disponibles ───────────────────────────────────────────────────────
 const UI_LANGS = [
@@ -1048,6 +1082,7 @@ const UI = {
     statsAcquired: '⭐ Acquis', statsUnseen: '○ Non vus', statsTotal: 'Total',
     statsStudyBtn: 'Étudier cette langue',
     reviewBtnLabel: 'À revoir', reviewKnownBtnLabel: 'En cours', reviewAcquiredBtnLabel: 'Acquis',
+    smartBtnLabel: 'Révision intelligente',
     noProgress: 'Commencez à réviser pour voir vos statistiques.',
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
     consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
@@ -1091,6 +1126,7 @@ const UI = {
     statsAcquired: '⭐ Mastered', statsUnseen: '○ Unseen', statsTotal: 'Total',
     statsStudyBtn: 'Study this language',
     reviewBtnLabel: 'To review', reviewKnownBtnLabel: 'Learning', reviewAcquiredBtnLabel: 'Mastered',
+    smartBtnLabel: 'Smart review',
     noProgress: 'Start studying to see your statistics.',
     consentMsg: '💾 Save your progress between sessions?',
     consentAccept: 'Yes, save', consentReject: 'No thanks',
@@ -1134,6 +1170,7 @@ const UI = {
     statsAcquired: '⭐ Gelernt', statsUnseen: '○ Ungesehen', statsTotal: 'Gesamt',
     statsStudyBtn: 'Diese Sprache lernen',
     reviewBtnLabel: 'Wiederholen', reviewKnownBtnLabel: 'Lernend', reviewAcquiredBtnLabel: 'Gelernt',
+    smartBtnLabel: 'Intelligente Wiederholung',
     noProgress: 'Fangen Sie an zu lernen, um Ihre Statistiken zu sehen.',
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
     consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
@@ -1177,6 +1214,7 @@ const UI = {
     statsAcquired: '⭐ Dominados', statsUnseen: '○ Não vistos', statsTotal: 'Total',
     statsStudyBtn: 'Estudar este idioma',
     reviewBtnLabel: 'A rever', reviewKnownBtnLabel: 'Aprendendo', reviewAcquiredBtnLabel: 'Dominados',
+    smartBtnLabel: 'Revisão inteligente',
     noProgress: 'Comece a estudar para ver suas estatísticas.',
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
     consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
@@ -1220,6 +1258,7 @@ const UI = {
     statsAcquired: '⭐ 習得済み', statsUnseen: '○ 未習', statsTotal: '合計',
     statsStudyBtn: 'この言語を学ぶ',
     reviewBtnLabel: '要復習', reviewKnownBtnLabel: '学習中', reviewAcquiredBtnLabel: '習得済み',
+    smartBtnLabel: 'スマート復習',
     noProgress: '学習を始めると統計が表示されます。',
     consentMsg: '💾 学習記録を保存しますか？',
     consentAccept: '保存する', consentReject: 'いいえ',
@@ -1263,6 +1302,7 @@ const UI = {
     statsAcquired: '⭐ 완료', statsUnseen: '○ 미학습', statsTotal: '합계',
     statsStudyBtn: '이 언어 학습하기',
     reviewBtnLabel: '복습', reviewKnownBtnLabel: '학습 중', reviewAcquiredBtnLabel: '습득 완료',
+    smartBtnLabel: '스마트 복습',
     noProgress: '학습을 시작하면 통계가 표시됩니다.',
     consentMsg: '💾 세션 간 진도를 저장하시겠습니까?',
     consentAccept: '네, 저장합니다', consentReject: '아니요',
@@ -1443,10 +1483,11 @@ function loadProgress() {
         progress[k.includes(':') ? k : `jp:${k}`] = v;
       });
     } catch(e) { progress = {}; }
+    loadSrs();
   }
 }
 function saveProgress()  { if (saveEnabled) localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
-function acceptConsent() { localStorage.setItem(CONSENT_KEY, 'true');  saveEnabled = true; saveProgress(); hideConsent(); }
+function acceptConsent() { localStorage.setItem(CONSENT_KEY, 'true');  saveEnabled = true; saveProgress(); saveSrs(); hideConsent(); }
 function rejectConsent() { localStorage.setItem(CONSENT_KEY, 'false'); saveEnabled = false; hideConsent(); }
 function hideConsent()   { document.getElementById('consentBanner').classList.remove('show'); }
 function showConsentIfNeeded() {
@@ -2148,9 +2189,20 @@ function flipCard() {
 function answer(status) {
   const word = deck[idx];
   if (word?.id) {
-    sessionAnswers[idx] = { status, prev: progress[progressKey(word.id)] };
-    progress[progressKey(word.id)] = status;
+    const key = progressKey(word.id);
+    sessionAnswers[idx] = { status, prev: progress[key], prevSrs: srs[key] };
+    progress[key] = status;
+    // Planning Fibonacci : la révision n'est validée que par "Correct" en révision intelligente
+    if (status === 'known') {
+      if (currentCat === '__smart__') {
+        const stage = srs[key] ? Math.min(srs[key].s + 1, FIB_DAYS.length - 1) : 0;
+        srs[key] = { s: stage, d: todayIdx() };
+      }
+    } else {
+      delete srs[key]; // 'review' → à revoir immédiatement | 'acquired' → sort du cycle
+    }
     saveProgress();
+    saveSrs();
     updateReviewBar();
   }
   if (status === 'known')    correct++;
@@ -2176,9 +2228,13 @@ function prevCard() {
     else if (rec.status === 'acquired') sessionAcquired--;
     const word = deck[idx];
     if (word?.id) {
-      if (rec.prev === undefined) delete progress[progressKey(word.id)];
-      else progress[progressKey(word.id)] = rec.prev;
+      const key = progressKey(word.id);
+      if (rec.prev === undefined) delete progress[key];
+      else progress[key] = rec.prev;
+      if (rec.prevSrs === undefined) delete srs[key];
+      else srs[key] = rec.prevSrs;
       saveProgress();
+      saveSrs();
       updateReviewBar();
     }
     sessionAnswers[idx] = undefined;
@@ -2231,6 +2287,7 @@ function restart() {
   if (currentCat === '__review__') startReview('review');
   else if (currentCat === '__known__') startReview('known');
   else if (currentCat === '__acquired__') startReview('acquired');
+  else if (currentCat === '__smart__') startSmartReview();
   else { buildDeck(currentCat); showCard(); }
 }
 
@@ -2253,15 +2310,42 @@ function startReview(mode = 'review') {
   showCard();
 }
 
+// Révision intelligente : tous les mots non acquis dus aujourd'hui (planning Fibonacci)
+function startSmartReview() {
+  const words = [];
+  Object.keys(VOCAB).forEach(catId => {
+    (VOCAB[catId] || []).forEach(w => {
+      if (isDue(w)) words.push({ ...w, _catId: catId });
+    });
+  });
+  if (!words.length) return;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  currentCat = '__smart__';
+  deck = words.sort(() => Math.random() - 0.5);
+  idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
+  sessionAnswers = [];
+  document.getElementById('screens').classList.remove('finished');
+  showCard();
+}
+
 function updateReviewBar() {
   const allWords      = Object.values(VOCAB).flat();
   const reviewCount   = allWords.filter(w => progress[progressKey(w.id)] === 'review').length;
   const knownCount    = allWords.filter(w => progress[progressKey(w.id)] === 'known').length;
   const acquiredCount = allWords.filter(w => progress[progressKey(w.id)] === 'acquired').length;
+  const dueCount      = allWords.filter(isDue).length;
   const bar = document.getElementById('reviewBar');
   const t   = UI[uiLang()];
   let html  = '';
 
+  if (dueCount > 0) {
+    // Toujours en premier, sur sa propre ligne
+    html += `<button class="review-btn review-btn-smart" onclick="startSmartReview()">
+      <i class="ti ti-brain"></i> ${t.smartBtnLabel}
+      <span class="review-count review-count-smart">${dueCount}</span>
+    </button>`;
+    if (reviewCount > 0 || knownCount > 0 || acquiredCount > 0) html += '<div class="review-break"></div>';
+  }
   if (reviewCount > 0) {
     html += `<button class="review-btn" onclick="startReview('review')">
       <i class="ti ti-refresh"></i> ${t.reviewBtnLabel}
@@ -2280,7 +2364,6 @@ function updateReviewBar() {
       <span class="review-count review-count-acquired">${acquiredCount}</span>
     </button>`;
   }
-
   if (html) { bar.innerHTML = html; bar.style.display = 'flex'; }
   else       { bar.style.display = 'none'; }
 }
@@ -2396,7 +2479,9 @@ function confirmReset() {
   // Effacer uniquement la progression de la langue cible courante
   const prefix = targetLang + ':';
   Object.keys(progress).forEach(k => { if (k.startsWith(prefix)) delete progress[k]; });
+  Object.keys(srs).forEach(k => { if (k.startsWith(prefix)) delete srs[k]; });
   saveProgress();
+  saveSrs();
   correct = 0; wrong = 0; sessionAcquired = 0;
   closeResetConfirm();
   updateReviewBar();
