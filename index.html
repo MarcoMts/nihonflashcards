@@ -2399,6 +2399,7 @@ function renderStats() {
       .filter(Boolean)
   );
   seenLangs.add(targetLang); // toujours inclure la langue courante
+  if (statsViewLang) seenLangs.add(statsViewLang); // et l'onglet consulté (même vidé par un reset)
 
   // Onglets
   const tabsHTML = [...seenLangs].map(lang => {
@@ -2476,8 +2477,10 @@ function closeResetConfirm() { document.getElementById('resetModal').classList.r
 function closeResetConfirmBackdrop(e) { if (e.target === document.getElementById('resetModal')) closeResetConfirm(); }
 
 function confirmReset() {
-  // Effacer uniquement la progression de la langue cible courante
-  const prefix = targetLang + ':';
+  // Effacer la progression de la langue affichée dans les stats (sinon la langue cible courante)
+  const statsOpen = document.getElementById('statsModal').classList.contains('open');
+  const lang   = (statsOpen && statsViewLang) ? statsViewLang : targetLang;
+  const prefix = lang + ':';
   Object.keys(progress).forEach(k => { if (k.startsWith(prefix)) delete progress[k]; });
   Object.keys(srs).forEach(k => { if (k.startsWith(prefix)) delete srs[k]; });
   saveProgress();
@@ -2486,6 +2489,8 @@ function confirmReset() {
   closeResetConfirm();
   updateReviewBar();
   updateProgressBar();
+  // Rafraîchit la modale Statistiques restée ouverte derrière
+  if (document.getElementById('statsModal').classList.contains('open')) renderStats();
   if (!currentCat.startsWith('__')) buildDeck(currentCat);
   else {
     currentCat = Object.keys(VOCAB)[0];
