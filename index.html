@@ -562,6 +562,7 @@
     }
     .cat-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
     .cat-btn.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+    .cat-btn.sub { font-size: 12px; padding: 5px 13px; }
 
     /* ── Options panel (collapsible via ⚙️) ── */
     .options-panel {
@@ -960,6 +961,11 @@
     <div class="category-bar" id="catBar"></div>
   </div>
 
+  <!-- ── Sous-catégories (kana : gojūon / dakuten / yōon) ── -->
+  <div class="cat-bar-wrap" id="subCatBarWrap" style="display:none">
+    <div class="category-bar" id="subCatBar"></div>
+  </div>
+
   <!-- ── Options d'affichage (collapsible via ⚙️) ── -->
   <div class="options-panel" id="optionsPanel">
     <div class="toggle-group">
@@ -1202,11 +1208,12 @@
 
 <script>
 // ── Globals ───────────────────────────────────────────────────────────────────
-let VOCAB = {}, CATEGORIES = {};
+let VOCAB = {}, CATEGORIES = {}, SUBCATS = {};
 let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0, sessionAcquired = 0;
 let sessionAnswers = []; // réponses de la session, par index du deck (pour annuler via "Précédent")
 let editingWordId = null;
 let currentCat  = '';
+let currentSub  = '__all__'; // sous-catégorie active ('__all__' = toutes)
 let sourceLang  = 'fr';  // langue NATALE de l'utilisateur (1ère liste) → détermine la langue d'interface
 let targetLang  = 'jp';  // langue CIBLE à apprendre (2ème liste) → détermine la progression stockée
 let statsViewLang = null; // langue affichée dans les stats
@@ -1295,7 +1302,7 @@ const UI = {
     consentMsg: '💾 Sauvegarder vos progrès entre les sessions ?',
     consentAccept: 'Oui, sauvegarder', consentReject: 'Non merci',
     langBtn: 'Langues', uiLangLabel: 'Interface',
-    catCustom: 'Personnalisé',
+    catCustom: 'Personnalisé', subAll: 'Tous',
     addWordTitle: 'Ajouter un mot', addWordCat: 'Catégorie', addWordNewCat: 'Nouvelle catégorie…',
     addWordMyCats: 'Mes catégories', addWordRecto: 'Recto', addWordVerso: 'Verso',
     addWordAdd: 'Ajouter', addWordModify: 'Modifier', addWordPlaceholder: 'Saisir…',
@@ -1339,7 +1346,7 @@ const UI = {
     consentMsg: '💾 Save your progress between sessions?',
     consentAccept: 'Yes, save', consentReject: 'No thanks',
     langBtn: 'Languages', uiLangLabel: 'Interface',
-    catCustom: 'Custom',
+    catCustom: 'Custom', subAll: 'All',
     addWordTitle: 'Add a word', addWordCat: 'Category', addWordNewCat: 'New category…',
     addWordMyCats: 'My categories', addWordRecto: 'Front', addWordVerso: 'Back',
     addWordAdd: 'Add', addWordModify: 'Update', addWordPlaceholder: 'Enter…',
@@ -1383,7 +1390,7 @@ const UI = {
     consentMsg: '💾 Fortschritt zwischen Sitzungen speichern?',
     consentAccept: 'Ja, speichern', consentReject: 'Nein danke',
     langBtn: 'Sprachen', uiLangLabel: 'Oberfläche',
-    catCustom: 'Benutzerdefiniert',
+    catCustom: 'Benutzerdefiniert', subAll: 'Alle',
     addWordTitle: 'Wort hinzufügen', addWordCat: 'Kategorie', addWordNewCat: 'Neue Kategorie…',
     addWordMyCats: 'Meine Kategorien', addWordRecto: 'Vorderseite', addWordVerso: 'Rückseite',
     addWordAdd: 'Hinzufügen', addWordModify: 'Aktualisieren', addWordPlaceholder: 'Eingeben…',
@@ -1427,7 +1434,7 @@ const UI = {
     consentMsg: '💾 Salvar seu progresso entre as sessões?',
     consentAccept: 'Sim, salvar', consentReject: 'Não, obrigado',
     langBtn: 'Idiomas', uiLangLabel: 'Interface',
-    catCustom: 'Personalizado',
+    catCustom: 'Personalizado', subAll: 'Todos',
     addWordTitle: 'Adicionar palavra', addWordCat: 'Categoria', addWordNewCat: 'Nova categoria…',
     addWordMyCats: 'Minhas categorias', addWordRecto: 'Frente', addWordVerso: 'Verso',
     addWordAdd: 'Adicionar', addWordModify: 'Atualizar', addWordPlaceholder: 'Digitar…',
@@ -1471,7 +1478,7 @@ const UI = {
     consentMsg: '💾 学習記録を保存しますか？',
     consentAccept: '保存する', consentReject: 'いいえ',
     langBtn: '言語', uiLangLabel: '表示言語',
-    catCustom: 'カスタム',
+    catCustom: 'カスタム', subAll: 'すべて',
     addWordTitle: '単語を追加', addWordCat: 'カテゴリ', addWordNewCat: '新しいカテゴリ…',
     addWordMyCats: 'マイカテゴリ', addWordRecto: '表面', addWordVerso: '裏面',
     addWordAdd: '追加', addWordModify: '更新', addWordPlaceholder: '入力…',
@@ -1515,7 +1522,7 @@ const UI = {
     consentMsg: '💾 세션 간 진도를 저장하시겠습니까?',
     consentAccept: '네, 저장합니다', consentReject: '아니요',
     langBtn: '언어', uiLangLabel: '인터페이스',
-    catCustom: '사용자 정의',
+    catCustom: '사용자 정의', subAll: '전체',
     addWordTitle: '단어 추가', addWordCat: '카테고리', addWordNewCat: '새 카테고리…',
     addWordMyCats: '내 카테고리', addWordRecto: '앞면', addWordVerso: '뒷면',
     addWordAdd: '추가', addWordModify: '수정', addWordPlaceholder: '입력…',
@@ -1672,7 +1679,7 @@ async function loadVocabulary() {
   const resp = await fetch('vocabulary.xml');
   if (!resp.ok) throw new Error('HTTP ' + resp.status);
   const xml = new DOMParser().parseFromString(await resp.text(), 'application/xml');
-  VOCAB = {}; CATEGORIES = {};
+  VOCAB = {}; CATEGORIES = {}; SUBCATS = {};
   xml.querySelectorAll('category').forEach(cat => {
     const id = cat.getAttribute('id');
     CATEGORIES[id] = {};
@@ -1681,12 +1688,20 @@ async function loadVocabulary() {
     });
     VOCAB[id] = [];
   });
+  xml.querySelectorAll('subcategory').forEach(sub => {
+    const id = sub.getAttribute('id');
+    SUBCATS[id] = {};
+    sub.querySelectorAll('label').forEach(lbl => {
+      SUBCATS[id][lbl.getAttribute('lang')] = lbl.textContent;
+    });
+  });
   xml.querySelectorAll('word').forEach(word => {
     const catId = word.getAttribute('category');
     if (!VOCAB[catId]) VOCAB[catId] = [];
     const get = tag => word.querySelector(tag)?.textContent?.trim() || '';
     VOCAB[catId].push({
       id:       word.getAttribute('id'),
+      sub:      word.getAttribute('sub') || '',
       kanji:      get('kanji'),
       kana:       get('kana'),
       romaji:     get('romaji'),
@@ -2317,6 +2332,7 @@ function catVisibleForTarget(catId) {
 function ensureCatVisible() {
   if (currentCat.startsWith('__') || catVisibleForTarget(currentCat)) return;
   currentCat = Object.keys(CATEGORIES).find(id => VOCAB[id]?.length && catVisibleForTarget(id)) || '';
+  currentSub = '__all__';
 }
 
 function buildCatBar() {
@@ -2331,19 +2347,52 @@ function buildCatBar() {
     btn.textContent  = CATEGORIES[catId][uiLang()] || CATEGORIES[catId]['fr'] || catId;
     btn.onclick = () => {
       currentCat = catId;
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      currentSub = '__all__';
+      document.querySelectorAll('#catBar .cat-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      buildSubCatBar();
       buildDeck(catId);
       document.getElementById('screens').classList.remove('finished');
       showCard();
     };
     bar.appendChild(btn);
   });
+  buildSubCatBar();
+}
+
+// ── Barre de sous-catégories (ex: kana → gojūon / dakuten / yōon) ────────────
+function buildSubCatBar() {
+  const wrap = document.getElementById('subCatBarWrap');
+  const bar  = document.getElementById('subCatBar');
+  bar.innerHTML = '';
+  // Sous-catégories présentes dans la catégorie courante (ordre du XML)
+  const subs = (!currentCat.startsWith('__') && VOCAB[currentCat])
+    ? [...new Set(VOCAB[currentCat].map(w => w.sub).filter(Boolean))]
+    : [];
+  if (!subs.length) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  const t = UI[uiLang()];
+  const mk = (id, label) => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn sub' + (id === currentSub ? ' active' : '');
+    btn.textContent = label;
+    btn.onclick = () => {
+      currentSub = id;
+      buildSubCatBar();
+      buildDeck(currentCat);
+      document.getElementById('screens').classList.remove('finished');
+      showCard();
+    };
+    bar.appendChild(btn);
+  };
+  mk('__all__', t.subAll || 'Tous');
+  subs.forEach(id => mk(id, SUBCATS[id]?.[uiLang()] || SUBCATS[id]?.fr || id));
 }
 
 // ── Deck & cartes ─────────────────────────────────────────────────────────────
 function buildDeck(cat) {
   deck = [...VOCAB[cat]]
+    .filter(w => currentSub === '__all__' || !w.sub || w.sub === currentSub)
     .filter(w => progress[progressKey(w.id)] !== 'acquired')
     .sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
@@ -2358,6 +2407,7 @@ function saveLastPosition() {
   try {
     localStorage.setItem(LAST_POS_KEY, JSON.stringify({
       cat: currentCat,
+      sub: currentSub,
       deckIds: deck.map(w => w.id),
       idx, correct, wrong, sessionAcquired,
       sessionAnswers,
@@ -2569,8 +2619,9 @@ function startReview(mode = 'review') {
     });
   });
   if (!words.length) return;
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#catBar .cat-btn').forEach(b => b.classList.remove('active'));
   currentCat = `__${mode}__`;
+  buildSubCatBar();
   deck = words.sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
   sessionAnswers = [];
@@ -2587,8 +2638,9 @@ function startSmartReview() {
     });
   });
   if (!words.length) return;
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#catBar .cat-btn').forEach(b => b.classList.remove('active'));
   currentCat = '__smart__';
+  buildSubCatBar();
   deck = words.sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
   sessionAnswers = [];
@@ -2763,9 +2815,10 @@ function confirmReset() {
   if (!currentCat.startsWith('__')) buildDeck(currentCat);
   else {
     currentCat = Object.keys(VOCAB)[0];
+    currentSub = '__all__';
     ensureCatVisible();
     buildCatBar();
-    document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === currentCat));
+    document.querySelectorAll('#catBar .cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === currentCat));
     buildDeck(currentCat);
   }
   document.getElementById('screens').classList.remove('finished');
@@ -2802,6 +2855,7 @@ document.querySelector('.cat-bar-wrap').addEventListener('wheel', e => {
     // Catégorie restaurée incompatible avec la langue cible (kana/hangeul) → 1ère visible
     ensureCatVisible();
     if (lastPos && lastPos.cat !== currentCat) lastPos = null;
+    currentSub = lastPos?.sub || '__all__';
     buildControlBar();
     updateUI();
     syncTogglePills(); // aligne l'état visuel des pills avec show chargé

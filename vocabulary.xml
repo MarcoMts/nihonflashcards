@@ -4,7 +4,7 @@
   vocabulary.xml — Base de vocabulaire japonais multilingue
   ============================================================
   Structure d'une entrée :
-    <word id="unique_id" category="nom_categorie">
+    <word id="unique_id" category="nom_categorie" sub="sous_categorie_optionnelle">
       <kanji>漢字</kanji>           — écriture kanji (ou kana si pas de kanji)
       <kana>かな</kana>             — lecture hiragana / katakana
       <romaji>romaji</romaji>       — translittération romaji
@@ -208,9 +208,46 @@
   </category>
 
   <!-- ════════════════════════════════════════════════════════
+       SOUS-CATÉGORIES — référencées par l'attribut sub="…"
+       des mots (utilisé pour les kana : hiragana / katakana)
+       ════════════════════════════════════════════════════════ -->
+  <subcategory id="gojuon">
+    <label lang="fr">Monogrammes (gojūon)</label>
+    <label lang="en">Monographs (gojūon)</label>
+    <label lang="de">Monographe (Gojūon)</label>
+    <label lang="pt">Monogramas (gojūon)</label>
+    <label lang="ja">清音</label>
+    <label lang="ko">청음</label>
+  </subcategory>
+  <subcategory id="dakuten">
+    <label lang="fr">Monogrammes + diacritiques (dakuten・handakuten)</label>
+    <label lang="en">Monographs + diacritics (dakuten・handakuten)</label>
+    <label lang="de">Monographe + Diakritika (Dakuten・Handakuten)</label>
+    <label lang="pt">Monogramas + diacríticos (dakuten・handakuten)</label>
+    <label lang="ja">濁音・半濁音</label>
+    <label lang="ko">탁음・반탁음</label>
+  </subcategory>
+  <subcategory id="yoon">
+    <label lang="fr">Digrammes (yōon)</label>
+    <label lang="en">Digraphs (yōon)</label>
+    <label lang="de">Digraphen (Yōon)</label>
+    <label lang="pt">Dígrafos (yōon)</label>
+    <label lang="ja">拗音</label>
+    <label lang="ko">요음</label>
+  </subcategory>
+  <subcategory id="yoon_dakuten">
+    <label lang="fr">Digrammes + diacritiques (yōon dakuten)</label>
+    <label lang="en">Digraphs + diacritics (yōon dakuten)</label>
+    <label lang="de">Digraphen + Diakritika (Yōon-Dakuten)</label>
+    <label lang="pt">Dígrafos + diacríticos (yōon dakuten)</label>
+    <label lang="ja">拗濁音・拗半濁音</label>
+    <label lang="ko">요탁음</label>
+  </subcategory>
+
+  <!-- ════════════════════════════════════════════════════════
        HIRAGANA — syllabaire complet (base, dakuten, yōon)
        ════════════════════════════════════════════════════════ -->
-  <word id="hira_a" category="hiragana">
+  <word id="hira_a" category="hiragana" sub="gojuon">
     <kanji>あ</kanji>
     <kana>あ</kana>
     <romaji>a</romaji>
@@ -220,7 +257,7 @@
     <pt>a</pt>
     <ko>a</ko>
   </word>
-  <word id="hira_i" category="hiragana">
+  <word id="hira_i" category="hiragana" sub="gojuon">
     <kanji>い</kanji>
     <kana>い</kana>
     <romaji>i</romaji>
@@ -230,7 +267,7 @@
     <pt>i</pt>
     <ko>i</ko>
   </word>
-  <word id="hira_u" category="hiragana">
+  <word id="hira_u" category="hiragana" sub="gojuon">
     <kanji>う</kanji>
     <kana>う</kana>
     <romaji>u</romaji>
@@ -240,7 +277,7 @@
     <pt>u</pt>
     <ko>u</ko>
   </word>
-  <word id="hira_e" category="hiragana">
+  <word id="hira_e" category="hiragana" sub="gojuon">
     <kanji>え</kanji>
     <kana>え</kana>
     <romaji>e</romaji>
@@ -250,7 +287,7 @@
     <pt>e</pt>
     <ko>e</ko>
   </word>
-  <word id="hira_o" category="hiragana">
+  <word id="hira_o" category="hiragana" sub="gojuon">
     <kanji>お</kanji>
     <kana>お</kana>
     <romaji>o</romaji>
@@ -260,7 +297,7 @@
     <pt>o</pt>
     <ko>o</ko>
   </word>
-  <word id="hira_ka" category="hiragana">
+  <word id="hira_ka" category="hiragana" sub="gojuon">
     <kanji>か</kanji>
     <kana>か</kana>
     <romaji>ka</romaji>
@@ -270,7 +307,7 @@
     <pt>ka</pt>
     <ko>ka</ko>
   </word>
-  <word id="hira_ki" category="hiragana">
+  <word id="hira_ki" category="hiragana" sub="gojuon">
     <kanji>き</kanji>
     <kana>き</kana>
     <romaji>ki</romaji>
@@ -280,7 +317,7 @@
     <pt>ki</pt>
     <ko>ki</ko>
   </word>
-  <word id="hira_ku" category="hiragana">
+  <word id="hira_ku" category="hiragana" sub="gojuon">
     <kanji>く</kanji>
     <kana>く</kana>
     <romaji>ku</romaji>
@@ -290,7 +327,7 @@
     <pt>ku</pt>
     <ko>ku</ko>
   </word>
-  <word id="hira_ke" category="hiragana">
+  <word id="hira_ke" category="hiragana" sub="gojuon">
     <kanji>け</kanji>
     <kana>け</kana>
     <romaji>ke</romaji>
@@ -300,7 +337,7 @@
     <pt>ke</pt>
     <ko>ke</ko>
   </word>
-  <word id="hira_ko" category="hiragana">
+  <word id="hira_ko" category="hiragana" sub="gojuon">
     <kanji>こ</kanji>
     <kana>こ</kana>
     <romaji>ko</romaji>
@@ -310,7 +347,7 @@
     <pt>ko</pt>
     <ko>ko</ko>
   </word>
-  <word id="hira_sa" category="hiragana">
+  <word id="hira_sa" category="hiragana" sub="gojuon">
     <kanji>さ</kanji>
     <kana>さ</kana>
     <romaji>sa</romaji>
@@ -320,7 +357,7 @@
     <pt>sa</pt>
     <ko>sa</ko>
   </word>
-  <word id="hira_shi" category="hiragana">
+  <word id="hira_shi" category="hiragana" sub="gojuon">
     <kanji>し</kanji>
     <kana>し</kana>
     <romaji>shi</romaji>
@@ -330,7 +367,7 @@
     <pt>shi</pt>
     <ko>shi</ko>
   </word>
-  <word id="hira_su" category="hiragana">
+  <word id="hira_su" category="hiragana" sub="gojuon">
     <kanji>す</kanji>
     <kana>す</kana>
     <romaji>su</romaji>
@@ -340,7 +377,7 @@
     <pt>su</pt>
     <ko>su</ko>
   </word>
-  <word id="hira_se" category="hiragana">
+  <word id="hira_se" category="hiragana" sub="gojuon">
     <kanji>せ</kanji>
     <kana>せ</kana>
     <romaji>se</romaji>
@@ -350,7 +387,7 @@
     <pt>se</pt>
     <ko>se</ko>
   </word>
-  <word id="hira_so" category="hiragana">
+  <word id="hira_so" category="hiragana" sub="gojuon">
     <kanji>そ</kanji>
     <kana>そ</kana>
     <romaji>so</romaji>
@@ -360,7 +397,7 @@
     <pt>so</pt>
     <ko>so</ko>
   </word>
-  <word id="hira_ta" category="hiragana">
+  <word id="hira_ta" category="hiragana" sub="gojuon">
     <kanji>た</kanji>
     <kana>た</kana>
     <romaji>ta</romaji>
@@ -370,7 +407,7 @@
     <pt>ta</pt>
     <ko>ta</ko>
   </word>
-  <word id="hira_chi" category="hiragana">
+  <word id="hira_chi" category="hiragana" sub="gojuon">
     <kanji>ち</kanji>
     <kana>ち</kana>
     <romaji>chi</romaji>
@@ -380,7 +417,7 @@
     <pt>chi</pt>
     <ko>chi</ko>
   </word>
-  <word id="hira_tsu" category="hiragana">
+  <word id="hira_tsu" category="hiragana" sub="gojuon">
     <kanji>つ</kanji>
     <kana>つ</kana>
     <romaji>tsu</romaji>
@@ -390,7 +427,7 @@
     <pt>tsu</pt>
     <ko>tsu</ko>
   </word>
-  <word id="hira_te" category="hiragana">
+  <word id="hira_te" category="hiragana" sub="gojuon">
     <kanji>て</kanji>
     <kana>て</kana>
     <romaji>te</romaji>
@@ -400,7 +437,7 @@
     <pt>te</pt>
     <ko>te</ko>
   </word>
-  <word id="hira_to" category="hiragana">
+  <word id="hira_to" category="hiragana" sub="gojuon">
     <kanji>と</kanji>
     <kana>と</kana>
     <romaji>to</romaji>
@@ -410,7 +447,7 @@
     <pt>to</pt>
     <ko>to</ko>
   </word>
-  <word id="hira_na" category="hiragana">
+  <word id="hira_na" category="hiragana" sub="gojuon">
     <kanji>な</kanji>
     <kana>な</kana>
     <romaji>na</romaji>
@@ -420,7 +457,7 @@
     <pt>na</pt>
     <ko>na</ko>
   </word>
-  <word id="hira_ni" category="hiragana">
+  <word id="hira_ni" category="hiragana" sub="gojuon">
     <kanji>に</kanji>
     <kana>に</kana>
     <romaji>ni</romaji>
@@ -430,7 +467,7 @@
     <pt>ni</pt>
     <ko>ni</ko>
   </word>
-  <word id="hira_nu" category="hiragana">
+  <word id="hira_nu" category="hiragana" sub="gojuon">
     <kanji>ぬ</kanji>
     <kana>ぬ</kana>
     <romaji>nu</romaji>
@@ -440,7 +477,7 @@
     <pt>nu</pt>
     <ko>nu</ko>
   </word>
-  <word id="hira_ne" category="hiragana">
+  <word id="hira_ne" category="hiragana" sub="gojuon">
     <kanji>ね</kanji>
     <kana>ね</kana>
     <romaji>ne</romaji>
@@ -450,7 +487,7 @@
     <pt>ne</pt>
     <ko>ne</ko>
   </word>
-  <word id="hira_no" category="hiragana">
+  <word id="hira_no" category="hiragana" sub="gojuon">
     <kanji>の</kanji>
     <kana>の</kana>
     <romaji>no</romaji>
@@ -460,7 +497,7 @@
     <pt>no</pt>
     <ko>no</ko>
   </word>
-  <word id="hira_ha" category="hiragana">
+  <word id="hira_ha" category="hiragana" sub="gojuon">
     <kanji>は</kanji>
     <kana>は</kana>
     <romaji>ha</romaji>
@@ -470,7 +507,7 @@
     <pt>ha</pt>
     <ko>ha</ko>
   </word>
-  <word id="hira_hi" category="hiragana">
+  <word id="hira_hi" category="hiragana" sub="gojuon">
     <kanji>ひ</kanji>
     <kana>ひ</kana>
     <romaji>hi</romaji>
@@ -480,7 +517,7 @@
     <pt>hi</pt>
     <ko>hi</ko>
   </word>
-  <word id="hira_fu" category="hiragana">
+  <word id="hira_fu" category="hiragana" sub="gojuon">
     <kanji>ふ</kanji>
     <kana>ふ</kana>
     <romaji>fu</romaji>
@@ -490,7 +527,7 @@
     <pt>fu</pt>
     <ko>fu</ko>
   </word>
-  <word id="hira_he" category="hiragana">
+  <word id="hira_he" category="hiragana" sub="gojuon">
     <kanji>へ</kanji>
     <kana>へ</kana>
     <romaji>he</romaji>
@@ -500,7 +537,7 @@
     <pt>he</pt>
     <ko>he</ko>
   </word>
-  <word id="hira_ho" category="hiragana">
+  <word id="hira_ho" category="hiragana" sub="gojuon">
     <kanji>ほ</kanji>
     <kana>ほ</kana>
     <romaji>ho</romaji>
@@ -510,7 +547,7 @@
     <pt>ho</pt>
     <ko>ho</ko>
   </word>
-  <word id="hira_ma" category="hiragana">
+  <word id="hira_ma" category="hiragana" sub="gojuon">
     <kanji>ま</kanji>
     <kana>ま</kana>
     <romaji>ma</romaji>
@@ -520,7 +557,7 @@
     <pt>ma</pt>
     <ko>ma</ko>
   </word>
-  <word id="hira_mi" category="hiragana">
+  <word id="hira_mi" category="hiragana" sub="gojuon">
     <kanji>み</kanji>
     <kana>み</kana>
     <romaji>mi</romaji>
@@ -530,7 +567,7 @@
     <pt>mi</pt>
     <ko>mi</ko>
   </word>
-  <word id="hira_mu" category="hiragana">
+  <word id="hira_mu" category="hiragana" sub="gojuon">
     <kanji>む</kanji>
     <kana>む</kana>
     <romaji>mu</romaji>
@@ -540,7 +577,7 @@
     <pt>mu</pt>
     <ko>mu</ko>
   </word>
-  <word id="hira_me" category="hiragana">
+  <word id="hira_me" category="hiragana" sub="gojuon">
     <kanji>め</kanji>
     <kana>め</kana>
     <romaji>me</romaji>
@@ -550,7 +587,7 @@
     <pt>me</pt>
     <ko>me</ko>
   </word>
-  <word id="hira_mo" category="hiragana">
+  <word id="hira_mo" category="hiragana" sub="gojuon">
     <kanji>も</kanji>
     <kana>も</kana>
     <romaji>mo</romaji>
@@ -560,7 +597,7 @@
     <pt>mo</pt>
     <ko>mo</ko>
   </word>
-  <word id="hira_ya" category="hiragana">
+  <word id="hira_ya" category="hiragana" sub="gojuon">
     <kanji>や</kanji>
     <kana>や</kana>
     <romaji>ya</romaji>
@@ -570,7 +607,7 @@
     <pt>ya</pt>
     <ko>ya</ko>
   </word>
-  <word id="hira_yu" category="hiragana">
+  <word id="hira_yu" category="hiragana" sub="gojuon">
     <kanji>ゆ</kanji>
     <kana>ゆ</kana>
     <romaji>yu</romaji>
@@ -580,7 +617,7 @@
     <pt>yu</pt>
     <ko>yu</ko>
   </word>
-  <word id="hira_yo" category="hiragana">
+  <word id="hira_yo" category="hiragana" sub="gojuon">
     <kanji>よ</kanji>
     <kana>よ</kana>
     <romaji>yo</romaji>
@@ -590,7 +627,7 @@
     <pt>yo</pt>
     <ko>yo</ko>
   </word>
-  <word id="hira_ra" category="hiragana">
+  <word id="hira_ra" category="hiragana" sub="gojuon">
     <kanji>ら</kanji>
     <kana>ら</kana>
     <romaji>ra</romaji>
@@ -600,7 +637,7 @@
     <pt>ra</pt>
     <ko>ra</ko>
   </word>
-  <word id="hira_ri" category="hiragana">
+  <word id="hira_ri" category="hiragana" sub="gojuon">
     <kanji>り</kanji>
     <kana>り</kana>
     <romaji>ri</romaji>
@@ -610,7 +647,7 @@
     <pt>ri</pt>
     <ko>ri</ko>
   </word>
-  <word id="hira_ru" category="hiragana">
+  <word id="hira_ru" category="hiragana" sub="gojuon">
     <kanji>る</kanji>
     <kana>る</kana>
     <romaji>ru</romaji>
@@ -620,7 +657,7 @@
     <pt>ru</pt>
     <ko>ru</ko>
   </word>
-  <word id="hira_re" category="hiragana">
+  <word id="hira_re" category="hiragana" sub="gojuon">
     <kanji>れ</kanji>
     <kana>れ</kana>
     <romaji>re</romaji>
@@ -630,7 +667,7 @@
     <pt>re</pt>
     <ko>re</ko>
   </word>
-  <word id="hira_ro" category="hiragana">
+  <word id="hira_ro" category="hiragana" sub="gojuon">
     <kanji>ろ</kanji>
     <kana>ろ</kana>
     <romaji>ro</romaji>
@@ -640,7 +677,7 @@
     <pt>ro</pt>
     <ko>ro</ko>
   </word>
-  <word id="hira_wa" category="hiragana">
+  <word id="hira_wa" category="hiragana" sub="gojuon">
     <kanji>わ</kanji>
     <kana>わ</kana>
     <romaji>wa</romaji>
@@ -650,7 +687,7 @@
     <pt>wa</pt>
     <ko>wa</ko>
   </word>
-  <word id="hira_wo" category="hiragana">
+  <word id="hira_wo" category="hiragana" sub="gojuon">
     <kanji>を</kanji>
     <kana>を</kana>
     <romaji>wo</romaji>
@@ -660,7 +697,7 @@
     <pt>wo</pt>
     <ko>wo</ko>
   </word>
-  <word id="hira_n" category="hiragana">
+  <word id="hira_n" category="hiragana" sub="gojuon">
     <kanji>ん</kanji>
     <kana>ん</kana>
     <romaji>n</romaji>
@@ -670,7 +707,7 @@
     <pt>n</pt>
     <ko>n</ko>
   </word>
-  <word id="hira_ga" category="hiragana">
+  <word id="hira_ga" category="hiragana" sub="dakuten">
     <kanji>が</kanji>
     <kana>が</kana>
     <romaji>ga</romaji>
@@ -680,7 +717,7 @@
     <pt>ga</pt>
     <ko>ga</ko>
   </word>
-  <word id="hira_gi" category="hiragana">
+  <word id="hira_gi" category="hiragana" sub="dakuten">
     <kanji>ぎ</kanji>
     <kana>ぎ</kana>
     <romaji>gi</romaji>
@@ -690,7 +727,7 @@
     <pt>gi</pt>
     <ko>gi</ko>
   </word>
-  <word id="hira_gu" category="hiragana">
+  <word id="hira_gu" category="hiragana" sub="dakuten">
     <kanji>ぐ</kanji>
     <kana>ぐ</kana>
     <romaji>gu</romaji>
@@ -700,7 +737,7 @@
     <pt>gu</pt>
     <ko>gu</ko>
   </word>
-  <word id="hira_ge" category="hiragana">
+  <word id="hira_ge" category="hiragana" sub="dakuten">
     <kanji>げ</kanji>
     <kana>げ</kana>
     <romaji>ge</romaji>
@@ -710,7 +747,7 @@
     <pt>ge</pt>
     <ko>ge</ko>
   </word>
-  <word id="hira_go" category="hiragana">
+  <word id="hira_go" category="hiragana" sub="dakuten">
     <kanji>ご</kanji>
     <kana>ご</kana>
     <romaji>go</romaji>
@@ -720,7 +757,7 @@
     <pt>go</pt>
     <ko>go</ko>
   </word>
-  <word id="hira_za" category="hiragana">
+  <word id="hira_za" category="hiragana" sub="dakuten">
     <kanji>ざ</kanji>
     <kana>ざ</kana>
     <romaji>za</romaji>
@@ -730,7 +767,7 @@
     <pt>za</pt>
     <ko>za</ko>
   </word>
-  <word id="hira_ji" category="hiragana">
+  <word id="hira_ji" category="hiragana" sub="dakuten">
     <kanji>じ</kanji>
     <kana>じ</kana>
     <romaji>ji</romaji>
@@ -740,7 +777,7 @@
     <pt>ji</pt>
     <ko>ji</ko>
   </word>
-  <word id="hira_zu" category="hiragana">
+  <word id="hira_zu" category="hiragana" sub="dakuten">
     <kanji>ず</kanji>
     <kana>ず</kana>
     <romaji>zu</romaji>
@@ -750,7 +787,7 @@
     <pt>zu</pt>
     <ko>zu</ko>
   </word>
-  <word id="hira_ze" category="hiragana">
+  <word id="hira_ze" category="hiragana" sub="dakuten">
     <kanji>ぜ</kanji>
     <kana>ぜ</kana>
     <romaji>ze</romaji>
@@ -760,7 +797,7 @@
     <pt>ze</pt>
     <ko>ze</ko>
   </word>
-  <word id="hira_zo" category="hiragana">
+  <word id="hira_zo" category="hiragana" sub="dakuten">
     <kanji>ぞ</kanji>
     <kana>ぞ</kana>
     <romaji>zo</romaji>
@@ -770,7 +807,7 @@
     <pt>zo</pt>
     <ko>zo</ko>
   </word>
-  <word id="hira_da" category="hiragana">
+  <word id="hira_da" category="hiragana" sub="dakuten">
     <kanji>だ</kanji>
     <kana>だ</kana>
     <romaji>da</romaji>
@@ -780,7 +817,7 @@
     <pt>da</pt>
     <ko>da</ko>
   </word>
-  <word id="hira_dji" category="hiragana">
+  <word id="hira_dji" category="hiragana" sub="dakuten">
     <kanji>ぢ</kanji>
     <kana>ぢ</kana>
     <romaji>ji (di)</romaji>
@@ -790,7 +827,7 @@
     <pt>ji (di)</pt>
     <ko>ji (di)</ko>
   </word>
-  <word id="hira_dzu" category="hiragana">
+  <word id="hira_dzu" category="hiragana" sub="dakuten">
     <kanji>づ</kanji>
     <kana>づ</kana>
     <romaji>zu (du)</romaji>
@@ -800,7 +837,7 @@
     <pt>zu (du)</pt>
     <ko>zu (du)</ko>
   </word>
-  <word id="hira_de" category="hiragana">
+  <word id="hira_de" category="hiragana" sub="dakuten">
     <kanji>で</kanji>
     <kana>で</kana>
     <romaji>de</romaji>
@@ -810,7 +847,7 @@
     <pt>de</pt>
     <ko>de</ko>
   </word>
-  <word id="hira_do" category="hiragana">
+  <word id="hira_do" category="hiragana" sub="dakuten">
     <kanji>ど</kanji>
     <kana>ど</kana>
     <romaji>do</romaji>
@@ -820,7 +857,7 @@
     <pt>do</pt>
     <ko>do</ko>
   </word>
-  <word id="hira_ba" category="hiragana">
+  <word id="hira_ba" category="hiragana" sub="dakuten">
     <kanji>ば</kanji>
     <kana>ば</kana>
     <romaji>ba</romaji>
@@ -830,7 +867,7 @@
     <pt>ba</pt>
     <ko>ba</ko>
   </word>
-  <word id="hira_bi" category="hiragana">
+  <word id="hira_bi" category="hiragana" sub="dakuten">
     <kanji>び</kanji>
     <kana>び</kana>
     <romaji>bi</romaji>
@@ -840,7 +877,7 @@
     <pt>bi</pt>
     <ko>bi</ko>
   </word>
-  <word id="hira_bu" category="hiragana">
+  <word id="hira_bu" category="hiragana" sub="dakuten">
     <kanji>ぶ</kanji>
     <kana>ぶ</kana>
     <romaji>bu</romaji>
@@ -850,7 +887,7 @@
     <pt>bu</pt>
     <ko>bu</ko>
   </word>
-  <word id="hira_be" category="hiragana">
+  <word id="hira_be" category="hiragana" sub="dakuten">
     <kanji>べ</kanji>
     <kana>べ</kana>
     <romaji>be</romaji>
@@ -860,7 +897,7 @@
     <pt>be</pt>
     <ko>be</ko>
   </word>
-  <word id="hira_bo" category="hiragana">
+  <word id="hira_bo" category="hiragana" sub="dakuten">
     <kanji>ぼ</kanji>
     <kana>ぼ</kana>
     <romaji>bo</romaji>
@@ -870,7 +907,7 @@
     <pt>bo</pt>
     <ko>bo</ko>
   </word>
-  <word id="hira_pa" category="hiragana">
+  <word id="hira_pa" category="hiragana" sub="dakuten">
     <kanji>ぱ</kanji>
     <kana>ぱ</kana>
     <romaji>pa</romaji>
@@ -880,7 +917,7 @@
     <pt>pa</pt>
     <ko>pa</ko>
   </word>
-  <word id="hira_pi" category="hiragana">
+  <word id="hira_pi" category="hiragana" sub="dakuten">
     <kanji>ぴ</kanji>
     <kana>ぴ</kana>
     <romaji>pi</romaji>
@@ -890,7 +927,7 @@
     <pt>pi</pt>
     <ko>pi</ko>
   </word>
-  <word id="hira_pu" category="hiragana">
+  <word id="hira_pu" category="hiragana" sub="dakuten">
     <kanji>ぷ</kanji>
     <kana>ぷ</kana>
     <romaji>pu</romaji>
@@ -900,7 +937,7 @@
     <pt>pu</pt>
     <ko>pu</ko>
   </word>
-  <word id="hira_pe" category="hiragana">
+  <word id="hira_pe" category="hiragana" sub="dakuten">
     <kanji>ぺ</kanji>
     <kana>ぺ</kana>
     <romaji>pe</romaji>
@@ -910,7 +947,7 @@
     <pt>pe</pt>
     <ko>pe</ko>
   </word>
-  <word id="hira_po" category="hiragana">
+  <word id="hira_po" category="hiragana" sub="dakuten">
     <kanji>ぽ</kanji>
     <kana>ぽ</kana>
     <romaji>po</romaji>
@@ -920,7 +957,7 @@
     <pt>po</pt>
     <ko>po</ko>
   </word>
-  <word id="hira_kya" category="hiragana">
+  <word id="hira_kya" category="hiragana" sub="yoon">
     <kanji>きゃ</kanji>
     <kana>きゃ</kana>
     <romaji>kya</romaji>
@@ -930,7 +967,7 @@
     <pt>kya</pt>
     <ko>kya</ko>
   </word>
-  <word id="hira_kyu" category="hiragana">
+  <word id="hira_kyu" category="hiragana" sub="yoon">
     <kanji>きゅ</kanji>
     <kana>きゅ</kana>
     <romaji>kyu</romaji>
@@ -940,7 +977,7 @@
     <pt>kyu</pt>
     <ko>kyu</ko>
   </word>
-  <word id="hira_kyo" category="hiragana">
+  <word id="hira_kyo" category="hiragana" sub="yoon">
     <kanji>きょ</kanji>
     <kana>きょ</kana>
     <romaji>kyo</romaji>
@@ -950,7 +987,7 @@
     <pt>kyo</pt>
     <ko>kyo</ko>
   </word>
-  <word id="hira_sha" category="hiragana">
+  <word id="hira_sha" category="hiragana" sub="yoon">
     <kanji>しゃ</kanji>
     <kana>しゃ</kana>
     <romaji>sha</romaji>
@@ -960,7 +997,7 @@
     <pt>sha</pt>
     <ko>sha</ko>
   </word>
-  <word id="hira_shu" category="hiragana">
+  <word id="hira_shu" category="hiragana" sub="yoon">
     <kanji>しゅ</kanji>
     <kana>しゅ</kana>
     <romaji>shu</romaji>
@@ -970,7 +1007,7 @@
     <pt>shu</pt>
     <ko>shu</ko>
   </word>
-  <word id="hira_sho" category="hiragana">
+  <word id="hira_sho" category="hiragana" sub="yoon">
     <kanji>しょ</kanji>
     <kana>しょ</kana>
     <romaji>sho</romaji>
@@ -980,7 +1017,7 @@
     <pt>sho</pt>
     <ko>sho</ko>
   </word>
-  <word id="hira_cha" category="hiragana">
+  <word id="hira_cha" category="hiragana" sub="yoon">
     <kanji>ちゃ</kanji>
     <kana>ちゃ</kana>
     <romaji>cha</romaji>
@@ -990,7 +1027,7 @@
     <pt>cha</pt>
     <ko>cha</ko>
   </word>
-  <word id="hira_chu" category="hiragana">
+  <word id="hira_chu" category="hiragana" sub="yoon">
     <kanji>ちゅ</kanji>
     <kana>ちゅ</kana>
     <romaji>chu</romaji>
@@ -1000,7 +1037,7 @@
     <pt>chu</pt>
     <ko>chu</ko>
   </word>
-  <word id="hira_cho" category="hiragana">
+  <word id="hira_cho" category="hiragana" sub="yoon">
     <kanji>ちょ</kanji>
     <kana>ちょ</kana>
     <romaji>cho</romaji>
@@ -1010,7 +1047,7 @@
     <pt>cho</pt>
     <ko>cho</ko>
   </word>
-  <word id="hira_nya" category="hiragana">
+  <word id="hira_nya" category="hiragana" sub="yoon">
     <kanji>にゃ</kanji>
     <kana>にゃ</kana>
     <romaji>nya</romaji>
@@ -1020,7 +1057,7 @@
     <pt>nya</pt>
     <ko>nya</ko>
   </word>
-  <word id="hira_nyu" category="hiragana">
+  <word id="hira_nyu" category="hiragana" sub="yoon">
     <kanji>にゅ</kanji>
     <kana>にゅ</kana>
     <romaji>nyu</romaji>
@@ -1030,7 +1067,7 @@
     <pt>nyu</pt>
     <ko>nyu</ko>
   </word>
-  <word id="hira_nyo" category="hiragana">
+  <word id="hira_nyo" category="hiragana" sub="yoon">
     <kanji>にょ</kanji>
     <kana>にょ</kana>
     <romaji>nyo</romaji>
@@ -1040,7 +1077,7 @@
     <pt>nyo</pt>
     <ko>nyo</ko>
   </word>
-  <word id="hira_hya" category="hiragana">
+  <word id="hira_hya" category="hiragana" sub="yoon">
     <kanji>ひゃ</kanji>
     <kana>ひゃ</kana>
     <romaji>hya</romaji>
@@ -1050,7 +1087,7 @@
     <pt>hya</pt>
     <ko>hya</ko>
   </word>
-  <word id="hira_hyu" category="hiragana">
+  <word id="hira_hyu" category="hiragana" sub="yoon">
     <kanji>ひゅ</kanji>
     <kana>ひゅ</kana>
     <romaji>hyu</romaji>
@@ -1060,7 +1097,7 @@
     <pt>hyu</pt>
     <ko>hyu</ko>
   </word>
-  <word id="hira_hyo" category="hiragana">
+  <word id="hira_hyo" category="hiragana" sub="yoon">
     <kanji>ひょ</kanji>
     <kana>ひょ</kana>
     <romaji>hyo</romaji>
@@ -1070,7 +1107,7 @@
     <pt>hyo</pt>
     <ko>hyo</ko>
   </word>
-  <word id="hira_mya" category="hiragana">
+  <word id="hira_mya" category="hiragana" sub="yoon">
     <kanji>みゃ</kanji>
     <kana>みゃ</kana>
     <romaji>mya</romaji>
@@ -1080,7 +1117,7 @@
     <pt>mya</pt>
     <ko>mya</ko>
   </word>
-  <word id="hira_myu" category="hiragana">
+  <word id="hira_myu" category="hiragana" sub="yoon">
     <kanji>みゅ</kanji>
     <kana>みゅ</kana>
     <romaji>myu</romaji>
@@ -1090,7 +1127,7 @@
     <pt>myu</pt>
     <ko>myu</ko>
   </word>
-  <word id="hira_myo" category="hiragana">
+  <word id="hira_myo" category="hiragana" sub="yoon">
     <kanji>みょ</kanji>
     <kana>みょ</kana>
     <romaji>myo</romaji>
@@ -1100,7 +1137,7 @@
     <pt>myo</pt>
     <ko>myo</ko>
   </word>
-  <word id="hira_rya" category="hiragana">
+  <word id="hira_rya" category="hiragana" sub="yoon">
     <kanji>りゃ</kanji>
     <kana>りゃ</kana>
     <romaji>rya</romaji>
@@ -1110,7 +1147,7 @@
     <pt>rya</pt>
     <ko>rya</ko>
   </word>
-  <word id="hira_ryu" category="hiragana">
+  <word id="hira_ryu" category="hiragana" sub="yoon">
     <kanji>りゅ</kanji>
     <kana>りゅ</kana>
     <romaji>ryu</romaji>
@@ -1120,7 +1157,7 @@
     <pt>ryu</pt>
     <ko>ryu</ko>
   </word>
-  <word id="hira_ryo" category="hiragana">
+  <word id="hira_ryo" category="hiragana" sub="yoon">
     <kanji>りょ</kanji>
     <kana>りょ</kana>
     <romaji>ryo</romaji>
@@ -1130,7 +1167,7 @@
     <pt>ryo</pt>
     <ko>ryo</ko>
   </word>
-  <word id="hira_gya" category="hiragana">
+  <word id="hira_gya" category="hiragana" sub="yoon_dakuten">
     <kanji>ぎゃ</kanji>
     <kana>ぎゃ</kana>
     <romaji>gya</romaji>
@@ -1140,7 +1177,7 @@
     <pt>gya</pt>
     <ko>gya</ko>
   </word>
-  <word id="hira_gyu" category="hiragana">
+  <word id="hira_gyu" category="hiragana" sub="yoon_dakuten">
     <kanji>ぎゅ</kanji>
     <kana>ぎゅ</kana>
     <romaji>gyu</romaji>
@@ -1150,7 +1187,7 @@
     <pt>gyu</pt>
     <ko>gyu</ko>
   </word>
-  <word id="hira_gyo" category="hiragana">
+  <word id="hira_gyo" category="hiragana" sub="yoon_dakuten">
     <kanji>ぎょ</kanji>
     <kana>ぎょ</kana>
     <romaji>gyo</romaji>
@@ -1160,7 +1197,7 @@
     <pt>gyo</pt>
     <ko>gyo</ko>
   </word>
-  <word id="hira_ja" category="hiragana">
+  <word id="hira_ja" category="hiragana" sub="yoon_dakuten">
     <kanji>じゃ</kanji>
     <kana>じゃ</kana>
     <romaji>ja</romaji>
@@ -1170,7 +1207,7 @@
     <pt>ja</pt>
     <ko>ja</ko>
   </word>
-  <word id="hira_ju" category="hiragana">
+  <word id="hira_ju" category="hiragana" sub="yoon_dakuten">
     <kanji>じゅ</kanji>
     <kana>じゅ</kana>
     <romaji>ju</romaji>
@@ -1180,7 +1217,7 @@
     <pt>ju</pt>
     <ko>ju</ko>
   </word>
-  <word id="hira_jo" category="hiragana">
+  <word id="hira_jo" category="hiragana" sub="yoon_dakuten">
     <kanji>じょ</kanji>
     <kana>じょ</kana>
     <romaji>jo</romaji>
@@ -1190,7 +1227,7 @@
     <pt>jo</pt>
     <ko>jo</ko>
   </word>
-  <word id="hira_bya" category="hiragana">
+  <word id="hira_bya" category="hiragana" sub="yoon_dakuten">
     <kanji>びゃ</kanji>
     <kana>びゃ</kana>
     <romaji>bya</romaji>
@@ -1200,7 +1237,7 @@
     <pt>bya</pt>
     <ko>bya</ko>
   </word>
-  <word id="hira_byu" category="hiragana">
+  <word id="hira_byu" category="hiragana" sub="yoon_dakuten">
     <kanji>びゅ</kanji>
     <kana>びゅ</kana>
     <romaji>byu</romaji>
@@ -1210,7 +1247,7 @@
     <pt>byu</pt>
     <ko>byu</ko>
   </word>
-  <word id="hira_byo" category="hiragana">
+  <word id="hira_byo" category="hiragana" sub="yoon_dakuten">
     <kanji>びょ</kanji>
     <kana>びょ</kana>
     <romaji>byo</romaji>
@@ -1220,7 +1257,7 @@
     <pt>byo</pt>
     <ko>byo</ko>
   </word>
-  <word id="hira_pya" category="hiragana">
+  <word id="hira_pya" category="hiragana" sub="yoon_dakuten">
     <kanji>ぴゃ</kanji>
     <kana>ぴゃ</kana>
     <romaji>pya</romaji>
@@ -1230,7 +1267,7 @@
     <pt>pya</pt>
     <ko>pya</ko>
   </word>
-  <word id="hira_pyu" category="hiragana">
+  <word id="hira_pyu" category="hiragana" sub="yoon_dakuten">
     <kanji>ぴゅ</kanji>
     <kana>ぴゅ</kana>
     <romaji>pyu</romaji>
@@ -1240,7 +1277,7 @@
     <pt>pyu</pt>
     <ko>pyu</ko>
   </word>
-  <word id="hira_pyo" category="hiragana">
+  <word id="hira_pyo" category="hiragana" sub="yoon_dakuten">
     <kanji>ぴょ</kanji>
     <kana>ぴょ</kana>
     <romaji>pyo</romaji>
@@ -1253,7 +1290,7 @@
   <!-- ════════════════════════════════════════════════════════
        KATAKANA — syllabaire complet (base, dakuten, yōon)
        ════════════════════════════════════════════════════════ -->
-  <word id="kata_a" category="katakana">
+  <word id="kata_a" category="katakana" sub="gojuon">
     <kanji>ア</kanji>
     <kana>ア</kana>
     <romaji>a</romaji>
@@ -1263,7 +1300,7 @@
     <pt>a</pt>
     <ko>a</ko>
   </word>
-  <word id="kata_i" category="katakana">
+  <word id="kata_i" category="katakana" sub="gojuon">
     <kanji>イ</kanji>
     <kana>イ</kana>
     <romaji>i</romaji>
@@ -1273,7 +1310,7 @@
     <pt>i</pt>
     <ko>i</ko>
   </word>
-  <word id="kata_u" category="katakana">
+  <word id="kata_u" category="katakana" sub="gojuon">
     <kanji>ウ</kanji>
     <kana>ウ</kana>
     <romaji>u</romaji>
@@ -1283,7 +1320,7 @@
     <pt>u</pt>
     <ko>u</ko>
   </word>
-  <word id="kata_e" category="katakana">
+  <word id="kata_e" category="katakana" sub="gojuon">
     <kanji>エ</kanji>
     <kana>エ</kana>
     <romaji>e</romaji>
@@ -1293,7 +1330,7 @@
     <pt>e</pt>
     <ko>e</ko>
   </word>
-  <word id="kata_o" category="katakana">
+  <word id="kata_o" category="katakana" sub="gojuon">
     <kanji>オ</kanji>
     <kana>オ</kana>
     <romaji>o</romaji>
@@ -1303,7 +1340,7 @@
     <pt>o</pt>
     <ko>o</ko>
   </word>
-  <word id="kata_ka" category="katakana">
+  <word id="kata_ka" category="katakana" sub="gojuon">
     <kanji>カ</kanji>
     <kana>カ</kana>
     <romaji>ka</romaji>
@@ -1313,7 +1350,7 @@
     <pt>ka</pt>
     <ko>ka</ko>
   </word>
-  <word id="kata_ki" category="katakana">
+  <word id="kata_ki" category="katakana" sub="gojuon">
     <kanji>キ</kanji>
     <kana>キ</kana>
     <romaji>ki</romaji>
@@ -1323,7 +1360,7 @@
     <pt>ki</pt>
     <ko>ki</ko>
   </word>
-  <word id="kata_ku" category="katakana">
+  <word id="kata_ku" category="katakana" sub="gojuon">
     <kanji>ク</kanji>
     <kana>ク</kana>
     <romaji>ku</romaji>
@@ -1333,7 +1370,7 @@
     <pt>ku</pt>
     <ko>ku</ko>
   </word>
-  <word id="kata_ke" category="katakana">
+  <word id="kata_ke" category="katakana" sub="gojuon">
     <kanji>ケ</kanji>
     <kana>ケ</kana>
     <romaji>ke</romaji>
@@ -1343,7 +1380,7 @@
     <pt>ke</pt>
     <ko>ke</ko>
   </word>
-  <word id="kata_ko" category="katakana">
+  <word id="kata_ko" category="katakana" sub="gojuon">
     <kanji>コ</kanji>
     <kana>コ</kana>
     <romaji>ko</romaji>
@@ -1353,7 +1390,7 @@
     <pt>ko</pt>
     <ko>ko</ko>
   </word>
-  <word id="kata_sa" category="katakana">
+  <word id="kata_sa" category="katakana" sub="gojuon">
     <kanji>サ</kanji>
     <kana>サ</kana>
     <romaji>sa</romaji>
@@ -1363,7 +1400,7 @@
     <pt>sa</pt>
     <ko>sa</ko>
   </word>
-  <word id="kata_shi" category="katakana">
+  <word id="kata_shi" category="katakana" sub="gojuon">
     <kanji>シ</kanji>
     <kana>シ</kana>
     <romaji>shi</romaji>
@@ -1373,7 +1410,7 @@
     <pt>shi</pt>
     <ko>shi</ko>
   </word>
-  <word id="kata_su" category="katakana">
+  <word id="kata_su" category="katakana" sub="gojuon">
     <kanji>ス</kanji>
     <kana>ス</kana>
     <romaji>su</romaji>
@@ -1383,7 +1420,7 @@
     <pt>su</pt>
     <ko>su</ko>
   </word>
-  <word id="kata_se" category="katakana">
+  <word id="kata_se" category="katakana" sub="gojuon">
     <kanji>セ</kanji>
     <kana>セ</kana>
     <romaji>se</romaji>
@@ -1393,7 +1430,7 @@
     <pt>se</pt>
     <ko>se</ko>
   </word>
-  <word id="kata_so" category="katakana">
+  <word id="kata_so" category="katakana" sub="gojuon">
     <kanji>ソ</kanji>
     <kana>ソ</kana>
     <romaji>so</romaji>
@@ -1403,7 +1440,7 @@
     <pt>so</pt>
     <ko>so</ko>
   </word>
-  <word id="kata_ta" category="katakana">
+  <word id="kata_ta" category="katakana" sub="gojuon">
     <kanji>タ</kanji>
     <kana>タ</kana>
     <romaji>ta</romaji>
@@ -1413,7 +1450,7 @@
     <pt>ta</pt>
     <ko>ta</ko>
   </word>
-  <word id="kata_chi" category="katakana">
+  <word id="kata_chi" category="katakana" sub="gojuon">
     <kanji>チ</kanji>
     <kana>チ</kana>
     <romaji>chi</romaji>
@@ -1423,7 +1460,7 @@
     <pt>chi</pt>
     <ko>chi</ko>
   </word>
-  <word id="kata_tsu" category="katakana">
+  <word id="kata_tsu" category="katakana" sub="gojuon">
     <kanji>ツ</kanji>
     <kana>ツ</kana>
     <romaji>tsu</romaji>
@@ -1433,7 +1470,7 @@
     <pt>tsu</pt>
     <ko>tsu</ko>
   </word>
-  <word id="kata_te" category="katakana">
+  <word id="kata_te" category="katakana" sub="gojuon">
     <kanji>テ</kanji>
     <kana>テ</kana>
     <romaji>te</romaji>
@@ -1443,7 +1480,7 @@
     <pt>te</pt>
     <ko>te</ko>
   </word>
-  <word id="kata_to" category="katakana">
+  <word id="kata_to" category="katakana" sub="gojuon">
     <kanji>ト</kanji>
     <kana>ト</kana>
     <romaji>to</romaji>
@@ -1453,7 +1490,7 @@
     <pt>to</pt>
     <ko>to</ko>
   </word>
-  <word id="kata_na" category="katakana">
+  <word id="kata_na" category="katakana" sub="gojuon">
     <kanji>ナ</kanji>
     <kana>ナ</kana>
     <romaji>na</romaji>
@@ -1463,7 +1500,7 @@
     <pt>na</pt>
     <ko>na</ko>
   </word>
-  <word id="kata_ni" category="katakana">
+  <word id="kata_ni" category="katakana" sub="gojuon">
     <kanji>ニ</kanji>
     <kana>ニ</kana>
     <romaji>ni</romaji>
@@ -1473,7 +1510,7 @@
     <pt>ni</pt>
     <ko>ni</ko>
   </word>
-  <word id="kata_nu" category="katakana">
+  <word id="kata_nu" category="katakana" sub="gojuon">
     <kanji>ヌ</kanji>
     <kana>ヌ</kana>
     <romaji>nu</romaji>
@@ -1483,7 +1520,7 @@
     <pt>nu</pt>
     <ko>nu</ko>
   </word>
-  <word id="kata_ne" category="katakana">
+  <word id="kata_ne" category="katakana" sub="gojuon">
     <kanji>ネ</kanji>
     <kana>ネ</kana>
     <romaji>ne</romaji>
@@ -1493,7 +1530,7 @@
     <pt>ne</pt>
     <ko>ne</ko>
   </word>
-  <word id="kata_no" category="katakana">
+  <word id="kata_no" category="katakana" sub="gojuon">
     <kanji>ノ</kanji>
     <kana>ノ</kana>
     <romaji>no</romaji>
@@ -1503,7 +1540,7 @@
     <pt>no</pt>
     <ko>no</ko>
   </word>
-  <word id="kata_ha" category="katakana">
+  <word id="kata_ha" category="katakana" sub="gojuon">
     <kanji>ハ</kanji>
     <kana>ハ</kana>
     <romaji>ha</romaji>
@@ -1513,7 +1550,7 @@
     <pt>ha</pt>
     <ko>ha</ko>
   </word>
-  <word id="kata_hi" category="katakana">
+  <word id="kata_hi" category="katakana" sub="gojuon">
     <kanji>ヒ</kanji>
     <kana>ヒ</kana>
     <romaji>hi</romaji>
@@ -1523,7 +1560,7 @@
     <pt>hi</pt>
     <ko>hi</ko>
   </word>
-  <word id="kata_fu" category="katakana">
+  <word id="kata_fu" category="katakana" sub="gojuon">
     <kanji>フ</kanji>
     <kana>フ</kana>
     <romaji>fu</romaji>
@@ -1533,7 +1570,7 @@
     <pt>fu</pt>
     <ko>fu</ko>
   </word>
-  <word id="kata_he" category="katakana">
+  <word id="kata_he" category="katakana" sub="gojuon">
     <kanji>ヘ</kanji>
     <kana>ヘ</kana>
     <romaji>he</romaji>
@@ -1543,7 +1580,7 @@
     <pt>he</pt>
     <ko>he</ko>
   </word>
-  <word id="kata_ho" category="katakana">
+  <word id="kata_ho" category="katakana" sub="gojuon">
     <kanji>ホ</kanji>
     <kana>ホ</kana>
     <romaji>ho</romaji>
@@ -1553,7 +1590,7 @@
     <pt>ho</pt>
     <ko>ho</ko>
   </word>
-  <word id="kata_ma" category="katakana">
+  <word id="kata_ma" category="katakana" sub="gojuon">
     <kanji>マ</kanji>
     <kana>マ</kana>
     <romaji>ma</romaji>
@@ -1563,7 +1600,7 @@
     <pt>ma</pt>
     <ko>ma</ko>
   </word>
-  <word id="kata_mi" category="katakana">
+  <word id="kata_mi" category="katakana" sub="gojuon">
     <kanji>ミ</kanji>
     <kana>ミ</kana>
     <romaji>mi</romaji>
@@ -1573,7 +1610,7 @@
     <pt>mi</pt>
     <ko>mi</ko>
   </word>
-  <word id="kata_mu" category="katakana">
+  <word id="kata_mu" category="katakana" sub="gojuon">
     <kanji>ム</kanji>
     <kana>ム</kana>
     <romaji>mu</romaji>
@@ -1583,7 +1620,7 @@
     <pt>mu</pt>
     <ko>mu</ko>
   </word>
-  <word id="kata_me" category="katakana">
+  <word id="kata_me" category="katakana" sub="gojuon">
     <kanji>メ</kanji>
     <kana>メ</kana>
     <romaji>me</romaji>
@@ -1593,7 +1630,7 @@
     <pt>me</pt>
     <ko>me</ko>
   </word>
-  <word id="kata_mo" category="katakana">
+  <word id="kata_mo" category="katakana" sub="gojuon">
     <kanji>モ</kanji>
     <kana>モ</kana>
     <romaji>mo</romaji>
@@ -1603,7 +1640,7 @@
     <pt>mo</pt>
     <ko>mo</ko>
   </word>
-  <word id="kata_ya" category="katakana">
+  <word id="kata_ya" category="katakana" sub="gojuon">
     <kanji>ヤ</kanji>
     <kana>ヤ</kana>
     <romaji>ya</romaji>
@@ -1613,7 +1650,7 @@
     <pt>ya</pt>
     <ko>ya</ko>
   </word>
-  <word id="kata_yu" category="katakana">
+  <word id="kata_yu" category="katakana" sub="gojuon">
     <kanji>ユ</kanji>
     <kana>ユ</kana>
     <romaji>yu</romaji>
@@ -1623,7 +1660,7 @@
     <pt>yu</pt>
     <ko>yu</ko>
   </word>
-  <word id="kata_yo" category="katakana">
+  <word id="kata_yo" category="katakana" sub="gojuon">
     <kanji>ヨ</kanji>
     <kana>ヨ</kana>
     <romaji>yo</romaji>
@@ -1633,7 +1670,7 @@
     <pt>yo</pt>
     <ko>yo</ko>
   </word>
-  <word id="kata_ra" category="katakana">
+  <word id="kata_ra" category="katakana" sub="gojuon">
     <kanji>ラ</kanji>
     <kana>ラ</kana>
     <romaji>ra</romaji>
@@ -1643,7 +1680,7 @@
     <pt>ra</pt>
     <ko>ra</ko>
   </word>
-  <word id="kata_ri" category="katakana">
+  <word id="kata_ri" category="katakana" sub="gojuon">
     <kanji>リ</kanji>
     <kana>リ</kana>
     <romaji>ri</romaji>
@@ -1653,7 +1690,7 @@
     <pt>ri</pt>
     <ko>ri</ko>
   </word>
-  <word id="kata_ru" category="katakana">
+  <word id="kata_ru" category="katakana" sub="gojuon">
     <kanji>ル</kanji>
     <kana>ル</kana>
     <romaji>ru</romaji>
@@ -1663,7 +1700,7 @@
     <pt>ru</pt>
     <ko>ru</ko>
   </word>
-  <word id="kata_re" category="katakana">
+  <word id="kata_re" category="katakana" sub="gojuon">
     <kanji>レ</kanji>
     <kana>レ</kana>
     <romaji>re</romaji>
@@ -1673,7 +1710,7 @@
     <pt>re</pt>
     <ko>re</ko>
   </word>
-  <word id="kata_ro" category="katakana">
+  <word id="kata_ro" category="katakana" sub="gojuon">
     <kanji>ロ</kanji>
     <kana>ロ</kana>
     <romaji>ro</romaji>
@@ -1683,7 +1720,7 @@
     <pt>ro</pt>
     <ko>ro</ko>
   </word>
-  <word id="kata_wa" category="katakana">
+  <word id="kata_wa" category="katakana" sub="gojuon">
     <kanji>ワ</kanji>
     <kana>ワ</kana>
     <romaji>wa</romaji>
@@ -1693,7 +1730,7 @@
     <pt>wa</pt>
     <ko>wa</ko>
   </word>
-  <word id="kata_wo" category="katakana">
+  <word id="kata_wo" category="katakana" sub="gojuon">
     <kanji>ヲ</kanji>
     <kana>ヲ</kana>
     <romaji>wo</romaji>
@@ -1703,7 +1740,7 @@
     <pt>wo</pt>
     <ko>wo</ko>
   </word>
-  <word id="kata_n" category="katakana">
+  <word id="kata_n" category="katakana" sub="gojuon">
     <kanji>ン</kanji>
     <kana>ン</kana>
     <romaji>n</romaji>
@@ -1713,7 +1750,7 @@
     <pt>n</pt>
     <ko>n</ko>
   </word>
-  <word id="kata_ga" category="katakana">
+  <word id="kata_ga" category="katakana" sub="dakuten">
     <kanji>ガ</kanji>
     <kana>ガ</kana>
     <romaji>ga</romaji>
@@ -1723,7 +1760,7 @@
     <pt>ga</pt>
     <ko>ga</ko>
   </word>
-  <word id="kata_gi" category="katakana">
+  <word id="kata_gi" category="katakana" sub="dakuten">
     <kanji>ギ</kanji>
     <kana>ギ</kana>
     <romaji>gi</romaji>
@@ -1733,7 +1770,7 @@
     <pt>gi</pt>
     <ko>gi</ko>
   </word>
-  <word id="kata_gu" category="katakana">
+  <word id="kata_gu" category="katakana" sub="dakuten">
     <kanji>グ</kanji>
     <kana>グ</kana>
     <romaji>gu</romaji>
@@ -1743,7 +1780,7 @@
     <pt>gu</pt>
     <ko>gu</ko>
   </word>
-  <word id="kata_ge" category="katakana">
+  <word id="kata_ge" category="katakana" sub="dakuten">
     <kanji>ゲ</kanji>
     <kana>ゲ</kana>
     <romaji>ge</romaji>
@@ -1753,7 +1790,7 @@
     <pt>ge</pt>
     <ko>ge</ko>
   </word>
-  <word id="kata_go" category="katakana">
+  <word id="kata_go" category="katakana" sub="dakuten">
     <kanji>ゴ</kanji>
     <kana>ゴ</kana>
     <romaji>go</romaji>
@@ -1763,7 +1800,7 @@
     <pt>go</pt>
     <ko>go</ko>
   </word>
-  <word id="kata_za" category="katakana">
+  <word id="kata_za" category="katakana" sub="dakuten">
     <kanji>ザ</kanji>
     <kana>ザ</kana>
     <romaji>za</romaji>
@@ -1773,7 +1810,7 @@
     <pt>za</pt>
     <ko>za</ko>
   </word>
-  <word id="kata_ji" category="katakana">
+  <word id="kata_ji" category="katakana" sub="dakuten">
     <kanji>ジ</kanji>
     <kana>ジ</kana>
     <romaji>ji</romaji>
@@ -1783,7 +1820,7 @@
     <pt>ji</pt>
     <ko>ji</ko>
   </word>
-  <word id="kata_zu" category="katakana">
+  <word id="kata_zu" category="katakana" sub="dakuten">
     <kanji>ズ</kanji>
     <kana>ズ</kana>
     <romaji>zu</romaji>
@@ -1793,7 +1830,7 @@
     <pt>zu</pt>
     <ko>zu</ko>
   </word>
-  <word id="kata_ze" category="katakana">
+  <word id="kata_ze" category="katakana" sub="dakuten">
     <kanji>ゼ</kanji>
     <kana>ゼ</kana>
     <romaji>ze</romaji>
@@ -1803,7 +1840,7 @@
     <pt>ze</pt>
     <ko>ze</ko>
   </word>
-  <word id="kata_zo" category="katakana">
+  <word id="kata_zo" category="katakana" sub="dakuten">
     <kanji>ゾ</kanji>
     <kana>ゾ</kana>
     <romaji>zo</romaji>
@@ -1813,7 +1850,7 @@
     <pt>zo</pt>
     <ko>zo</ko>
   </word>
-  <word id="kata_da" category="katakana">
+  <word id="kata_da" category="katakana" sub="dakuten">
     <kanji>ダ</kanji>
     <kana>ダ</kana>
     <romaji>da</romaji>
@@ -1823,7 +1860,7 @@
     <pt>da</pt>
     <ko>da</ko>
   </word>
-  <word id="kata_dji" category="katakana">
+  <word id="kata_dji" category="katakana" sub="dakuten">
     <kanji>ヂ</kanji>
     <kana>ヂ</kana>
     <romaji>ji (di)</romaji>
@@ -1833,7 +1870,7 @@
     <pt>ji (di)</pt>
     <ko>ji (di)</ko>
   </word>
-  <word id="kata_dzu" category="katakana">
+  <word id="kata_dzu" category="katakana" sub="dakuten">
     <kanji>ヅ</kanji>
     <kana>ヅ</kana>
     <romaji>zu (du)</romaji>
@@ -1843,7 +1880,7 @@
     <pt>zu (du)</pt>
     <ko>zu (du)</ko>
   </word>
-  <word id="kata_de" category="katakana">
+  <word id="kata_de" category="katakana" sub="dakuten">
     <kanji>デ</kanji>
     <kana>デ</kana>
     <romaji>de</romaji>
@@ -1853,7 +1890,7 @@
     <pt>de</pt>
     <ko>de</ko>
   </word>
-  <word id="kata_do" category="katakana">
+  <word id="kata_do" category="katakana" sub="dakuten">
     <kanji>ド</kanji>
     <kana>ド</kana>
     <romaji>do</romaji>
@@ -1863,7 +1900,7 @@
     <pt>do</pt>
     <ko>do</ko>
   </word>
-  <word id="kata_ba" category="katakana">
+  <word id="kata_ba" category="katakana" sub="dakuten">
     <kanji>バ</kanji>
     <kana>バ</kana>
     <romaji>ba</romaji>
@@ -1873,7 +1910,7 @@
     <pt>ba</pt>
     <ko>ba</ko>
   </word>
-  <word id="kata_bi" category="katakana">
+  <word id="kata_bi" category="katakana" sub="dakuten">
     <kanji>ビ</kanji>
     <kana>ビ</kana>
     <romaji>bi</romaji>
@@ -1883,7 +1920,7 @@
     <pt>bi</pt>
     <ko>bi</ko>
   </word>
-  <word id="kata_bu" category="katakana">
+  <word id="kata_bu" category="katakana" sub="dakuten">
     <kanji>ブ</kanji>
     <kana>ブ</kana>
     <romaji>bu</romaji>
@@ -1893,7 +1930,7 @@
     <pt>bu</pt>
     <ko>bu</ko>
   </word>
-  <word id="kata_be" category="katakana">
+  <word id="kata_be" category="katakana" sub="dakuten">
     <kanji>ベ</kanji>
     <kana>ベ</kana>
     <romaji>be</romaji>
@@ -1903,7 +1940,7 @@
     <pt>be</pt>
     <ko>be</ko>
   </word>
-  <word id="kata_bo" category="katakana">
+  <word id="kata_bo" category="katakana" sub="dakuten">
     <kanji>ボ</kanji>
     <kana>ボ</kana>
     <romaji>bo</romaji>
@@ -1913,7 +1950,7 @@
     <pt>bo</pt>
     <ko>bo</ko>
   </word>
-  <word id="kata_pa" category="katakana">
+  <word id="kata_pa" category="katakana" sub="dakuten">
     <kanji>パ</kanji>
     <kana>パ</kana>
     <romaji>pa</romaji>
@@ -1923,7 +1960,7 @@
     <pt>pa</pt>
     <ko>pa</ko>
   </word>
-  <word id="kata_pi" category="katakana">
+  <word id="kata_pi" category="katakana" sub="dakuten">
     <kanji>ピ</kanji>
     <kana>ピ</kana>
     <romaji>pi</romaji>
@@ -1933,7 +1970,7 @@
     <pt>pi</pt>
     <ko>pi</ko>
   </word>
-  <word id="kata_pu" category="katakana">
+  <word id="kata_pu" category="katakana" sub="dakuten">
     <kanji>プ</kanji>
     <kana>プ</kana>
     <romaji>pu</romaji>
@@ -1943,7 +1980,7 @@
     <pt>pu</pt>
     <ko>pu</ko>
   </word>
-  <word id="kata_pe" category="katakana">
+  <word id="kata_pe" category="katakana" sub="dakuten">
     <kanji>ペ</kanji>
     <kana>ペ</kana>
     <romaji>pe</romaji>
@@ -1953,7 +1990,7 @@
     <pt>pe</pt>
     <ko>pe</ko>
   </word>
-  <word id="kata_po" category="katakana">
+  <word id="kata_po" category="katakana" sub="dakuten">
     <kanji>ポ</kanji>
     <kana>ポ</kana>
     <romaji>po</romaji>
@@ -1963,7 +2000,7 @@
     <pt>po</pt>
     <ko>po</ko>
   </word>
-  <word id="kata_kya" category="katakana">
+  <word id="kata_kya" category="katakana" sub="yoon">
     <kanji>キャ</kanji>
     <kana>キャ</kana>
     <romaji>kya</romaji>
@@ -1973,7 +2010,7 @@
     <pt>kya</pt>
     <ko>kya</ko>
   </word>
-  <word id="kata_kyu" category="katakana">
+  <word id="kata_kyu" category="katakana" sub="yoon">
     <kanji>キュ</kanji>
     <kana>キュ</kana>
     <romaji>kyu</romaji>
@@ -1983,7 +2020,7 @@
     <pt>kyu</pt>
     <ko>kyu</ko>
   </word>
-  <word id="kata_kyo" category="katakana">
+  <word id="kata_kyo" category="katakana" sub="yoon">
     <kanji>キョ</kanji>
     <kana>キョ</kana>
     <romaji>kyo</romaji>
@@ -1993,7 +2030,7 @@
     <pt>kyo</pt>
     <ko>kyo</ko>
   </word>
-  <word id="kata_sha" category="katakana">
+  <word id="kata_sha" category="katakana" sub="yoon">
     <kanji>シャ</kanji>
     <kana>シャ</kana>
     <romaji>sha</romaji>
@@ -2003,7 +2040,7 @@
     <pt>sha</pt>
     <ko>sha</ko>
   </word>
-  <word id="kata_shu" category="katakana">
+  <word id="kata_shu" category="katakana" sub="yoon">
     <kanji>シュ</kanji>
     <kana>シュ</kana>
     <romaji>shu</romaji>
@@ -2013,7 +2050,7 @@
     <pt>shu</pt>
     <ko>shu</ko>
   </word>
-  <word id="kata_sho" category="katakana">
+  <word id="kata_sho" category="katakana" sub="yoon">
     <kanji>ショ</kanji>
     <kana>ショ</kana>
     <romaji>sho</romaji>
@@ -2023,7 +2060,7 @@
     <pt>sho</pt>
     <ko>sho</ko>
   </word>
-  <word id="kata_cha" category="katakana">
+  <word id="kata_cha" category="katakana" sub="yoon">
     <kanji>チャ</kanji>
     <kana>チャ</kana>
     <romaji>cha</romaji>
@@ -2033,7 +2070,7 @@
     <pt>cha</pt>
     <ko>cha</ko>
   </word>
-  <word id="kata_chu" category="katakana">
+  <word id="kata_chu" category="katakana" sub="yoon">
     <kanji>チュ</kanji>
     <kana>チュ</kana>
     <romaji>chu</romaji>
@@ -2043,7 +2080,7 @@
     <pt>chu</pt>
     <ko>chu</ko>
   </word>
-  <word id="kata_cho" category="katakana">
+  <word id="kata_cho" category="katakana" sub="yoon">
     <kanji>チョ</kanji>
     <kana>チョ</kana>
     <romaji>cho</romaji>
@@ -2053,7 +2090,7 @@
     <pt>cho</pt>
     <ko>cho</ko>
   </word>
-  <word id="kata_nya" category="katakana">
+  <word id="kata_nya" category="katakana" sub="yoon">
     <kanji>ニャ</kanji>
     <kana>ニャ</kana>
     <romaji>nya</romaji>
@@ -2063,7 +2100,7 @@
     <pt>nya</pt>
     <ko>nya</ko>
   </word>
-  <word id="kata_nyu" category="katakana">
+  <word id="kata_nyu" category="katakana" sub="yoon">
     <kanji>ニュ</kanji>
     <kana>ニュ</kana>
     <romaji>nyu</romaji>
@@ -2073,7 +2110,7 @@
     <pt>nyu</pt>
     <ko>nyu</ko>
   </word>
-  <word id="kata_nyo" category="katakana">
+  <word id="kata_nyo" category="katakana" sub="yoon">
     <kanji>ニョ</kanji>
     <kana>ニョ</kana>
     <romaji>nyo</romaji>
@@ -2083,7 +2120,7 @@
     <pt>nyo</pt>
     <ko>nyo</ko>
   </word>
-  <word id="kata_hya" category="katakana">
+  <word id="kata_hya" category="katakana" sub="yoon">
     <kanji>ヒャ</kanji>
     <kana>ヒャ</kana>
     <romaji>hya</romaji>
@@ -2093,7 +2130,7 @@
     <pt>hya</pt>
     <ko>hya</ko>
   </word>
-  <word id="kata_hyu" category="katakana">
+  <word id="kata_hyu" category="katakana" sub="yoon">
     <kanji>ヒュ</kanji>
     <kana>ヒュ</kana>
     <romaji>hyu</romaji>
@@ -2103,7 +2140,7 @@
     <pt>hyu</pt>
     <ko>hyu</ko>
   </word>
-  <word id="kata_hyo" category="katakana">
+  <word id="kata_hyo" category="katakana" sub="yoon">
     <kanji>ヒョ</kanji>
     <kana>ヒョ</kana>
     <romaji>hyo</romaji>
@@ -2113,7 +2150,7 @@
     <pt>hyo</pt>
     <ko>hyo</ko>
   </word>
-  <word id="kata_mya" category="katakana">
+  <word id="kata_mya" category="katakana" sub="yoon">
     <kanji>ミャ</kanji>
     <kana>ミャ</kana>
     <romaji>mya</romaji>
@@ -2123,7 +2160,7 @@
     <pt>mya</pt>
     <ko>mya</ko>
   </word>
-  <word id="kata_myu" category="katakana">
+  <word id="kata_myu" category="katakana" sub="yoon">
     <kanji>ミュ</kanji>
     <kana>ミュ</kana>
     <romaji>myu</romaji>
@@ -2133,7 +2170,7 @@
     <pt>myu</pt>
     <ko>myu</ko>
   </word>
-  <word id="kata_myo" category="katakana">
+  <word id="kata_myo" category="katakana" sub="yoon">
     <kanji>ミョ</kanji>
     <kana>ミョ</kana>
     <romaji>myo</romaji>
@@ -2143,7 +2180,7 @@
     <pt>myo</pt>
     <ko>myo</ko>
   </word>
-  <word id="kata_rya" category="katakana">
+  <word id="kata_rya" category="katakana" sub="yoon">
     <kanji>リャ</kanji>
     <kana>リャ</kana>
     <romaji>rya</romaji>
@@ -2153,7 +2190,7 @@
     <pt>rya</pt>
     <ko>rya</ko>
   </word>
-  <word id="kata_ryu" category="katakana">
+  <word id="kata_ryu" category="katakana" sub="yoon">
     <kanji>リュ</kanji>
     <kana>リュ</kana>
     <romaji>ryu</romaji>
@@ -2163,7 +2200,7 @@
     <pt>ryu</pt>
     <ko>ryu</ko>
   </word>
-  <word id="kata_ryo" category="katakana">
+  <word id="kata_ryo" category="katakana" sub="yoon">
     <kanji>リョ</kanji>
     <kana>リョ</kana>
     <romaji>ryo</romaji>
@@ -2173,7 +2210,7 @@
     <pt>ryo</pt>
     <ko>ryo</ko>
   </word>
-  <word id="kata_gya" category="katakana">
+  <word id="kata_gya" category="katakana" sub="yoon_dakuten">
     <kanji>ギャ</kanji>
     <kana>ギャ</kana>
     <romaji>gya</romaji>
@@ -2183,7 +2220,7 @@
     <pt>gya</pt>
     <ko>gya</ko>
   </word>
-  <word id="kata_gyu" category="katakana">
+  <word id="kata_gyu" category="katakana" sub="yoon_dakuten">
     <kanji>ギュ</kanji>
     <kana>ギュ</kana>
     <romaji>gyu</romaji>
@@ -2193,7 +2230,7 @@
     <pt>gyu</pt>
     <ko>gyu</ko>
   </word>
-  <word id="kata_gyo" category="katakana">
+  <word id="kata_gyo" category="katakana" sub="yoon_dakuten">
     <kanji>ギョ</kanji>
     <kana>ギョ</kana>
     <romaji>gyo</romaji>
@@ -2203,7 +2240,7 @@
     <pt>gyo</pt>
     <ko>gyo</ko>
   </word>
-  <word id="kata_ja" category="katakana">
+  <word id="kata_ja" category="katakana" sub="yoon_dakuten">
     <kanji>ジャ</kanji>
     <kana>ジャ</kana>
     <romaji>ja</romaji>
@@ -2213,7 +2250,7 @@
     <pt>ja</pt>
     <ko>ja</ko>
   </word>
-  <word id="kata_ju" category="katakana">
+  <word id="kata_ju" category="katakana" sub="yoon_dakuten">
     <kanji>ジュ</kanji>
     <kana>ジュ</kana>
     <romaji>ju</romaji>
@@ -2223,7 +2260,7 @@
     <pt>ju</pt>
     <ko>ju</ko>
   </word>
-  <word id="kata_jo" category="katakana">
+  <word id="kata_jo" category="katakana" sub="yoon_dakuten">
     <kanji>ジョ</kanji>
     <kana>ジョ</kana>
     <romaji>jo</romaji>
@@ -2233,7 +2270,7 @@
     <pt>jo</pt>
     <ko>jo</ko>
   </word>
-  <word id="kata_bya" category="katakana">
+  <word id="kata_bya" category="katakana" sub="yoon_dakuten">
     <kanji>ビャ</kanji>
     <kana>ビャ</kana>
     <romaji>bya</romaji>
@@ -2243,7 +2280,7 @@
     <pt>bya</pt>
     <ko>bya</ko>
   </word>
-  <word id="kata_byu" category="katakana">
+  <word id="kata_byu" category="katakana" sub="yoon_dakuten">
     <kanji>ビュ</kanji>
     <kana>ビュ</kana>
     <romaji>byu</romaji>
@@ -2253,7 +2290,7 @@
     <pt>byu</pt>
     <ko>byu</ko>
   </word>
-  <word id="kata_byo" category="katakana">
+  <word id="kata_byo" category="katakana" sub="yoon_dakuten">
     <kanji>ビョ</kanji>
     <kana>ビョ</kana>
     <romaji>byo</romaji>
@@ -2263,7 +2300,7 @@
     <pt>byo</pt>
     <ko>byo</ko>
   </word>
-  <word id="kata_pya" category="katakana">
+  <word id="kata_pya" category="katakana" sub="yoon_dakuten">
     <kanji>ピャ</kanji>
     <kana>ピャ</kana>
     <romaji>pya</romaji>
@@ -2273,7 +2310,7 @@
     <pt>pya</pt>
     <ko>pya</ko>
   </word>
-  <word id="kata_pyu" category="katakana">
+  <word id="kata_pyu" category="katakana" sub="yoon_dakuten">
     <kanji>ピュ</kanji>
     <kana>ピュ</kana>
     <romaji>pyu</romaji>
@@ -2283,7 +2320,7 @@
     <pt>pyu</pt>
     <ko>pyu</ko>
   </word>
-  <word id="kata_pyo" category="katakana">
+  <word id="kata_pyo" category="katakana" sub="yoon_dakuten">
     <kanji>ピョ</kanji>
     <kana>ピョ</kana>
     <romaji>pyo</romaji>
