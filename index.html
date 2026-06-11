@@ -135,6 +135,36 @@
       --shadow-card:   0 2px 20px rgba(110, 10, 230, 0.45);
     }
 
+    /* ── Thème EVA-00 (Evangelion Unit-00, prototype orange) ── */
+    :root[data-theme="eva00"] {
+      /* Armure orange brûlé */
+      --bg-primary:    #3a1c06;
+      --bg-secondary:  #2b1303;
+      --bg-tertiary:   #1d0c01;
+      /* Texte pêche / crème */
+      --text-primary:  #ffe3c4;
+      --text-secondary:#d08a4a;
+      --text-tertiary: #8a5526;
+      /* Bordures teintées orange */
+      --border-light:  rgba(255, 140, 30, 0.18);
+      --border-medium: rgba(255, 140, 30, 0.34);
+      --border-strong: rgba(255, 140, 30, 0.56);
+      /* Orange vif EVA-00 (armure + liserés) */
+      --accent:        #ff8c1a;
+      --accent-bg:     rgba(255, 140, 26, 0.16);
+      /* Vert console NERV */
+      --correct-color: #7ec850;
+      --correct-bg:    rgba(126, 200, 80, 0.14);
+      /* Rouge – l'œil unique du prototype */
+      --wrong-color:   #e8362a;
+      --wrong-bg:      rgba(232, 54, 42, 0.16);
+      /* Or – récompense */
+      --acquired-color:#e8c44c;
+      --acquired-bg:   rgba(232, 196, 76, 0.14);
+      /* Halo orange sur les cartes */
+      --shadow-card:   0 2px 20px rgba(255, 110, 10, 0.40);
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg-tertiary);
@@ -314,7 +344,8 @@
       border-color: #7c5cd6; background: rgba(124,92,214,0.10); color: #7c5cd6;
     }
     [data-theme="dark"] .review-btn.review-btn-smart,
-    [data-theme="eva"]  .review-btn.review-btn-smart { color: #a78bfa; }
+    [data-theme="eva"]  .review-btn.review-btn-smart,
+    [data-theme="eva00"] .review-btn.review-btn-smart { color: #a78bfa; }
     .review-btn.review-btn-smart:hover { background: #7c5cd6; color: #fff; }
     .review-count-smart { background: #7c5cd6; }
     .review-btn.review-btn-smart:hover .review-count-smart { background: rgba(255,255,255,0.25); }
@@ -322,7 +353,8 @@
       border-color: #c9910a; background: #fef9ec; color: #c9910a;
     }
     [data-theme="dark"] .review-btn.review-btn-acquired,
-    [data-theme="eva"]  .review-btn.review-btn-acquired {
+    [data-theme="eva"]  .review-btn.review-btn-acquired,
+    [data-theme="eva00"] .review-btn.review-btn-acquired {
       background: rgba(201,145,10,0.12); color: #f0b429;
     }
     .review-btn.review-btn-acquired:hover { background: #c9910a; color: #fff; }
@@ -1106,7 +1138,7 @@ const UI = {
     addWordErrEmpty: 'Les deux champs sont obligatoires.',
     addWordErrSame: 'Les deux langues doivent être différentes.',
     reverseCards: 'Inverser les cartes',
-    themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01',
+    themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01', themeEva00: 'Mode Eva-00',
     settingsTitle: "Options d'affichage",
     resetTitle: 'Réinitialiser la progression',
     resetConfirmTitle: 'Réinitialiser la progression ?',
@@ -1150,7 +1182,7 @@ const UI = {
     addWordErrEmpty: 'Both fields are required.',
     addWordErrSame: 'The two languages must be different.',
     reverseCards: 'Reverse cards',
-    themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode',
+    themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode', themeEva00: 'Eva-00 mode',
     settingsTitle: 'Display options',
     resetTitle: 'Reset progress',
     resetConfirmTitle: 'Reset all progress?',
@@ -1194,7 +1226,7 @@ const UI = {
     addWordErrEmpty: 'Beide Felder sind erforderlich.',
     addWordErrSame: 'Die zwei Sprachen müssen unterschiedlich sein.',
     reverseCards: 'Karten umkehren',
-    themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design',
+    themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design', themeEva00: 'Eva-00-Design',
     settingsTitle: 'Anzeigeoptionen',
     resetTitle: 'Fortschritt zurücksetzen',
     resetConfirmTitle: 'Fortschritt zurücksetzen?',
@@ -1238,7 +1270,7 @@ const UI = {
     addWordErrEmpty: 'Os dois campos são obrigatórios.',
     addWordErrSame: 'Os dois idiomas devem ser diferentes.',
     reverseCards: 'Inverter cartas',
-    themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01',
+    themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01', themeEva00: 'Modo Eva-00',
     settingsTitle: 'Opções de exibição',
     resetTitle: 'Reiniciar progresso',
     resetConfirmTitle: 'Reiniciar todo o progresso?',
@@ -1282,7 +1314,7 @@ const UI = {
     addWordErrEmpty: '両方のフィールドが必要です。',
     addWordErrSame: '2つの言語は異なる必要があります。',
     reverseCards: 'カードを反転',
-    themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード',
+    themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード', themeEva00: 'エヴァ00モード',
     settingsTitle: '表示オプション',
     resetTitle: '進捗をリセット',
     resetConfirmTitle: '進捗を全てリセットしますか？',
@@ -1326,7 +1358,7 @@ const UI = {
     addWordErrEmpty: '두 필드 모두 필수입니다.',
     addWordErrSame: '두 언어는 달라야 합니다.',
     reverseCards: '카드 반전',
-    themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드',
+    themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드', themeEva00: 'EVA-00 모드',
     settingsTitle: '표시 옵션',
     resetTitle: '진도 초기화',
     resetConfirmTitle: '진도를 초기화할까요?',
@@ -1409,13 +1441,13 @@ function initTheme() {
 function currentTheme() {
   const attr    = document.documentElement.getAttribute('data-theme');
   const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (attr === 'dark' || attr === 'light' || attr === 'eva') return attr;
+  if (attr === 'dark' || attr === 'light' || attr === 'eva' || attr === 'eva00') return attr;
   return sysDark ? 'dark' : 'light';
 }
 
 function toggleTheme() {
-  // Cycle : light → dark → eva → light
-  const cycle = { light: 'dark', dark: 'eva', eva: 'light' };
+  // Cycle : light → dark → eva → eva00 → light
+  const cycle = { light: 'dark', dark: 'eva', eva: 'eva00', eva00: 'light' };
   const next  = cycle[currentTheme()] || 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem(THEME_KEY, next);
@@ -1428,8 +1460,8 @@ function updateThemeBtn() {
   const t   = UI[uiLang()];
   const cur = currentTheme();
   // L'icône et le tooltip indiquent le PROCHAIN thème
-  const icons  = { light: 'ti-moon', dark: 'ti-eye', eva: 'ti-sun' };
-  const titles = { light: t.themeDark, dark: t.themeEva, eva: t.themeLight };
+  const icons  = { light: 'ti-moon', dark: 'ti-eye', eva: 'ti-eye-filled', eva00: 'ti-sun' };
+  const titles = { light: t.themeDark, dark: t.themeEva, eva: t.themeEva00, eva00: t.themeLight };
   btn.innerHTML = `<i class="ti ${icons[cur]}"></i>`;
   btn.title     = titles[cur] || '';
 }
