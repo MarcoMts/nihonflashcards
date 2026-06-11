@@ -466,6 +466,16 @@
     .btn-acquired { border-color: var(--acquired-color);  color: var(--acquired-color); }
     .btn-acquired:hover { background: var(--acquired-bg); }
     .btn-skip     { color: var(--text-secondary); }
+    .btn-nav {
+      flex: 0 0 auto; width: 44px; max-width: 44px; padding: 11px 0;
+      color: var(--text-secondary);
+    }
+    .btn-nav.disabled { opacity: 0.35; pointer-events: none; }
+    @media (max-width: 480px) {
+      .action-row { gap: 6px; }
+      .action-btn { font-size: 12px; padding: 11px 2px; }
+      .btn-nav { width: 36px; }
+    }
 
     /* ── Stats de session ── */
     .stats-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
@@ -811,12 +821,14 @@
       <div class="flip-hint" id="flipHint">Cliquez sur la carte pour retourner</div>
 
       <div class="action-row" id="actionRow" style="display:none">
-        <button id="btnSkip"     class="action-btn btn-skip"     onclick="nextCard()"><i class="ti ti-arrow-right"></i> Passer</button>
+        <button id="btnPrevAction" class="action-btn btn-nav" onclick="prevCard()" title="Précédent"><i class="ti ti-arrow-left"></i></button>
+        <button id="btnSkip"     class="action-btn btn-skip btn-nav" onclick="nextCard()" title="Passer"><i class="ti ti-arrow-right"></i></button>
         <button id="btnWrong"    class="action-btn btn-wrong"    onclick="answer('review')"><i class="ti ti-x"></i> À revoir</button>
         <button id="btnCorrect"  class="action-btn btn-correct"  onclick="answer('known')"><i class="ti ti-check"></i> Correct</button>
         <button id="btnAcquired" class="action-btn btn-acquired" onclick="answer('acquired')"><i class="ti ti-star"></i> Acquis</button>
       </div>
       <div class="action-row" id="flipRow">
+        <button id="btnPrevFlip" class="action-btn btn-nav" onclick="prevCard()" title="Précédent"><i class="ti ti-arrow-left"></i></button>
         <button id="btnFlip" class="action-btn" onclick="flipCard()"><i class="ti ti-rotate"></i> Retourner la carte</button>
       </div>
 
@@ -976,6 +988,7 @@
 // ── Globals ───────────────────────────────────────────────────────────────────
 let VOCAB = {}, CATEGORIES = {};
 let deck = [], idx = 0, flipped = false, correct = 0, wrong = 0, sessionAcquired = 0;
+let sessionAnswers = []; // réponses de la session, par index du deck (pour annuler via "Précédent")
 let editingWordId = null;
 let currentCat  = '';
 let sourceLang  = 'fr';  // langue NATALE de l'utilisateur (1ère liste) → détermine la langue d'interface
@@ -1019,7 +1032,7 @@ const UI = {
     subtitle: 'Cliquez sur la carte pour révéler la réponse',
     flipHint: 'Cliquez sur la carte pour retourner',
     flipBtn:  'Retourner la carte',
-    btnWrong: 'À revoir', btnSkip: 'Passer', btnCorrect: 'Correct', btnAcquired: 'Acquis',
+    btnWrong: 'À revoir', btnSkip: 'Passer', btnCorrect: 'Correct', btnAcquired: 'Acquis', btnPrev: 'Carte précédente',
     lblCorrect: 'Corrects', lblWrong: 'À revoir', lblAcquired: 'Acquis', lblRemain: 'Restants',
     btnRestart: 'Recommencer',
     optRecto: 'Recto', optVerso: 'Verso',
@@ -1062,7 +1075,7 @@ const UI = {
     subtitle: 'Click the card to reveal the answer',
     flipHint: 'Click the card to flip',
     flipBtn:  'Flip card',
-    btnWrong: 'Review', btnSkip: 'Skip', btnCorrect: 'Correct', btnAcquired: 'Mastered',
+    btnWrong: 'Review', btnSkip: 'Skip', btnCorrect: 'Correct', btnAcquired: 'Mastered', btnPrev: 'Previous card',
     lblCorrect: 'Correct', lblWrong: 'Review', lblAcquired: 'Mastered', lblRemain: 'Left',
     btnRestart: 'Restart',
     optRecto: 'Front', optVerso: 'Back',
@@ -1105,7 +1118,7 @@ const UI = {
     subtitle: 'Klicke auf die Karte, um die Antwort zu sehen',
     flipHint: 'Klicke auf die Karte zum Umdrehen',
     flipBtn:  'Karte umdrehen',
-    btnWrong: 'Wiederholen', btnSkip: 'Überspringen', btnCorrect: 'Richtig', btnAcquired: 'Gelernt',
+    btnWrong: 'Wiederholen', btnSkip: 'Überspringen', btnCorrect: 'Richtig', btnAcquired: 'Gelernt', btnPrev: 'Vorherige Karte',
     lblCorrect: 'Richtig', lblWrong: 'Wiederholen', lblAcquired: 'Gelernt', lblRemain: 'Verbleibend',
     btnRestart: 'Neu starten',
     optRecto: 'Vorderseite', optVerso: 'Rückseite',
@@ -1148,7 +1161,7 @@ const UI = {
     subtitle: 'Clique no cartão para revelar a resposta',
     flipHint: 'Clique no cartão para virar',
     flipBtn:  'Virar o cartão',
-    btnWrong: 'Rever', btnSkip: 'Pular', btnCorrect: 'Correto', btnAcquired: 'Dominado',
+    btnWrong: 'Rever', btnSkip: 'Pular', btnCorrect: 'Correto', btnAcquired: 'Dominado', btnPrev: 'Cartão anterior',
     lblCorrect: 'Corretos', lblWrong: 'Rever', lblAcquired: 'Dominados', lblRemain: 'Restantes',
     btnRestart: 'Recomeçar',
     optRecto: 'Frente', optVerso: 'Verso',
@@ -1191,7 +1204,7 @@ const UI = {
     subtitle: 'カードをクリックして答えを確認しよう',
     flipHint: 'カードをクリックして裏返す',
     flipBtn:  'カードを裏返す',
-    btnWrong: 'もう一度', btnSkip: 'スキップ', btnCorrect: '正解', btnAcquired: '習得済み',
+    btnWrong: 'もう一度', btnSkip: 'スキップ', btnCorrect: '正解', btnAcquired: '習得済み', btnPrev: '前のカード',
     lblCorrect: '正解数', lblWrong: '復習', lblAcquired: '習得済み', lblRemain: '残り',
     btnRestart: 'もう一度やる',
     optRecto: '表面', optVerso: '裏面',
@@ -1234,7 +1247,7 @@ const UI = {
     subtitle: '카드를 클릭하여 답을 확인하세요',
     flipHint: '카드를 클릭하여 뒤집기',
     flipBtn:  '카드 뒤집기',
-    btnWrong: '복습', btnSkip: '건너뛰기', btnCorrect: '정답', btnAcquired: '완료',
+    btnWrong: '복습', btnSkip: '건너뛰기', btnCorrect: '정답', btnAcquired: '완료', btnPrev: '이전 카드',
     lblCorrect: '정답', lblWrong: '복습', lblAcquired: '완료', lblRemain: '남은',
     btnRestart: '다시 시작',
     optRecto: '앞면', optVerso: '뒷면',
@@ -1448,7 +1461,9 @@ function updateUI() {
   document.getElementById('flipHint').textContent      = t.flipHint;
   document.getElementById('btnFlip').innerHTML         = `<i class="ti ti-rotate"></i> ${t.flipBtn}`;
   document.getElementById('btnWrong').innerHTML        = `<i class="ti ti-x"></i> ${t.btnWrong}`;
-  document.getElementById('btnSkip').innerHTML         = `<i class="ti ti-arrow-right"></i> ${t.btnSkip}`;
+  document.getElementById('btnSkip').title             = t.btnSkip;
+  document.getElementById('btnPrevAction').title       = t.btnPrev;
+  document.getElementById('btnPrevFlip').title         = t.btnPrev;
   document.getElementById('btnCorrect').innerHTML      = `<i class="ti ti-check"></i> ${t.btnCorrect}`;
   document.getElementById('btnAcquired').innerHTML     = `<i class="ti ti-star"></i> ${t.btnAcquired}`;
   document.getElementById('lblCorrect').textContent    = t.lblCorrect;
@@ -1545,26 +1560,34 @@ function toggleField(pill) {
 }
 
 function applyVisibility() {
-  if (sourceLang === 'jp') {
+  // Langues effectivement affichées au recto/verso (tient compte de "Inverser les cartes")
+  const srcL = reverseCards ? targetLang : sourceLang;
+  const tgtL = reverseCards ? sourceLang : targetLang;
+  if (srcL === 'jp') {
     // Toggles du recto (kanji/kana/romaji)
     setVis('frontKanji',       show.front.kanji);
     setVis('frontKana',        show.front.kana);
     setVis('frontRomaji',      show.front.romaji);
     setVis('frontPlaceholder', !show.front.kanji && !show.front.kana && !show.front.romaji);
-    if (targetLang !== 'jp') {
+    if (tgtL !== 'jp') {
       // Aids lecture au verso (kana/romaji japonais)
       setVis('backKana',   show.back.kana);
       setVis('backRomaji', show.back.romaji);
     }
-  } else if (targetLang === 'jp') {
-    // Source non-JP, cible JP → toggles sur le verso japonais
+  } else if (tgtL === 'jp') {
+    // Recto non-JP, verso JP → toggles sur le verso japonais
     setVis('backKanjiJP',  show.front.kanji);
     setVis('backKanaJP',   show.front.kana);
     setVis('backRomajiJP', show.front.romaji);
   }
   // ── Romaja coréen ──
-  setVis('frontRomaja', sourceLang === 'ko' && show.ko.romaja);
-  setVis('backRomaja',  targetLang === 'ko' && show.ko.romaja);
+  setVis('frontRomaja', srcL === 'ko' && show.ko.romaja);
+  setVis('backRomaja',  tgtL === 'ko' && show.ko.romaja);
+  // Hangul au recto → rappel du mot (hangul + romaja) au verso
+  if (srcL === 'ko' && tgtL !== 'jp') {
+    setVis('backKana',   true);
+    setVis('backRomaji', show.ko.romaja);
+  }
 
   // Bouton paramètres : visible si JP ou KO impliqué
   const jpInvolved  = (sourceLang === 'jp' || targetLang === 'jp');
@@ -2033,6 +2056,7 @@ function buildDeck(cat) {
     .filter(w => progress[progressKey(w.id)] !== 'acquired')
     .sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
+  sessionAnswers = [];
 }
 
 function showCard() {
@@ -2088,11 +2112,12 @@ function showCard() {
     document.getElementById('jpModeBack').classList.remove('hidden');
     document.getElementById('langModeBack').classList.add('hidden');
     document.getElementById('backTag').textContent     = UI[ui].backTag;
-    const showAids = (srcL === 'jp');
-    document.getElementById('backKana').textContent    = showAids ? c.kana   : '';
-    document.getElementById('backRomaji').textContent  = showAids ? c.romaji : '';
-    setVis('backKana',   showAids);
-    setVis('backRomaji', showAids);
+    const showAids   = (srcL === 'jp');
+    const showKoWord = (srcL === 'ko'); // mot coréen du recto rappelé au verso
+    document.getElementById('backKana').textContent    = showAids ? c.kana   : (showKoWord ? (c.meanings['ko'] || '') : '');
+    document.getElementById('backRomaji').textContent  = showAids ? c.romaji : (showKoWord ? hangulToRomaja(c.meanings['ko'] || '') : '');
+    setVis('backKana',   showAids || showKoWord);
+    setVis('backRomaji', showAids || showKoWord);
     document.getElementById('backMeaning').textContent = c.meanings[tgtL] || '—';
     document.getElementById('backRomaja').textContent  = hangulToRomaja(c.meanings['ko'] || '');
     const exJP  = (srcL === 'jp' && c.examples.jp) ? c.examples.jp + '\n' : '';
@@ -2123,6 +2148,7 @@ function flipCard() {
 function answer(status) {
   const word = deck[idx];
   if (word?.id) {
+    sessionAnswers[idx] = { status, prev: progress[progressKey(word.id)] };
     progress[progressKey(word.id)] = status;
     saveProgress();
     updateReviewBar();
@@ -2139,6 +2165,27 @@ function nextCard() {
   showCard();
 }
 
+function prevCard() {
+  if (idx === 0) return;
+  idx--;
+  // Annule la réponse donnée à cette carte pendant la session
+  const rec = sessionAnswers[idx];
+  if (rec) {
+    if (rec.status === 'known')         correct--;
+    else if (rec.status === 'review')   wrong--;
+    else if (rec.status === 'acquired') sessionAcquired--;
+    const word = deck[idx];
+    if (word?.id) {
+      if (rec.prev === undefined) delete progress[progressKey(word.id)];
+      else progress[progressKey(word.id)] = rec.prev;
+      saveProgress();
+      updateReviewBar();
+    }
+    sessionAnswers[idx] = undefined;
+  }
+  showCard();
+}
+
 function updateProgressBar() {
   const total = deck.length;
   const pct   = total ? Math.round((idx / total) * 100) : 0;
@@ -2148,6 +2195,8 @@ function updateProgressBar() {
   document.getElementById('statWrong').textContent      = wrong;
   document.getElementById('statAcquired').textContent   = sessionAcquired;
   document.getElementById('statRemain').textContent     = total - idx;
+  document.getElementById('btnPrevAction').classList.toggle('disabled', idx === 0);
+  document.getElementById('btnPrevFlip').classList.toggle('disabled', idx === 0);
 }
 
 function showDone() {
@@ -2199,6 +2248,7 @@ function startReview(mode = 'review') {
   currentCat = `__${mode}__`;
   deck = words.sort(() => Math.random() - 0.5);
   idx = 0; correct = 0; wrong = 0; sessionAcquired = 0; flipped = false;
+  sessionAnswers = [];
   document.getElementById('screens').classList.remove('finished');
   showCard();
 }
