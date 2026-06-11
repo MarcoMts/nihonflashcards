@@ -1554,7 +1554,7 @@ const show = {
   ko:    { romaja: true },
 };
 
-// Carte courante = caractère hiragana/katakana (aides recto masquées)
+// Carte courante = caractère hiragana/katakana/hangeul (aides recto masquées)
 let currentCardIsKana = false;
 
 // ── Sauvegarde des préférences d'affichage ────────────────────────────────────
@@ -1832,7 +1832,7 @@ function applyVisibility() {
   // Langues effectivement affichées au recto/verso (tient compte de "Inverser les cartes")
   const srcL = reverseCards ? targetLang : sourceLang;
   const tgtL = reverseCards ? sourceLang : targetLang;
-  // Cartes hiragana/katakana : le kana et le romaji du recto donneraient la
+  // Cartes hiragana/katakana/hangeul : le kana et le romaji du recto donneraient la
   // réponse → on les masque quels que soient les toggles. Le romaji du verso
   // est aussi masqué (la traduction affiche déjà la lecture).
   const kanaCard = currentCardIsKana;
@@ -2255,6 +2255,7 @@ function buildControlBar() {
       // Choisir automatiquement la cible la plus logique
       targetLang = code === 'jp' ? 'fr' : 'jp';
     }
+    ensureCatVisible();
     buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
     showCard();
   });
@@ -2263,6 +2264,7 @@ function buildControlBar() {
     if (targetLang === sourceLang) {
       sourceLang = code === 'jp' ? 'fr' : 'jp';
     }
+    ensureCatVisible();
     buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
     showCard();
   });
@@ -2273,6 +2275,7 @@ function swapLangs() {
   const tmp = targetLang;
   targetLang = sourceLang;
   sourceLang = tmp;
+  ensureCatVisible();
   buildControlBar();
   buildDeck(currentCat);
   updateUI();
@@ -2302,11 +2305,26 @@ function buildLangPicker(groupId, activeLang, onSelect) {
 }
 
 // ── Barre de catégories ───────────────────────────────────────────────────────
+// Catégories d'écriture liées à une langue cible : kana → JP, hangeul → KO
+function catVisibleForTarget(catId) {
+  if (catId === 'hiragana' || catId === 'katakana') return targetLang === 'jp';
+  if (catId === 'hangul') return targetLang === 'ko';
+  return true;
+}
+
+// Si la catégorie courante est masquée par la langue cible choisie,
+// bascule sur la première catégorie visible
+function ensureCatVisible() {
+  if (currentCat.startsWith('__') || catVisibleForTarget(currentCat)) return;
+  currentCat = Object.keys(CATEGORIES).find(id => VOCAB[id]?.length && catVisibleForTarget(id)) || '';
+}
+
 function buildCatBar() {
   const bar = document.getElementById('catBar');
   bar.innerHTML = '';
   Object.keys(CATEGORIES).forEach(catId => {
     if (!VOCAB[catId]?.length) return; // masquer catégories vides (ex: Personnalisé si vide)
+    if (!catVisibleForTarget(catId)) return; // kana → cible JP uniquement, hangeul → cible KO
     const btn = document.createElement('button');
     btn.className    = 'cat-btn' + (catId === currentCat ? ' active' : '');
     btn.dataset.cat  = catId;
@@ -2362,7 +2380,7 @@ function showCard() {
   const ui    = uiLang();
   const catId = currentCat.startsWith('__') ? c._catId : currentCat;
   const catLabel = CATEGORIES[catId]?.[ui] || CATEGORIES[catId]?.['fr'] || catId;
-  currentCardIsKana = (catId === 'hiragana' || catId === 'katakana');
+  currentCardIsKana = (catId === 'hiragana' || catId === 'katakana' || catId === 'hangul');
 
   // Sens d'affichage : normal ou inversé selon reverseCards
   const srcL = reverseCards ? targetLang : sourceLang;
@@ -2633,6 +2651,7 @@ function setTargetFromStats(lang) {
   targetLang = lang;
   if (sourceLang === targetLang) sourceLang = lang === 'jp' ? 'fr' : 'jp';
   statsViewLang = lang;
+  ensureCatVisible();
   buildControlBar(); updateUI(); buildCatBar(); saveSettings();
   buildDeck(currentCat); showCard();
   closeStats();
@@ -2744,7 +2763,9 @@ function confirmReset() {
   if (!currentCat.startsWith('__')) buildDeck(currentCat);
   else {
     currentCat = Object.keys(VOCAB)[0];
-    document.querySelectorAll('.cat-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+    ensureCatVisible();
+    buildCatBar();
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === currentCat));
     buildDeck(currentCat);
   }
   document.getElementById('screens').classList.remove('finished');
@@ -2778,6 +2799,9 @@ document.querySelector('.cat-bar-wrap').addEventListener('wheel', e => {
       const last = JSON.parse(localStorage.getItem(LAST_POS_KEY) || 'null');
       if (last && VOCAB[last.cat]?.length) { currentCat = last.cat; lastPos = last; }
     } catch(e) {}
+    // Catégorie restaurée incompatible avec la langue cible (kana/hangeul) → 1ère visible
+    ensureCatVisible();
+    if (lastPos && lastPos.cat !== currentCat) lastPos = null;
     buildControlBar();
     updateUI();
     syncTogglePills(); // aligne l'état visuel des pills avec show chargé

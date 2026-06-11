@@ -20,7 +20,9 @@
     </word>
 
   Catégories disponibles :
-    salutations, nombres, quotidien, couleurs, famille, nourriture, corps, temps
+    hiragana, katakana, hangul, salutations, pronoms, nombres, verbes,
+    adjectif, expressions, temps, lieux, famille, nourriture, transport,
+    maison, positions, couleurs, vetements, suffixes, compteurs, meteo, corps
   ============================================================
 -->
 <vocabulary>
@@ -43,6 +45,14 @@
     <label lang="pt">Katakana</label>
     <label lang="ja">カタカナ</label>
     <label lang="ko">가타카나</label>
+  </category>
+  <category id="hangul">
+    <label lang="fr">Hangeul</label>
+    <label lang="en">Hangul</label>
+    <label lang="de">Hangul</label>
+    <label lang="pt">Hangul</label>
+    <label lang="ja">ハングル</label>
+    <label lang="ko">한글</label>
   </category>
   <category id="salutations">
     <label lang="fr">Salutations</label>
@@ -2282,6 +2292,415 @@
     <de>pyo</de>
     <pt>pyo</pt>
     <ko>pyo</ko>
+  </word>
+
+  <!-- ════════════════════════════════════════════════════════
+       HANGEUL — alphabet coréen complet (consonnes, consonnes
+       doubles, voyelles de base, voyelles composées)
+       ════════════════════════════════════════════════════════ -->
+  <!-- Consonnes de base (14) -->
+  <word id="hang_g" category="hangul">
+    <kanji>ㄱ</kanji>
+    <kana>ㄱ</kana>
+    <romaji>g / k</romaji>
+    <fr>g, k (giyeok)</fr>
+    <en>g, k (giyeok)</en>
+    <de>g, k (giyeok)</de>
+    <pt>g, k (giyeok)</pt>
+    <ko>기역</ko>
+  </word>
+  <word id="hang_n" category="hangul">
+    <kanji>ㄴ</kanji>
+    <kana>ㄴ</kana>
+    <romaji>n</romaji>
+    <fr>n (nieun)</fr>
+    <en>n (nieun)</en>
+    <de>n (nieun)</de>
+    <pt>n (nieun)</pt>
+    <ko>니은</ko>
+  </word>
+  <word id="hang_d" category="hangul">
+    <kanji>ㄷ</kanji>
+    <kana>ㄷ</kana>
+    <romaji>d / t</romaji>
+    <fr>d, t (digeut)</fr>
+    <en>d, t (digeut)</en>
+    <de>d, t (digeut)</de>
+    <pt>d, t (digeut)</pt>
+    <ko>디귿</ko>
+  </word>
+  <word id="hang_r" category="hangul">
+    <kanji>ㄹ</kanji>
+    <kana>ㄹ</kana>
+    <romaji>r / l</romaji>
+    <fr>r, l (rieul)</fr>
+    <en>r, l (rieul)</en>
+    <de>r, l (rieul)</de>
+    <pt>r, l (rieul)</pt>
+    <ko>리을</ko>
+  </word>
+  <word id="hang_m" category="hangul">
+    <kanji>ㅁ</kanji>
+    <kana>ㅁ</kana>
+    <romaji>m</romaji>
+    <fr>m (mieum)</fr>
+    <en>m (mieum)</en>
+    <de>m (mieum)</de>
+    <pt>m (mieum)</pt>
+    <ko>미음</ko>
+  </word>
+  <word id="hang_b" category="hangul">
+    <kanji>ㅂ</kanji>
+    <kana>ㅂ</kana>
+    <romaji>b / p</romaji>
+    <fr>b, p (bieup)</fr>
+    <en>b, p (bieup)</en>
+    <de>b, p (bieup)</de>
+    <pt>b, p (bieup)</pt>
+    <ko>비읍</ko>
+  </word>
+  <word id="hang_s" category="hangul">
+    <kanji>ㅅ</kanji>
+    <kana>ㅅ</kana>
+    <romaji>s</romaji>
+    <fr>s (siot)</fr>
+    <en>s (siot)</en>
+    <de>s (siot)</de>
+    <pt>s (siot)</pt>
+    <ko>시옷</ko>
+  </word>
+  <word id="hang_ng" category="hangul">
+    <kanji>ㅇ</kanji>
+    <kana>ㅇ</kana>
+    <romaji>muet / ng</romaji>
+    <fr>muet en début, ng en fin (ieung)</fr>
+    <en>silent at start, ng at end (ieung)</en>
+    <de>stumm am Anfang, ng am Ende (ieung)</de>
+    <pt>mudo no início, ng no fim (ieung)</pt>
+    <ko>이응</ko>
+  </word>
+  <word id="hang_j" category="hangul">
+    <kanji>ㅈ</kanji>
+    <kana>ㅈ</kana>
+    <romaji>j</romaji>
+    <fr>j (jieut)</fr>
+    <en>j (jieut)</en>
+    <de>j (jieut)</de>
+    <pt>j (jieut)</pt>
+    <ko>지읒</ko>
+  </word>
+  <word id="hang_ch" category="hangul">
+    <kanji>ㅊ</kanji>
+    <kana>ㅊ</kana>
+    <romaji>ch</romaji>
+    <fr>ch (chieut)</fr>
+    <en>ch (chieut)</en>
+    <de>ch (chieut)</de>
+    <pt>ch (chieut)</pt>
+    <ko>치읓</ko>
+  </word>
+  <word id="hang_k" category="hangul">
+    <kanji>ㅋ</kanji>
+    <kana>ㅋ</kana>
+    <romaji>k</romaji>
+    <fr>k aspiré (kieuk)</fr>
+    <en>aspirated k (kieuk)</en>
+    <de>behauchtes k (kieuk)</de>
+    <pt>k aspirado (kieuk)</pt>
+    <ko>키읔</ko>
+  </word>
+  <word id="hang_t" category="hangul">
+    <kanji>ㅌ</kanji>
+    <kana>ㅌ</kana>
+    <romaji>t</romaji>
+    <fr>t aspiré (tieut)</fr>
+    <en>aspirated t (tieut)</en>
+    <de>behauchtes t (tieut)</de>
+    <pt>t aspirado (tieut)</pt>
+    <ko>티읕</ko>
+  </word>
+  <word id="hang_p" category="hangul">
+    <kanji>ㅍ</kanji>
+    <kana>ㅍ</kana>
+    <romaji>p</romaji>
+    <fr>p aspiré (pieup)</fr>
+    <en>aspirated p (pieup)</en>
+    <de>behauchtes p (pieup)</de>
+    <pt>p aspirado (pieup)</pt>
+    <ko>피읖</ko>
+  </word>
+  <word id="hang_h" category="hangul">
+    <kanji>ㅎ</kanji>
+    <kana>ㅎ</kana>
+    <romaji>h</romaji>
+    <fr>h (hieut)</fr>
+    <en>h (hieut)</en>
+    <de>h (hieut)</de>
+    <pt>h (hieut)</pt>
+    <ko>히읗</ko>
+  </word>
+  <!-- Consonnes doubles (5) -->
+  <word id="hang_kk" category="hangul">
+    <kanji>ㄲ</kanji>
+    <kana>ㄲ</kana>
+    <romaji>kk</romaji>
+    <fr>kk tendu (ssanggiyeok)</fr>
+    <en>tense kk (ssanggiyeok)</en>
+    <de>gespanntes kk (ssanggiyeok)</de>
+    <pt>kk tenso (ssanggiyeok)</pt>
+    <ko>쌍기역</ko>
+  </word>
+  <word id="hang_tt" category="hangul">
+    <kanji>ㄸ</kanji>
+    <kana>ㄸ</kana>
+    <romaji>tt</romaji>
+    <fr>tt tendu (ssangdigeut)</fr>
+    <en>tense tt (ssangdigeut)</en>
+    <de>gespanntes tt (ssangdigeut)</de>
+    <pt>tt tenso (ssangdigeut)</pt>
+    <ko>쌍디귿</ko>
+  </word>
+  <word id="hang_pp" category="hangul">
+    <kanji>ㅃ</kanji>
+    <kana>ㅃ</kana>
+    <romaji>pp</romaji>
+    <fr>pp tendu (ssangbieup)</fr>
+    <en>tense pp (ssangbieup)</en>
+    <de>gespanntes pp (ssangbieup)</de>
+    <pt>pp tenso (ssangbieup)</pt>
+    <ko>쌍비읍</ko>
+  </word>
+  <word id="hang_ss" category="hangul">
+    <kanji>ㅆ</kanji>
+    <kana>ㅆ</kana>
+    <romaji>ss</romaji>
+    <fr>ss tendu (ssangsiot)</fr>
+    <en>tense ss (ssangsiot)</en>
+    <de>gespanntes ss (ssangsiot)</de>
+    <pt>ss tenso (ssangsiot)</pt>
+    <ko>쌍시옷</ko>
+  </word>
+  <word id="hang_jj" category="hangul">
+    <kanji>ㅉ</kanji>
+    <kana>ㅉ</kana>
+    <romaji>jj</romaji>
+    <fr>jj tendu (ssangjieut)</fr>
+    <en>tense jj (ssangjieut)</en>
+    <de>gespanntes jj (ssangjieut)</de>
+    <pt>jj tenso (ssangjieut)</pt>
+    <ko>쌍지읒</ko>
+  </word>
+  <!-- Voyelles de base (10) -->
+  <word id="hang_a" category="hangul">
+    <kanji>ㅏ</kanji>
+    <kana>ㅏ</kana>
+    <romaji>a</romaji>
+    <fr>a</fr>
+    <en>a</en>
+    <de>a</de>
+    <pt>a</pt>
+    <ko>아</ko>
+  </word>
+  <word id="hang_ya" category="hangul">
+    <kanji>ㅑ</kanji>
+    <kana>ㅑ</kana>
+    <romaji>ya</romaji>
+    <fr>ya</fr>
+    <en>ya</en>
+    <de>ya</de>
+    <pt>ya</pt>
+    <ko>야</ko>
+  </word>
+  <word id="hang_eo" category="hangul">
+    <kanji>ㅓ</kanji>
+    <kana>ㅓ</kana>
+    <romaji>eo</romaji>
+    <fr>eo (o ouvert)</fr>
+    <en>eo (open o)</en>
+    <de>eo (offenes o)</de>
+    <pt>eo (o aberto)</pt>
+    <ko>어</ko>
+  </word>
+  <word id="hang_yeo" category="hangul">
+    <kanji>ㅕ</kanji>
+    <kana>ㅕ</kana>
+    <romaji>yeo</romaji>
+    <fr>yeo</fr>
+    <en>yeo</en>
+    <de>yeo</de>
+    <pt>yeo</pt>
+    <ko>여</ko>
+  </word>
+  <word id="hang_o" category="hangul">
+    <kanji>ㅗ</kanji>
+    <kana>ㅗ</kana>
+    <romaji>o</romaji>
+    <fr>o</fr>
+    <en>o</en>
+    <de>o</de>
+    <pt>o</pt>
+    <ko>오</ko>
+  </word>
+  <word id="hang_yo" category="hangul">
+    <kanji>ㅛ</kanji>
+    <kana>ㅛ</kana>
+    <romaji>yo</romaji>
+    <fr>yo</fr>
+    <en>yo</en>
+    <de>yo</de>
+    <pt>yo</pt>
+    <ko>요</ko>
+  </word>
+  <word id="hang_u" category="hangul">
+    <kanji>ㅜ</kanji>
+    <kana>ㅜ</kana>
+    <romaji>u</romaji>
+    <fr>u (ou)</fr>
+    <en>u (oo)</en>
+    <de>u</de>
+    <pt>u</pt>
+    <ko>우</ko>
+  </word>
+  <word id="hang_yu" category="hangul">
+    <kanji>ㅠ</kanji>
+    <kana>ㅠ</kana>
+    <romaji>yu</romaji>
+    <fr>yu (you)</fr>
+    <en>yu (yoo)</en>
+    <de>yu</de>
+    <pt>yu</pt>
+    <ko>유</ko>
+  </word>
+  <word id="hang_eu" category="hangul">
+    <kanji>ㅡ</kanji>
+    <kana>ㅡ</kana>
+    <romaji>eu</romaji>
+    <fr>eu (u plat)</fr>
+    <en>eu (flat u)</en>
+    <de>eu (flaches u)</de>
+    <pt>eu (u plano)</pt>
+    <ko>으</ko>
+  </word>
+  <word id="hang_i" category="hangul">
+    <kanji>ㅣ</kanji>
+    <kana>ㅣ</kana>
+    <romaji>i</romaji>
+    <fr>i</fr>
+    <en>i</en>
+    <de>i</de>
+    <pt>i</pt>
+    <ko>이</ko>
+  </word>
+  <!-- Voyelles composées (11) -->
+  <word id="hang_ae" category="hangul">
+    <kanji>ㅐ</kanji>
+    <kana>ㅐ</kana>
+    <romaji>ae</romaji>
+    <fr>ae (è)</fr>
+    <en>ae</en>
+    <de>ae (ä)</de>
+    <pt>ae (é)</pt>
+    <ko>애</ko>
+  </word>
+  <word id="hang_yae" category="hangul">
+    <kanji>ㅒ</kanji>
+    <kana>ㅒ</kana>
+    <romaji>yae</romaji>
+    <fr>yae (yè)</fr>
+    <en>yae</en>
+    <de>yae (jä)</de>
+    <pt>yae (ié)</pt>
+    <ko>얘</ko>
+  </word>
+  <word id="hang_e" category="hangul">
+    <kanji>ㅔ</kanji>
+    <kana>ㅔ</kana>
+    <romaji>e</romaji>
+    <fr>e (é)</fr>
+    <en>e</en>
+    <de>e</de>
+    <pt>e</pt>
+    <ko>에</ko>
+  </word>
+  <word id="hang_ye" category="hangul">
+    <kanji>ㅖ</kanji>
+    <kana>ㅖ</kana>
+    <romaji>ye</romaji>
+    <fr>ye (yé)</fr>
+    <en>ye</en>
+    <de>ye (je)</de>
+    <pt>ye (iê)</pt>
+    <ko>예</ko>
+  </word>
+  <word id="hang_wa" category="hangul">
+    <kanji>ㅘ</kanji>
+    <kana>ㅘ</kana>
+    <romaji>wa</romaji>
+    <fr>wa</fr>
+    <en>wa</en>
+    <de>wa</de>
+    <pt>wa</pt>
+    <ko>와</ko>
+  </word>
+  <word id="hang_wae" category="hangul">
+    <kanji>ㅙ</kanji>
+    <kana>ㅙ</kana>
+    <romaji>wae</romaji>
+    <fr>wae (wè)</fr>
+    <en>wae</en>
+    <de>wae (wä)</de>
+    <pt>wae (ué)</pt>
+    <ko>왜</ko>
+  </word>
+  <word id="hang_oe" category="hangul">
+    <kanji>ㅚ</kanji>
+    <kana>ㅚ</kana>
+    <romaji>oe</romaji>
+    <fr>oe (wé)</fr>
+    <en>oe (we)</en>
+    <de>oe (we)</de>
+    <pt>oe (uê)</pt>
+    <ko>외</ko>
+  </word>
+  <word id="hang_wo" category="hangul">
+    <kanji>ㅝ</kanji>
+    <kana>ㅝ</kana>
+    <romaji>wo</romaji>
+    <fr>wo</fr>
+    <en>wo</en>
+    <de>wo</de>
+    <pt>wo</pt>
+    <ko>워</ko>
+  </word>
+  <word id="hang_we" category="hangul">
+    <kanji>ㅞ</kanji>
+    <kana>ㅞ</kana>
+    <romaji>we</romaji>
+    <fr>we (wé)</fr>
+    <en>we</en>
+    <de>we</de>
+    <pt>we (uê)</pt>
+    <ko>웨</ko>
+  </word>
+  <word id="hang_wi" category="hangul">
+    <kanji>ㅟ</kanji>
+    <kana>ㅟ</kana>
+    <romaji>wi</romaji>
+    <fr>wi (oui)</fr>
+    <en>wi (wee)</en>
+    <de>wi</de>
+    <pt>wi (ui)</pt>
+    <ko>위</ko>
+  </word>
+  <word id="hang_ui" category="hangul">
+    <kanji>ㅢ</kanji>
+    <kana>ㅢ</kana>
+    <romaji>ui</romaji>
+    <fr>ui (eu-i)</fr>
+    <en>ui (eu-i)</en>
+    <de>ui (eu-i)</de>
+    <pt>ui (eu-i)</pt>
+    <ko>의</ko>
   </word>
 
   <word id="konnichiwa" category="salutations">
