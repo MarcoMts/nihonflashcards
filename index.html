@@ -300,6 +300,35 @@
       --shadow-card:   0 2px 12px rgba(45, 143, 216, 0.18);
     }
 
+    /* ── Easter egg : thème Arc-en-ciel (mitrailler le bouton thème) ──
+       Palette saturée + rotation de teinte continue : toute l'interface
+       parcourt le spectre en boucle. */
+    :root[data-theme="rainbow"] {
+      --bg-primary:    #fff0f5;
+      --bg-secondary:  #ffd9ec;
+      --bg-tertiary:   #ffc4da;
+      --text-primary:  #4d1038;
+      --text-secondary:#a03570;
+      --text-tertiary: #cf7fae;
+      --border-light:  rgba(255, 0, 128, 0.18);
+      --border-medium: rgba(255, 0, 128, 0.32);
+      --border-strong: rgba(255, 0, 128, 0.50);
+      --accent:        #ff2e88;
+      --accent-bg:     rgba(255, 46, 136, 0.14);
+      --correct-color: #00a86b;
+      --correct-bg:    rgba(0, 168, 107, 0.14);
+      --wrong-color:   #e8362a;
+      --wrong-bg:      rgba(232, 54, 42, 0.14);
+      --acquired-color:#c9910a;
+      --acquired-bg:   rgba(201, 145, 10, 0.14);
+      --shadow-card:   0 2px 18px rgba(255, 46, 136, 0.35);
+      animation: rainbow-hue 6s linear infinite;
+    }
+    @keyframes rainbow-hue {
+      from { filter: hue-rotate(0deg); }
+      to   { filter: hue-rotate(360deg); }
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg-tertiary);
@@ -1192,6 +1221,7 @@ const SETTINGS_KEY = 'nihon_settings';
 const CUSTOM_KEY      = 'nihon_custom';
 const CUSTOM_CATS_KEY = 'nihon_custom_cats';
 const SRS_KEY         = 'nihon_srs';
+const LAST_POS_KEY    = 'nihon_last_position';
 let progress    = {};
 let saveEnabled = false;
 
@@ -1524,6 +1554,9 @@ const show = {
   ko:    { romaja: true },
 };
 
+// Carte courante = caractère hiragana/katakana (aides recto masquées)
+let currentCardIsKana = false;
+
 // ── Sauvegarde des préférences d'affichage ────────────────────────────────────
 function saveSettings() {
   localStorage.setItem(SETTINGS_KEY, JSON.stringify({
@@ -1546,13 +1579,16 @@ function loadSettings() {
     if (saved.source && allCodes.includes(saved.source)) sourceLang = saved.source;
     if (saved.target && allCodes.includes(saved.target)) targetLang = saved.target;
     if (saved.uiLang && UI_LANGS.some(l => l.code === saved.uiLang)) uiLangOverride = saved.uiLang;
-    if (saved.reverseCards) reverseCards = true;
+    // Restaurer le choix sauvegardé (true ET false) ; sinon défaut = true (cible au recto)
+    if (typeof saved.reverseCards === 'boolean') reverseCards = saved.reverseCards;
     // Sécurité : source ≠ target
     if (sourceLang === targetLang) targetLang = sourceLang === 'jp' ? 'fr' : 'jp';
-    // Compat ancien format (lang + dir)
+    // Compat ancien format (lang + dir) : la cible était toujours le japonais,
+    // dir indiquait la face affichée au recto ('jp' = japonais en premier).
     if (!saved.source && saved.lang) {
-      sourceLang = saved.dir === 'lang' ? saved.lang : 'jp';
-      targetLang = saved.dir === 'lang' ? 'jp' : saved.lang;
+      sourceLang   = saved.lang === 'jp' ? 'fr' : saved.lang;
+      targetLang   = 'jp';
+      reverseCards = saved.dir !== 'lang';
     }
   } catch(e) {}
 }
@@ -1576,13 +1612,27 @@ function initTheme() {
 function currentTheme() {
   const attr    = document.documentElement.getAttribute('data-theme');
   const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (['dark', 'light', 'eva', 'eva00', 'rose', 'creme', 'vert', 'jaune', 'ciel'].includes(attr)) return attr;
+  if (['dark', 'light', 'eva', 'eva00', 'rose', 'creme', 'vert', 'jaune', 'ciel', 'rainbow'].includes(attr)) return attr;
   return sysDark ? 'dark' : 'light';
 }
 
+// Easter egg : mitrailler le bouton thème (6 clics en < 2 s) → arc-en-ciel
+let rainbowClicks = [];
+
 function toggleTheme() {
+  const now = Date.now();
+  rainbowClicks = rainbowClicks.filter(t => now - t < 2000);
+  rainbowClicks.push(now);
+  if (rainbowClicks.length >= 6 && currentTheme() !== 'rainbow') {
+    rainbowClicks = [];
+    document.documentElement.setAttribute('data-theme', 'rainbow');
+    localStorage.setItem(THEME_KEY, 'rainbow');
+    updateThemeBtn();
+    return;
+  }
   // Cycle : light → dark → eva → eva00 → rose → creme → vert → jaune → ciel → light
-  const cycle = { light: 'dark', dark: 'eva', eva: 'eva00', eva00: 'rose', rose: 'creme', creme: 'vert', vert: 'jaune', jaune: 'ciel', ciel: 'light' };
+  // (rainbow, secret, sort vers light)
+  const cycle = { light: 'dark', dark: 'eva', eva: 'eva00', eva00: 'rose', rose: 'creme', creme: 'vert', vert: 'jaune', jaune: 'ciel', ciel: 'light', rainbow: 'light' };
   const next  = cycle[currentTheme()] || 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem(THEME_KEY, next);
@@ -1595,8 +1645,8 @@ function updateThemeBtn() {
   const t   = UI[uiLang()];
   const cur = currentTheme();
   // L'icône et le tooltip indiquent le PROCHAIN thème
-  const icons  = { light: 'ti-moon', dark: 'ti-eye', eva: 'ti-eye-filled', eva00: 'ti-flower', rose: 'ti-coffee', creme: 'ti-leaf', vert: 'ti-bulb', jaune: 'ti-cloud', ciel: 'ti-sun' };
-  const titles = { light: t.themeDark, dark: t.themeEva, eva: t.themeEva00, eva00: t.themeRose, rose: t.themeCreme, creme: t.themeVert, vert: t.themeJaune, jaune: t.themeCiel, ciel: t.themeLight };
+  const icons  = { light: 'ti-moon', dark: 'ti-eye', eva: 'ti-eye-filled', eva00: 'ti-flower', rose: 'ti-coffee', creme: 'ti-leaf', vert: 'ti-bulb', jaune: 'ti-cloud', ciel: 'ti-sun', rainbow: 'ti-rainbow' };
+  const titles = { light: t.themeDark, dark: t.themeEva, eva: t.themeEva00, eva00: t.themeRose, rose: t.themeCreme, creme: t.themeVert, vert: t.themeJaune, jaune: t.themeCiel, ciel: t.themeLight, rainbow: t.themeLight };
   btn.innerHTML = `<i class="ti ${icons[cur]}"></i>`;
   btn.title     = titles[cur] || '';
 }
@@ -1782,16 +1832,20 @@ function applyVisibility() {
   // Langues effectivement affichées au recto/verso (tient compte de "Inverser les cartes")
   const srcL = reverseCards ? targetLang : sourceLang;
   const tgtL = reverseCards ? sourceLang : targetLang;
+  // Cartes hiragana/katakana : le kana et le romaji du recto donneraient la
+  // réponse → on les masque quels que soient les toggles. Le romaji du verso
+  // est aussi masqué (la traduction affiche déjà la lecture).
+  const kanaCard = currentCardIsKana;
   if (srcL === 'jp') {
     // Toggles du recto (kanji/kana/romaji)
     setVis('frontKanji',       show.front.kanji);
-    setVis('frontKana',        show.front.kana);
-    setVis('frontRomaji',      show.front.romaji);
-    setVis('frontPlaceholder', !show.front.kanji && !show.front.kana && !show.front.romaji);
+    setVis('frontKana',        show.front.kana && !kanaCard);
+    setVis('frontRomaji',      show.front.romaji && !kanaCard);
+    setVis('frontPlaceholder', !show.front.kanji && !(show.front.kana && !kanaCard) && !(show.front.romaji && !kanaCard));
     if (tgtL !== 'jp') {
       // Aids lecture au verso (kana/romaji japonais)
       setVis('backKana',   show.back.kana);
-      setVis('backRomaji', show.back.romaji);
+      setVis('backRomaji', show.back.romaji && !kanaCard);
     }
   } else if (tgtL === 'jp') {
     // Recto non-JP, verso JP → toggles sur le verso japonais
@@ -2278,9 +2332,25 @@ function buildDeck(cat) {
   sessionAnswers = [];
 }
 
+// Mémorise la session en cours (catégorie, ordre du deck, index, compteurs)
+// pour la restaurer à l'identique à la prochaine visite.
+// Les modes spéciaux __xxx__ ne sont pas persistés.
+function saveLastPosition() {
+  if (currentCat.startsWith('__')) return;
+  try {
+    localStorage.setItem(LAST_POS_KEY, JSON.stringify({
+      cat: currentCat,
+      deckIds: deck.map(w => w.id),
+      idx, correct, wrong, sessionAcquired,
+      sessionAnswers,
+    }));
+  } catch(e) {}
+}
+
 function showCard() {
   if (idx >= deck.length) { showDone(); return; }
   const c = deck[idx];
+  saveLastPosition();
 
   // Reset flip instantané sans animation
   const ci = document.getElementById('cardInner');
@@ -2292,6 +2362,7 @@ function showCard() {
   const ui    = uiLang();
   const catId = currentCat.startsWith('__') ? c._catId : currentCat;
   const catLabel = CATEGORIES[catId]?.[ui] || CATEGORIES[catId]?.['fr'] || catId;
+  currentCardIsKana = (catId === 'hiragana' || catId === 'katakana');
 
   // Sens d'affichage : normal ou inversé selon reverseCards
   const srcL = reverseCards ? targetLang : sourceLang;
@@ -2434,6 +2505,7 @@ function updateProgressBar() {
 }
 
 function showDone() {
+  saveLastPosition(); // idx = fin du deck → le rechargement retombe sur cet écran
   document.getElementById('screens').classList.add('finished');
   const t = UI[uiLang()];
 
@@ -2699,12 +2771,36 @@ document.querySelector('.cat-bar-wrap').addEventListener('wheel', e => {
     loadProgress();
     loadSettings();    // restaure lang, dir, show avant de construire l'UI
     initTheme();
+    // Restaurer la dernière session (catégorie + deck + index) si disponible
     currentCat = Object.keys(VOCAB)[0];
+    let lastPos = null;
+    try {
+      const last = JSON.parse(localStorage.getItem(LAST_POS_KEY) || 'null');
+      if (last && VOCAB[last.cat]?.length) { currentCat = last.cat; lastPos = last; }
+    } catch(e) {}
     buildControlBar();
     updateUI();
     syncTogglePills(); // aligne l'état visuel des pills avec show chargé
     buildCatBar();
     buildDeck(currentCat);
+    if (lastPos?.deckIds?.length) {
+      // Reconstituer le deck dans l'ordre sauvegardé : même mélange, même
+      // index, mêmes compteurs → on reprend exactement où on s'était arrêté
+      const byId = new Map(VOCAB[currentCat].map(w => [w.id, w]));
+      const restored = lastPos.deckIds.map(id => byId.get(id)).filter(Boolean);
+      if (restored.length) {
+        deck            = restored;
+        idx             = Math.min(lastPos.idx || 0, deck.length);
+        correct         = lastPos.correct || 0;
+        wrong           = lastPos.wrong || 0;
+        sessionAcquired = lastPos.sessionAcquired || 0;
+        sessionAnswers  = Array.isArray(lastPos.sessionAnswers) ? lastPos.sessionAnswers : [];
+      }
+    } else if (lastPos?.cardId) {
+      // Compat ancien format (cardId seul) : remonter la carte en tête
+      const i = deck.findIndex(w => w.id === lastPos.cardId);
+      if (i > 0) deck.unshift(deck.splice(i, 1)[0]);
+    }
     showCard();
     showConsentIfNeeded();
   } catch (e) {

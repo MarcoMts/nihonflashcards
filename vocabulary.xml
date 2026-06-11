@@ -28,6 +28,22 @@
   <!-- ════════════════════════════════════════════════════════
        CATÉGORIES — ordre pédagogique
        ════════════════════════════════════════════════════════ -->
+  <category id="hiragana">
+    <label lang="fr">Hiragana</label>
+    <label lang="en">Hiragana</label>
+    <label lang="de">Hiragana</label>
+    <label lang="pt">Hiragana</label>
+    <label lang="ja">ひらがな</label>
+    <label lang="ko">히라가나</label>
+  </category>
+  <category id="katakana">
+    <label lang="fr">Katakana</label>
+    <label lang="en">Katakana</label>
+    <label lang="de">Katakana</label>
+    <label lang="pt">Katakana</label>
+    <label lang="ja">カタカナ</label>
+    <label lang="ko">가타카나</label>
+  </category>
   <category id="salutations">
     <label lang="fr">Salutations</label>
     <label lang="en">Greetings</label>
@@ -180,6 +196,2093 @@
     <label lang="ja">体</label>
     <label lang="ko">신체</label>
   </category>
+
+  <!-- ════════════════════════════════════════════════════════
+       HIRAGANA — syllabaire complet (base, dakuten, yōon)
+       ════════════════════════════════════════════════════════ -->
+  <word id="hira_a" category="hiragana">
+    <kanji>あ</kanji>
+    <kana>あ</kana>
+    <romaji>a</romaji>
+    <fr>a</fr>
+    <en>a</en>
+    <de>a</de>
+    <pt>a</pt>
+    <ko>a</ko>
+  </word>
+  <word id="hira_i" category="hiragana">
+    <kanji>い</kanji>
+    <kana>い</kana>
+    <romaji>i</romaji>
+    <fr>i</fr>
+    <en>i</en>
+    <de>i</de>
+    <pt>i</pt>
+    <ko>i</ko>
+  </word>
+  <word id="hira_u" category="hiragana">
+    <kanji>う</kanji>
+    <kana>う</kana>
+    <romaji>u</romaji>
+    <fr>u</fr>
+    <en>u</en>
+    <de>u</de>
+    <pt>u</pt>
+    <ko>u</ko>
+  </word>
+  <word id="hira_e" category="hiragana">
+    <kanji>え</kanji>
+    <kana>え</kana>
+    <romaji>e</romaji>
+    <fr>e</fr>
+    <en>e</en>
+    <de>e</de>
+    <pt>e</pt>
+    <ko>e</ko>
+  </word>
+  <word id="hira_o" category="hiragana">
+    <kanji>お</kanji>
+    <kana>お</kana>
+    <romaji>o</romaji>
+    <fr>o</fr>
+    <en>o</en>
+    <de>o</de>
+    <pt>o</pt>
+    <ko>o</ko>
+  </word>
+  <word id="hira_ka" category="hiragana">
+    <kanji>か</kanji>
+    <kana>か</kana>
+    <romaji>ka</romaji>
+    <fr>ka</fr>
+    <en>ka</en>
+    <de>ka</de>
+    <pt>ka</pt>
+    <ko>ka</ko>
+  </word>
+  <word id="hira_ki" category="hiragana">
+    <kanji>き</kanji>
+    <kana>き</kana>
+    <romaji>ki</romaji>
+    <fr>ki</fr>
+    <en>ki</en>
+    <de>ki</de>
+    <pt>ki</pt>
+    <ko>ki</ko>
+  </word>
+  <word id="hira_ku" category="hiragana">
+    <kanji>く</kanji>
+    <kana>く</kana>
+    <romaji>ku</romaji>
+    <fr>ku</fr>
+    <en>ku</en>
+    <de>ku</de>
+    <pt>ku</pt>
+    <ko>ku</ko>
+  </word>
+  <word id="hira_ke" category="hiragana">
+    <kanji>け</kanji>
+    <kana>け</kana>
+    <romaji>ke</romaji>
+    <fr>ke</fr>
+    <en>ke</en>
+    <de>ke</de>
+    <pt>ke</pt>
+    <ko>ke</ko>
+  </word>
+  <word id="hira_ko" category="hiragana">
+    <kanji>こ</kanji>
+    <kana>こ</kana>
+    <romaji>ko</romaji>
+    <fr>ko</fr>
+    <en>ko</en>
+    <de>ko</de>
+    <pt>ko</pt>
+    <ko>ko</ko>
+  </word>
+  <word id="hira_sa" category="hiragana">
+    <kanji>さ</kanji>
+    <kana>さ</kana>
+    <romaji>sa</romaji>
+    <fr>sa</fr>
+    <en>sa</en>
+    <de>sa</de>
+    <pt>sa</pt>
+    <ko>sa</ko>
+  </word>
+  <word id="hira_shi" category="hiragana">
+    <kanji>し</kanji>
+    <kana>し</kana>
+    <romaji>shi</romaji>
+    <fr>shi</fr>
+    <en>shi</en>
+    <de>shi</de>
+    <pt>shi</pt>
+    <ko>shi</ko>
+  </word>
+  <word id="hira_su" category="hiragana">
+    <kanji>す</kanji>
+    <kana>す</kana>
+    <romaji>su</romaji>
+    <fr>su</fr>
+    <en>su</en>
+    <de>su</de>
+    <pt>su</pt>
+    <ko>su</ko>
+  </word>
+  <word id="hira_se" category="hiragana">
+    <kanji>せ</kanji>
+    <kana>せ</kana>
+    <romaji>se</romaji>
+    <fr>se</fr>
+    <en>se</en>
+    <de>se</de>
+    <pt>se</pt>
+    <ko>se</ko>
+  </word>
+  <word id="hira_so" category="hiragana">
+    <kanji>そ</kanji>
+    <kana>そ</kana>
+    <romaji>so</romaji>
+    <fr>so</fr>
+    <en>so</en>
+    <de>so</de>
+    <pt>so</pt>
+    <ko>so</ko>
+  </word>
+  <word id="hira_ta" category="hiragana">
+    <kanji>た</kanji>
+    <kana>た</kana>
+    <romaji>ta</romaji>
+    <fr>ta</fr>
+    <en>ta</en>
+    <de>ta</de>
+    <pt>ta</pt>
+    <ko>ta</ko>
+  </word>
+  <word id="hira_chi" category="hiragana">
+    <kanji>ち</kanji>
+    <kana>ち</kana>
+    <romaji>chi</romaji>
+    <fr>chi</fr>
+    <en>chi</en>
+    <de>chi</de>
+    <pt>chi</pt>
+    <ko>chi</ko>
+  </word>
+  <word id="hira_tsu" category="hiragana">
+    <kanji>つ</kanji>
+    <kana>つ</kana>
+    <romaji>tsu</romaji>
+    <fr>tsu</fr>
+    <en>tsu</en>
+    <de>tsu</de>
+    <pt>tsu</pt>
+    <ko>tsu</ko>
+  </word>
+  <word id="hira_te" category="hiragana">
+    <kanji>て</kanji>
+    <kana>て</kana>
+    <romaji>te</romaji>
+    <fr>te</fr>
+    <en>te</en>
+    <de>te</de>
+    <pt>te</pt>
+    <ko>te</ko>
+  </word>
+  <word id="hira_to" category="hiragana">
+    <kanji>と</kanji>
+    <kana>と</kana>
+    <romaji>to</romaji>
+    <fr>to</fr>
+    <en>to</en>
+    <de>to</de>
+    <pt>to</pt>
+    <ko>to</ko>
+  </word>
+  <word id="hira_na" category="hiragana">
+    <kanji>な</kanji>
+    <kana>な</kana>
+    <romaji>na</romaji>
+    <fr>na</fr>
+    <en>na</en>
+    <de>na</de>
+    <pt>na</pt>
+    <ko>na</ko>
+  </word>
+  <word id="hira_ni" category="hiragana">
+    <kanji>に</kanji>
+    <kana>に</kana>
+    <romaji>ni</romaji>
+    <fr>ni</fr>
+    <en>ni</en>
+    <de>ni</de>
+    <pt>ni</pt>
+    <ko>ni</ko>
+  </word>
+  <word id="hira_nu" category="hiragana">
+    <kanji>ぬ</kanji>
+    <kana>ぬ</kana>
+    <romaji>nu</romaji>
+    <fr>nu</fr>
+    <en>nu</en>
+    <de>nu</de>
+    <pt>nu</pt>
+    <ko>nu</ko>
+  </word>
+  <word id="hira_ne" category="hiragana">
+    <kanji>ね</kanji>
+    <kana>ね</kana>
+    <romaji>ne</romaji>
+    <fr>ne</fr>
+    <en>ne</en>
+    <de>ne</de>
+    <pt>ne</pt>
+    <ko>ne</ko>
+  </word>
+  <word id="hira_no" category="hiragana">
+    <kanji>の</kanji>
+    <kana>の</kana>
+    <romaji>no</romaji>
+    <fr>no</fr>
+    <en>no</en>
+    <de>no</de>
+    <pt>no</pt>
+    <ko>no</ko>
+  </word>
+  <word id="hira_ha" category="hiragana">
+    <kanji>は</kanji>
+    <kana>は</kana>
+    <romaji>ha</romaji>
+    <fr>ha</fr>
+    <en>ha</en>
+    <de>ha</de>
+    <pt>ha</pt>
+    <ko>ha</ko>
+  </word>
+  <word id="hira_hi" category="hiragana">
+    <kanji>ひ</kanji>
+    <kana>ひ</kana>
+    <romaji>hi</romaji>
+    <fr>hi</fr>
+    <en>hi</en>
+    <de>hi</de>
+    <pt>hi</pt>
+    <ko>hi</ko>
+  </word>
+  <word id="hira_fu" category="hiragana">
+    <kanji>ふ</kanji>
+    <kana>ふ</kana>
+    <romaji>fu</romaji>
+    <fr>fu</fr>
+    <en>fu</en>
+    <de>fu</de>
+    <pt>fu</pt>
+    <ko>fu</ko>
+  </word>
+  <word id="hira_he" category="hiragana">
+    <kanji>へ</kanji>
+    <kana>へ</kana>
+    <romaji>he</romaji>
+    <fr>he</fr>
+    <en>he</en>
+    <de>he</de>
+    <pt>he</pt>
+    <ko>he</ko>
+  </word>
+  <word id="hira_ho" category="hiragana">
+    <kanji>ほ</kanji>
+    <kana>ほ</kana>
+    <romaji>ho</romaji>
+    <fr>ho</fr>
+    <en>ho</en>
+    <de>ho</de>
+    <pt>ho</pt>
+    <ko>ho</ko>
+  </word>
+  <word id="hira_ma" category="hiragana">
+    <kanji>ま</kanji>
+    <kana>ま</kana>
+    <romaji>ma</romaji>
+    <fr>ma</fr>
+    <en>ma</en>
+    <de>ma</de>
+    <pt>ma</pt>
+    <ko>ma</ko>
+  </word>
+  <word id="hira_mi" category="hiragana">
+    <kanji>み</kanji>
+    <kana>み</kana>
+    <romaji>mi</romaji>
+    <fr>mi</fr>
+    <en>mi</en>
+    <de>mi</de>
+    <pt>mi</pt>
+    <ko>mi</ko>
+  </word>
+  <word id="hira_mu" category="hiragana">
+    <kanji>む</kanji>
+    <kana>む</kana>
+    <romaji>mu</romaji>
+    <fr>mu</fr>
+    <en>mu</en>
+    <de>mu</de>
+    <pt>mu</pt>
+    <ko>mu</ko>
+  </word>
+  <word id="hira_me" category="hiragana">
+    <kanji>め</kanji>
+    <kana>め</kana>
+    <romaji>me</romaji>
+    <fr>me</fr>
+    <en>me</en>
+    <de>me</de>
+    <pt>me</pt>
+    <ko>me</ko>
+  </word>
+  <word id="hira_mo" category="hiragana">
+    <kanji>も</kanji>
+    <kana>も</kana>
+    <romaji>mo</romaji>
+    <fr>mo</fr>
+    <en>mo</en>
+    <de>mo</de>
+    <pt>mo</pt>
+    <ko>mo</ko>
+  </word>
+  <word id="hira_ya" category="hiragana">
+    <kanji>や</kanji>
+    <kana>や</kana>
+    <romaji>ya</romaji>
+    <fr>ya</fr>
+    <en>ya</en>
+    <de>ya</de>
+    <pt>ya</pt>
+    <ko>ya</ko>
+  </word>
+  <word id="hira_yu" category="hiragana">
+    <kanji>ゆ</kanji>
+    <kana>ゆ</kana>
+    <romaji>yu</romaji>
+    <fr>yu</fr>
+    <en>yu</en>
+    <de>yu</de>
+    <pt>yu</pt>
+    <ko>yu</ko>
+  </word>
+  <word id="hira_yo" category="hiragana">
+    <kanji>よ</kanji>
+    <kana>よ</kana>
+    <romaji>yo</romaji>
+    <fr>yo</fr>
+    <en>yo</en>
+    <de>yo</de>
+    <pt>yo</pt>
+    <ko>yo</ko>
+  </word>
+  <word id="hira_ra" category="hiragana">
+    <kanji>ら</kanji>
+    <kana>ら</kana>
+    <romaji>ra</romaji>
+    <fr>ra</fr>
+    <en>ra</en>
+    <de>ra</de>
+    <pt>ra</pt>
+    <ko>ra</ko>
+  </word>
+  <word id="hira_ri" category="hiragana">
+    <kanji>り</kanji>
+    <kana>り</kana>
+    <romaji>ri</romaji>
+    <fr>ri</fr>
+    <en>ri</en>
+    <de>ri</de>
+    <pt>ri</pt>
+    <ko>ri</ko>
+  </word>
+  <word id="hira_ru" category="hiragana">
+    <kanji>る</kanji>
+    <kana>る</kana>
+    <romaji>ru</romaji>
+    <fr>ru</fr>
+    <en>ru</en>
+    <de>ru</de>
+    <pt>ru</pt>
+    <ko>ru</ko>
+  </word>
+  <word id="hira_re" category="hiragana">
+    <kanji>れ</kanji>
+    <kana>れ</kana>
+    <romaji>re</romaji>
+    <fr>re</fr>
+    <en>re</en>
+    <de>re</de>
+    <pt>re</pt>
+    <ko>re</ko>
+  </word>
+  <word id="hira_ro" category="hiragana">
+    <kanji>ろ</kanji>
+    <kana>ろ</kana>
+    <romaji>ro</romaji>
+    <fr>ro</fr>
+    <en>ro</en>
+    <de>ro</de>
+    <pt>ro</pt>
+    <ko>ro</ko>
+  </word>
+  <word id="hira_wa" category="hiragana">
+    <kanji>わ</kanji>
+    <kana>わ</kana>
+    <romaji>wa</romaji>
+    <fr>wa</fr>
+    <en>wa</en>
+    <de>wa</de>
+    <pt>wa</pt>
+    <ko>wa</ko>
+  </word>
+  <word id="hira_wo" category="hiragana">
+    <kanji>を</kanji>
+    <kana>を</kana>
+    <romaji>wo</romaji>
+    <fr>wo</fr>
+    <en>wo</en>
+    <de>wo</de>
+    <pt>wo</pt>
+    <ko>wo</ko>
+  </word>
+  <word id="hira_n" category="hiragana">
+    <kanji>ん</kanji>
+    <kana>ん</kana>
+    <romaji>n</romaji>
+    <fr>n</fr>
+    <en>n</en>
+    <de>n</de>
+    <pt>n</pt>
+    <ko>n</ko>
+  </word>
+  <word id="hira_ga" category="hiragana">
+    <kanji>が</kanji>
+    <kana>が</kana>
+    <romaji>ga</romaji>
+    <fr>ga</fr>
+    <en>ga</en>
+    <de>ga</de>
+    <pt>ga</pt>
+    <ko>ga</ko>
+  </word>
+  <word id="hira_gi" category="hiragana">
+    <kanji>ぎ</kanji>
+    <kana>ぎ</kana>
+    <romaji>gi</romaji>
+    <fr>gi</fr>
+    <en>gi</en>
+    <de>gi</de>
+    <pt>gi</pt>
+    <ko>gi</ko>
+  </word>
+  <word id="hira_gu" category="hiragana">
+    <kanji>ぐ</kanji>
+    <kana>ぐ</kana>
+    <romaji>gu</romaji>
+    <fr>gu</fr>
+    <en>gu</en>
+    <de>gu</de>
+    <pt>gu</pt>
+    <ko>gu</ko>
+  </word>
+  <word id="hira_ge" category="hiragana">
+    <kanji>げ</kanji>
+    <kana>げ</kana>
+    <romaji>ge</romaji>
+    <fr>ge</fr>
+    <en>ge</en>
+    <de>ge</de>
+    <pt>ge</pt>
+    <ko>ge</ko>
+  </word>
+  <word id="hira_go" category="hiragana">
+    <kanji>ご</kanji>
+    <kana>ご</kana>
+    <romaji>go</romaji>
+    <fr>go</fr>
+    <en>go</en>
+    <de>go</de>
+    <pt>go</pt>
+    <ko>go</ko>
+  </word>
+  <word id="hira_za" category="hiragana">
+    <kanji>ざ</kanji>
+    <kana>ざ</kana>
+    <romaji>za</romaji>
+    <fr>za</fr>
+    <en>za</en>
+    <de>za</de>
+    <pt>za</pt>
+    <ko>za</ko>
+  </word>
+  <word id="hira_ji" category="hiragana">
+    <kanji>じ</kanji>
+    <kana>じ</kana>
+    <romaji>ji</romaji>
+    <fr>ji</fr>
+    <en>ji</en>
+    <de>ji</de>
+    <pt>ji</pt>
+    <ko>ji</ko>
+  </word>
+  <word id="hira_zu" category="hiragana">
+    <kanji>ず</kanji>
+    <kana>ず</kana>
+    <romaji>zu</romaji>
+    <fr>zu</fr>
+    <en>zu</en>
+    <de>zu</de>
+    <pt>zu</pt>
+    <ko>zu</ko>
+  </word>
+  <word id="hira_ze" category="hiragana">
+    <kanji>ぜ</kanji>
+    <kana>ぜ</kana>
+    <romaji>ze</romaji>
+    <fr>ze</fr>
+    <en>ze</en>
+    <de>ze</de>
+    <pt>ze</pt>
+    <ko>ze</ko>
+  </word>
+  <word id="hira_zo" category="hiragana">
+    <kanji>ぞ</kanji>
+    <kana>ぞ</kana>
+    <romaji>zo</romaji>
+    <fr>zo</fr>
+    <en>zo</en>
+    <de>zo</de>
+    <pt>zo</pt>
+    <ko>zo</ko>
+  </word>
+  <word id="hira_da" category="hiragana">
+    <kanji>だ</kanji>
+    <kana>だ</kana>
+    <romaji>da</romaji>
+    <fr>da</fr>
+    <en>da</en>
+    <de>da</de>
+    <pt>da</pt>
+    <ko>da</ko>
+  </word>
+  <word id="hira_dji" category="hiragana">
+    <kanji>ぢ</kanji>
+    <kana>ぢ</kana>
+    <romaji>ji (di)</romaji>
+    <fr>ji (di)</fr>
+    <en>ji (di)</en>
+    <de>ji (di)</de>
+    <pt>ji (di)</pt>
+    <ko>ji (di)</ko>
+  </word>
+  <word id="hira_dzu" category="hiragana">
+    <kanji>づ</kanji>
+    <kana>づ</kana>
+    <romaji>zu (du)</romaji>
+    <fr>zu (du)</fr>
+    <en>zu (du)</en>
+    <de>zu (du)</de>
+    <pt>zu (du)</pt>
+    <ko>zu (du)</ko>
+  </word>
+  <word id="hira_de" category="hiragana">
+    <kanji>で</kanji>
+    <kana>で</kana>
+    <romaji>de</romaji>
+    <fr>de</fr>
+    <en>de</en>
+    <de>de</de>
+    <pt>de</pt>
+    <ko>de</ko>
+  </word>
+  <word id="hira_do" category="hiragana">
+    <kanji>ど</kanji>
+    <kana>ど</kana>
+    <romaji>do</romaji>
+    <fr>do</fr>
+    <en>do</en>
+    <de>do</de>
+    <pt>do</pt>
+    <ko>do</ko>
+  </word>
+  <word id="hira_ba" category="hiragana">
+    <kanji>ば</kanji>
+    <kana>ば</kana>
+    <romaji>ba</romaji>
+    <fr>ba</fr>
+    <en>ba</en>
+    <de>ba</de>
+    <pt>ba</pt>
+    <ko>ba</ko>
+  </word>
+  <word id="hira_bi" category="hiragana">
+    <kanji>び</kanji>
+    <kana>び</kana>
+    <romaji>bi</romaji>
+    <fr>bi</fr>
+    <en>bi</en>
+    <de>bi</de>
+    <pt>bi</pt>
+    <ko>bi</ko>
+  </word>
+  <word id="hira_bu" category="hiragana">
+    <kanji>ぶ</kanji>
+    <kana>ぶ</kana>
+    <romaji>bu</romaji>
+    <fr>bu</fr>
+    <en>bu</en>
+    <de>bu</de>
+    <pt>bu</pt>
+    <ko>bu</ko>
+  </word>
+  <word id="hira_be" category="hiragana">
+    <kanji>べ</kanji>
+    <kana>べ</kana>
+    <romaji>be</romaji>
+    <fr>be</fr>
+    <en>be</en>
+    <de>be</de>
+    <pt>be</pt>
+    <ko>be</ko>
+  </word>
+  <word id="hira_bo" category="hiragana">
+    <kanji>ぼ</kanji>
+    <kana>ぼ</kana>
+    <romaji>bo</romaji>
+    <fr>bo</fr>
+    <en>bo</en>
+    <de>bo</de>
+    <pt>bo</pt>
+    <ko>bo</ko>
+  </word>
+  <word id="hira_pa" category="hiragana">
+    <kanji>ぱ</kanji>
+    <kana>ぱ</kana>
+    <romaji>pa</romaji>
+    <fr>pa</fr>
+    <en>pa</en>
+    <de>pa</de>
+    <pt>pa</pt>
+    <ko>pa</ko>
+  </word>
+  <word id="hira_pi" category="hiragana">
+    <kanji>ぴ</kanji>
+    <kana>ぴ</kana>
+    <romaji>pi</romaji>
+    <fr>pi</fr>
+    <en>pi</en>
+    <de>pi</de>
+    <pt>pi</pt>
+    <ko>pi</ko>
+  </word>
+  <word id="hira_pu" category="hiragana">
+    <kanji>ぷ</kanji>
+    <kana>ぷ</kana>
+    <romaji>pu</romaji>
+    <fr>pu</fr>
+    <en>pu</en>
+    <de>pu</de>
+    <pt>pu</pt>
+    <ko>pu</ko>
+  </word>
+  <word id="hira_pe" category="hiragana">
+    <kanji>ぺ</kanji>
+    <kana>ぺ</kana>
+    <romaji>pe</romaji>
+    <fr>pe</fr>
+    <en>pe</en>
+    <de>pe</de>
+    <pt>pe</pt>
+    <ko>pe</ko>
+  </word>
+  <word id="hira_po" category="hiragana">
+    <kanji>ぽ</kanji>
+    <kana>ぽ</kana>
+    <romaji>po</romaji>
+    <fr>po</fr>
+    <en>po</en>
+    <de>po</de>
+    <pt>po</pt>
+    <ko>po</ko>
+  </word>
+  <word id="hira_kya" category="hiragana">
+    <kanji>きゃ</kanji>
+    <kana>きゃ</kana>
+    <romaji>kya</romaji>
+    <fr>kya</fr>
+    <en>kya</en>
+    <de>kya</de>
+    <pt>kya</pt>
+    <ko>kya</ko>
+  </word>
+  <word id="hira_kyu" category="hiragana">
+    <kanji>きゅ</kanji>
+    <kana>きゅ</kana>
+    <romaji>kyu</romaji>
+    <fr>kyu</fr>
+    <en>kyu</en>
+    <de>kyu</de>
+    <pt>kyu</pt>
+    <ko>kyu</ko>
+  </word>
+  <word id="hira_kyo" category="hiragana">
+    <kanji>きょ</kanji>
+    <kana>きょ</kana>
+    <romaji>kyo</romaji>
+    <fr>kyo</fr>
+    <en>kyo</en>
+    <de>kyo</de>
+    <pt>kyo</pt>
+    <ko>kyo</ko>
+  </word>
+  <word id="hira_sha" category="hiragana">
+    <kanji>しゃ</kanji>
+    <kana>しゃ</kana>
+    <romaji>sha</romaji>
+    <fr>sha</fr>
+    <en>sha</en>
+    <de>sha</de>
+    <pt>sha</pt>
+    <ko>sha</ko>
+  </word>
+  <word id="hira_shu" category="hiragana">
+    <kanji>しゅ</kanji>
+    <kana>しゅ</kana>
+    <romaji>shu</romaji>
+    <fr>shu</fr>
+    <en>shu</en>
+    <de>shu</de>
+    <pt>shu</pt>
+    <ko>shu</ko>
+  </word>
+  <word id="hira_sho" category="hiragana">
+    <kanji>しょ</kanji>
+    <kana>しょ</kana>
+    <romaji>sho</romaji>
+    <fr>sho</fr>
+    <en>sho</en>
+    <de>sho</de>
+    <pt>sho</pt>
+    <ko>sho</ko>
+  </word>
+  <word id="hira_cha" category="hiragana">
+    <kanji>ちゃ</kanji>
+    <kana>ちゃ</kana>
+    <romaji>cha</romaji>
+    <fr>cha</fr>
+    <en>cha</en>
+    <de>cha</de>
+    <pt>cha</pt>
+    <ko>cha</ko>
+  </word>
+  <word id="hira_chu" category="hiragana">
+    <kanji>ちゅ</kanji>
+    <kana>ちゅ</kana>
+    <romaji>chu</romaji>
+    <fr>chu</fr>
+    <en>chu</en>
+    <de>chu</de>
+    <pt>chu</pt>
+    <ko>chu</ko>
+  </word>
+  <word id="hira_cho" category="hiragana">
+    <kanji>ちょ</kanji>
+    <kana>ちょ</kana>
+    <romaji>cho</romaji>
+    <fr>cho</fr>
+    <en>cho</en>
+    <de>cho</de>
+    <pt>cho</pt>
+    <ko>cho</ko>
+  </word>
+  <word id="hira_nya" category="hiragana">
+    <kanji>にゃ</kanji>
+    <kana>にゃ</kana>
+    <romaji>nya</romaji>
+    <fr>nya</fr>
+    <en>nya</en>
+    <de>nya</de>
+    <pt>nya</pt>
+    <ko>nya</ko>
+  </word>
+  <word id="hira_nyu" category="hiragana">
+    <kanji>にゅ</kanji>
+    <kana>にゅ</kana>
+    <romaji>nyu</romaji>
+    <fr>nyu</fr>
+    <en>nyu</en>
+    <de>nyu</de>
+    <pt>nyu</pt>
+    <ko>nyu</ko>
+  </word>
+  <word id="hira_nyo" category="hiragana">
+    <kanji>にょ</kanji>
+    <kana>にょ</kana>
+    <romaji>nyo</romaji>
+    <fr>nyo</fr>
+    <en>nyo</en>
+    <de>nyo</de>
+    <pt>nyo</pt>
+    <ko>nyo</ko>
+  </word>
+  <word id="hira_hya" category="hiragana">
+    <kanji>ひゃ</kanji>
+    <kana>ひゃ</kana>
+    <romaji>hya</romaji>
+    <fr>hya</fr>
+    <en>hya</en>
+    <de>hya</de>
+    <pt>hya</pt>
+    <ko>hya</ko>
+  </word>
+  <word id="hira_hyu" category="hiragana">
+    <kanji>ひゅ</kanji>
+    <kana>ひゅ</kana>
+    <romaji>hyu</romaji>
+    <fr>hyu</fr>
+    <en>hyu</en>
+    <de>hyu</de>
+    <pt>hyu</pt>
+    <ko>hyu</ko>
+  </word>
+  <word id="hira_hyo" category="hiragana">
+    <kanji>ひょ</kanji>
+    <kana>ひょ</kana>
+    <romaji>hyo</romaji>
+    <fr>hyo</fr>
+    <en>hyo</en>
+    <de>hyo</de>
+    <pt>hyo</pt>
+    <ko>hyo</ko>
+  </word>
+  <word id="hira_mya" category="hiragana">
+    <kanji>みゃ</kanji>
+    <kana>みゃ</kana>
+    <romaji>mya</romaji>
+    <fr>mya</fr>
+    <en>mya</en>
+    <de>mya</de>
+    <pt>mya</pt>
+    <ko>mya</ko>
+  </word>
+  <word id="hira_myu" category="hiragana">
+    <kanji>みゅ</kanji>
+    <kana>みゅ</kana>
+    <romaji>myu</romaji>
+    <fr>myu</fr>
+    <en>myu</en>
+    <de>myu</de>
+    <pt>myu</pt>
+    <ko>myu</ko>
+  </word>
+  <word id="hira_myo" category="hiragana">
+    <kanji>みょ</kanji>
+    <kana>みょ</kana>
+    <romaji>myo</romaji>
+    <fr>myo</fr>
+    <en>myo</en>
+    <de>myo</de>
+    <pt>myo</pt>
+    <ko>myo</ko>
+  </word>
+  <word id="hira_rya" category="hiragana">
+    <kanji>りゃ</kanji>
+    <kana>りゃ</kana>
+    <romaji>rya</romaji>
+    <fr>rya</fr>
+    <en>rya</en>
+    <de>rya</de>
+    <pt>rya</pt>
+    <ko>rya</ko>
+  </word>
+  <word id="hira_ryu" category="hiragana">
+    <kanji>りゅ</kanji>
+    <kana>りゅ</kana>
+    <romaji>ryu</romaji>
+    <fr>ryu</fr>
+    <en>ryu</en>
+    <de>ryu</de>
+    <pt>ryu</pt>
+    <ko>ryu</ko>
+  </word>
+  <word id="hira_ryo" category="hiragana">
+    <kanji>りょ</kanji>
+    <kana>りょ</kana>
+    <romaji>ryo</romaji>
+    <fr>ryo</fr>
+    <en>ryo</en>
+    <de>ryo</de>
+    <pt>ryo</pt>
+    <ko>ryo</ko>
+  </word>
+  <word id="hira_gya" category="hiragana">
+    <kanji>ぎゃ</kanji>
+    <kana>ぎゃ</kana>
+    <romaji>gya</romaji>
+    <fr>gya</fr>
+    <en>gya</en>
+    <de>gya</de>
+    <pt>gya</pt>
+    <ko>gya</ko>
+  </word>
+  <word id="hira_gyu" category="hiragana">
+    <kanji>ぎゅ</kanji>
+    <kana>ぎゅ</kana>
+    <romaji>gyu</romaji>
+    <fr>gyu</fr>
+    <en>gyu</en>
+    <de>gyu</de>
+    <pt>gyu</pt>
+    <ko>gyu</ko>
+  </word>
+  <word id="hira_gyo" category="hiragana">
+    <kanji>ぎょ</kanji>
+    <kana>ぎょ</kana>
+    <romaji>gyo</romaji>
+    <fr>gyo</fr>
+    <en>gyo</en>
+    <de>gyo</de>
+    <pt>gyo</pt>
+    <ko>gyo</ko>
+  </word>
+  <word id="hira_ja" category="hiragana">
+    <kanji>じゃ</kanji>
+    <kana>じゃ</kana>
+    <romaji>ja</romaji>
+    <fr>ja</fr>
+    <en>ja</en>
+    <de>ja</de>
+    <pt>ja</pt>
+    <ko>ja</ko>
+  </word>
+  <word id="hira_ju" category="hiragana">
+    <kanji>じゅ</kanji>
+    <kana>じゅ</kana>
+    <romaji>ju</romaji>
+    <fr>ju</fr>
+    <en>ju</en>
+    <de>ju</de>
+    <pt>ju</pt>
+    <ko>ju</ko>
+  </word>
+  <word id="hira_jo" category="hiragana">
+    <kanji>じょ</kanji>
+    <kana>じょ</kana>
+    <romaji>jo</romaji>
+    <fr>jo</fr>
+    <en>jo</en>
+    <de>jo</de>
+    <pt>jo</pt>
+    <ko>jo</ko>
+  </word>
+  <word id="hira_bya" category="hiragana">
+    <kanji>びゃ</kanji>
+    <kana>びゃ</kana>
+    <romaji>bya</romaji>
+    <fr>bya</fr>
+    <en>bya</en>
+    <de>bya</de>
+    <pt>bya</pt>
+    <ko>bya</ko>
+  </word>
+  <word id="hira_byu" category="hiragana">
+    <kanji>びゅ</kanji>
+    <kana>びゅ</kana>
+    <romaji>byu</romaji>
+    <fr>byu</fr>
+    <en>byu</en>
+    <de>byu</de>
+    <pt>byu</pt>
+    <ko>byu</ko>
+  </word>
+  <word id="hira_byo" category="hiragana">
+    <kanji>びょ</kanji>
+    <kana>びょ</kana>
+    <romaji>byo</romaji>
+    <fr>byo</fr>
+    <en>byo</en>
+    <de>byo</de>
+    <pt>byo</pt>
+    <ko>byo</ko>
+  </word>
+  <word id="hira_pya" category="hiragana">
+    <kanji>ぴゃ</kanji>
+    <kana>ぴゃ</kana>
+    <romaji>pya</romaji>
+    <fr>pya</fr>
+    <en>pya</en>
+    <de>pya</de>
+    <pt>pya</pt>
+    <ko>pya</ko>
+  </word>
+  <word id="hira_pyu" category="hiragana">
+    <kanji>ぴゅ</kanji>
+    <kana>ぴゅ</kana>
+    <romaji>pyu</romaji>
+    <fr>pyu</fr>
+    <en>pyu</en>
+    <de>pyu</de>
+    <pt>pyu</pt>
+    <ko>pyu</ko>
+  </word>
+  <word id="hira_pyo" category="hiragana">
+    <kanji>ぴょ</kanji>
+    <kana>ぴょ</kana>
+    <romaji>pyo</romaji>
+    <fr>pyo</fr>
+    <en>pyo</en>
+    <de>pyo</de>
+    <pt>pyo</pt>
+    <ko>pyo</ko>
+  </word>
+  <!-- ════════════════════════════════════════════════════════
+       KATAKANA — syllabaire complet (base, dakuten, yōon)
+       ════════════════════════════════════════════════════════ -->
+  <word id="kata_a" category="katakana">
+    <kanji>ア</kanji>
+    <kana>ア</kana>
+    <romaji>a</romaji>
+    <fr>a</fr>
+    <en>a</en>
+    <de>a</de>
+    <pt>a</pt>
+    <ko>a</ko>
+  </word>
+  <word id="kata_i" category="katakana">
+    <kanji>イ</kanji>
+    <kana>イ</kana>
+    <romaji>i</romaji>
+    <fr>i</fr>
+    <en>i</en>
+    <de>i</de>
+    <pt>i</pt>
+    <ko>i</ko>
+  </word>
+  <word id="kata_u" category="katakana">
+    <kanji>ウ</kanji>
+    <kana>ウ</kana>
+    <romaji>u</romaji>
+    <fr>u</fr>
+    <en>u</en>
+    <de>u</de>
+    <pt>u</pt>
+    <ko>u</ko>
+  </word>
+  <word id="kata_e" category="katakana">
+    <kanji>エ</kanji>
+    <kana>エ</kana>
+    <romaji>e</romaji>
+    <fr>e</fr>
+    <en>e</en>
+    <de>e</de>
+    <pt>e</pt>
+    <ko>e</ko>
+  </word>
+  <word id="kata_o" category="katakana">
+    <kanji>オ</kanji>
+    <kana>オ</kana>
+    <romaji>o</romaji>
+    <fr>o</fr>
+    <en>o</en>
+    <de>o</de>
+    <pt>o</pt>
+    <ko>o</ko>
+  </word>
+  <word id="kata_ka" category="katakana">
+    <kanji>カ</kanji>
+    <kana>カ</kana>
+    <romaji>ka</romaji>
+    <fr>ka</fr>
+    <en>ka</en>
+    <de>ka</de>
+    <pt>ka</pt>
+    <ko>ka</ko>
+  </word>
+  <word id="kata_ki" category="katakana">
+    <kanji>キ</kanji>
+    <kana>キ</kana>
+    <romaji>ki</romaji>
+    <fr>ki</fr>
+    <en>ki</en>
+    <de>ki</de>
+    <pt>ki</pt>
+    <ko>ki</ko>
+  </word>
+  <word id="kata_ku" category="katakana">
+    <kanji>ク</kanji>
+    <kana>ク</kana>
+    <romaji>ku</romaji>
+    <fr>ku</fr>
+    <en>ku</en>
+    <de>ku</de>
+    <pt>ku</pt>
+    <ko>ku</ko>
+  </word>
+  <word id="kata_ke" category="katakana">
+    <kanji>ケ</kanji>
+    <kana>ケ</kana>
+    <romaji>ke</romaji>
+    <fr>ke</fr>
+    <en>ke</en>
+    <de>ke</de>
+    <pt>ke</pt>
+    <ko>ke</ko>
+  </word>
+  <word id="kata_ko" category="katakana">
+    <kanji>コ</kanji>
+    <kana>コ</kana>
+    <romaji>ko</romaji>
+    <fr>ko</fr>
+    <en>ko</en>
+    <de>ko</de>
+    <pt>ko</pt>
+    <ko>ko</ko>
+  </word>
+  <word id="kata_sa" category="katakana">
+    <kanji>サ</kanji>
+    <kana>サ</kana>
+    <romaji>sa</romaji>
+    <fr>sa</fr>
+    <en>sa</en>
+    <de>sa</de>
+    <pt>sa</pt>
+    <ko>sa</ko>
+  </word>
+  <word id="kata_shi" category="katakana">
+    <kanji>シ</kanji>
+    <kana>シ</kana>
+    <romaji>shi</romaji>
+    <fr>shi</fr>
+    <en>shi</en>
+    <de>shi</de>
+    <pt>shi</pt>
+    <ko>shi</ko>
+  </word>
+  <word id="kata_su" category="katakana">
+    <kanji>ス</kanji>
+    <kana>ス</kana>
+    <romaji>su</romaji>
+    <fr>su</fr>
+    <en>su</en>
+    <de>su</de>
+    <pt>su</pt>
+    <ko>su</ko>
+  </word>
+  <word id="kata_se" category="katakana">
+    <kanji>セ</kanji>
+    <kana>セ</kana>
+    <romaji>se</romaji>
+    <fr>se</fr>
+    <en>se</en>
+    <de>se</de>
+    <pt>se</pt>
+    <ko>se</ko>
+  </word>
+  <word id="kata_so" category="katakana">
+    <kanji>ソ</kanji>
+    <kana>ソ</kana>
+    <romaji>so</romaji>
+    <fr>so</fr>
+    <en>so</en>
+    <de>so</de>
+    <pt>so</pt>
+    <ko>so</ko>
+  </word>
+  <word id="kata_ta" category="katakana">
+    <kanji>タ</kanji>
+    <kana>タ</kana>
+    <romaji>ta</romaji>
+    <fr>ta</fr>
+    <en>ta</en>
+    <de>ta</de>
+    <pt>ta</pt>
+    <ko>ta</ko>
+  </word>
+  <word id="kata_chi" category="katakana">
+    <kanji>チ</kanji>
+    <kana>チ</kana>
+    <romaji>chi</romaji>
+    <fr>chi</fr>
+    <en>chi</en>
+    <de>chi</de>
+    <pt>chi</pt>
+    <ko>chi</ko>
+  </word>
+  <word id="kata_tsu" category="katakana">
+    <kanji>ツ</kanji>
+    <kana>ツ</kana>
+    <romaji>tsu</romaji>
+    <fr>tsu</fr>
+    <en>tsu</en>
+    <de>tsu</de>
+    <pt>tsu</pt>
+    <ko>tsu</ko>
+  </word>
+  <word id="kata_te" category="katakana">
+    <kanji>テ</kanji>
+    <kana>テ</kana>
+    <romaji>te</romaji>
+    <fr>te</fr>
+    <en>te</en>
+    <de>te</de>
+    <pt>te</pt>
+    <ko>te</ko>
+  </word>
+  <word id="kata_to" category="katakana">
+    <kanji>ト</kanji>
+    <kana>ト</kana>
+    <romaji>to</romaji>
+    <fr>to</fr>
+    <en>to</en>
+    <de>to</de>
+    <pt>to</pt>
+    <ko>to</ko>
+  </word>
+  <word id="kata_na" category="katakana">
+    <kanji>ナ</kanji>
+    <kana>ナ</kana>
+    <romaji>na</romaji>
+    <fr>na</fr>
+    <en>na</en>
+    <de>na</de>
+    <pt>na</pt>
+    <ko>na</ko>
+  </word>
+  <word id="kata_ni" category="katakana">
+    <kanji>ニ</kanji>
+    <kana>ニ</kana>
+    <romaji>ni</romaji>
+    <fr>ni</fr>
+    <en>ni</en>
+    <de>ni</de>
+    <pt>ni</pt>
+    <ko>ni</ko>
+  </word>
+  <word id="kata_nu" category="katakana">
+    <kanji>ヌ</kanji>
+    <kana>ヌ</kana>
+    <romaji>nu</romaji>
+    <fr>nu</fr>
+    <en>nu</en>
+    <de>nu</de>
+    <pt>nu</pt>
+    <ko>nu</ko>
+  </word>
+  <word id="kata_ne" category="katakana">
+    <kanji>ネ</kanji>
+    <kana>ネ</kana>
+    <romaji>ne</romaji>
+    <fr>ne</fr>
+    <en>ne</en>
+    <de>ne</de>
+    <pt>ne</pt>
+    <ko>ne</ko>
+  </word>
+  <word id="kata_no" category="katakana">
+    <kanji>ノ</kanji>
+    <kana>ノ</kana>
+    <romaji>no</romaji>
+    <fr>no</fr>
+    <en>no</en>
+    <de>no</de>
+    <pt>no</pt>
+    <ko>no</ko>
+  </word>
+  <word id="kata_ha" category="katakana">
+    <kanji>ハ</kanji>
+    <kana>ハ</kana>
+    <romaji>ha</romaji>
+    <fr>ha</fr>
+    <en>ha</en>
+    <de>ha</de>
+    <pt>ha</pt>
+    <ko>ha</ko>
+  </word>
+  <word id="kata_hi" category="katakana">
+    <kanji>ヒ</kanji>
+    <kana>ヒ</kana>
+    <romaji>hi</romaji>
+    <fr>hi</fr>
+    <en>hi</en>
+    <de>hi</de>
+    <pt>hi</pt>
+    <ko>hi</ko>
+  </word>
+  <word id="kata_fu" category="katakana">
+    <kanji>フ</kanji>
+    <kana>フ</kana>
+    <romaji>fu</romaji>
+    <fr>fu</fr>
+    <en>fu</en>
+    <de>fu</de>
+    <pt>fu</pt>
+    <ko>fu</ko>
+  </word>
+  <word id="kata_he" category="katakana">
+    <kanji>ヘ</kanji>
+    <kana>ヘ</kana>
+    <romaji>he</romaji>
+    <fr>he</fr>
+    <en>he</en>
+    <de>he</de>
+    <pt>he</pt>
+    <ko>he</ko>
+  </word>
+  <word id="kata_ho" category="katakana">
+    <kanji>ホ</kanji>
+    <kana>ホ</kana>
+    <romaji>ho</romaji>
+    <fr>ho</fr>
+    <en>ho</en>
+    <de>ho</de>
+    <pt>ho</pt>
+    <ko>ho</ko>
+  </word>
+  <word id="kata_ma" category="katakana">
+    <kanji>マ</kanji>
+    <kana>マ</kana>
+    <romaji>ma</romaji>
+    <fr>ma</fr>
+    <en>ma</en>
+    <de>ma</de>
+    <pt>ma</pt>
+    <ko>ma</ko>
+  </word>
+  <word id="kata_mi" category="katakana">
+    <kanji>ミ</kanji>
+    <kana>ミ</kana>
+    <romaji>mi</romaji>
+    <fr>mi</fr>
+    <en>mi</en>
+    <de>mi</de>
+    <pt>mi</pt>
+    <ko>mi</ko>
+  </word>
+  <word id="kata_mu" category="katakana">
+    <kanji>ム</kanji>
+    <kana>ム</kana>
+    <romaji>mu</romaji>
+    <fr>mu</fr>
+    <en>mu</en>
+    <de>mu</de>
+    <pt>mu</pt>
+    <ko>mu</ko>
+  </word>
+  <word id="kata_me" category="katakana">
+    <kanji>メ</kanji>
+    <kana>メ</kana>
+    <romaji>me</romaji>
+    <fr>me</fr>
+    <en>me</en>
+    <de>me</de>
+    <pt>me</pt>
+    <ko>me</ko>
+  </word>
+  <word id="kata_mo" category="katakana">
+    <kanji>モ</kanji>
+    <kana>モ</kana>
+    <romaji>mo</romaji>
+    <fr>mo</fr>
+    <en>mo</en>
+    <de>mo</de>
+    <pt>mo</pt>
+    <ko>mo</ko>
+  </word>
+  <word id="kata_ya" category="katakana">
+    <kanji>ヤ</kanji>
+    <kana>ヤ</kana>
+    <romaji>ya</romaji>
+    <fr>ya</fr>
+    <en>ya</en>
+    <de>ya</de>
+    <pt>ya</pt>
+    <ko>ya</ko>
+  </word>
+  <word id="kata_yu" category="katakana">
+    <kanji>ユ</kanji>
+    <kana>ユ</kana>
+    <romaji>yu</romaji>
+    <fr>yu</fr>
+    <en>yu</en>
+    <de>yu</de>
+    <pt>yu</pt>
+    <ko>yu</ko>
+  </word>
+  <word id="kata_yo" category="katakana">
+    <kanji>ヨ</kanji>
+    <kana>ヨ</kana>
+    <romaji>yo</romaji>
+    <fr>yo</fr>
+    <en>yo</en>
+    <de>yo</de>
+    <pt>yo</pt>
+    <ko>yo</ko>
+  </word>
+  <word id="kata_ra" category="katakana">
+    <kanji>ラ</kanji>
+    <kana>ラ</kana>
+    <romaji>ra</romaji>
+    <fr>ra</fr>
+    <en>ra</en>
+    <de>ra</de>
+    <pt>ra</pt>
+    <ko>ra</ko>
+  </word>
+  <word id="kata_ri" category="katakana">
+    <kanji>リ</kanji>
+    <kana>リ</kana>
+    <romaji>ri</romaji>
+    <fr>ri</fr>
+    <en>ri</en>
+    <de>ri</de>
+    <pt>ri</pt>
+    <ko>ri</ko>
+  </word>
+  <word id="kata_ru" category="katakana">
+    <kanji>ル</kanji>
+    <kana>ル</kana>
+    <romaji>ru</romaji>
+    <fr>ru</fr>
+    <en>ru</en>
+    <de>ru</de>
+    <pt>ru</pt>
+    <ko>ru</ko>
+  </word>
+  <word id="kata_re" category="katakana">
+    <kanji>レ</kanji>
+    <kana>レ</kana>
+    <romaji>re</romaji>
+    <fr>re</fr>
+    <en>re</en>
+    <de>re</de>
+    <pt>re</pt>
+    <ko>re</ko>
+  </word>
+  <word id="kata_ro" category="katakana">
+    <kanji>ロ</kanji>
+    <kana>ロ</kana>
+    <romaji>ro</romaji>
+    <fr>ro</fr>
+    <en>ro</en>
+    <de>ro</de>
+    <pt>ro</pt>
+    <ko>ro</ko>
+  </word>
+  <word id="kata_wa" category="katakana">
+    <kanji>ワ</kanji>
+    <kana>ワ</kana>
+    <romaji>wa</romaji>
+    <fr>wa</fr>
+    <en>wa</en>
+    <de>wa</de>
+    <pt>wa</pt>
+    <ko>wa</ko>
+  </word>
+  <word id="kata_wo" category="katakana">
+    <kanji>ヲ</kanji>
+    <kana>ヲ</kana>
+    <romaji>wo</romaji>
+    <fr>wo</fr>
+    <en>wo</en>
+    <de>wo</de>
+    <pt>wo</pt>
+    <ko>wo</ko>
+  </word>
+  <word id="kata_n" category="katakana">
+    <kanji>ン</kanji>
+    <kana>ン</kana>
+    <romaji>n</romaji>
+    <fr>n</fr>
+    <en>n</en>
+    <de>n</de>
+    <pt>n</pt>
+    <ko>n</ko>
+  </word>
+  <word id="kata_ga" category="katakana">
+    <kanji>ガ</kanji>
+    <kana>ガ</kana>
+    <romaji>ga</romaji>
+    <fr>ga</fr>
+    <en>ga</en>
+    <de>ga</de>
+    <pt>ga</pt>
+    <ko>ga</ko>
+  </word>
+  <word id="kata_gi" category="katakana">
+    <kanji>ギ</kanji>
+    <kana>ギ</kana>
+    <romaji>gi</romaji>
+    <fr>gi</fr>
+    <en>gi</en>
+    <de>gi</de>
+    <pt>gi</pt>
+    <ko>gi</ko>
+  </word>
+  <word id="kata_gu" category="katakana">
+    <kanji>グ</kanji>
+    <kana>グ</kana>
+    <romaji>gu</romaji>
+    <fr>gu</fr>
+    <en>gu</en>
+    <de>gu</de>
+    <pt>gu</pt>
+    <ko>gu</ko>
+  </word>
+  <word id="kata_ge" category="katakana">
+    <kanji>ゲ</kanji>
+    <kana>ゲ</kana>
+    <romaji>ge</romaji>
+    <fr>ge</fr>
+    <en>ge</en>
+    <de>ge</de>
+    <pt>ge</pt>
+    <ko>ge</ko>
+  </word>
+  <word id="kata_go" category="katakana">
+    <kanji>ゴ</kanji>
+    <kana>ゴ</kana>
+    <romaji>go</romaji>
+    <fr>go</fr>
+    <en>go</en>
+    <de>go</de>
+    <pt>go</pt>
+    <ko>go</ko>
+  </word>
+  <word id="kata_za" category="katakana">
+    <kanji>ザ</kanji>
+    <kana>ザ</kana>
+    <romaji>za</romaji>
+    <fr>za</fr>
+    <en>za</en>
+    <de>za</de>
+    <pt>za</pt>
+    <ko>za</ko>
+  </word>
+  <word id="kata_ji" category="katakana">
+    <kanji>ジ</kanji>
+    <kana>ジ</kana>
+    <romaji>ji</romaji>
+    <fr>ji</fr>
+    <en>ji</en>
+    <de>ji</de>
+    <pt>ji</pt>
+    <ko>ji</ko>
+  </word>
+  <word id="kata_zu" category="katakana">
+    <kanji>ズ</kanji>
+    <kana>ズ</kana>
+    <romaji>zu</romaji>
+    <fr>zu</fr>
+    <en>zu</en>
+    <de>zu</de>
+    <pt>zu</pt>
+    <ko>zu</ko>
+  </word>
+  <word id="kata_ze" category="katakana">
+    <kanji>ゼ</kanji>
+    <kana>ゼ</kana>
+    <romaji>ze</romaji>
+    <fr>ze</fr>
+    <en>ze</en>
+    <de>ze</de>
+    <pt>ze</pt>
+    <ko>ze</ko>
+  </word>
+  <word id="kata_zo" category="katakana">
+    <kanji>ゾ</kanji>
+    <kana>ゾ</kana>
+    <romaji>zo</romaji>
+    <fr>zo</fr>
+    <en>zo</en>
+    <de>zo</de>
+    <pt>zo</pt>
+    <ko>zo</ko>
+  </word>
+  <word id="kata_da" category="katakana">
+    <kanji>ダ</kanji>
+    <kana>ダ</kana>
+    <romaji>da</romaji>
+    <fr>da</fr>
+    <en>da</en>
+    <de>da</de>
+    <pt>da</pt>
+    <ko>da</ko>
+  </word>
+  <word id="kata_dji" category="katakana">
+    <kanji>ヂ</kanji>
+    <kana>ヂ</kana>
+    <romaji>ji (di)</romaji>
+    <fr>ji (di)</fr>
+    <en>ji (di)</en>
+    <de>ji (di)</de>
+    <pt>ji (di)</pt>
+    <ko>ji (di)</ko>
+  </word>
+  <word id="kata_dzu" category="katakana">
+    <kanji>ヅ</kanji>
+    <kana>ヅ</kana>
+    <romaji>zu (du)</romaji>
+    <fr>zu (du)</fr>
+    <en>zu (du)</en>
+    <de>zu (du)</de>
+    <pt>zu (du)</pt>
+    <ko>zu (du)</ko>
+  </word>
+  <word id="kata_de" category="katakana">
+    <kanji>デ</kanji>
+    <kana>デ</kana>
+    <romaji>de</romaji>
+    <fr>de</fr>
+    <en>de</en>
+    <de>de</de>
+    <pt>de</pt>
+    <ko>de</ko>
+  </word>
+  <word id="kata_do" category="katakana">
+    <kanji>ド</kanji>
+    <kana>ド</kana>
+    <romaji>do</romaji>
+    <fr>do</fr>
+    <en>do</en>
+    <de>do</de>
+    <pt>do</pt>
+    <ko>do</ko>
+  </word>
+  <word id="kata_ba" category="katakana">
+    <kanji>バ</kanji>
+    <kana>バ</kana>
+    <romaji>ba</romaji>
+    <fr>ba</fr>
+    <en>ba</en>
+    <de>ba</de>
+    <pt>ba</pt>
+    <ko>ba</ko>
+  </word>
+  <word id="kata_bi" category="katakana">
+    <kanji>ビ</kanji>
+    <kana>ビ</kana>
+    <romaji>bi</romaji>
+    <fr>bi</fr>
+    <en>bi</en>
+    <de>bi</de>
+    <pt>bi</pt>
+    <ko>bi</ko>
+  </word>
+  <word id="kata_bu" category="katakana">
+    <kanji>ブ</kanji>
+    <kana>ブ</kana>
+    <romaji>bu</romaji>
+    <fr>bu</fr>
+    <en>bu</en>
+    <de>bu</de>
+    <pt>bu</pt>
+    <ko>bu</ko>
+  </word>
+  <word id="kata_be" category="katakana">
+    <kanji>ベ</kanji>
+    <kana>ベ</kana>
+    <romaji>be</romaji>
+    <fr>be</fr>
+    <en>be</en>
+    <de>be</de>
+    <pt>be</pt>
+    <ko>be</ko>
+  </word>
+  <word id="kata_bo" category="katakana">
+    <kanji>ボ</kanji>
+    <kana>ボ</kana>
+    <romaji>bo</romaji>
+    <fr>bo</fr>
+    <en>bo</en>
+    <de>bo</de>
+    <pt>bo</pt>
+    <ko>bo</ko>
+  </word>
+  <word id="kata_pa" category="katakana">
+    <kanji>パ</kanji>
+    <kana>パ</kana>
+    <romaji>pa</romaji>
+    <fr>pa</fr>
+    <en>pa</en>
+    <de>pa</de>
+    <pt>pa</pt>
+    <ko>pa</ko>
+  </word>
+  <word id="kata_pi" category="katakana">
+    <kanji>ピ</kanji>
+    <kana>ピ</kana>
+    <romaji>pi</romaji>
+    <fr>pi</fr>
+    <en>pi</en>
+    <de>pi</de>
+    <pt>pi</pt>
+    <ko>pi</ko>
+  </word>
+  <word id="kata_pu" category="katakana">
+    <kanji>プ</kanji>
+    <kana>プ</kana>
+    <romaji>pu</romaji>
+    <fr>pu</fr>
+    <en>pu</en>
+    <de>pu</de>
+    <pt>pu</pt>
+    <ko>pu</ko>
+  </word>
+  <word id="kata_pe" category="katakana">
+    <kanji>ペ</kanji>
+    <kana>ペ</kana>
+    <romaji>pe</romaji>
+    <fr>pe</fr>
+    <en>pe</en>
+    <de>pe</de>
+    <pt>pe</pt>
+    <ko>pe</ko>
+  </word>
+  <word id="kata_po" category="katakana">
+    <kanji>ポ</kanji>
+    <kana>ポ</kana>
+    <romaji>po</romaji>
+    <fr>po</fr>
+    <en>po</en>
+    <de>po</de>
+    <pt>po</pt>
+    <ko>po</ko>
+  </word>
+  <word id="kata_kya" category="katakana">
+    <kanji>キャ</kanji>
+    <kana>キャ</kana>
+    <romaji>kya</romaji>
+    <fr>kya</fr>
+    <en>kya</en>
+    <de>kya</de>
+    <pt>kya</pt>
+    <ko>kya</ko>
+  </word>
+  <word id="kata_kyu" category="katakana">
+    <kanji>キュ</kanji>
+    <kana>キュ</kana>
+    <romaji>kyu</romaji>
+    <fr>kyu</fr>
+    <en>kyu</en>
+    <de>kyu</de>
+    <pt>kyu</pt>
+    <ko>kyu</ko>
+  </word>
+  <word id="kata_kyo" category="katakana">
+    <kanji>キョ</kanji>
+    <kana>キョ</kana>
+    <romaji>kyo</romaji>
+    <fr>kyo</fr>
+    <en>kyo</en>
+    <de>kyo</de>
+    <pt>kyo</pt>
+    <ko>kyo</ko>
+  </word>
+  <word id="kata_sha" category="katakana">
+    <kanji>シャ</kanji>
+    <kana>シャ</kana>
+    <romaji>sha</romaji>
+    <fr>sha</fr>
+    <en>sha</en>
+    <de>sha</de>
+    <pt>sha</pt>
+    <ko>sha</ko>
+  </word>
+  <word id="kata_shu" category="katakana">
+    <kanji>シュ</kanji>
+    <kana>シュ</kana>
+    <romaji>shu</romaji>
+    <fr>shu</fr>
+    <en>shu</en>
+    <de>shu</de>
+    <pt>shu</pt>
+    <ko>shu</ko>
+  </word>
+  <word id="kata_sho" category="katakana">
+    <kanji>ショ</kanji>
+    <kana>ショ</kana>
+    <romaji>sho</romaji>
+    <fr>sho</fr>
+    <en>sho</en>
+    <de>sho</de>
+    <pt>sho</pt>
+    <ko>sho</ko>
+  </word>
+  <word id="kata_cha" category="katakana">
+    <kanji>チャ</kanji>
+    <kana>チャ</kana>
+    <romaji>cha</romaji>
+    <fr>cha</fr>
+    <en>cha</en>
+    <de>cha</de>
+    <pt>cha</pt>
+    <ko>cha</ko>
+  </word>
+  <word id="kata_chu" category="katakana">
+    <kanji>チュ</kanji>
+    <kana>チュ</kana>
+    <romaji>chu</romaji>
+    <fr>chu</fr>
+    <en>chu</en>
+    <de>chu</de>
+    <pt>chu</pt>
+    <ko>chu</ko>
+  </word>
+  <word id="kata_cho" category="katakana">
+    <kanji>チョ</kanji>
+    <kana>チョ</kana>
+    <romaji>cho</romaji>
+    <fr>cho</fr>
+    <en>cho</en>
+    <de>cho</de>
+    <pt>cho</pt>
+    <ko>cho</ko>
+  </word>
+  <word id="kata_nya" category="katakana">
+    <kanji>ニャ</kanji>
+    <kana>ニャ</kana>
+    <romaji>nya</romaji>
+    <fr>nya</fr>
+    <en>nya</en>
+    <de>nya</de>
+    <pt>nya</pt>
+    <ko>nya</ko>
+  </word>
+  <word id="kata_nyu" category="katakana">
+    <kanji>ニュ</kanji>
+    <kana>ニュ</kana>
+    <romaji>nyu</romaji>
+    <fr>nyu</fr>
+    <en>nyu</en>
+    <de>nyu</de>
+    <pt>nyu</pt>
+    <ko>nyu</ko>
+  </word>
+  <word id="kata_nyo" category="katakana">
+    <kanji>ニョ</kanji>
+    <kana>ニョ</kana>
+    <romaji>nyo</romaji>
+    <fr>nyo</fr>
+    <en>nyo</en>
+    <de>nyo</de>
+    <pt>nyo</pt>
+    <ko>nyo</ko>
+  </word>
+  <word id="kata_hya" category="katakana">
+    <kanji>ヒャ</kanji>
+    <kana>ヒャ</kana>
+    <romaji>hya</romaji>
+    <fr>hya</fr>
+    <en>hya</en>
+    <de>hya</de>
+    <pt>hya</pt>
+    <ko>hya</ko>
+  </word>
+  <word id="kata_hyu" category="katakana">
+    <kanji>ヒュ</kanji>
+    <kana>ヒュ</kana>
+    <romaji>hyu</romaji>
+    <fr>hyu</fr>
+    <en>hyu</en>
+    <de>hyu</de>
+    <pt>hyu</pt>
+    <ko>hyu</ko>
+  </word>
+  <word id="kata_hyo" category="katakana">
+    <kanji>ヒョ</kanji>
+    <kana>ヒョ</kana>
+    <romaji>hyo</romaji>
+    <fr>hyo</fr>
+    <en>hyo</en>
+    <de>hyo</de>
+    <pt>hyo</pt>
+    <ko>hyo</ko>
+  </word>
+  <word id="kata_mya" category="katakana">
+    <kanji>ミャ</kanji>
+    <kana>ミャ</kana>
+    <romaji>mya</romaji>
+    <fr>mya</fr>
+    <en>mya</en>
+    <de>mya</de>
+    <pt>mya</pt>
+    <ko>mya</ko>
+  </word>
+  <word id="kata_myu" category="katakana">
+    <kanji>ミュ</kanji>
+    <kana>ミュ</kana>
+    <romaji>myu</romaji>
+    <fr>myu</fr>
+    <en>myu</en>
+    <de>myu</de>
+    <pt>myu</pt>
+    <ko>myu</ko>
+  </word>
+  <word id="kata_myo" category="katakana">
+    <kanji>ミョ</kanji>
+    <kana>ミョ</kana>
+    <romaji>myo</romaji>
+    <fr>myo</fr>
+    <en>myo</en>
+    <de>myo</de>
+    <pt>myo</pt>
+    <ko>myo</ko>
+  </word>
+  <word id="kata_rya" category="katakana">
+    <kanji>リャ</kanji>
+    <kana>リャ</kana>
+    <romaji>rya</romaji>
+    <fr>rya</fr>
+    <en>rya</en>
+    <de>rya</de>
+    <pt>rya</pt>
+    <ko>rya</ko>
+  </word>
+  <word id="kata_ryu" category="katakana">
+    <kanji>リュ</kanji>
+    <kana>リュ</kana>
+    <romaji>ryu</romaji>
+    <fr>ryu</fr>
+    <en>ryu</en>
+    <de>ryu</de>
+    <pt>ryu</pt>
+    <ko>ryu</ko>
+  </word>
+  <word id="kata_ryo" category="katakana">
+    <kanji>リョ</kanji>
+    <kana>リョ</kana>
+    <romaji>ryo</romaji>
+    <fr>ryo</fr>
+    <en>ryo</en>
+    <de>ryo</de>
+    <pt>ryo</pt>
+    <ko>ryo</ko>
+  </word>
+  <word id="kata_gya" category="katakana">
+    <kanji>ギャ</kanji>
+    <kana>ギャ</kana>
+    <romaji>gya</romaji>
+    <fr>gya</fr>
+    <en>gya</en>
+    <de>gya</de>
+    <pt>gya</pt>
+    <ko>gya</ko>
+  </word>
+  <word id="kata_gyu" category="katakana">
+    <kanji>ギュ</kanji>
+    <kana>ギュ</kana>
+    <romaji>gyu</romaji>
+    <fr>gyu</fr>
+    <en>gyu</en>
+    <de>gyu</de>
+    <pt>gyu</pt>
+    <ko>gyu</ko>
+  </word>
+  <word id="kata_gyo" category="katakana">
+    <kanji>ギョ</kanji>
+    <kana>ギョ</kana>
+    <romaji>gyo</romaji>
+    <fr>gyo</fr>
+    <en>gyo</en>
+    <de>gyo</de>
+    <pt>gyo</pt>
+    <ko>gyo</ko>
+  </word>
+  <word id="kata_ja" category="katakana">
+    <kanji>ジャ</kanji>
+    <kana>ジャ</kana>
+    <romaji>ja</romaji>
+    <fr>ja</fr>
+    <en>ja</en>
+    <de>ja</de>
+    <pt>ja</pt>
+    <ko>ja</ko>
+  </word>
+  <word id="kata_ju" category="katakana">
+    <kanji>ジュ</kanji>
+    <kana>ジュ</kana>
+    <romaji>ju</romaji>
+    <fr>ju</fr>
+    <en>ju</en>
+    <de>ju</de>
+    <pt>ju</pt>
+    <ko>ju</ko>
+  </word>
+  <word id="kata_jo" category="katakana">
+    <kanji>ジョ</kanji>
+    <kana>ジョ</kana>
+    <romaji>jo</romaji>
+    <fr>jo</fr>
+    <en>jo</en>
+    <de>jo</de>
+    <pt>jo</pt>
+    <ko>jo</ko>
+  </word>
+  <word id="kata_bya" category="katakana">
+    <kanji>ビャ</kanji>
+    <kana>ビャ</kana>
+    <romaji>bya</romaji>
+    <fr>bya</fr>
+    <en>bya</en>
+    <de>bya</de>
+    <pt>bya</pt>
+    <ko>bya</ko>
+  </word>
+  <word id="kata_byu" category="katakana">
+    <kanji>ビュ</kanji>
+    <kana>ビュ</kana>
+    <romaji>byu</romaji>
+    <fr>byu</fr>
+    <en>byu</en>
+    <de>byu</de>
+    <pt>byu</pt>
+    <ko>byu</ko>
+  </word>
+  <word id="kata_byo" category="katakana">
+    <kanji>ビョ</kanji>
+    <kana>ビョ</kana>
+    <romaji>byo</romaji>
+    <fr>byo</fr>
+    <en>byo</en>
+    <de>byo</de>
+    <pt>byo</pt>
+    <ko>byo</ko>
+  </word>
+  <word id="kata_pya" category="katakana">
+    <kanji>ピャ</kanji>
+    <kana>ピャ</kana>
+    <romaji>pya</romaji>
+    <fr>pya</fr>
+    <en>pya</en>
+    <de>pya</de>
+    <pt>pya</pt>
+    <ko>pya</ko>
+  </word>
+  <word id="kata_pyu" category="katakana">
+    <kanji>ピュ</kanji>
+    <kana>ピュ</kana>
+    <romaji>pyu</romaji>
+    <fr>pyu</fr>
+    <en>pyu</en>
+    <de>pyu</de>
+    <pt>pyu</pt>
+    <ko>pyu</ko>
+  </word>
+  <word id="kata_pyo" category="katakana">
+    <kanji>ピョ</kanji>
+    <kana>ピョ</kana>
+    <romaji>pyo</romaji>
+    <fr>pyo</fr>
+    <en>pyo</en>
+    <de>pyo</de>
+    <pt>pyo</pt>
+    <ko>pyo</ko>
+  </word>
 
   <word id="konnichiwa" category="salutations">
     <kanji>今日は</kanji>
