@@ -636,7 +636,7 @@
 
   <word id="ryoshin" category="famille">
     <kanji>両親</kanji><kana>りょうしん</kana><romaji>Ryōshin</romaji>
-    <fr>(Vos) parents — ご両親 avec honorifique</fr><en>(Your) parents — ご両親 with honorific</en><de>(Ihre) Eltern — ご両親 mit Honorativ</de><pt>(Seus) pais — ご両親 com honorífico</pt><ko>부모님</ko>
+    <fr>(Vos) parents — avec honorifique</fr><en>(Your) parents — with honorific</en><de>(Ihre) Eltern — mit Honorativ</de><pt>(Seus) pais — com honorífico</pt><ko>부모님</ko>
     <example_jp>ご両親はお元気ですか？</example_jp>
     <example_fr>Vos parents vont bien ?</example_fr><example_en>Are your parents well?</example_en>
     <example_de>Wie geht es Ihren Eltern?</example_de><example_pt>Seus pais estão bem?</example_pt>
@@ -660,7 +660,7 @@
 
   <word id="obaasan" category="famille">
     <kanji>お祖母さん</kanji><kana>おばあさん</kana><romaji>Obaasan</romaji>
-    <fr>Grand-mère (votre / honorifique) — attention : おばあさん, a long !</fr><en>Grandmother (your / honorific) — note: おばあさん, long 'a'!</en><de>Großmutter (Ihre / Anredeform) — Achtung: おばあさん, langes a!</de><pt>Avó (sua / honorífico) — atenção: おばあさん, 'a' longo!</pt><ko>할머니</ko>
+    <fr>Grand-mère (votre / honorifique) — attention : a long !</fr><en>Grandmother (your / honorific) — note: long 'a'!</en><de>Großmutter (Ihre / Anredeform) — Achtung: langes a!</de><pt>Avó (sua / honorífico) — atenção: 'a' longo!</pt><ko>할머니</ko>
     <example_jp>お祖母さんはとても優しいです。</example_jp>
     <example_fr>Votre grand-mère est très gentille.</example_fr><example_en>Your grandmother is very kind.</example_en>
     <example_de>Ihre Großmutter ist sehr freundlich.</example_de><example_pt>Sua avó é muito gentil.</example_pt>
@@ -684,7 +684,7 @@
 
   <word id="ojiisan" category="famille">
     <kanji>お祖父さん</kanji><kana>おじいさん</kana><romaji>Ojiisan</romaji>
-    <fr>Grand-père (votre / honorifique) — attention : おじいさん, i long !</fr><en>Grandfather (your / honorific) — note: おじいさん, long 'i'!</en><de>Großvater (Ihr / Anredeform) — Achtung: おじいさん, langes i!</de><pt>Avô (seu / honorífico) — atenção: おじいさん, 'i' longo!</pt><ko>할아버지</ko>
+    <fr>Grand-père (votre / honorifique) — attention : i long !</fr><en>Grandfather (your / honorific) — note: long 'i'!</en><de>Großvater (Ihr / Anredeform) — Achtung: langes i!</de><pt>Avô (seu / honorífico) — atenção: 'i' longo!</pt><ko>할아버지</ko>
     <example_jp>お祖父さんの話はいつも面白いです。</example_jp>
     <example_fr>Les histoires de votre grand-père sont toujours intéressantes.</example_fr><example_en>Your grandfather's stories are always interesting.</example_en>
     <example_de>Die Geschichten Ihres Großvaters sind immer interessant.</example_de><example_pt>As histórias do seu avô são sempre interessantes.</example_pt>
@@ -708,7 +708,7 @@
 
   <word id="mago" category="famille">
     <kanji>孫</kanji><kana>まご</kana><romaji>Mago</romaji>
-    <fr>Petit(s)-enfant(s) — (お)孫(さん) avec honorifique</fr><en>Grandchild(ren) — (お)孫(さん) with honorific</en><de>Enkelkind(er) — (お)孫(さん) mit Honorativ</de><pt>Neto(s) / Neta(s) — (お)孫(さん) com honorífico</pt><ko>손자 / 손녀</ko>
+    <fr>Petit(s)-enfant(s) — avec honorifique</fr><en>Grandchild(ren) — with honorific</en><de>Enkelkind(er) — mit Honorativ</de><pt>Neto(s) / Neta(s) — com honorífico</pt><ko>손자 / 손녀</ko>
     <example_jp>お孫さんは何人いますか？</example_jp>
     <example_fr>Combien avez-vous de petits-enfants ?</example_fr><example_en>How many grandchildren do you have?</example_en>
     <example_de>Wie viele Enkelkinder haben Sie?</example_de><example_pt>Quantos netos você tem?</example_pt>
@@ -828,7 +828,7 @@
 
   <word id="obasan" category="famille">
     <kanji>伯母さん</kanji><kana>おばさん</kana><romaji>Obasan</romaji>
-    <fr>Tante — attention : おばさん, a court (≠ おばあさん grand-mère)</fr><en>Aunt — note: おばさん, short 'a' (≠ おばあさん grandmother)</en><de>Tante — Achtung: おばさん, kurzes a (≠ おばあさん Großmutter)</de><pt>Tia — atenção: おばさん, 'a' curto (≠ おばあさん avó)</pt><ko>이모 / 고모</ko>
+    <fr>Tante — attention : a court (≠ grand-mère)</fr><en>Aunt — note: short 'a' (≠ grandmother)</en><de>Tante — Achtung: kurzes a (≠ Großmutter)</de><pt>Tia — atenção: 'a' curto (≠ avó)</pt><ko>이모 / 고모</ko>
     <example_jp>伯母さんからプレゼントが届きました。</example_jp>
     <example_fr>Un cadeau est arrivé de la part de ma tante.</example_fr><example_en>A present arrived from my aunt.</example_en>
     <example_de>Ein Geschenk ist von meiner Tante angekommen.</example_de><example_pt>Um presente chegou da minha tia.</example_pt>
@@ -836,7 +836,7 @@
 
   <word id="ojisan" category="famille">
     <kanji>伯父さん</kanji><kana>おじさん</kana><romaji>Ojisan</romaji>
-    <fr>Oncle — attention : おじさん, i court (≠ おじいさん grand-père)</fr><en>Uncle — note: おじさん, short 'i' (≠ おじいさん grandfather)</en><de>Onkel — Achtung: おじさん, kurzes i (≠ おじいさん Großvater)</de><pt>Tio — atenção: おじさん, 'i' curto (≠ おじいさん avô)</pt><ko>삼촌</ko>
+    <fr>Oncle — attention : i court (≠ grand-père)</fr><en>Uncle — note: short 'i' (≠ grandfather)</en><de>Onkel — Achtung: kurzes i (≠ Großvater)</de><pt>Tio — atenção: 'i' curto (≠ avô)</pt><ko>삼촌</ko>
     <example_jp>伯父さんは大阪に住んでいます。</example_jp>
     <example_fr>Mon oncle vit à Osaka.</example_fr><example_en>My uncle lives in Osaka.</example_en>
     <example_de>Mein Onkel lebt in Osaka.</example_de><example_pt>Meu tio mora em Osaka.</example_pt>
@@ -2787,7 +2787,7 @@
        SUFFIXES HONORIFIQUES
        ════════════════════════════════════════════════════════ -->
 
-  <word id="san" category="suffixes">
+  <word id="san_suffix" category="suffixes">
     <kanji>さん</kanji><kana>さん</kana><romaji>San</romaji>
     <fr>M. / Mme — suffixe poli universel (tout âge, tout sexe)</fr><en>Mr. / Ms. — universal polite suffix (any age, any gender)</en><de>Herr / Frau — universell höfliches Suffix (jedes Alter, jedes Geschlecht)</de><pt>Sr. / Sra. — sufixo educado universal (qualquer idade, qualquer gênero)</pt><ko>씨 / 님</ko>
     <example_jp>田中さん、お電話ありがとうございます。</example_jp>
@@ -2797,7 +2797,7 @@
 
   <word id="kun" category="suffixes">
     <kanji>君</kanji><kana>くん</kana><romaji>Kun</romaji>
-    <fr>Suffixe pour garçons / subordonnés (familier-respectueux)</fr><en>Suffix for boys / subordinates (familiar-respectful)</en><de>Suffix für Jungen / Untergebene (vertraut-respektvoll)</de><pt>Sufixo para rapazes / subordinados (familiar-respeitoso)</pt><ko>군 (君)</ko>
+    <fr>Suffixe pour garçons / subordonnés (familier-respectueux)</fr><en>Suffix for boys / subordinates (familiar-respectful)</en><de>Suffix für Jungen / Untergebene (vertraut-respektvoll)</de><pt>Sufixo para rapazes / subordinados (familiar-respeitoso)</pt><ko>군</ko>
     <example_jp>鈴木くん、宿題を提出してください。</example_jp>
     <example_fr>Suzuki-kun, veuillez rendre vos devoirs.</example_fr><example_en>Suzuki-kun, please hand in your homework.</example_en>
     <example_de>Suzuki-kun, bitte gib deine Hausaufgaben ab.</example_de><example_pt>Suzuki-kun, por favor entregue seu dever de casa.</example_pt>
@@ -2813,7 +2813,7 @@
 
   <word id="senpai" category="suffixes">
     <kanji>先輩</kanji><kana>せんぱい</kana><romaji>Senpai</romaji>
-    <fr>Aîné / Sénior (école ou travail) — s'oppose à 後輩 kōhai</fr><en>Senior / Upperclassman (school or work) — opposite of 後輩 kōhai</en><de>Senior / Älterer (Schule oder Arbeit) — Gegenteil von 後輩 kōhai</de><pt>Sênior / Veterano (escola ou trabalho) — oposto de 後輩 kōhai</pt><ko>선배 (님)</ko>
+    <fr>Aîné / Sénior (école ou travail) — s'oppose à kōhai</fr><en>Senior / Upperclassman (school or work) — opposite of kōhai</en><de>Senior / Älterer (Schule oder Arbeit) — Gegenteil von kōhai</de><pt>Sênior / Veterano (escola ou trabalho) — oposto de kōhai</pt><ko>선배 (님)</ko>
     <example_jp>先輩、教えていただけますか？</example_jp>
     <example_fr>Senpai, pourriez-vous m'apprendre ?</example_fr><example_en>Senpai, could you teach me?</example_en>
     <example_de>Senpai, könnten Sie mir beibringen?</example_de><example_pt>Senpai, você poderia me ensinar?</example_pt>
@@ -2829,7 +2829,7 @@
 
   <word id="sama" category="suffixes">
     <kanji>様</kanji><kana>さま</kana><romaji>Sama</romaji>
-    <fr>Très honorable — forme ultra-respectueuse de さん (clients, royauté, dieux)</fr><en>Very honorable — ultra-respectful form of san (customers, royalty, gods)</en><de>Sehr geehrte(r) — ultra-respektvolle Form von san (Kunden, Adel, Götter)</de><pt>Muito honrável — forma ultra-respeitosa de san (clientes, realeza, deuses)</pt><ko>님 (최고 경칭)</ko>
+    <fr>Très honorable — forme ultra-respectueuse de san (clients, royauté, dieux)</fr><en>Very honorable — ultra-respectful form of san (customers, royalty, gods)</en><de>Sehr geehrte(r) — ultra-respektvolle Form von san (Kunden, Adel, Götter)</de><pt>Muito honrável — forma ultra-respeitosa de san (clientes, realeza, deuses)</pt><ko>님 (최고 경칭)</ko>
     <example_jp>お客様、こちらへどうぞ。</example_jp>
     <example_fr>Cher client, par ici s'il vous plaît.</example_fr><example_en>Dear customer, this way please.</example_en>
     <example_de>Verehrter Kunde, bitte hier entlang.</example_de><example_pt>Prezado cliente, por favor, por aqui.</example_pt>
@@ -3371,7 +3371,7 @@
     <example_de>Ich bin mit dem Flugzeug nach Japan gekommen.</example_de><example_pt>Vim ao Japão de avião.</example_pt>
   </word>
 
-  <word id="eki" category="transport">
+  <word id="eki_station" category="transport">
     <kanji>駅</kanji><kana>えき</kana><romaji>Eki</romaji>
     <fr>Gare / Station</fr><en>Station / Train station</en><de>Bahnhof / Station</de><pt>Estação</pt><ko>역</ko>
     <example_jp>次の駅で乗り換えてください。</example_jp>
@@ -3623,7 +3623,7 @@
     <example_de>Ich habe Kopfschmerzen.</example_de><example_pt>Estou com dor de cabeça.</example_pt>
   </word>
 
-  <word id="kao" category="corps">
+  <word id="kao_face" category="corps">
     <kanji>顔</kanji><kana>かお</kana><romaji>Kao</romaji>
     <fr>Visage / Figure</fr><en>Face</en><de>Gesicht</de><pt>Rosto</pt><ko>얼굴</ko>
     <example_jp>彼女はきれいな顔をしています。</example_jp>
@@ -3631,7 +3631,7 @@
     <example_de>Sie hat ein schönes Gesicht.</example_de><example_pt>Ela tem um rosto bonito.</example_pt>
   </word>
 
-  <word id="me" category="corps">
+  <word id="me_eye" category="corps">
     <kanji>目</kanji><kana>め</kana><romaji>Me</romaji>
     <fr>Œil / Yeux</fr><en>Eye / Eyes</en><de>Auge / Augen</de><pt>Olho / Olhos</pt><ko>눈</ko>
     <example_jp>目が疲れました。</example_jp>
@@ -3711,7 +3711,7 @@
     <example_de>Ich habe meinen Ellbogen am Tisch angestoßen.</example_de><example_pt>Bati o cotovelo na mesa.</example_pt>
   </word>
 
-  <word id="te" category="corps">
+  <word id="te_hand" category="corps">
     <kanji>手</kanji><kana>て</kana><romaji>Te</romaji>
     <fr>Main</fr><en>Hand</en><de>Hand</de><pt>Mão</pt><ko>손</ko>
     <example_jp>手を洗ってください。</example_jp>
@@ -3999,7 +3999,7 @@
        ADJECTIFS (suite — feuille 4)
        ════════════════════════════════════════════════════════ -->
 
-  <word id="takai" category="adjectif">
+  <word id="takai_high" category="adjectif">
     <kanji>高い</kanji><kana>たかい</kana><romaji>Takai</romaji>
     <fr>Haut / Cher / Élevé</fr><en>High / Tall / Expensive</en><de>Hoch / Groß / Teuer</de><pt>Alto / Caro / Elevado</pt><ko>높다 / 비싸다</ko>
     <example_jp>このバッグはとても高いです。</example_jp>
@@ -4015,7 +4015,7 @@
     <example_de>Das Wetter ist heute schlecht.</example_de><example_pt>O tempo está ruim hoje.</example_pt>
   </word>
 
-  <word id="ookii" category="adjectif">
+  <word id="ookii_big" category="adjectif">
     <kanji>大きい</kanji><kana>おおきい</kana><romaji>Ōkii</romaji>
     <fr>Grand / Gros / Important</fr><en>Big / Large / Great</en><de>Groß / Riesig</de><pt>Grande / Enorme</pt><ko>크다</ko>
     <example_jp>大きい荷物を持っています。</example_jp>
@@ -4095,7 +4095,7 @@
     <example_de>Diese Frau ist sehr freundlich.</example_de><example_pt>Aquela mulher é muito gentil.</example_pt>
   </word>
 
-  <word id="sukoshi" category="expressions">
+  <word id="sukoshi_little" category="expressions">
     <kanji>少し</kanji><kana>すこし</kana><romaji>Sukoshi</romaji>
     <fr>Un peu / Légèrement</fr><en>A little / Slightly</en><de>Ein bisschen / Etwas</de><pt>Um pouco / Levemente</pt><ko>조금 / 약간</ko>
     <example_jp>少し待ってください。</example_jp>
@@ -4129,7 +4129,7 @@
 
   <word id="fu_prefix" category="expressions">
     <kanji>不</kanji><kana>ふ</kana><romaji>Fu</romaji>
-    <fr>Préfixe négatif (in-, non-, im-) ex. 不可能 = impossible</fr><en>Negative prefix (un-, non-, im-) e.g. 不可能 = impossible</en><de>Verneinungspräfix (un-, nicht-) z. B. 不可能 = unmöglich</de><pt>Prefixo negativo (in-, não-) ex. 不可能 = impossível</pt><ko>부정 접두사 (불-, 비-) 예) 不可能 = 불가능</ko>
+    <fr>Préfixe négatif (in-, non-, im-) ex. impossible</fr><en>Negative prefix (un-, non-, im-) e.g. impossible</en><de>Verneinungspräfix (un-, nicht-) z. B. unmöglich</de><pt>Prefixo negativo (in-, não-) ex. impossível</pt><ko>부정 접두사 (불-, 비-) 예) 불가능</ko>
     <example_jp>それは不可能ではありません。</example_jp>
     <example_fr>Ce n'est pas impossible.</example_fr><example_en>That is not impossible.</example_en>
     <example_de>Das ist nicht unmöglich.</example_de><example_pt>Isso não é impossível.</example_pt>
@@ -4231,7 +4231,7 @@
     <example_de>Bitte überprüfen Sie die neuesten Informationen.</example_de><example_pt>Por favor, verifique as informações mais recentes.</example_pt>
   </word>
 
-  <word id="tada" category="expressions">
+  <word id="tada_only" category="expressions">
     <kanji>唯</kanji><kana>ただ</kana><romaji>Tada</romaji>
     <fr>Seulement / Gratuit / Cependant / Ordinaire</fr><en>Only / Free (of charge) / However / Plain</en><de>Nur / Kostenlos / Jedoch / Gewöhnlich</de><pt>Somente / Grátis / Porém / Comum</pt><ko>단지 / 그냥 / 공짜</ko>
     <example_jp>ただ一人の友達がいます。</example_jp>
@@ -4249,7 +4249,7 @@
 
   <word id="bakari" category="expressions">
     <kanji>ばかり</kanji><kana>ばかり</kana><romaji>Bakari</romaji>
-    <fr>Rien que / Que... seulement / Vient juste de</fr><en>Nothing but / Only / Just did (venir de)</en><de>Nur / Nichts als / Gerade erst</de><pt>Nada além de / Só / Acabou de</pt><ko>~만 / ~뿐 / 막 ~했다</ko>
+    <fr>Rien que / Que... seulement / Vient juste de</fr><en>Nothing but / Only / Just did</en><de>Nur / Nichts als / Gerade erst</de><pt>Nada além de / Só / Acabou de</pt><ko>~만 / ~뿐 / 막 ~했다</ko>
     <example_jp>甘いものばかり食べています。</example_jp>
     <example_fr>Je ne mange que des sucreries.</example_fr><example_en>I eat nothing but sweets.</example_en>
     <example_de>Ich esse nur Süßigkeiten.</example_de><example_pt>Não como nada além de doces.</example_pt>
@@ -4359,7 +4359,7 @@
     <example_de>Die Jahreszeiten wechseln.</example_de><example_pt>As estações mudam.</example_pt>
   </word>
 
-  <word id="yomu" category="verbes">
+  <word id="yomu_read" category="verbes">
     <kanji>読む</kanji><kana>よむ</kana><romaji>Yomu</romaji>
     <kanji_masu>読みます</kanji_masu><kana_masu>よみます</kana_masu><romaji_masu>Yomimasu</romaji_masu>
     <fr>Lire</fr><en>To read</en><de>Lesen</de><pt>Ler</pt><ko>읽다</ko>
@@ -4368,7 +4368,7 @@
     <example_de>Ich lese jeden Morgen die Zeitung.</example_de><example_pt>Leio o jornal toda manhã.</example_pt>
   </word>
 
-  <word id="kau" category="verbes">
+  <word id="kau_buy" category="verbes">
     <kanji>買う</kanji><kana>かう</kana><romaji>Kau</romaji>
     <kanji_masu>買います</kanji_masu><kana_masu>かいます</kana_masu><romaji_masu>Kaimasu</romaji_masu>
     <fr>Acheter</fr><en>To buy / To purchase</en><de>Kaufen</de><pt>Comprar</pt><ko>사다</ko>
@@ -4442,7 +4442,7 @@
     <example_de>Machen Sie es so, wie ich es gesagt habe.</example_de><example_pt>Faça como eu disse.</example_pt>
   </word>
 
-  <word id="dono" category="expressions">
+  <word id="dono_which" category="expressions">
     <kanji>何の</kanji><kana>どの</kana><romaji>Dono</romaji>
     <fr>Quel / Quelle / Lequel (interrogatif devant un nom)</fr><en>Which / What (interrogative before a noun)</en><de>Welcher / Welche / Welches (vor einem Nomen)</de><pt>Qual / Que (interrogativo antes de um substantivo)</pt><ko>어느 / 어떤 (명사 앞)</ko>
     <example_jp>どのバスに乗りますか？</example_jp>
@@ -4452,7 +4452,7 @@
 
   <word id="nama" category="expressions">
     <kanji>生</kanji><kana>なま</kana><romaji>Nama</romaji>
-    <fr>Cru / Non cuit / En direct / Frais</fr><en>Raw / Uncooked / Live / Fresh</en><de>Roh / Ungekocht / Live / Frisch</de><pt>Cru / Não cozido / Ao vivo / Fresco</pt><ko>날것 / 생(生) / 생방송</ko>
+    <fr>Cru / Non cuit / En direct / Frais</fr><en>Raw / Uncooked / Live / Fresh</en><de>Roh / Ungekocht / Live / Frisch</de><pt>Cru / Não cozido / Ao vivo / Fresco</pt><ko>날것 / 생 / 생방송</ko>
     <example_jp>生のお刺身が好きです。</example_jp>
     <example_fr>J'aime les sashimis crus.</example_fr><example_en>I like raw sashimi.</example_en>
     <example_de>Ich mag rohes Sashimi.</example_de><example_pt>Gosto de sashimi cru.</example_pt>
@@ -4506,9 +4506,9 @@
     <example_de>Herr Tanaka ist nicht da.</example_de><example_pt>O Sr. Tanaka não está.</example_pt>
   </word>
 
-  <word id="mise" category="expressions">
+  <word id="mise_shop" category="expressions">
     <kanji>店</kanji><kana>みせ</kana><romaji>Mise</romaji>
-    <fr>Boutique / Magasin / Restaurant</fr><en>Shop / Store / Restaurant</en><de>Laden / Geschäft / Restaurant</de><pt>Loja / Loja / Restaurante</pt><ko>가게 / 상점</ko>
+    <fr>Boutique / Magasin / Restaurant</fr><en>Shop / Store / Restaurant</en><de>Laden / Geschäft / Restaurant</de><pt>Loja / Estabelecimento / Restaurante</pt><ko>가게 / 상점</ko>
     <example_jp>あの店は安くておいしいです。</example_jp>
     <example_fr>Ce restaurant est bon marché et délicieux.</example_fr><example_en>That restaurant is cheap and delicious.</example_en>
     <example_de>Dieses Restaurant ist günstig und lecker.</example_de><example_pt>Aquele restaurante é barato e delicioso.</example_pt>
@@ -4556,7 +4556,7 @@
 
   <word id="go_language" category="expressions">
     <kanji>語</kanji><kana>ご</kana><romaji>-go</romaji>
-    <fr>Langue / Mot (suffixe : 日本語 = japonais)</fr><en>Language / Word (suffix: 日本語 = Japanese)</en><de>Sprache / Wort (Suffix: 日本語 = Japanisch)</de><pt>Língua / Palavra (sufixo: 日本語 = japonês)</pt><ko>어 / 말 (접미사: 日本語 = 일본어)</ko>
+    <fr>Langue / Mot (suffixe : japonais)</fr><en>Language / Word (suffix: Japanese)</en><de>Sprache / Wort (Suffix: Japanisch)</de><pt>Língua / Palavra (sufixo: japonês)</pt><ko>어 / 말 (접미사: 일본어)</ko>
     <example_jp>日本語は面白い言語です。</example_jp>
     <example_fr>Le japonais est une langue intéressante.</example_fr><example_en>Japanese is an interesting language.</example_en>
     <example_de>Japanisch ist eine interessante Sprache.</example_de><example_pt>O japonês é uma língua interessante.</example_pt>
@@ -4676,7 +4676,7 @@
 
   <word id="sukina" category="adjectif">
     <kanji>好き</kanji><kana>すきな</kana><romaji>Suki (na)</romaji>
-    <fr>Aimé / Favori / Apprécié (adjectif en な)</fr><en>Liked / Favorite / To like (na-adjective)</en><de>Gemocht / Beliebt / Lieblings- (na-Adjektiv)</de><pt>Preferido / Apreciado / Gostar de (adjetivo em な)</pt><ko>좋아하다 / 좋아하는</ko>
+    <fr>Aimé / Favori / Apprécié (adjectif en na)</fr><en>Liked / Favorite / To like (na-adjective)</en><de>Gemocht / Beliebt / Lieblings- (na-Adjektiv)</de><pt>Preferido / Apreciado / Gostar de (adjetivo em na)</pt><ko>좋아하다 / 좋아하는</ko>
     <example_jp>私はラーメンが好きです。</example_jp>
     <example_fr>J'aime le ramen.</example_fr><example_en>I like ramen.</example_en>
     <example_de>Ich mag Ramen.</example_de><example_pt>Eu gosto de ramen.</example_pt>
@@ -4688,7 +4688,7 @@
 
   <word id="nin_counter" category="compteurs">
     <kanji>人</kanji><kana>にん</kana><romaji>-nin / -ri (1→hitori, 2→futari)</romaji>
-    <fr>Compteur de personnes (1→一人 ひとり, 2→二人 ふたり, 3+→～人 にん)</fr><en>Counter for people (1→hitori, 2→futari, 3+→-nin)</en><de>Zählwort für Personen (1→hitori, 2→futari, 3+→-nin)</de><pt>Contador de pessoas (1→hitori, 2→futari, 3+→-nin)</pt><ko>사람 세는 단위 (1명→히토리, 2명→후타리, 3명~→~닌)</ko>
+    <fr>Compteur de personnes (1→hitori, 2→futari, 3+→nin)</fr><en>Counter for people (1→hitori, 2→futari, 3+→-nin)</en><de>Zählwort für Personen (1→hitori, 2→futari, 3+→-nin)</de><pt>Contador de pessoas (1→hitori, 2→futari, 3+→-nin)</pt><ko>사람 세는 단위 (1명→히토리, 2명→후타리, 3명~→~닌)</ko>
     <example_jp>クラスに三十人の学生がいます。</example_jp>
     <example_fr>Il y a trente élèves dans la classe.</example_fr><example_en>There are thirty students in the class.</example_en>
     <example_de>Es gibt dreißig Schüler in der Klasse.</example_de><example_pt>Há trinta alunos na turma.</example_pt>
@@ -4760,7 +4760,7 @@
 
   <word id="kai_floor" category="compteurs">
     <kanji>階</kanji><kana>かい</kana><romaji>-kai / -gai</romaji>
-    <fr>Compteur étages d'un bâtiment (1er → 一階 いっかい)</fr><en>Counter for floors of a building (1st → ikkai)</en><de>Zählwort für Stockwerke (1. OG → ikkai)</de><pt>Contador de andares de um edifício (1º → ikkai)</pt><ko>건물 층 세는 단위 (1층→いっかい)</ko>
+    <fr>Compteur étages d'un bâtiment (1er → ikkai)</fr><en>Counter for floors of a building (1st → ikkai)</en><de>Zählwort für Stockwerke (1. OG → ikkai)</de><pt>Contador de andares de um edifício (1º → ikkai)</pt><ko>건물 층 세는 단위 (1층→잇카이)</ko>
     <example_jp>エレベーターで三階に行きます。</example_jp>
     <example_fr>Je vais au troisième étage en ascenseur.</example_fr><example_en>I take the elevator to the third floor.</example_en>
     <example_de>Ich fahre mit dem Aufzug in den dritten Stock.</example_de><example_pt>Vou ao terceiro andar de elevador.</example_pt>
