@@ -347,12 +347,13 @@
     .header h1 { font-size: 26px; font-weight: 500; color: var(--text-primary); letter-spacing: -0.4px; }
     .header p  { font-size: 14px; color: var(--text-secondary); margin-top: 6px; }
 
-    /* ── Boutons icônes du header ── */
+    /* ── Boutons icônes du header (groupe gauche + groupe droit) ── */
     .header-actions { position: absolute; top: 0; right: 0; display: flex; gap: 2px; }
+    .header-actions.left { right: auto; left: 0; }
 
     /* ── Fix mobile : réserver l'espace pour les boutons ── */
     @media (max-width: 640px) {
-      /* Les boutons (5 × 34px + 4 × 2px gaps ≈ 178px) sont en absolute top:0.
+      /* Les deux groupes de boutons (3 à gauche, 4 à droite) sont en absolute top:0.
          On ajoute un padding-top égal à leur hauteur + un petit gap,
          ce qui les place dans la zone de padding sans chevaucher le titre. */
       .header { padding-top: 44px; margin-bottom: 1.75rem; }
@@ -647,6 +648,89 @@
     body.focus-mode .back-meaning,
     body.focus-mode .lang-meaning { font-size: 40px; }
     body.focus-mode .back-example { font-size: 15px; }
+
+    /* ── Mode jeu (QCM zen / contre-la-montre) ──
+       Les panneaux langues/options restent accessibles ; seules les barres
+       de révision et de catégories sont masquées. */
+    body.game-mode .review-bar,
+    body.game-mode .cat-bar-wrap { display: none !important; }
+    .game-screen { display: none; }
+    .game-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 0.75rem; }
+    .game-stat { font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-tertiary); }
+    .game-stat b { font-size: 20px; font-weight: 600; color: var(--text-primary); margin-left: 6px; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+    .game-combo {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 12px; border-radius: 14px;
+      font-size: 13px; font-weight: 600;
+      background: var(--accent-bg); color: var(--accent);
+    }
+    .game-combo.pop { animation: combo-pop 0.3s ease; }
+    @keyframes combo-pop { 50% { transform: scale(1.3); } }
+    .game-timer-wrap { height: 4px; background: var(--bg-secondary); border-radius: 2px; overflow: hidden; margin-bottom: 1rem; }
+    .game-timer-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+    .game-question {
+      position: relative;
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      min-height: 170px; padding: 2rem 1.5rem;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; margin-bottom: 1rem; user-select: none;
+    }
+    .game-question.shake { animation: q-shake 0.4s; }
+    @keyframes q-shake { 20%, 60% { transform: translateX(-7px); } 40%, 80% { transform: translateX(7px); } }
+    .game-q-main { font-size: 52px; line-height: 1.15; color: var(--text-primary); }
+    .game-q-sub  { font-size: 17px; color: var(--text-secondary); margin-top: 8px; }
+    .game-float {
+      position: absolute; top: 12px; right: 16px;
+      font-size: 17px; font-weight: 700; color: var(--correct-color);
+      pointer-events: none; animation: float-up 0.8s ease forwards;
+    }
+    @keyframes float-up { to { transform: translateY(-22px); opacity: 0; } }
+    .game-answers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.25rem; }
+    @media (max-width: 480px) { .game-answers { grid-template-columns: 1fr; gap: 8px; } }
+    .game-answer {
+      padding: 14px 10px; border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-medium);
+      background: var(--bg-primary); color: var(--text-primary);
+      font-size: 15px; cursor: pointer; font-family: inherit;
+      transition: all 0.15s;
+    }
+    .game-answer:hover:not(:disabled) { border-color: var(--border-strong); background: var(--bg-secondary); }
+    .game-answer:disabled { cursor: default; }
+    .game-answer.good { background: var(--correct-bg); border-color: var(--correct-color); color: var(--correct-color); font-weight: 600; }
+    .game-answer.bad  { background: var(--wrong-bg); border-color: var(--wrong-color); color: var(--wrong-color); }
+    .game-answer.dim  { opacity: 0.45; }
+    .game-center { text-align: center; padding: 2rem 0.5rem; }
+    .game-title { font-size: 22px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .game-sub   { font-size: 13px; color: var(--text-secondary); }
+    .game-mode-cards { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
+    .game-mode-card {
+      flex: 1; min-width: 180px; max-width: 240px;
+      padding: 1.4rem 1rem;
+      border: 0.5px solid var(--border-medium); border-radius: var(--radius-lg);
+      background: var(--bg-primary); color: var(--text-primary);
+      cursor: pointer; font-family: inherit; text-align: center;
+      transition: all 0.15s;
+    }
+    .game-mode-card:hover { border-color: var(--accent); background: var(--accent-bg); }
+    .game-mode-card .gm-icon { font-size: 30px; margin-bottom: 8px; color: var(--accent); }
+    .game-mode-card .gm-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .game-mode-card .gm-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+    .game-mode-card .gm-best { font-size: 12px; color: var(--acquired-color); margin-top: 8px; font-weight: 600; }
+    .game-end-score { font-size: 46px; font-weight: 600; color: var(--text-primary); margin: 0.75rem 0 0.25rem; font-variant-numeric: tabular-nums; }
+    .game-newbest { color: var(--acquired-color); font-weight: 600; font-size: 15px; margin-top: 6px; }
+    .game-actions { display: flex; gap: 10px; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .game-ghost-btn {
+      padding: 11px 24px; border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-medium);
+      background: none; color: var(--text-secondary);
+      font-size: 14px; cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .game-ghost-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
     .card-inner {
       width: 100%;
       display: grid;
@@ -955,15 +1039,20 @@
   <div class="header">
     <h1>Flashcards</h1>
     <p id="headerSub">Cliquez sur la carte pour révéler la réponse</p>
-    <div class="header-actions">
+    <div class="header-actions left">
       <button class="hdr-btn" id="settingsBtn" onclick="toggleSettings()" title="Options d'affichage">
         <i class="ti ti-adjustments-horizontal"></i>
+      </button>
+      <button class="hdr-btn" id="langBtn" onclick="toggleLangBar()" title="Langues">
+        <i class="ti ti-language"></i>
       </button>
       <button class="hdr-btn" id="addWordBtn" onclick="openAddWord()" title="Ajouter un mot">
         <i class="ti ti-plus"></i>
       </button>
-      <button class="hdr-btn" id="langBtn" onclick="toggleLangBar()" title="Langues">
-        <i class="ti ti-language"></i>
+    </div>
+    <div class="header-actions">
+      <button class="hdr-btn" id="gameBtn" onclick="toggleGame()" title="Mode jeu">
+        <i class="ti ti-device-gamepad-2"></i>
       </button>
       <button class="hdr-btn" id="statsBtn" onclick="openStats()" title="Statistiques">
         <i class="ti ti-chart-bar"></i>
@@ -1107,6 +1196,9 @@
       <button id="btnRestart" class="restart-btn" onclick="restart()">Recommencer</button>
     </div>
   </div>
+
+  <!-- ── Écran mode jeu (QCM) — contenu construit par JS ── -->
+  <div class="game-screen" id="gameScreen"></div>
 
   <!-- ── Modale statistiques ── -->
   <div class="modal-backdrop" id="statsModal" onclick="closeStatsBackdrop(event)">
@@ -1351,6 +1443,11 @@ const UI = {
     themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01', themeEva00: 'Mode Eva-00', themeRose: 'Mode rose', themeCreme: 'Mode crème', themeVert: 'Mode vert pâle', themeJaune: 'Mode jaune', themeCiel: 'Mode bleu ciel',
     settingsTitle: "Options d'affichage",
     focusMode: 'Mode focus', focusExit: 'Quitter le mode focus',
+    gameTitle: 'Mode jeu', gameZen: 'Zen', gameZenDesc: '20 questions, sans chrono',
+    gameChrono: 'Contre-la-montre', gameChronoDesc: '60 secondes pour marquer un max de points',
+    gameScore: 'Score', gameBest: 'Record', gameReplay: 'Rejouer', gameQuit: 'Quitter',
+    gameModes: 'Changer de mode', gameNewBest: 'Nouveau record !', gameOver: 'Partie terminée !',
+    gameResult: (ok, t) => `${ok} bonne${ok > 1 ? 's' : ''} réponse${ok > 1 ? 's' : ''} sur ${t}`,
     resetTitle: 'Réinitialiser la progression',
     resetConfirmTitle: 'Réinitialiser la progression ?',
     resetConfirmDesc: 'Cette action supprimera tous vos mots acquis, corrects et à revoir. Elle est irréversible.',
@@ -1396,6 +1493,11 @@ const UI = {
     themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode', themeEva00: 'Eva-00 mode', themeRose: 'Pink mode', themeCreme: 'Cream mode', themeVert: 'Pale green mode', themeJaune: 'Yellow mode', themeCiel: 'Sky blue mode',
     settingsTitle: 'Display options',
     focusMode: 'Focus mode', focusExit: 'Exit focus mode',
+    gameTitle: 'Game mode', gameZen: 'Zen', gameZenDesc: '20 questions, no timer',
+    gameChrono: 'Time attack', gameChronoDesc: '60 seconds to score as much as you can',
+    gameScore: 'Score', gameBest: 'Best', gameReplay: 'Play again', gameQuit: 'Quit',
+    gameModes: 'Change mode', gameNewBest: 'New high score!', gameOver: 'Game over!',
+    gameResult: (ok, t) => `${ok} correct out of ${t}`,
     resetTitle: 'Reset progress',
     resetConfirmTitle: 'Reset all progress?',
     resetConfirmDesc: 'This will delete all your mastered, correct and review words. This cannot be undone.',
@@ -1441,6 +1543,11 @@ const UI = {
     themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design', themeEva00: 'Eva-00-Design', themeRose: 'Rosa Design', themeCreme: 'Creme-Design', themeVert: 'Blassgrünes Design', themeJaune: 'Gelbes Design', themeCiel: 'Himmelblaues Design',
     settingsTitle: 'Anzeigeoptionen',
     focusMode: 'Fokusmodus', focusExit: 'Fokusmodus beenden',
+    gameTitle: 'Spielmodus', gameZen: 'Zen', gameZenDesc: '20 Fragen, ohne Timer',
+    gameChrono: 'Zeitrennen', gameChronoDesc: '60 Sekunden für möglichst viele Punkte',
+    gameScore: 'Punkte', gameBest: 'Rekord', gameReplay: 'Nochmal', gameQuit: 'Beenden',
+    gameModes: 'Modus wechseln', gameNewBest: 'Neuer Rekord!', gameOver: 'Spiel vorbei!',
+    gameResult: (ok, t) => `${ok} richtig von ${t}`,
     resetTitle: 'Fortschritt zurücksetzen',
     resetConfirmTitle: 'Fortschritt zurücksetzen?',
     resetConfirmDesc: 'Dies löscht alle gelernten, richtigen und zu wiederholenden Wörter. Dieser Vorgang kann nicht rückgängig gemacht werden.',
@@ -1486,6 +1593,11 @@ const UI = {
     themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01', themeEva00: 'Modo Eva-00', themeRose: 'Modo rosa', themeCreme: 'Modo creme', themeVert: 'Modo verde claro', themeJaune: 'Modo amarelo', themeCiel: 'Modo azul-céu',
     settingsTitle: 'Opções de exibição',
     focusMode: 'Modo foco', focusExit: 'Sair do modo foco',
+    gameTitle: 'Modo jogo', gameZen: 'Zen', gameZenDesc: '20 perguntas, sem cronômetro',
+    gameChrono: 'Contra o tempo', gameChronoDesc: '60 segundos para marcar o máximo de pontos',
+    gameScore: 'Pontos', gameBest: 'Recorde', gameReplay: 'Jogar de novo', gameQuit: 'Sair',
+    gameModes: 'Mudar de modo', gameNewBest: 'Novo recorde!', gameOver: 'Fim de jogo!',
+    gameResult: (ok, t) => `${ok} certa${ok > 1 ? 's' : ''} de ${t}`,
     resetTitle: 'Reiniciar progresso',
     resetConfirmTitle: 'Reiniciar todo o progresso?',
     resetConfirmDesc: 'Isso apagará todas as palavras dominadas, corretas e a rever. Esta ação é irreversível.',
@@ -1531,6 +1643,11 @@ const UI = {
     themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード', themeEva00: 'エヴァ00モード', themeRose: 'ピンクモード', themeCreme: 'クリームモード', themeVert: 'グリーンモード', themeJaune: 'イエローモード', themeCiel: 'スカイブルーモード',
     settingsTitle: '表示オプション',
     focusMode: 'フォーカスモード', focusExit: 'フォーカスモードを終了',
+    gameTitle: 'ゲームモード', gameZen: '禅', gameZenDesc: 'タイマーなし・20問',
+    gameChrono: 'タイムアタック', gameChronoDesc: '60秒でハイスコアを目指せ',
+    gameScore: 'スコア', gameBest: 'ベスト', gameReplay: 'もう一度', gameQuit: '終了',
+    gameModes: 'モード変更', gameNewBest: '新記録！', gameOver: 'ゲーム終了！',
+    gameResult: (ok, t) => `${t}問中${ok}問正解`,
     resetTitle: '進捗をリセット',
     resetConfirmTitle: '進捗を全てリセットしますか？',
     resetConfirmDesc: '習得済み・正解・要復習の全単語が削除されます。この操作は取り消せません。',
@@ -1576,6 +1693,11 @@ const UI = {
     themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드', themeEva00: 'EVA-00 모드', themeRose: '핑크 모드', themeCreme: '크림 모드', themeVert: '연두 모드', themeJaune: '노랑 모드', themeCiel: '하늘색 모드',
     settingsTitle: '표시 옵션',
     focusMode: '포커스 모드', focusExit: '포커스 모드 종료',
+    gameTitle: '게임 모드', gameZen: '젠', gameZenDesc: '타이머 없이 20문제',
+    gameChrono: '타임어택', gameChronoDesc: '60초 동안 최고 점수에 도전',
+    gameScore: '점수', gameBest: '최고 기록', gameReplay: '다시 하기', gameQuit: '종료',
+    gameModes: '모드 변경', gameNewBest: '신기록!', gameOver: '게임 종료!',
+    gameResult: (ok, t) => `${t}문제 중 ${ok}문제 정답`,
     resetTitle: '진도 초기화',
     resetConfirmTitle: '진도를 초기화할까요?',
     resetConfirmDesc: '모든 완료, 정답, 복습 단어가 삭제됩니다. 이 작업은 취소할 수 없습니다.',
@@ -1725,6 +1847,290 @@ function updateFocusBtn() {
   });
 }
 
+// ── Mode jeu : QCM zen / contre-la-montre, avec combo ─────────────────────────
+// Jeu à part : ne modifie ni la progression ni le planning SRS.
+const QUIZ_BEST_KEY  = 'nihon_quiz_best';
+const CHRONO_SECONDS = 60;
+const ZEN_QUESTIONS  = 20;
+let gameActive = false;
+let game = null; // état de la partie en cours (null = écran d'accueil ou de fin)
+
+function escHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+function allQuizWords() {
+  let all = [];
+  Object.keys(VOCAB).forEach(cid => { if (catVisibleForTarget(cid)) all = all.concat(VOCAB[cid]); });
+  return all;
+}
+
+// Mots candidats : catégorie + sous-catégorie courantes (acquis inclus — c'est un jeu)
+function quizPool() {
+  if (currentCat.startsWith('__') || !VOCAB[currentCat]?.length) return allQuizWords();
+  let pool = VOCAB[currentCat].filter(w => currentSub === '__all__' || !w.sub || w.sub === currentSub);
+  if (pool.length < 4) pool = VOCAB[currentCat];
+  return pool;
+}
+
+// Question = contenu du recto, réponse = contenu du verso. Mêmes règles que les
+// cartes : toggles kanji/kana/romaji (JP) et romaja (KO) respectés ; sur les
+// catégories d'écriture, les aides qui révèlent la réponse restent masquées.
+function quizJpFields(w) {
+  const list = [];
+  if (show.front.kanji  && w.kanji)  list.push(w.kanji);
+  if (show.front.kana   && w.kana   && !list.includes(w.kana)) list.push(w.kana);
+  if (show.front.romaji && w.romaji) list.push(w.romaji);
+  if (!list.length) list.push(w.kanji || w.kana); // tout masqué → fallback lisible
+  return list;
+}
+
+function quizQText(w) {
+  const srcL = reverseCards ? targetLang : sourceLang;
+  const kanaQuiz = ['hiragana', 'katakana', 'hangul'].includes(currentCat);
+  if (srcL === 'jp') {
+    if (kanaQuiz) return { main: w.kanji || w.kana, subs: [] };
+    const list = quizJpFields(w);
+    return { main: list[0], subs: list.slice(1) };
+  }
+  if (srcL === 'ko') {
+    const main = w.meanings.ko || '—';
+    return { main, subs: (show.ko.romaja && !kanaQuiz && main !== '—') ? [hangulToRomaja(main)] : [] };
+  }
+  return { main: w.meanings[srcL] || '—', subs: [] };
+}
+
+function quizAText(w) {
+  const tgtL = reverseCards ? sourceLang : targetLang;
+  if (tgtL === 'jp') {
+    if (['hiragana', 'katakana'].includes(currentCat)) return w.kana || w.kanji;
+    return quizJpFields(w).join('・');
+  }
+  if (tgtL === 'ko') {
+    const m = w.meanings.ko || '—';
+    return (show.ko.romaja && m !== '—') ? m + '・' + hangulToRomaja(m) : m;
+  }
+  return w.meanings[tgtL] || '—';
+}
+
+// Records par mode + sens du quiz (langue question > langue réponse) + catégorie + sous-catégorie
+function quizBestKey(mode) {
+  const srcL = reverseCards ? targetLang : sourceLang;
+  const tgtL = reverseCards ? sourceLang : targetLang;
+  return `${mode}:${srcL}>${tgtL}:${currentCat}:${currentSub}`;
+}
+function loadQuizBest(mode) {
+  try { return JSON.parse(localStorage.getItem(QUIZ_BEST_KEY) || '{}')[quizBestKey(mode)] || 0; }
+  catch(e) { return 0; }
+}
+function saveQuizBest(mode, score) {
+  try {
+    const all = JSON.parse(localStorage.getItem(QUIZ_BEST_KEY) || '{}');
+    all[quizBestKey(mode)] = score;
+    localStorage.setItem(QUIZ_BEST_KEY, JSON.stringify(all));
+  } catch(e) {}
+}
+
+function toggleGame() { gameActive ? closeGame() : openGame(); }
+
+function openGame() {
+  if (focusMode) toggleFocus();
+  gameActive = true;
+  document.body.classList.add('game-mode');
+  document.getElementById('screens').style.display    = 'none';
+  document.getElementById('gameScreen').style.display = 'block';
+  document.getElementById('gameBtn').classList.add('active');
+  renderGameStart();
+}
+
+function closeGame() {
+  if (game?.timer) clearInterval(game.timer);
+  game = null;
+  gameActive = false;
+  document.body.classList.remove('game-mode');
+  document.getElementById('gameScreen').style.display = 'none';
+  document.getElementById('screens').style.display    = '';
+  document.getElementById('gameBtn').classList.remove('active');
+}
+
+function renderGameStart() {
+  if (game?.timer) clearInterval(game.timer);
+  game = null;
+  const t = UI[uiLang()];
+  const catLabel = currentCat.startsWith('__') ? ''
+    : (CATEGORIES[currentCat]?.[uiLang()] || CATEGORIES[currentCat]?.fr || currentCat);
+  const subLabel = (currentSub !== '__all__' && SUBCATS[currentSub])
+    ? ' · ' + (SUBCATS[currentSub][uiLang()] || SUBCATS[currentSub].fr || '') : '';
+  const bestZen = loadQuizBest('zen'), bestChrono = loadQuizBest('chrono');
+  const bestLine = b => b ? `<div class="gm-best"><i class="ti ti-trophy"></i> ${t.gameBest} : ${b}</div>` : '';
+  document.getElementById('gameScreen').innerHTML = `
+    <div class="game-center">
+      <div class="game-title">🎮 ${t.gameTitle}</div>
+      <div class="game-sub">${escHtml(catLabel + subLabel)}</div>
+      <div class="game-mode-cards">
+        <button class="game-mode-card" onclick="startQuiz('zen')">
+          <div class="gm-icon"><i class="ti ti-flower"></i></div>
+          <div class="gm-name">${t.gameZen}</div>
+          <div class="gm-desc">${t.gameZenDesc}</div>
+          ${bestLine(bestZen)}
+        </button>
+        <button class="game-mode-card" onclick="startQuiz('chrono')">
+          <div class="gm-icon"><i class="ti ti-alarm"></i></div>
+          <div class="gm-name">${t.gameChrono}</div>
+          <div class="gm-desc">${t.gameChronoDesc}</div>
+          ${bestLine(bestChrono)}
+        </button>
+      </div>
+      <button class="game-ghost-btn" onclick="closeGame()">${t.gameQuit}</button>
+    </div>`;
+}
+
+function startQuiz(mode) {
+  const order = [...quizPool()].sort(() => Math.random() - 0.5);
+  if (!order.length) return;
+  if (game?.timer) clearInterval(game.timer);
+  game = {
+    mode, order, qIdx: 0,
+    score: 0, streak: 0, ok: 0, asked: 0,
+    total: mode === 'zen' ? Math.min(ZEN_QUESTIONS, order.length) : Infinity,
+    timeLeft: CHRONO_SECONDS, timer: null, locked: false,
+    endAt: Date.now() + CHRONO_SECONDS * 1000,
+  };
+  if (mode === 'chrono') {
+    // Basé sur l'horloge réelle : reste juste même si les ticks sont throttlés
+    game.timer = setInterval(() => {
+      game.timeLeft = Math.max(0, (game.endAt - Date.now()) / 1000);
+      const fill = document.getElementById('gameTimerFill');
+      if (fill) fill.style.width = (game.timeLeft / CHRONO_SECONDS * 100) + '%';
+      const lbl = document.getElementById('gameTimeLbl');
+      if (lbl) lbl.textContent = Math.ceil(game.timeLeft);
+      if (game.timeLeft <= 0) endQuiz();
+    }, 100);
+  }
+  nextQuizQuestion();
+}
+
+// Multiplicateur de combo : ×2 après 3 bonnes réponses d'affilée, ×3 après 6… (plafond ×4)
+function quizMultiplier() { return Math.min(1 + Math.floor(game.streak / 3), 4); }
+
+function nextQuizQuestion() {
+  if (!game) return;
+  if (game.mode === 'zen' && game.asked >= game.total) { endQuiz(); return; }
+  if (game.qIdx >= game.order.length) { game.order.sort(() => Math.random() - 0.5); game.qIdx = 0; }
+  const word = game.order[game.qIdx++];
+  // 3 distracteurs au texte distinct : d'abord la catégorie courante, sinon tout le vocabulaire.
+  // On stocke le mot (pas le texte) : le rendu suit les toggles d'affichage en direct.
+  const texts   = new Set([quizAText(word)]);
+  const options = [{ w: word, good: true }];
+  for (const pool of [quizPool(), allQuizWords()]) {
+    const shuffled = [...pool].sort(() => Math.random() - 0.5);
+    for (const w of shuffled) {
+      if (options.length >= 4) break;
+      if (w.id === word.id) continue;
+      const txt = quizAText(w);
+      if (texts.has(txt)) continue;
+      texts.add(txt);
+      options.push({ w, good: false });
+    }
+    if (options.length >= 4) break;
+  }
+  options.sort(() => Math.random() - 0.5);
+  game.current = { word, options };
+  game.locked  = false;
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+  const t    = UI[uiLang()];
+  const q    = quizQText(game.current.word);
+  const mult = quizMultiplier();
+  const right = game.mode === 'chrono'
+    ? `<span class="game-stat"><b id="gameTimeLbl">${Math.ceil(game.timeLeft)}</b>s</span>`
+    : `<span class="game-stat">${game.asked + 1} / ${game.total}</span>`;
+  document.getElementById('gameScreen').innerHTML = `
+    <div class="game-top">
+      <span class="game-stat">${t.gameScore}<b id="gameScoreNum">${game.score}</b></span>
+      <span class="game-combo${mult > 1 ? '' : ' hidden'}" id="gameCombo"><i class="ti ti-flame"></i> ×${mult}</span>
+      ${right}
+    </div>
+    ${game.mode === 'chrono' ? `<div class="game-timer-wrap"><div class="game-timer-fill" id="gameTimerFill" style="width:${game.timeLeft / CHRONO_SECONDS * 100}%"></div></div>` : ''}
+    <div class="game-question" id="gameQuestion">
+      <div class="game-q-main">${escHtml(q.main)}</div>
+      ${q.subs.map(s => `<div class="game-q-sub">${escHtml(s)}</div>`).join('')}
+    </div>
+    <div class="game-answers">
+      ${game.current.options.map((o, i) => `<button class="game-answer" onclick="answerQuiz(${i})">${escHtml(quizAText(o.w))}</button>`).join('')}
+    </div>
+    <div style="text-align:center"><button class="game-ghost-btn" onclick="renderGameStart()">${t.gameQuit}</button></div>`;
+}
+
+function answerQuiz(i) {
+  if (!game || game.locked || !game.current) return;
+  game.locked = true;
+  game.asked++;
+  const opts    = game.current.options;
+  const btns    = document.querySelectorAll('.game-answer');
+  const goodIdx = opts.findIndex(o => o.good);
+  const good    = opts[i].good;
+  btns.forEach((b, j) => {
+    b.disabled = true;
+    if (j === goodIdx) b.classList.add('good');
+    else if (j === i)  b.classList.add('bad');
+    else               b.classList.add('dim');
+  });
+  if (good) {
+    game.streak++;
+    game.ok++;
+    const mult = quizMultiplier();
+    const pts  = 10 * mult;
+    game.score += pts;
+    document.getElementById('gameScoreNum').textContent = game.score;
+    const combo = document.getElementById('gameCombo');
+    if (mult > 1) {
+      combo.classList.remove('hidden');
+      combo.innerHTML = `<i class="ti ti-flame"></i> ×${mult}`;
+      combo.classList.add('pop');
+    }
+    const float = document.createElement('span');
+    float.className   = 'game-float';
+    float.textContent = '+' + pts;
+    document.getElementById('gameQuestion').appendChild(float);
+  } else {
+    game.streak = 0;
+    document.getElementById('gameCombo').classList.add('hidden');
+    document.getElementById('gameQuestion').classList.add('shake');
+  }
+  // Laisser voir la bonne réponse, surtout après une erreur
+  const g = game;
+  setTimeout(() => { if (game === g) nextQuizQuestion(); }, good ? 600 : 1200);
+}
+
+function endQuiz() {
+  if (!game) return;
+  if (game.timer) clearInterval(game.timer);
+  const t       = UI[uiLang()];
+  const { mode, ok, asked, score } = game;
+  const best    = loadQuizBest(mode);
+  const newBest = score > best && asked > 0;
+  if (newBest) saveQuizBest(mode, score);
+  game = null;
+  document.getElementById('gameScreen').innerHTML = `
+    <div class="game-center">
+      <div class="done-emoji">${newBest ? '🏆' : '🎮'}</div>
+      <div class="game-title">${t.gameOver}</div>
+      <div class="game-end-score">${score}</div>
+      <div class="game-sub">${t.gameResult(ok, asked)}</div>
+      ${newBest
+        ? `<div class="game-newbest">⭐ ${t.gameNewBest}</div>`
+        : (best ? `<div class="game-sub" style="margin-top:6px"><i class="ti ti-trophy"></i> ${t.gameBest} : ${best}</div>` : '')}
+      <div class="game-actions">
+        <button class="restart-btn" onclick="startQuiz('${mode}')">${t.gameReplay}</button>
+        <button class="game-ghost-btn" onclick="renderGameStart()">${t.gameModes}</button>
+        <button class="game-ghost-btn" onclick="closeGame()">${t.gameQuit}</button>
+      </div>
+    </div>`;
+}
+
 // ── Options panel (collapsible) ───────────────────────────────────────────────
 function toggleSettings() {
   const panel = document.getElementById('optionsPanel');
@@ -1828,6 +2234,7 @@ function updateUI() {
   document.getElementById('statsBtn').title            = t.statsTitle;
   document.getElementById('langBtn').title             = t.langBtn;
   document.getElementById('settingsBtn').title         = t.settingsTitle;
+  document.getElementById('gameBtn').title             = t.gameTitle;
   document.getElementById('reverseCardsLabel').textContent = t.reverseCards;
   document.getElementById('statsResetBtnLabel').textContent = t.resetTitle;
   document.getElementById('resetConfirmTitle').textContent = t.resetConfirmTitle;
@@ -1893,6 +2300,7 @@ function toggleReverseCards() {
   saveSettings();
   buildDeck(currentCat);
   showCard();
+  if (gameActive) renderGameStart(); // le sens des questions du quiz vient de changer
 }
 
 function toggleField(pill) {
@@ -1901,6 +2309,8 @@ function toggleField(pill) {
   pill.classList.toggle('on', show[side][field]);
   applyVisibility();
   saveSettings();
+  // Quiz en cours : rafraîchir la question affichée (sauf pendant le feedback de réponse)
+  if (gameActive && game?.current && !game.locked) renderQuizQuestion();
 }
 
 function applyVisibility() {
@@ -2310,14 +2720,14 @@ function buildUiLangPicker() {
   const autoBtn = document.createElement('button');
   autoBtn.className = 'ctrl-btn' + (!uiLangOverride ? ' lang-active' : '');
   autoBtn.textContent = 'Auto';
-  autoBtn.onclick = () => { uiLangOverride = null; buildControlBar(); updateUI(); buildCatBar(); saveSettings(); };
+  autoBtn.onclick = () => { uiLangOverride = null; buildControlBar(); updateUI(); buildCatBar(); saveSettings(); if (gameActive) renderGameStart(); };
   group.appendChild(autoBtn);
   UI_LANGS.forEach(lang => {
     const btn = document.createElement('button');
     btn.className = 'ctrl-btn' + (uiLangOverride === lang.code ? ' lang-active' : '');
     btn.textContent = lang.label;
     btn.title = lang.name;
-    btn.onclick = () => { uiLangOverride = lang.code; buildControlBar(); updateUI(); buildCatBar(); saveSettings(); };
+    btn.onclick = () => { uiLangOverride = lang.code; buildControlBar(); updateUI(); buildCatBar(); saveSettings(); if (gameActive) renderGameStart(); };
     group.appendChild(btn);
   });
 }
@@ -2333,6 +2743,7 @@ function buildControlBar() {
     ensureCatVisible();
     buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
     showCard();
+    if (gameActive) renderGameStart(); // partie en cours obsolète (pool, records)
   });
   buildLangPicker('targetGroup', targetLang, (code) => {
     targetLang = code;
@@ -2342,6 +2753,7 @@ function buildControlBar() {
     ensureCatVisible();
     buildControlBar(); buildDeck(currentCat); updateUI(); buildCatBar(); saveSettings();
     showCard();
+    if (gameActive) renderGameStart(); // partie en cours obsolète (pool, records)
   });
   buildUiLangPicker();
 }
@@ -2357,6 +2769,7 @@ function swapLangs() {
   buildCatBar();
   saveSettings();
   showCard();
+  if (gameActive) renderGameStart(); // partie en cours obsolète (pool, records)
 }
 
 function buildLangPicker(groupId, activeLang, onSelect) {
@@ -2886,7 +3299,16 @@ function confirmReset() {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeLegal(); closeStats(); closeResetConfirm(); if (focusMode) toggleFocus(); }
+  if (e.key === 'Escape') {
+    closeLegal(); closeStats(); closeResetConfirm();
+    if (gameActive) closeGame();
+    if (focusMode) toggleFocus();
+  }
+  // Mode jeu : touches 1-4 pour répondre
+  if (gameActive && game && !game.locked && ['1', '2', '3', '4'].includes(e.key)) {
+    const btns = document.querySelectorAll('.game-answer');
+    if (btns[+e.key - 1]) btns[+e.key - 1].click();
+  }
 });
 
 // Molette verticale → défilement horizontal sur la barre des catégories (PC)
