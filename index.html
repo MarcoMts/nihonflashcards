@@ -616,6 +616,37 @@
 
     /* ── Carte ── */
     .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; }
+
+    /* ── Mode focus : carte seule, agrandie ── */
+    .focus-btn {
+      position: absolute; top: 10px; right: 10px; z-index: 2;
+      width: 30px; height: 30px; border: none; border-radius: 50%;
+      background: transparent; color: var(--text-tertiary);
+      font-size: 15px; cursor: pointer; opacity: 0.4;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.15s, background 0.15s, color 0.15s;
+    }
+    .focus-btn:hover { opacity: 1; background: var(--bg-secondary); color: var(--text-primary); }
+    body.focus-mode { align-items: center; }
+    body.focus-mode .header,
+    body.focus-mode .control-bar,
+    body.focus-mode .review-bar,
+    body.focus-mode .cat-bar-wrap,
+    body.focus-mode .options-panel,
+    body.focus-mode .progress-row,
+    body.focus-mode .flip-hint,
+    body.focus-mode .action-row,
+    body.focus-mode .stats-row { display: none !important; }
+    body.focus-mode .card-area { margin-bottom: 0; }
+    body.focus-mode .card-face { min-height: min(70vh, 540px); padding: 3rem 2rem; }
+    body.focus-mode .field-kanji  { font-size: 92px; }
+    body.focus-mode .field-kana   { font-size: 34px; }
+    body.focus-mode .field-romaji { font-size: 19px; }
+    body.focus-mode .back-kana    { font-size: 28px; }
+    body.focus-mode .back-romaji  { font-size: 19px; }
+    body.focus-mode .back-meaning,
+    body.focus-mode .lang-meaning { font-size: 40px; }
+    body.focus-mode .back-example { font-size: 15px; }
     .card-inner {
       width: 100%;
       display: grid;
@@ -637,6 +668,7 @@
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       user-select: none;
+      position: relative;
     }
     .card-back { transform: rotateY(180deg); }
     .card-tag { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 1rem; }
@@ -1005,6 +1037,9 @@
 
           <!-- Recto -->
           <div class="card-face card-front">
+            <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
+              <i class="ti ti-maximize"></i>
+            </button>
             <div class="card-tag" id="frontTag">vocabulaire</div>
             <div id="jpModeFront">
               <div class="card-placeholder hidden" id="frontPlaceholder">？</div>
@@ -1021,6 +1056,9 @@
 
           <!-- Verso -->
           <div class="card-face card-back">
+            <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
+              <i class="ti ti-maximize"></i>
+            </button>
             <div class="card-tag" id="backTag">réponse</div>
             <div id="jpModeBack">
               <div class="back-kana"    id="backKana"></div>
@@ -1312,6 +1350,7 @@ const UI = {
     reverseCards: 'Inverser les cartes',
     themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01', themeEva00: 'Mode Eva-00', themeRose: 'Mode rose', themeCreme: 'Mode crème', themeVert: 'Mode vert pâle', themeJaune: 'Mode jaune', themeCiel: 'Mode bleu ciel',
     settingsTitle: "Options d'affichage",
+    focusMode: 'Mode focus', focusExit: 'Quitter le mode focus',
     resetTitle: 'Réinitialiser la progression',
     resetConfirmTitle: 'Réinitialiser la progression ?',
     resetConfirmDesc: 'Cette action supprimera tous vos mots acquis, corrects et à revoir. Elle est irréversible.',
@@ -1356,6 +1395,7 @@ const UI = {
     reverseCards: 'Reverse cards',
     themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode', themeEva00: 'Eva-00 mode', themeRose: 'Pink mode', themeCreme: 'Cream mode', themeVert: 'Pale green mode', themeJaune: 'Yellow mode', themeCiel: 'Sky blue mode',
     settingsTitle: 'Display options',
+    focusMode: 'Focus mode', focusExit: 'Exit focus mode',
     resetTitle: 'Reset progress',
     resetConfirmTitle: 'Reset all progress?',
     resetConfirmDesc: 'This will delete all your mastered, correct and review words. This cannot be undone.',
@@ -1400,6 +1440,7 @@ const UI = {
     reverseCards: 'Karten umkehren',
     themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design', themeEva00: 'Eva-00-Design', themeRose: 'Rosa Design', themeCreme: 'Creme-Design', themeVert: 'Blassgrünes Design', themeJaune: 'Gelbes Design', themeCiel: 'Himmelblaues Design',
     settingsTitle: 'Anzeigeoptionen',
+    focusMode: 'Fokusmodus', focusExit: 'Fokusmodus beenden',
     resetTitle: 'Fortschritt zurücksetzen',
     resetConfirmTitle: 'Fortschritt zurücksetzen?',
     resetConfirmDesc: 'Dies löscht alle gelernten, richtigen und zu wiederholenden Wörter. Dieser Vorgang kann nicht rückgängig gemacht werden.',
@@ -1444,6 +1485,7 @@ const UI = {
     reverseCards: 'Inverter cartas',
     themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01', themeEva00: 'Modo Eva-00', themeRose: 'Modo rosa', themeCreme: 'Modo creme', themeVert: 'Modo verde claro', themeJaune: 'Modo amarelo', themeCiel: 'Modo azul-céu',
     settingsTitle: 'Opções de exibição',
+    focusMode: 'Modo foco', focusExit: 'Sair do modo foco',
     resetTitle: 'Reiniciar progresso',
     resetConfirmTitle: 'Reiniciar todo o progresso?',
     resetConfirmDesc: 'Isso apagará todas as palavras dominadas, corretas e a rever. Esta ação é irreversível.',
@@ -1488,6 +1530,7 @@ const UI = {
     reverseCards: 'カードを反転',
     themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード', themeEva00: 'エヴァ00モード', themeRose: 'ピンクモード', themeCreme: 'クリームモード', themeVert: 'グリーンモード', themeJaune: 'イエローモード', themeCiel: 'スカイブルーモード',
     settingsTitle: '表示オプション',
+    focusMode: 'フォーカスモード', focusExit: 'フォーカスモードを終了',
     resetTitle: '進捗をリセット',
     resetConfirmTitle: '進捗を全てリセットしますか？',
     resetConfirmDesc: '習得済み・正解・要復習の全単語が削除されます。この操作は取り消せません。',
@@ -1532,6 +1575,7 @@ const UI = {
     reverseCards: '카드 반전',
     themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드', themeEva00: 'EVA-00 모드', themeRose: '핑크 모드', themeCreme: '크림 모드', themeVert: '연두 모드', themeJaune: '노랑 모드', themeCiel: '하늘색 모드',
     settingsTitle: '표시 옵션',
+    focusMode: '포커스 모드', focusExit: '포커스 모드 종료',
     resetTitle: '진도 초기화',
     resetConfirmTitle: '진도를 초기화할까요?',
     resetConfirmDesc: '모든 완료, 정답, 복습 단어가 삭제됩니다. 이 작업은 취소할 수 없습니다.',
@@ -1666,6 +1710,21 @@ function toggleLangBar() {
   btn.classList.toggle('active', open);
 }
 
+// ── Mode focus : carte seule, sans boutons ────────────────────────────────────
+let focusMode = false;
+function toggleFocus() {
+  focusMode = !focusMode;
+  document.body.classList.toggle('focus-mode', focusMode);
+  updateFocusBtn();
+}
+function updateFocusBtn() {
+  const t = UI[uiLang()];
+  document.querySelectorAll('.focus-btn').forEach(btn => {
+    btn.innerHTML = `<i class="ti ${focusMode ? 'ti-minimize' : 'ti-maximize'}"></i>`;
+    btn.title     = focusMode ? t.focusExit : t.focusMode;
+  });
+}
+
 // ── Options panel (collapsible) ───────────────────────────────────────────────
 function toggleSettings() {
   const panel = document.getElementById('optionsPanel');
@@ -1779,6 +1838,7 @@ function updateUI() {
   document.getElementById('consentAccept').textContent = t.consentAccept;
   document.getElementById('consentReject').textContent = t.consentReject;
   updateThemeBtn();
+  updateFocusBtn();
   updateOptionsPanel();
   updateReviewBar();
 }
@@ -2826,7 +2886,7 @@ function confirmReset() {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeLegal(); closeStats(); closeResetConfirm(); }
+  if (e.key === 'Escape') { closeLegal(); closeStats(); closeResetConfirm(); if (focusMode) toggleFocus(); }
 });
 
 // Molette verticale → défilement horizontal sur la barre des catégories (PC)
