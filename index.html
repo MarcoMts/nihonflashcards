@@ -636,9 +636,21 @@
     body.focus-mode .options-panel,
     body.focus-mode .progress-row,
     body.focus-mode .flip-hint,
-    body.focus-mode .action-row,
     body.focus-mode .stats-row { display: none !important; }
     body.focus-mode .card-area { margin-bottom: 0; }
+    /* Boutons d'action conservés mais minimalistes et discrets */
+    body.focus-mode .action-row {
+      margin-top: 1.5rem; margin-bottom: 0;
+      opacity: 0.45; transition: opacity 0.2s;
+    }
+    body.focus-mode .action-row:hover,
+    body.focus-mode .action-row:focus-within { opacity: 1; }
+    body.focus-mode .action-btn {
+      flex: 0 0 auto; width: 44px; max-width: 44px; padding: 8px 0;
+      border-color: transparent; background: transparent; font-size: 0;
+    }
+    body.focus-mode .action-btn i { font-size: 19px; }
+    body.focus-mode .action-btn:hover { background: var(--bg-secondary); }
     body.focus-mode .card-face { min-height: min(70vh, 540px); padding: 3rem 2rem; }
     body.focus-mode .field-kanji  { font-size: 92px; }
     body.focus-mode .field-kana   { font-size: 34px; }
