@@ -618,7 +618,7 @@
     .progress-label { font-size: 13px; color: var(--text-secondary); white-space: nowrap; min-width: 48px; text-align: right; }
 
     /* ── Carte ── */
-    .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; }
+    .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; position: relative; }
 
     /* ── Mode focus : carte seule, agrandie ── */
     .focus-btn {
@@ -1139,13 +1139,13 @@
       </div>
 
       <div class="card-area" id="cardArea" onclick="flipCard()">
+        <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
+          <i class="ti ti-maximize"></i>
+        </button>
         <div class="card-inner" id="cardInner">
 
           <!-- Recto -->
           <div class="card-face card-front">
-            <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
-              <i class="ti ti-maximize"></i>
-            </button>
             <div class="card-tag" id="frontTag">vocabulaire</div>
             <div id="jpModeFront">
               <div class="card-placeholder hidden" id="frontPlaceholder">？</div>
@@ -1162,9 +1162,6 @@
 
           <!-- Verso -->
           <div class="card-face card-back">
-            <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
-              <i class="ti ti-maximize"></i>
-            </button>
             <div class="card-tag" id="backTag">réponse</div>
             <div id="jpModeBack">
               <div class="back-kana"    id="backKana"></div>
