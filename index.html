@@ -329,6 +329,26 @@
       to   { filter: hue-rotate(360deg); }
     }
 
+    /* ── Mode daltonien (accessibilité) ──
+       Palette sûre bleu / vermillon / magenta (inspirée Okabe-Ito),
+       distinguable pour les déficiences rouge-vert. Indépendant du thème :
+       ne surcharge que les couleurs sémantiques correct / à revoir / acquis.
+       Les boutons gardent par ailleurs leurs icônes (✓ ✕ ★) comme repère. */
+    :root[data-cb] {
+      --correct-color:  #0072B2;
+      --correct-bg:     rgba(0, 114, 178, 0.14);
+      --wrong-color:    #D55E00;
+      --wrong-bg:       rgba(213, 94, 0, 0.14);
+      --acquired-color: #B5179E;
+      --acquired-bg:    rgba(181, 23, 158, 0.14);
+    }
+    /* « Acquis » dans la barre de révision a des couleurs codées en dur → on les aligne */
+    :root[data-cb] .review-btn.review-btn-acquired {
+      border-color: #B5179E; background: rgba(181, 23, 158, 0.12); color: #B5179E;
+    }
+    :root[data-cb] .review-btn.review-btn-acquired:hover { background: #B5179E; color: #fff; }
+    :root[data-cb] .review-count-acquired { background: #B5179E; color: #fff; }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg-tertiary);
@@ -1110,6 +1130,7 @@
   <div class="options-panel" id="optionsPanel">
     <div class="toggle-group">
       <div class="toggle-pill" id="reverseCardsPill" onclick="toggleReverseCards()"><span class="dot"></span><span id="reverseCardsLabel">Inverser les cartes</span></div>
+      <div class="toggle-pill" id="colorblindPill" onclick="toggleColorblind()"><span class="dot"></span><span id="colorblindLabel">Mode daltonien</span></div>
     </div>
     <div class="options-divider"></div>
     <span class="options-label" id="rectoLabel">Recto</span>
@@ -1368,6 +1389,7 @@ let targetLang  = 'jp';  // langue CIBLE à apprendre (2ème liste) → détermi
 let statsViewLang = null; // langue affichée dans les stats
 let uiLangOverride = null; // null = automatique
 let reverseCards   = true; // inverser le sens recto/verso des cartes (défaut : target en premier)
+let colorblind     = false; // mode daltonien : palette bleu/vermillon/magenta
 
 // ── Clés localStorage ─────────────────────────────────────────────────────────
 const STORAGE_KEY  = 'nihon_progress';
@@ -1459,6 +1481,7 @@ const UI = {
     addWordErrEmpty: 'Les deux champs sont obligatoires.',
     addWordErrSame: 'Les deux langues doivent être différentes.',
     reverseCards: 'Inverser les cartes',
+    colorblind: 'Mode daltonien',
     themeLight: 'Mode clair', themeDark: 'Mode sombre', themeEva: 'Mode Eva-01', themeEva00: 'Mode Eva-00', themeRose: 'Mode rose', themeCreme: 'Mode crème', themeVert: 'Mode vert pâle', themeJaune: 'Mode jaune', themeCiel: 'Mode bleu ciel',
     settingsTitle: "Options d'affichage",
     focusMode: 'Mode focus', focusExit: 'Quitter le mode focus',
@@ -1509,6 +1532,7 @@ const UI = {
     addWordErrEmpty: 'Both fields are required.',
     addWordErrSame: 'The two languages must be different.',
     reverseCards: 'Reverse cards',
+    colorblind: 'Color-blind mode',
     themeLight: 'Light mode', themeDark: 'Dark mode', themeEva: 'Eva-01 mode', themeEva00: 'Eva-00 mode', themeRose: 'Pink mode', themeCreme: 'Cream mode', themeVert: 'Pale green mode', themeJaune: 'Yellow mode', themeCiel: 'Sky blue mode',
     settingsTitle: 'Display options',
     focusMode: 'Focus mode', focusExit: 'Exit focus mode',
@@ -1559,6 +1583,7 @@ const UI = {
     addWordErrEmpty: 'Beide Felder sind erforderlich.',
     addWordErrSame: 'Die zwei Sprachen müssen unterschiedlich sein.',
     reverseCards: 'Karten umkehren',
+    colorblind: 'Farbenblind-Modus',
     themeLight: 'Helles Design', themeDark: 'Dunkles Design', themeEva: 'Eva-01-Design', themeEva00: 'Eva-00-Design', themeRose: 'Rosa Design', themeCreme: 'Creme-Design', themeVert: 'Blassgrünes Design', themeJaune: 'Gelbes Design', themeCiel: 'Himmelblaues Design',
     settingsTitle: 'Anzeigeoptionen',
     focusMode: 'Fokusmodus', focusExit: 'Fokusmodus beenden',
@@ -1609,6 +1634,7 @@ const UI = {
     addWordErrEmpty: 'Os dois campos são obrigatórios.',
     addWordErrSame: 'Os dois idiomas devem ser diferentes.',
     reverseCards: 'Inverter cartas',
+    colorblind: 'Modo daltônico',
     themeLight: 'Modo claro', themeDark: 'Modo escuro', themeEva: 'Modo Eva-01', themeEva00: 'Modo Eva-00', themeRose: 'Modo rosa', themeCreme: 'Modo creme', themeVert: 'Modo verde claro', themeJaune: 'Modo amarelo', themeCiel: 'Modo azul-céu',
     settingsTitle: 'Opções de exibição',
     focusMode: 'Modo foco', focusExit: 'Sair do modo foco',
@@ -1659,6 +1685,7 @@ const UI = {
     addWordErrEmpty: '両方のフィールドが必要です。',
     addWordErrSame: '2つの言語は異なる必要があります。',
     reverseCards: 'カードを反転',
+    colorblind: '色覚サポート',
     themeLight: 'ライトモード', themeDark: 'ダークモード', themeEva: 'エヴァ01モード', themeEva00: 'エヴァ00モード', themeRose: 'ピンクモード', themeCreme: 'クリームモード', themeVert: 'グリーンモード', themeJaune: 'イエローモード', themeCiel: 'スカイブルーモード',
     settingsTitle: '表示オプション',
     focusMode: 'フォーカスモード', focusExit: 'フォーカスモードを終了',
@@ -1709,6 +1736,7 @@ const UI = {
     addWordErrEmpty: '두 필드 모두 필수입니다.',
     addWordErrSame: '두 언어는 달라야 합니다.',
     reverseCards: '카드 반전',
+    colorblind: '색맹 모드',
     themeLight: '라이트 모드', themeDark: '다크 모드', themeEva: 'EVA-01 모드', themeEva00: 'EVA-00 모드', themeRose: '핑크 모드', themeCreme: '크림 모드', themeVert: '연두 모드', themeJaune: '노랑 모드', themeCiel: '하늘색 모드',
     settingsTitle: '표시 옵션',
     focusMode: '포커스 모드', focusExit: '포커스 모드 종료',
@@ -1757,6 +1785,7 @@ function saveSettings() {
     target: targetLang,
     uiLang: uiLangOverride,
     reverseCards,
+    colorblind,
   }));
 }
 
@@ -1773,6 +1802,7 @@ function loadSettings() {
     if (saved.uiLang && UI_LANGS.some(l => l.code === saved.uiLang)) uiLangOverride = saved.uiLang;
     // Restaurer le choix sauvegardé (true ET false) ; sinon défaut = true (cible au recto)
     if (typeof saved.reverseCards === 'boolean') reverseCards = saved.reverseCards;
+    if (typeof saved.colorblind === 'boolean') colorblind = saved.colorblind;
     // Sécurité : source ≠ target
     if (sourceLang === targetLang) targetLang = sourceLang === 'jp' ? 'fr' : 'jp';
     // Compat ancien format (lang + dir) : la cible était toujours le japonais,
@@ -1792,6 +1822,7 @@ function syncTogglePills() {
     if (side && field) pill.classList.toggle('on', !!show[side]?.[field]);
   });
   document.getElementById('reverseCardsPill')?.classList.toggle('on', reverseCards);
+  document.getElementById('colorblindPill')?.classList.toggle('on', colorblind);
 }
 
 // ── Thème clair / sombre ──────────────────────────────────────────────────────
@@ -2255,6 +2286,7 @@ function updateUI() {
   document.getElementById('settingsBtn').title         = t.settingsTitle;
   document.getElementById('gameBtn').title             = t.gameTitle;
   document.getElementById('reverseCardsLabel').textContent = t.reverseCards;
+  document.getElementById('colorblindLabel').textContent = t.colorblind;
   document.getElementById('statsResetBtnLabel').textContent = t.resetTitle;
   document.getElementById('resetConfirmTitle').textContent = t.resetConfirmTitle;
   document.getElementById('resetConfirmDesc').textContent  = t.resetConfirmDesc;
@@ -2320,6 +2352,17 @@ function toggleReverseCards() {
   buildDeck(currentCat);
   showCard();
   if (gameActive) renderGameStart(); // le sens des questions du quiz vient de changer
+}
+
+// ── Mode daltonien ────────────────────────────────────────────────────────────
+function applyColorblind() {
+  document.documentElement.toggleAttribute('data-cb', colorblind);
+}
+function toggleColorblind() {
+  colorblind = !colorblind;
+  applyColorblind();
+  document.getElementById('colorblindPill').classList.toggle('on', colorblind);
+  saveSettings();
 }
 
 function toggleField(pill) {
@@ -3347,6 +3390,7 @@ document.querySelector('.cat-bar-wrap').addEventListener('wheel', e => {
     loadProgress();
     loadSettings();    // restaure lang, dir, show avant de construire l'UI
     initTheme();
+    applyColorblind();
     // Restaurer la dernière session (catégorie + deck + index) si disponible
     currentCat = Object.keys(VOCAB)[0];
     let lastPos = null;
