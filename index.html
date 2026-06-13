@@ -2811,9 +2811,9 @@ function buildLangPicker(groupId, activeLang, onSelect) {
 
 // ── Barre de catégories ───────────────────────────────────────────────────────
 // Catégories d'écriture liées à une langue cible : kana → JP, hangeul → KO
-function catVisibleForTarget(catId) {
-  if (catId === 'hiragana' || catId === 'katakana') return targetLang === 'jp';
-  if (catId === 'hangul') return targetLang === 'ko';
+function catVisibleForTarget(catId, lang = targetLang) {
+  if (catId === 'hiragana' || catId === 'katakana') return lang === 'jp';
+  if (catId === 'hangul') return lang === 'ko';
   return true;
 }
 
@@ -3225,6 +3225,7 @@ function renderStats() {
   const vl = statsViewLang || targetLang;
   let tK = 0, tR = 0, tA = 0, tU = 0, tT = 0, rows = '';
   Object.keys(CATEGORIES).forEach(catId => {
+    if (!catVisibleForTarget(catId, vl)) return; // masquer kana hors JP / hangeul hors KO
     const words = VOCAB[catId] || [];
     let k = 0, r = 0, a = 0;
     words.forEach(w => {
