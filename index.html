@@ -618,16 +618,18 @@
     .progress-label { font-size: 13px; color: var(--text-secondary); white-space: nowrap; min-width: 48px; text-align: right; }
 
     /* ── Carte ── */
-    .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; position: relative; }
+    .card-area { perspective: 1000px; margin-bottom: 1rem; cursor: pointer; }
 
     /* ── Mode focus : carte seule, agrandie ── */
     .focus-btn {
-      position: absolute; top: 10px; right: 10px; z-index: 2;
+      position: absolute; top: 10px; right: 10px;
       width: 30px; height: 30px; border: none; border-radius: 50%;
       background: transparent; color: var(--text-tertiary);
       font-size: 15px; cursor: pointer; opacity: 0.4;
       display: flex; align-items: center; justify-content: center;
       transition: opacity 0.15s, background 0.15s, color 0.15s;
+      /* Culling avec sa face : évite le doublon « miroir » au tactile pendant le flip */
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
     }
     .focus-btn:hover { opacity: 1; background: var(--bg-secondary); color: var(--text-primary); }
     body.focus-mode { align-items: center; }
@@ -1139,9 +1141,6 @@
       </div>
 
       <div class="card-area" id="cardArea" onclick="flipCard()">
-        <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
-          <i class="ti ti-maximize"></i>
-        </button>
         <div class="card-inner" id="cardInner">
 
           <!-- Recto -->
@@ -1158,6 +1157,9 @@
               <div class="back-romaji hidden" id="frontRomaja"></div>
               <div class="back-example" id="frontExampleLang"></div>
             </div>
+            <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
+              <i class="ti ti-maximize"></i>
+            </button>
           </div>
 
           <!-- Verso -->
@@ -1176,6 +1178,9 @@
               <div class="field-romaji" id="backRomajiJP"></div>
               <div class="back-example" id="backExampleJP"></div>
             </div>
+            <button class="focus-btn" onclick="event.stopPropagation(); toggleFocus()" title="Mode focus">
+              <i class="ti ti-maximize"></i>
+            </button>
           </div>
 
         </div>
